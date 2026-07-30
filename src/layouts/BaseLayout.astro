@@ -1,10 +1,11 @@
 ---
 /**
  * BaseLayout — root layout for all pages.
- * Handles: meta/SEO, dark-theme script, global styles, skip link.
+ * Handles: meta/SEO, dark-theme script, global styles, skip link, i18n script.
  */
 import '../styles/global.css';
 import * as content from '../content/index';
+import { buildI18nScript } from '../i18n/i18n-script';
 
 interface Props {
   title?: string;
@@ -96,10 +97,13 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`
         document.documentElement.setAttribute('data-theme', theme);
       })();
     </script>
+
+    <!-- Inline i18n script — detects locale and translates data-i18n elements before first paint -->
+    <script is:inline set:html={buildI18nScript()} />
   </head>
   <body>
     <!-- Skip navigation for keyboard users -->
-    <a class="skip-link" href="#main-content">Saltar al contenido</a>
+    <a class="skip-link" href="#main-content" data-i18n="skip-link">Saltar al contenido</a>
 
     <!--
       DIRECTION CONTRACT — Brisa de Conil Landing Page

@@ -18,31 +18,34 @@ const categoryIcons: Record<string, string> = {
   <div class="container">
     <header class="conil-header reveal">
       <hr class="divider" aria-hidden="true" />
-      <p class="section-label">{conil.sectionLabel}</p>
-      <h2 class="section-title" id="conil-title">{conil.headline}</h2>
-      <p class="section-lead">{conil.lead}</p>
+      <p class="section-label" data-i18n="conil.label">{conil.sectionLabel}</p>
+      <h2 class="section-title" id="conil-title" data-i18n="conil.title">{conil.headline}</h2>
+      <p class="section-lead" data-i18n="conil.lead">{conil.lead}</p>
     </header>
 
     <div class="conil-categories">
-      {conil.categories.map((cat: { icon: string; title: string; items: string[] }, i: number) => (
-        <div class:list={['conil-category', 'reveal', `reveal-delay-${i + 1}`]}>
-          <div class="conil-category-header">
-            <span class="conil-category-icon" set:html={categoryIcons[cat.icon] ?? categoryIcons.waves} />
-            <h3 class="conil-category-title">{cat.title}</h3>
+      {(() => {
+        const CAT_KEYS = ['beaches','oldtown','food'];
+        return conil.categories.map((cat: { icon: string; title: string; items: string[] }, i: number) => (
+          <div class:list={['conil-category', 'reveal', `reveal-delay-${i + 1}`]}>
+            <div class="conil-category-header">
+              <span class="conil-category-icon" set:html={categoryIcons[cat.icon] ?? categoryIcons.waves} />
+              <h3 class="conil-category-title" data-i18n={`conil.${CAT_KEYS[i]}.title`}>{cat.title}</h3>
+            </div>
+            <ul class="conil-category-items" role="list">
+              {cat.items.map((item: string) => (
+                <li class="conil-item">
+                  <span class="conil-item-dot" aria-hidden="true"></span>
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
-          <ul class="conil-category-items" role="list">
-            {cat.items.map((item: string) => (
-              <li class="conil-item">
-                <span class="conil-item-dot" aria-hidden="true"></span>
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
+        ));
+      })()}
     </div>
 
-    <p class="conil-disclaimer reveal">{conil.disclaimer}</p>
+    <p class="conil-disclaimer reveal" data-i18n="conil.disclaimer">{conil.disclaimer}</p>
   </div>
 </section>
 

@@ -1,11 +1,8 @@
 ---
-/**
- * AmenitiesSection — equipment list with inline SVG icons.
- * Impeccable: not a grid of same-size icon+heading+text cards as page structure.
- * Uses a clean horizontal-scroll-friendly grid with icon + label + detail.
- */
 import * as content from '../content/index';
 const { amenities } = content;
+
+const AMENITY_KEYS = ['ac','fan','wifi','tv','fridge','washer','dishwasher','microwave'];
 
 const icons: Record<string, string> = {
   thermometer: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>`,
@@ -23,9 +20,9 @@ const icons: Record<string, string> = {
   <div class="container">
     <header class="section-header">
       <hr class="divider" aria-hidden="true" />
-      <p class="section-label">{amenities.sectionLabel}</p>
-      <h2 class="section-title" id="amenities-title">{amenities.headline}</h2>
-      <p class="section-lead reveal">{amenities.lead}</p>
+      <p class="section-label" data-i18n="amenities.label">{amenities.sectionLabel}</p>
+      <h2 class="section-title" id="amenities-title" data-i18n="amenities.title">{amenities.headline}</h2>
+      <p class="section-lead reveal" data-i18n="amenities.lead">{amenities.lead}</p>
     </header>
 
     <ul class="amenities-grid" role="list">
@@ -33,8 +30,10 @@ const icons: Record<string, string> = {
         <li class:list={['amenity-item', 'reveal', `reveal-delay-${(i % 4) + 1}`]}>
           <div class="amenity-icon" set:html={icons[item.icon] ?? icons.wifi} />
           <div class="amenity-text">
-            <span class="amenity-label">{item.label}</span>
-            {item.detail && <span class="amenity-detail">{item.detail}</span>}
+            <span class="amenity-label" data-i18n={`amenities.item.${AMENITY_KEYS[i]}`}>{item.label}</span>
+            {item.detail && (
+              <span class="amenity-detail" data-i18n={`amenities.item.${AMENITY_KEYS[i]}.detail`}>{item.detail}</span>
+            )}
           </div>
         </li>
       ))}
@@ -44,80 +43,26 @@ const icons: Record<string, string> = {
 
 <style>
   .section-label {
-    display: block;
-    font-size: var(--text-sm);
-    font-weight: var(--fw-semibold);
-    letter-spacing: var(--tracking-wider);
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: var(--sp-3);
+    display: block; font-size: var(--text-sm); font-weight: var(--fw-semibold);
+    letter-spacing: var(--tracking-wider); text-transform: uppercase;
+    color: var(--accent); margin-bottom: var(--sp-3);
   }
-
-  .section-header {
-    margin-bottom: var(--sp-12);
-  }
-
-  /* ── Grid ─────────────────────────────────────────────────────────────────── */
+  .section-header { margin-bottom: var(--sp-12); }
   .amenities-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--sp-3);
-    padding: 0;
-    list-style: none;
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: var(--sp-3); padding: 0; list-style: none;
   }
-
-  @media (min-width: 640px) {
-    .amenities-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .amenities-grid {
-      grid-template-columns: repeat(4, 1fr);
-    }
-  }
-
-  /* ── Item ─────────────────────────────────────────────────────────────────── */
+  @media (min-width: 640px) { .amenities-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 1024px) { .amenities-grid { grid-template-columns: repeat(4, 1fr); gap: 12px; } }
   .amenity-item {
-    display: flex;
-    align-items: center;
-    gap: var(--sp-3);
-    padding: var(--sp-4) var(--sp-5);
-    background-color: var(--bg-base);
-    border-radius: var(--radius-lg);
-    /* craft-floor: no colored border-left on list items */
-    box-shadow: var(--shadow-sm);
+    display: flex; align-items: center; gap: var(--sp-3);
+    padding: var(--sp-4) var(--sp-5); background-color: var(--bg-base);
+    border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);
     transition: box-shadow var(--t-base);
   }
-
-  .amenity-item:hover {
-    box-shadow: var(--shadow-md);
-  }
-
-  .amenity-icon {
-    color: var(--accent);
-    flex-shrink: 0;
-    display: flex;
-  }
-
-  .amenity-text {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    min-width: 0;
-  }
-
-  .amenity-label {
-    font-size: var(--text-sm);
-    font-weight: var(--fw-semibold);
-    color: var(--text-base);
-    line-height: var(--leading-snug);
-  }
-
-  .amenity-detail {
-    font-size: var(--text-xs);
-    color: var(--text-muted);
-    line-height: var(--leading-normal);
-  }
+  .amenity-item:hover { box-shadow: var(--shadow-md); }
+  .amenity-icon { color: var(--accent); flex-shrink: 0; display: flex; }
+  .amenity-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .amenity-label { font-size: var(--text-sm); font-weight: var(--fw-semibold); color: var(--text-base); line-height: var(--leading-snug); }
+  .amenity-detail { font-size: var(--text-xs); color: var(--text-muted); line-height: var(--leading-normal); }
 </style>

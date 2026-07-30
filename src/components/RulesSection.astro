@@ -27,33 +27,35 @@ const ruleIcons: Record<string, string> = {
           </svg>
         </div>
         <div>
-          <p class="deposit-label">{rules.deposit.label}</p>
+          <p class="deposit-label" data-i18n="rules.deposit.label">{rules.deposit.label}</p>
           <p class="deposit-amount">{rules.deposit.amount}</p>
-          <p class="deposit-return">{rules.deposit.return}</p>
+          <p class="deposit-return" data-i18n="rules.deposit.return">{rules.deposit.return}</p>
         </div>
       </div>
 
       <!-- Rules list -->
       <div class="rules-content">
         <hr class="divider" aria-hidden="true" />
-        <p class="section-label">{rules.sectionLabel}</p>
+        <p class="section-label" data-i18n="rules.label">{rules.sectionLabel}</p>
         <h2 class="section-title" id="rules-title">
           {rules.headline.split('\n').map((line: string) => (
-            <span class="rules-headline-line">{line}</span>
+            <span class="rules-headline-line" data-i18n={line.includes('sencillas') || line.includes('simple') || line.includes('einfache') ? 'rules.title' : undefined}>{line}</span>
           ))}
         </h2>
-        <p class="section-lead reveal">{rules.lead}</p>
+        <p class="section-lead reveal" data-i18n="rules.lead">{rules.lead}</p>
 
         <ul class="rules-list reveal reveal-delay-1" role="list">
-          {rules.rules.map((rule: { icon: string; text: string }) => {
-            const isPending = rule.text.includes('[PENDIENTE');
+        {(() => {
+          const RULE_KEYS = ['trash','checkin','pets','smoking','noise'];
+          return rules.rules.map((rule: { icon: string; text: string }, ri: number) => {
+            const isPending = rule.text.includes('[PENDIENTE') || rule.text.includes('[PENDING') || rule.text.includes('[AUSSTEHEND');
             return (
               <li class:list={['rule-item', isPending && 'rule-item--pending']}>
                 <span class="rule-icon" set:html={ruleIcons[rule.icon] ?? ruleIcons.clock} />
-                <span class="rule-text">
+                <span class="rule-text" data-i18n={`rules.rule.${RULE_KEYS[ri]}`}>
                   {isPending ? (
                     <Fragment>
-                      {rule.text.replace(/\[PENDIENTE[^\]]*\]\.?/, '')}
+                      {rule.text.replace(/\[PENDIENTE[^\]]*\]\.?|\[PENDING[^\]]*\]\.?|\[AUSSTEHEND[^\]]*\]\.?/, '')}
                       <span class="placeholder-badge" title="Dato pendiente de confirmar">Pendiente</span>
                     </Fragment>
                   ) : (
@@ -62,10 +64,11 @@ const ruleIcons: Record<string, string> = {
                 </span>
               </li>
             );
-          })}
+          });
+        })()}
         </ul>
 
-        <p class="rules-placeholder-note reveal reveal-delay-2">{rules.placeholderNote}</p>
+        <p class="rules-placeholder-note reveal reveal-delay-2" data-i18n="rules.placeholder-note">{rules.placeholderNote}</p>
       </div>
     </div>
   </div>

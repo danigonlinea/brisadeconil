@@ -21,33 +21,35 @@ const icons: Record<string, string> = {
       <!-- Left: heading + closing line -->
       <div class="welcome-intro reveal">
         <hr class="divider welcome-divider" aria-hidden="true" />
-        <p class="section-label welcome-label">{welcome.sectionLabel}</p>
-        <h2 class="section-title welcome-headline" id="welcome-title">
+        <p class="section-label welcome-label" data-i18n="welcome.label">{welcome.sectionLabel}</p>
+        <h2 class="section-title welcome-headline" id="welcome-title" data-i18n="welcome.title">
           {welcome.headline.split('\n').map((line: string) => (
             <span class="welcome-headline-line">{line}</span>
           ))}
         </h2>
-        <p class="welcome-lead">{welcome.lead}</p>
+        <p class="welcome-lead" data-i18n="welcome.lead">{welcome.lead}</p>
         <p class="welcome-closing">
-          <em>{welcome.closing}</em>
+          <em data-i18n="welcome.closing">{welcome.closing}</em>
         </p>
       </div>
 
       <!-- Right: welcome items -->
       <ul class="welcome-items" role="list">
-        {welcome.items.map((item: { icon: string; label: string; detail: string }, i: number) => (
-          <li class:list={['welcome-item', 'reveal', `reveal-delay-${i + 1}`]}>
-            <div class="welcome-item-icon" set:html={icons[item.icon] ?? icons.towel} />
-            <div class="welcome-item-text">
-              <span class="welcome-item-label">{item.label}</span>
-              {item.detail && <span class="welcome-item-detail">{item.detail}</span>}
-            </div>
-            <!-- Teal checkmark -->
-            <svg class="welcome-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <polyline points="20 6 9 17 4 12"/>
-            </svg>
-          </li>
-        ))}
+        {(() => {
+          const WK = ['towels','detergent','hairdryer','kitchen'];
+          return welcome.items.map((item: { icon: string; label: string; detail: string }, i: number) => (
+            <li class:list={['welcome-item', 'reveal', `reveal-delay-${i + 1}`]}>
+              <div class="welcome-item-icon" set:html={icons[item.icon] ?? icons.towel} />
+              <div class="welcome-item-text">
+                <span class="welcome-item-label" data-i18n={`welcome.item.${WK[i]}`}>{item.label}</span>
+                {item.detail && <span class="welcome-item-detail" data-i18n={`welcome.item.${WK[i]}.detail`}>{item.detail}</span>}
+              </div>
+              <svg class="welcome-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </li>
+          ));
+        })()}
       </ul>
     </div>
   </div>

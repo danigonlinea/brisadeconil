@@ -11,8 +11,8 @@ const { testimonials } = content;
   <div class="container">
     <header class="testimonials-header reveal">
       <hr class="divider" aria-hidden="true" />
-      <p class="section-label">{testimonials.sectionLabel}</p>
-      <h2 class="section-title" id="testimonials-title">
+      <p class="section-label" data-i18n="testimonials.label">{testimonials.sectionLabel}</p>
+      <h2 class="section-title" id="testimonials-title" data-i18n="testimonials.title">
         {testimonials.headline}
         {testimonials.placeholder && (
           <span class="placeholder-badge" style="margin-left: 0.5rem; vertical-align: middle; font-size: var(--text-xs);">
@@ -68,7 +68,7 @@ const { testimonials } = content;
     </ul>
 
     {testimonials.placeholder && (
-      <p class="testimonials-note reveal">
+      <p class="testimonials-note reveal" data-i18n="testimonials.note">
         <span class="placeholder-badge">⚠ Testimonios placeholder</span>
         {' '}Sustituir por reseñas reales antes de publicar. No publicar estos textos como si fueran reales.
       </p>

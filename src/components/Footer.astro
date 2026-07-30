@@ -18,7 +18,7 @@ const { footer, nav } = content;
           </svg>
           <span class="footer-brand-name">{footer.brand}</span>
         </a>
-        <p class="footer-tagline">{footer.tagline}</p>
+        <p class="footer-tagline" data-i18n="footer.tagline">{footer.tagline}</p>
         <address class="footer-address">
           {footer.address.split('\n').map((line: string, i: number) => (
             <span key={i}>
@@ -31,23 +31,23 @@ const { footer, nav } = content;
 
       <!-- Nav column -->
       <nav class="footer-nav" aria-label="Navegación pie de página">
-        <p class="footer-nav-title">Secciones</p>
+        <p class="footer-nav-title" data-i18n="footer.sections">Secciones</p>
         <ul role="list">
-          {footer.links.map((link: { label: string; href: string }) => (
-            <li>
-              <a href={link.href} class="footer-nav-link">{link.label}</a>
-            </li>
-          ))}
+          <li><a href="#apartamento" class="footer-nav-link" data-i18n="footer.link.apartamento">{footer.links[0]?.label ?? 'El apartamento'}</a></li>
+          <li><a href="#galeria"     class="footer-nav-link" data-i18n="footer.link.galeria">{footer.links[1]?.label ?? 'Galería'}</a></li>
+          <li><a href="#ubicacion"   class="footer-nav-link" data-i18n="footer.link.ubicacion">{footer.links[2]?.label ?? 'Ubicación'}</a></li>
+          <li><a href="#contacto"    class="footer-nav-link" data-i18n="footer.link.contacto">{footer.links[3]?.label ?? 'Contacto'}</a></li>
+          <li><a href="#faq"         class="footer-nav-link" data-i18n="footer.link.faq">{footer.links[4]?.label ?? 'FAQ'}</a></li>
         </ul>
       </nav>
 
       <!-- Contact column -->
       <div class="footer-contact-col">
-        <p class="footer-nav-title">Contacto</p>
-        <a href="#contacto" class="btn btn--primary btn--sm footer-cta">
+        <p class="footer-nav-title" data-i18n="contact.label">Contacto</p>
+        <a href="#contacto" class="btn btn--primary btn--sm footer-cta" data-i18n="nav.cta">
           {nav.cta}
         </a>
-        <p class="footer-response-note">
+        <p class="footer-response-note" data-i18n="footer.response-note">
           Respondemos normalmente en el mismo día.
         </p>
       </div>
@@ -55,8 +55,8 @@ const { footer, nav } = content;
 
     <!-- Bottom bar -->
     <div class="footer-bottom">
-      <p class="footer-legal">{footer.legalNote}</p>
-      <a href="#" class="footer-legal-link">{footer.privacyLabel}</a>
+      <p class="footer-legal" data-i18n="footer.legal">{footer.legalNote}</p>
+      <a href="#" class="footer-legal-link" data-i18n="footer.legal-link">{footer.privacyLabel}</a>
     </div>
   </div>
 </footer>
