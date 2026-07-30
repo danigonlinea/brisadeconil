@@ -1,0 +1,141 @@
+---
+/**
+ * BaseLayout — root layout for all pages.
+ * Handles: meta/SEO, dark-theme script, global styles, skip link.
+ */
+import '../styles/global.css';
+import * as content from '../content/index';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  canonicalUrl?: string;
+}
+
+const {
+  title = content.meta.title,
+  description = content.meta.description,
+  ogImage = content.meta.ogImage,
+  canonicalUrl,
+} = Astro.props;
+
+const siteUrl = import.meta.env.SITE ?? 'https://danigonlinea.github.io/brisadeconil';
+const canonical = canonicalUrl ?? siteUrl;
+const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
+---
+
+<!doctype html>
+<html lang="es" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary meta -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph -->
+    <meta property="og:type"        content="website" />
+    <meta property="og:url"         content={canonical} />
+    <meta property="og:title"       content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image"       content={ogImageUrl} />
+    <meta property="og:locale"      content={content.meta.locale} />
+    <meta property="og:site_name"   content="Brisa de Conil" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image"       content={ogImageUrl} />
+
+    <!-- Schema.org — VacationRental -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "LodgingBusiness",
+      "name": "Brisa de Conil",
+      "description": description,
+      "url": canonical,
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Calle Rosa de los Vientos",
+        "addressLocality": "Conil de la Frontera",
+        "addressRegion": "Cádiz",
+        "addressCountry": "ES"
+      },
+      "numberOfRooms": 1,
+      "occupancy": {
+        "@type": "QuantitativeValue",
+        "maxValue": 3
+      },
+      "amenityFeature": [
+        { "@type": "LocationFeatureSpecification", "name": "Aire acondicionado", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "WiFi", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Lavadora", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Lavavajillas", "value": true }
+      ]
+    })} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Fonts preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Inline dark theme script — must run before first paint to avoid flash -->
+    <script is:inline>
+      (function () {
+        const STORAGE_KEY = 'brisa-theme';
+        const saved = localStorage.getItem(STORAGE_KEY);
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = saved ?? (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+  </head>
+  <body>
+    <!-- Skip navigation for keyboard users -->
+    <a class="skip-link" href="#main-content">Saltar al contenido</a>
+
+    <!--
+      DIRECTION CONTRACT — Brisa de Conil Landing Page
+      THESIS: Luz y sombra del Atlántico sur. Rechaza crema+coral+terracota (default de categoría).
+      OWN-WORLD: Navy-900 en hero, chalk-50 en superficies, teal-500 acento único.
+        Lora display, Source Sans 3 cuerpo. Sombras reales con offset.
+      STORY: Visitante entiende qué es, dónde está y cómo contactar. La calma persuade.
+      FIRST VIEWPORT: Hero full-bleed con overlay navy, titular serif grande, CTA teal.
+      FORM: Nueva superficie. Modo Persuade. Seed: manual — brief pinned world.
+      FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review,
+        the verdict, and DESIGN.md.
+    -->
+
+    <slot />
+
+    <!-- Scroll reveal — Intersection Observer -->
+    <script is:inline>
+      (function () {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12 }
+        );
+        document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+        // Re-observe after any dynamic content
+        document.addEventListener('astro:page-load', () => {
+          document.querySelectorAll('.reveal:not(.visible)').forEach((el) => io.observe(el));
+        });
+      })();
+    </script>
+  </body>
+</html>

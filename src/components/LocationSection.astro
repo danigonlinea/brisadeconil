@@ -1,0 +1,253 @@
+---
+/**
+ * LocationSection — address, Google Maps embed, parking options.
+ */
+import * as content from '../content/index';
+const { location: loc } = content;
+---
+
+<section class="section section--sky" id="ubicacion" aria-labelledby="location-title">
+  <div class="container">
+    <header class="location-header">
+      <hr class="divider" aria-hidden="true" />
+      <p class="section-label">{loc.sectionLabel}</p>
+      <h2 class="section-title" id="location-title">{loc.headline}</h2>
+      <p class="section-lead reveal">{loc.lead}</p>
+    </header>
+
+    <div class="location-grid">
+      <!-- Map -->
+      <div class="location-map reveal">
+        <iframe
+          src={loc.mapEmbedUrl}
+          width="100%"
+          height="100%"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title={`Mapa de ${loc.address}`}
+          aria-label={`Mapa de Google con la ubicación del apartamento: ${loc.address}`}
+        ></iframe>
+      </div>
+
+      <!-- Address + parking -->
+      <div class="location-info">
+        <!-- Address -->
+        <div class="location-address reveal">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="location-pin">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          <address class="location-address-text">{loc.address}</address>
+        </div>
+
+        <!-- Parking -->
+        <div class="parking reveal reveal-delay-1">
+          <h3 class="parking-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <path d="M9 17V7h4a3 3 0 0 1 0 6H9"/>
+            </svg>
+            {loc.parking.headline}
+          </h3>
+
+          <ul class="parking-options" role="list">
+            {loc.parking.options.map((opt: { name: string; detail: string; type: string }, i: number) => (
+              <li class:list={['parking-option', `reveal`, `reveal-delay-${i + 2}`]}>
+                <div class="parking-option-header">
+                  <span class="parking-option-name">{opt.name}</span>
+                  <span class:list={['parking-badge', opt.type === 'free' ? 'parking-badge--free' : 'parking-badge--paid']}>
+                    {opt.type === 'free' ? 'Gratuito' : 'De pago'}
+                  </span>
+                </div>
+                <p class="parking-option-detail">{opt.detail}</p>
+              </li>
+            ))}
+          </ul>
+
+          <div class="parking-season-note" role="note">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="12" y1="8" x2="12" y2="12"/>
+              <line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+            <p>{loc.parking.seasonNote}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-label {
+    display: block;
+    font-size: var(--text-sm);
+    font-weight: var(--fw-semibold);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: var(--sp-3);
+  }
+
+  .location-header {
+    margin-bottom: var(--sp-12);
+  }
+
+  /* ── Grid ─────────────────────────────────────────────────────────────────── */
+  .location-grid {
+    display: grid;
+    gap: var(--sp-10);
+    align-items: start;
+  }
+
+  @media (min-width: 768px) {
+    .location-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-12);
+      align-items: start;
+    }
+  }
+
+  /* ── Map ─────────────────────────────────────────────────────────────────── */
+  .location-map {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    aspect-ratio: 4 / 3;
+    background-color: var(--bg-surface);
+  }
+
+  .location-map iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  /* ── Address ─────────────────────────────────────────────────────────────── */
+  .location-address {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+    margin-bottom: var(--sp-8);
+    padding: var(--sp-4) var(--sp-5);
+    background-color: var(--card-bg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .location-pin {
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .location-address-text {
+    font-style: normal;
+    font-size: var(--text-base);
+    font-weight: var(--fw-medium);
+    color: var(--text-base);
+    line-height: var(--leading-snug);
+  }
+
+  /* ── Parking ─────────────────────────────────────────────────────────────── */
+  .parking-title {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+    font-family: var(--font-serif);
+    font-size: var(--text-xl);
+    font-weight: var(--fw-semibold);
+    color: var(--text-base);
+    margin-bottom: var(--sp-5);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .parking-options {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+    margin-bottom: var(--sp-5);
+  }
+
+  .parking-option {
+    padding: var(--sp-4) var(--sp-5);
+    background-color: var(--card-bg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .parking-option-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-3);
+    margin-bottom: var(--sp-2);
+  }
+
+  .parking-option-name {
+    font-weight: var(--fw-semibold);
+    font-size: var(--text-sm);
+    color: var(--text-base);
+  }
+
+  .parking-badge {
+    font-size: var(--text-xs);
+    font-weight: var(--fw-semibold);
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    white-space: nowrap;
+  }
+
+  .parking-badge--free {
+    background-color: rgba(42, 165, 152, 0.12);
+    color: var(--color-teal-600);
+  }
+
+  [data-theme="dark"] .parking-badge--free {
+    background-color: rgba(42, 165, 152, 0.2);
+    color: var(--color-teal-300);
+  }
+
+  .parking-badge--paid {
+    background-color: rgba(12, 31, 46, 0.08);
+    color: var(--text-muted);
+  }
+
+  [data-theme="dark"] .parking-badge--paid {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: var(--text-muted);
+  }
+
+  .parking-option-detail {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    max-width: none;
+    margin: 0;
+  }
+
+  .parking-season-note {
+    display: flex;
+    gap: var(--sp-3);
+    padding: var(--sp-4);
+    background-color: var(--bg-surface-alt);
+    border-radius: var(--radius-md);
+  }
+
+  .parking-season-note svg {
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .parking-season-note p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    max-width: none;
+    margin: 0;
+  }
+</style>

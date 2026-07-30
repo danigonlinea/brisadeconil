@@ -1,0 +1,13 @@
+# CNAME — Custom domain configuration
+#
+# When you buy your domain (e.g. brisadeconil.com):
+# 1. Uncomment the line below and replace with your actual domain
+# 2. In astro.config.mjs change:
+#      site: 'https://brisadeconil.com'   (or your chosen domain)
+#      base: '/'
+# 3. Point your domain's DNS to GitHub Pages:
+#      A records: 185.199.108.153, 185.199.109.153, 185.199.110.153, 185.199.111.153
+#      CNAME: danigonlinea.github.io
+# 4. Enable "Enforce HTTPS" in GitHub repo Settings > Pages
+#
+# brisadeconil.com

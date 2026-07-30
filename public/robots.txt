@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://danigonlinea.github.io/brisadeconil/sitemap-index.xml

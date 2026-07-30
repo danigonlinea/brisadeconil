@@ -1,0 +1,173 @@
+---
+/**
+ * WelcomeSection — "Como en casa desde el primer día"
+ * This is a differentiation section, not a list of appliances.
+ * Give it visual prominence: dark background, large serif heading, generous spacing.
+ */
+import * as content from '../content/index';
+const { welcome } = content;
+
+const icons: Record<string, string> = {
+  towel: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H5z"/><path d="M8 7h8M8 11h8M8 15h4"/></svg>`,
+  droplets: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05z"/><path d="M12.56 6.6A10.97 10.97 0 0 0 14 3.02c.5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a6.98 6.98 0 0 1-11.91 4.97"/></svg>`,
+  wind: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"/><path d="M9.6 4.6A2 2 0 1 1 11 8H2"/><path d="M12.6 19.4A2 2 0 1 0 14 16H2"/></svg>`,
+  flask: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6l1 9H8L9 3z"/><path d="M8 12c0 3.314 2.686 6 6 6s6-2.686 6-6"/><path d="M6 12H3"/><line x1="12" y1="3" x2="12" y2="12"/></svg>`,
+};
+---
+
+<section class="section welcome-section" id="bienvenida" aria-labelledby="welcome-title">
+  <div class="container">
+    <div class="welcome-grid">
+      <!-- Left: heading + closing line -->
+      <div class="welcome-intro reveal">
+        <hr class="divider welcome-divider" aria-hidden="true" />
+        <p class="section-label welcome-label">{welcome.sectionLabel}</p>
+        <h2 class="section-title welcome-headline" id="welcome-title">
+          {welcome.headline.split('\n').map((line: string) => (
+            <span class="welcome-headline-line">{line}</span>
+          ))}
+        </h2>
+        <p class="welcome-lead">{welcome.lead}</p>
+        <p class="welcome-closing">
+          <em>{welcome.closing}</em>
+        </p>
+      </div>
+
+      <!-- Right: welcome items -->
+      <ul class="welcome-items" role="list">
+        {welcome.items.map((item: { icon: string; label: string; detail: string }, i: number) => (
+          <li class:list={['welcome-item', 'reveal', `reveal-delay-${i + 1}`]}>
+            <div class="welcome-item-icon" set:html={icons[item.icon] ?? icons.towel} />
+            <div class="welcome-item-text">
+              <span class="welcome-item-label">{item.label}</span>
+              {item.detail && <span class="welcome-item-detail">{item.detail}</span>}
+            </div>
+            <!-- Teal checkmark -->
+            <svg class="welcome-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .welcome-section {
+    background-color: var(--bg-dark);
+    color: var(--text-on-dark);
+    /* Deliberate dark section — picks up the navy world from the hero */
+  }
+
+  .section-label {
+    display: block;
+    font-size: var(--text-sm);
+    font-weight: var(--fw-semibold);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    margin-bottom: var(--sp-3);
+  }
+
+  .welcome-label {
+    color: var(--color-teal-300);
+  }
+
+  .welcome-divider {
+    background-color: var(--color-teal-600);
+  }
+
+  /* ── Grid ─────────────────────────────────────────────────────────────────── */
+  .welcome-grid {
+    display: grid;
+    gap: var(--sp-16);
+    align-items: center;
+  }
+
+  @media (min-width: 768px) {
+    .welcome-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-20);
+    }
+  }
+
+  /* ── Intro ───────────────────────────────────────────────────────────────── */
+  .welcome-headline {
+    color: var(--color-chalk-50);
+    margin-bottom: var(--sp-5);
+  }
+
+  .welcome-headline-line { display: block; }
+
+  .welcome-lead {
+    color: var(--text-on-dark-muted);
+    font-size: var(--text-lg);
+    max-width: 42ch;
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--sp-6);
+  }
+
+  .welcome-closing {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: var(--text-xl);
+    color: var(--color-teal-300);
+    max-width: none;
+    line-height: var(--leading-snug);
+  }
+
+  /* ── Items ───────────────────────────────────────────────────────────────── */
+  .welcome-items {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+    padding: 0;
+  }
+
+  .welcome-item {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-4);
+    padding: var(--sp-5);
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-lg);
+    transition: background-color var(--t-fast);
+  }
+
+  .welcome-item:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .welcome-item-icon {
+    color: var(--color-teal-400);
+    flex-shrink: 0;
+    display: flex;
+  }
+
+  .welcome-item-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .welcome-item-label {
+    font-size: var(--text-base);
+    font-weight: var(--fw-semibold);
+    color: var(--color-chalk-50);
+    line-height: var(--leading-snug);
+  }
+
+  .welcome-item-detail {
+    font-size: var(--text-sm);
+    color: var(--text-on-dark-muted);
+    line-height: var(--leading-normal);
+  }
+
+  .welcome-check {
+    color: var(--color-teal-400);
+    flex-shrink: 0;
+  }
+</style>

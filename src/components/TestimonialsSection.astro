@@ -1,0 +1,200 @@
+---
+/**
+ * TestimonialsSection — placeholders clearly marked.
+ * Replace placeholder text with real reviews before publishing.
+ */
+import * as content from '../content/index';
+const { testimonials } = content;
+---
+
+<section class="section section--alt" id="opiniones" aria-labelledby="testimonials-title">
+  <div class="container">
+    <header class="testimonials-header reveal">
+      <hr class="divider" aria-hidden="true" />
+      <p class="section-label">{testimonials.sectionLabel}</p>
+      <h2 class="section-title" id="testimonials-title">
+        {testimonials.headline}
+        {testimonials.placeholder && (
+          <span class="placeholder-badge" style="margin-left: 0.5rem; vertical-align: middle; font-size: var(--text-xs);">
+            Pendiente de reseñas reales
+          </span>
+        )}
+      </h2>
+    </header>
+
+    <ul class="testimonials-grid" role="list">
+      {testimonials.items.map((t: { name: string; origin: string; rating: number; text: string }, i: number) => (
+        <li class:list={['testimonial-card', 'reveal', `reveal-delay-${i + 1}`]}>
+          <!-- Stars -->
+          <div class="testimonial-stars" aria-label={`${t.rating} de 5 estrellas`}>
+            {Array.from({ length: 5 }).map((_, si) => (
+              <svg
+                width="16" height="16"
+                viewBox="0 0 24 24"
+                fill={si < t.rating ? 'currentColor' : 'none'}
+                stroke="currentColor"
+                stroke-width="2"
+                class="star-icon"
+                aria-hidden="true"
+              >
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+            ))}
+          </div>
+
+          <!-- Quote text — clearly marked as placeholder -->
+          <blockquote class="testimonial-text">
+            {t.text.includes('PLACEHOLDER') ? (
+              <span class="testimonial-placeholder-text" aria-label="Testimonio pendiente de añadir">
+                <em>Aquí irá la reseña real de este huésped.</em>
+              </span>
+            ) : (
+              <span>"{t.text}"</span>
+            )}
+          </blockquote>
+
+          <!-- Author -->
+          <footer class="testimonial-author">
+            <div class="testimonial-avatar" aria-hidden="true">
+              {t.name[0]}
+            </div>
+            <div>
+              <p class="testimonial-name">{t.name}</p>
+              <p class="testimonial-origin">{t.origin}</p>
+            </div>
+          </footer>
+        </li>
+      ))}
+    </ul>
+
+    {testimonials.placeholder && (
+      <p class="testimonials-note reveal">
+        <span class="placeholder-badge">⚠ Testimonios placeholder</span>
+        {' '}Sustituir por reseñas reales antes de publicar. No publicar estos textos como si fueran reales.
+      </p>
+    )}
+  </div>
+</section>
+
+<style>
+  .section-label {
+    display: block;
+    font-size: var(--text-sm);
+    font-weight: var(--fw-semibold);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: var(--sp-3);
+  }
+
+  .testimonials-header {
+    margin-bottom: var(--sp-10);
+  }
+
+  /* ── Grid ─────────────────────────────────────────────────────────────────── */
+  .testimonials-grid {
+    display: grid;
+    gap: var(--sp-5);
+    list-style: none;
+    padding: 0;
+    margin-bottom: var(--sp-8);
+  }
+
+  @media (min-width: 640px) {
+    .testimonials-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* ── Card ─────────────────────────────────────────────────────────────────── */
+  .testimonial-card {
+    background-color: var(--card-bg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: var(--sp-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-4);
+    transition: box-shadow var(--t-base), transform var(--t-base);
+  }
+
+  .testimonial-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+
+  /* Stars */
+  .testimonial-stars {
+    display: flex;
+    gap: 2px;
+    color: #f59e0b;
+  }
+
+  .star-icon { flex-shrink: 0; }
+
+  /* Quote */
+  .testimonial-text {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    flex: 1;
+    margin: 0;
+    max-width: none;
+  }
+
+  .testimonial-placeholder-text {
+    color: var(--text-muted);
+    font-size: var(--text-sm);
+  }
+
+  /* Author */
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+    padding-top: var(--sp-4);
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .testimonial-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-full);
+    background-color: var(--bg-surface-alt);
+    color: var(--accent);
+    font-family: var(--font-serif);
+    font-size: var(--text-base);
+    font-weight: var(--fw-semibold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .testimonial-name {
+    font-size: var(--text-sm);
+    font-weight: var(--fw-semibold);
+    color: var(--text-base);
+    max-width: none;
+    margin: 0 0 2px;
+    line-height: 1.2;
+  }
+
+  .testimonial-origin {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    max-width: none;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  /* Note */
+  .testimonials-note {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    max-width: none;
+    line-height: var(--leading-relaxed);
+  }
+</style>

@@ -1,0 +1,41 @@
+---
+/**
+ * GallerySection — PhotoSwipe lightbox as a React island.
+ * Placeholders clearly marked for real photography.
+ */
+import GalleryIsland from './GalleryIsland';
+import * as content from '../content/index';
+---
+
+<section class="section section--alt" id="galeria" aria-labelledby="gallery-title">
+  <div class="container">
+    <header class="gallery-header">
+      <hr class="divider" aria-hidden="true" />
+      <p class="section-label">Galería de fotos</p>
+      <h2 class="section-title" id="gallery-title">El apartamento</h2>
+      <p class="section-lead reveal">
+        Todas las estancias, con la luz real del apartamento.{' '}
+        <span class="placeholder-badge">Fotos placeholder — pendiente de fotografía real</span>
+      </p>
+    </header>
+
+    <!-- React island — PhotoSwipe loads client-side only -->
+    <GalleryIsland client:visible />
+  </div>
+</section>
+
+<style>
+  .section-label {
+    display: block;
+    font-size: var(--text-sm);
+    font-weight: var(--fw-semibold);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: var(--sp-3);
+  }
+
+  .gallery-header {
+    margin-bottom: var(--sp-10);
+  }
+</style>

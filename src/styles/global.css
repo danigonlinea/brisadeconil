@@ -1,0 +1,580 @@
+/*
+ * Design System — Brisa de Conil
+ * 
+ * DIRECTION CONTRACT
+ * ------------------
+ * THESIS: La luz y la sombra del Atlántico sur — casas encaladas,
+ *   cielo de mediodía, agua turquesa profunda. Rechaza el cliché
+ *   "Airbnb Mediterráneo" (crema + serif + coral/terracota).
+ * OWN-WORLD: Azul marino profundo (#0c1f2e) como base del hero,
+ *   blanco encalado (#f7f5f0) para superficies, turquesa atlántico
+ *   (#2aa598) como único acento. Lora para display, Source Sans 3
+ *   para cuerpo. Sombras de profundidad real (offset + blur suave).
+ * STORY: El visitante entiende en un vistazo qué es, dónde está y
+ *   cómo contactar. La calma y la luz hacen el trabajo de persuasión.
+ * FIRST VIEWPORT: Imagen full-bleed del hero con overlay azul marino,
+ *   titular serif grande izquierda, subtítulo, CTA teal. Header
+ *   transparente sobre el hero, sólido en scroll.
+ * FORM: Nueva superficie desde cero. Modo Persuade.
+ * FINISH: unreviewed and undocumented is unfinished.
+ */
+
+/* ─── Google Fonts ─────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:wght@300;400;500;600&display=swap');
+
+/* ─── Light Theme (default) ─────────────────────────────────────────────────── */
+:root {
+  /* ── Palette ────────────────────────────────────────────────────────────── */
+
+  /* Atlantic blues */
+  --color-navy-950: #061016;
+  --color-navy-900: #0c1f2e;
+  --color-navy-800: #132d3f;
+  --color-navy-700: #1a3d54;
+  --color-navy-600: #235070;
+  --color-navy-300: #6a9ab8;
+  --color-navy-100: #c8dde8;
+  --color-navy-50:  #eaf3f8;
+
+  /* Whitewashed walls */
+  --color-chalk-50:  #f7f5f0;
+  --color-chalk-100: #ede9e0;
+  --color-chalk-200: #d8d1c4;
+  --color-chalk-300: #bdb4a2;
+
+  /* Atlantic teal — single accent */
+  --color-teal-300: #5dd6c8;
+  --color-teal-400: #3bbfb0;
+  --color-teal-500: #2aa598;
+  --color-teal-600: #1d8a7e;
+  --color-teal-700: #136b63;
+
+  /* Sand */
+  --color-sand-100: #f2ead8;
+  --color-sand-200: #e5d6ba;
+  --color-sand-400: #b8a07a;
+
+  /* ── Semantic tokens — Light ────────────────────────────────────────────── */
+  --bg-base:           var(--color-chalk-50);
+  --bg-surface:        #ffffff;
+  --bg-surface-alt:    var(--color-navy-50);
+  --bg-dark:           var(--color-navy-900);
+
+  --text-base:         var(--color-navy-900);
+  --text-secondary:    var(--color-navy-700);
+  --text-muted:        var(--color-navy-600);
+  --text-on-dark:      var(--color-chalk-50);
+  --text-on-dark-muted:var(--color-navy-100);
+
+  --border-subtle:     var(--color-chalk-200);
+  --border-strong:     var(--color-chalk-300);
+
+  --accent:            var(--color-teal-500);
+  --accent-hover:      var(--color-teal-600);
+  --accent-text:       #ffffff;
+
+  --header-bg-transparent: transparent;
+  --header-bg-solid:   rgba(247, 245, 240, 0.95);
+  --header-border:     var(--color-chalk-200);
+
+  --card-bg:           #ffffff;
+  --card-shadow:       0 2px 12px rgba(12, 31, 46, 0.07), 0 1px 4px rgba(12, 31, 46, 0.05);
+  --card-shadow-hover: 0 8px 28px rgba(12, 31, 46, 0.13), 0 2px 8px rgba(12, 31, 46, 0.07);
+
+  --hero-overlay:      rgba(6, 16, 22, 0.52);
+
+  /* ── Typography ─────────────────────────────────────────────────────────── */
+  --font-serif: 'Lora', Georgia, 'Times New Roman', serif;
+  --font-sans:  'Source Sans 3', system-ui, -apple-system, sans-serif;
+
+  /* Scale — fluid where it matters */
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-lg:   1.125rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.5rem;
+  --text-3xl:  1.875rem;
+  --text-4xl:  2.25rem;
+  --text-5xl:  3rem;
+  --text-6xl:  3.75rem;
+  --text-7xl:  4.5rem;
+
+  /* Weight */
+  --fw-light:    300;
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-bold:     700;
+
+  /* Leading */
+  --leading-tight:   1.15;
+  --leading-snug:    1.35;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.65;
+
+  /* Tracking — floor is -0.04em per craft-floor */
+  --tracking-tight:  -0.03em;
+  --tracking-normal: -0.01em;
+  --tracking-wide:   0.08em;
+  --tracking-wider:  0.12em;
+
+  /* ── Spacing ─────────────────────────────────────────────────────────────── */
+  --sp-1:  0.25rem;
+  --sp-2:  0.5rem;
+  --sp-3:  0.75rem;
+  --sp-4:  1rem;
+  --sp-5:  1.25rem;
+  --sp-6:  1.5rem;
+  --sp-8:  2rem;
+  --sp-10: 2.5rem;
+  --sp-12: 3rem;
+  --sp-16: 4rem;
+  --sp-20: 5rem;
+  --sp-24: 6rem;
+  --sp-32: 8rem;
+
+  /* ── Layout ──────────────────────────────────────────────────────────────── */
+  --container-sm:  640px;
+  --container-md:  768px;
+  --container-lg:  1024px;
+  --container-xl:  1280px;
+  --container-2xl: 1440px;
+
+  /* ── Radius ──────────────────────────────────────────────────────────────── */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   14px;   /* craft-floor: 12-16px for cards */
+  --radius-xl:   20px;
+  --radius-full: 9999px;
+
+  /* ── Elevation — craft-floor: offset + blur, never zero-offset halo ─────── */
+  --shadow-sm:  0 1px 4px rgba(12, 31, 46, 0.08), 0 1px 2px rgba(12, 31, 46, 0.05);
+  --shadow-md:  0 4px 16px rgba(12, 31, 46, 0.10), 0 2px 6px rgba(12, 31, 46, 0.06);
+  --shadow-lg:  0 12px 36px rgba(12, 31, 46, 0.13), 0 4px 10px rgba(12, 31, 46, 0.07);
+  --shadow-xl:  0 24px 56px rgba(12, 31, 46, 0.17), 0 8px 16px rgba(12, 31, 46, 0.08);
+
+  /* ── Transitions ─────────────────────────────────────────────────────────── */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:   cubic-bezier(0.4, 0, 0.2, 1);
+  --t-fast:   150ms var(--ease-out-expo);
+  --t-base:   250ms var(--ease-out-expo);
+  --t-slow:   420ms var(--ease-out-expo);
+  --t-theme:  300ms var(--ease-in-out);
+
+  /* ── Z-index ─────────────────────────────────────────────────────────────── */
+  --z-base:    1;
+  --z-raised:  10;
+  --z-header:  100;
+  --z-modal:   1000;
+  --z-toast:   2000;
+}
+
+/* ─── Dark Theme ─────────────────────────────────────────────────────────────── */
+[data-theme="dark"] {
+  --bg-base:           #07131c;
+  --bg-surface:        var(--color-navy-900);
+  --bg-surface-alt:    var(--color-navy-800);
+  --bg-dark:           #030b11;
+
+  --text-base:         #e8f1f6;
+  --text-secondary:    var(--color-navy-100);
+  --text-muted:        var(--color-navy-300);
+  --text-on-dark:      #e8f1f6;
+  --text-on-dark-muted:var(--color-navy-300);
+
+  --border-subtle:     var(--color-navy-700);
+  --border-strong:     var(--color-navy-600);
+
+  --accent:            var(--color-teal-400);
+  --accent-hover:      var(--color-teal-300);
+  --accent-text:       var(--color-navy-950);
+
+  --header-bg-solid:   rgba(7, 19, 28, 0.96);
+  --header-border:     var(--color-navy-700);
+
+  --card-bg:           var(--color-navy-900);
+  --card-shadow:       0 2px 12px rgba(0, 0, 0, 0.3), 0 1px 4px rgba(0, 0, 0, 0.2);
+  --card-shadow-hover: 0 8px 28px rgba(0, 0, 0, 0.45), 0 2px 8px rgba(0, 0, 0, 0.25);
+
+  --shadow-sm:  0 1px 4px rgba(0,0,0,0.2);
+  --shadow-md:  0 4px 16px rgba(0,0,0,0.3);
+  --shadow-lg:  0 12px 36px rgba(0,0,0,0.4);
+  --shadow-xl:  0 24px 56px rgba(0,0,0,0.5);
+}
+
+/* ─── Reset ──────────────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: var(--fw-regular);
+  line-height: var(--leading-relaxed);
+  color: var(--text-base);
+  background-color: var(--bg-base);
+  transition:
+    background-color var(--t-theme),
+    color var(--t-theme);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Typography ─────────────────────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: var(--fw-semibold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-base);
+}
+
+p {
+  line-height: var(--leading-relaxed);
+  color: var(--text-secondary);
+  max-width: 72ch;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color var(--t-fast);
+}
+
+a:hover { color: var(--accent-hover); }
+
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ─── Layout ─────────────────────────────────────────────────────────────────── */
+.container {
+  width: 100%;
+  max-width: var(--container-xl);
+  margin-inline: auto;
+  padding-inline: var(--sp-6);
+}
+
+@media (min-width: 768px) {
+  .container { padding-inline: var(--sp-10); }
+}
+
+@media (min-width: 1024px) {
+  .container { padding-inline: var(--sp-16); }
+}
+
+/* Sections — more space above heading than below: handled per-section */
+.section {
+  padding-block: var(--sp-20);
+}
+
+@media (min-width: 768px) {
+  .section { padding-block: var(--sp-24); }
+}
+
+.section--alt  { background-color: var(--bg-surface); }
+.section--sky  { background-color: var(--bg-surface-alt); }
+.section--dark {
+  background-color: var(--bg-dark);
+  color: var(--text-on-dark);
+}
+
+/* ─── Section header block ────────────────────────────────────────────────────── */
+/* craft-floor: NO eyebrow/kicker above headings — banned */
+.section-header {
+  margin-bottom: var(--sp-12);  /* generous below */
+}
+
+/* The accent line replaces the eyebrow */
+.section-accent-line {
+  display: block;
+  width: 36px;
+  height: 2px;
+  background-color: var(--accent);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--sp-5);   /* more space above heading via margin-top on container */
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(var(--text-2xl), 3vw, var(--text-4xl));
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-tight);
+  color: var(--text-base);
+  margin-bottom: var(--sp-4);
+}
+
+.section-lead {
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  max-width: 54ch;
+  line-height: var(--leading-relaxed);
+}
+
+.section-title--on-dark,
+.section-lead--on-dark {
+  color: var(--text-on-dark);
+}
+
+.section-lead--on-dark {
+  color: var(--text-on-dark-muted);
+}
+
+/* ─── Buttons ────────────────────────────────────────────────────────────────── */
+/* craft-floor: pills are for small controls; CTAs use pill shape with intent */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  padding: 0.75rem 1.75rem;
+  border: 2px solid transparent;
+  border-radius: var(--radius-full);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: var(--fw-semibold);
+  line-height: 1;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background-color var(--t-base),
+    border-color var(--t-base),
+    color var(--t-base),
+    transform var(--t-fast),
+    box-shadow var(--t-base);
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-full);
+}
+
+/* Primary — teal fill */
+.btn--primary {
+  background-color: var(--accent);
+  color: var(--accent-text);
+  box-shadow: 0 2px 8px rgba(42, 165, 152, 0.28);
+}
+.btn--primary:hover {
+  background-color: var(--accent-hover);
+  color: var(--accent-text);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 18px rgba(42, 165, 152, 0.38);
+  text-decoration: none;
+}
+.btn--primary:active {
+  transform: translateY(0);
+}
+
+/* Ghost — for use on dark backgrounds */
+.btn--ghost {
+  background-color: transparent;
+  color: var(--text-on-dark);
+  border-color: rgba(255,255,255,0.45);
+}
+.btn--ghost:hover {
+  background-color: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.75);
+  color: var(--text-on-dark);
+  text-decoration: none;
+}
+
+/* Outline — for secondary actions on light bg */
+.btn--outline {
+  background-color: transparent;
+  color: var(--text-base);
+  border-color: var(--border-strong);
+}
+.btn--outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  text-decoration: none;
+}
+
+/* Sizes */
+.btn--sm  { padding: 0.5rem 1.25rem; font-size: var(--text-sm); }
+.btn--lg  { padding: 1rem 2.25rem;   font-size: var(--text-lg); }
+.btn--xl  { padding: 1.125rem 2.5rem; font-size: var(--text-xl); }
+
+/* ─── Cards ──────────────────────────────────────────────────────────────────── */
+/* craft-floor: card radius 12-16px; elevation = border OR shadow, not both */
+.card {
+  background-color: var(--card-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  transition: box-shadow var(--t-base), transform var(--t-base);
+}
+
+.card:hover {
+  box-shadow: var(--card-shadow-hover);
+  transform: translateY(-2px);
+}
+
+/* ─── Scroll-reveal — one authored entrance per element ─────────────────────── */
+/* craft-floor: exponential ease-out from already-visible default */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity var(--t-slow),
+    transform var(--t-slow);
+  transition-timing-function: var(--ease-out-expo);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 80ms; }
+.reveal-delay-2 { transition-delay: 160ms; }
+.reveal-delay-3 { transition-delay: 240ms; }
+.reveal-delay-4 { transition-delay: 320ms; }
+.reveal-delay-5 { transition-delay: 400ms; }
+
+/* ─── Focus ──────────────────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* ─── Skip link ──────────────────────────────────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--sp-4);
+  padding: var(--sp-2) var(--sp-5);
+  background-color: var(--accent);
+  color: white;
+  border-radius: var(--radius-md);
+  font-weight: var(--fw-semibold);
+  text-decoration: none;
+  z-index: var(--z-toast);
+  transition: top var(--t-fast);
+}
+.skip-link:focus { top: var(--sp-4); }
+
+/* ─── Accessibility ──────────────────────────────────────────────────────────── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ─── Divider ────────────────────────────────────────────────────────────────── */
+.divider {
+  width: 40px;
+  height: 2px;
+  background-color: var(--accent);
+  border: none;
+  border-radius: var(--radius-full);
+  margin-block: var(--sp-6);
+}
+
+/* ─── Placeholder badge — marks synthetic / pending content ─────────────────── */
+.placeholder-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  background-color: rgba(255, 200, 0, 0.15);
+  border: 1px solid rgba(255, 200, 0, 0.4);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-semibold);
+  color: #a07800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+[data-theme="dark"] .placeholder-badge {
+  background-color: rgba(255, 200, 0, 0.08);
+  color: #d4a800;
+}
+
+/* ─── Form elements ──────────────────────────────────────────────────────────── */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.form-label {
+  font-size: var(--text-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--text-base);
+  letter-spacing: 0.01em;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: var(--bg-surface);
+  border: 1.5px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  color: var(--text-base);
+  transition:
+    border-color var(--t-fast),
+    box-shadow var(--t-fast);
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(42, 165, 152, 0.18);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-error {
+  font-size: var(--text-sm);
+  color: #c0392b;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+}
+
+[data-theme="dark"] .form-error {
+  color: #e57373;
+}

@@ -1,0 +1,186 @@
+---
+/**
+ * Footer — brand, address, nav links, legal.
+ */
+import * as content from '../content/index';
+const { footer, nav } = content;
+---
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <!-- Brand column -->
+      <div class="footer-brand-col">
+        <a href="#" class="footer-brand" aria-label="Brisa de Conil — volver al inicio">
+          <svg width="24" height="24" viewBox="0 0 28 28" fill="none" aria-hidden="true" class="footer-brand-icon">
+            <path d="M4 18 C8 14, 12 10, 14 14 C16 18, 20 22, 24 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+            <path d="M4 22 C8 18, 12 16, 16 18 C19 19.5, 22 22, 24 22" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none" opacity="0.55"/>
+          </svg>
+          <span class="footer-brand-name">{footer.brand}</span>
+        </a>
+        <p class="footer-tagline">{footer.tagline}</p>
+        <address class="footer-address">
+          {footer.address.split('\n').map((line: string, i: number) => (
+            <span key={i}>
+              {line}
+              {i < footer.address.split('\n').length - 1 && <br />}
+            </span>
+          ))}
+        </address>
+      </div>
+
+      <!-- Nav column -->
+      <nav class="footer-nav" aria-label="Navegación pie de página">
+        <p class="footer-nav-title">Secciones</p>
+        <ul role="list">
+          {footer.links.map((link: { label: string; href: string }) => (
+            <li>
+              <a href={link.href} class="footer-nav-link">{link.label}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <!-- Contact column -->
+      <div class="footer-contact-col">
+        <p class="footer-nav-title">Contacto</p>
+        <a href="#contacto" class="btn btn--primary btn--sm footer-cta">
+          {nav.cta}
+        </a>
+        <p class="footer-response-note">
+          Respondemos normalmente en el mismo día.
+        </p>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="footer-bottom">
+      <p class="footer-legal">{footer.legalNote}</p>
+      <a href="#" class="footer-legal-link">{footer.privacyLabel}</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background-color: var(--bg-dark);
+    color: var(--text-on-dark);
+    padding-block: var(--sp-16) var(--sp-10);
+  }
+
+  /* ── Grid ─────────────────────────────────────────────────────────────────── */
+  .footer-grid {
+    display: grid;
+    gap: var(--sp-10);
+    margin-bottom: var(--sp-12);
+  }
+
+  @media (min-width: 640px) {
+    .footer-grid {
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: var(--sp-12);
+    }
+  }
+
+  /* ── Brand ───────────────────────────────────────────────────────────────── */
+  .footer-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-2);
+    text-decoration: none;
+    color: var(--text-on-dark);
+    margin-bottom: var(--sp-4);
+  }
+
+  .footer-brand:hover { text-decoration: none; color: var(--color-chalk-50); }
+
+  .footer-brand-icon { color: var(--color-teal-400); }
+
+  .footer-brand-name {
+    font-family: var(--font-serif);
+    font-size: var(--text-lg);
+    font-weight: var(--fw-semibold);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .footer-tagline {
+    font-size: var(--text-sm);
+    color: var(--text-on-dark-muted);
+    max-width: 28ch;
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--sp-4);
+  }
+
+  .footer-address {
+    font-style: normal;
+    font-size: var(--text-sm);
+    color: var(--text-on-dark-muted);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ── Nav ─────────────────────────────────────────────────────────────────── */
+  .footer-nav-title {
+    font-size: var(--text-xs);
+    font-weight: var(--fw-semibold);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--color-teal-400);
+    margin-bottom: var(--sp-4);
+    max-width: none;
+  }
+
+  .footer-nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+  }
+
+  .footer-nav-link {
+    font-size: var(--text-sm);
+    color: var(--text-on-dark-muted);
+    text-decoration: none;
+    transition: color var(--t-fast);
+  }
+
+  .footer-nav-link:hover { color: var(--color-chalk-50); }
+
+  /* ── Contact col ─────────────────────────────────────────────────────────── */
+  .footer-cta { margin-top: var(--sp-2); margin-bottom: var(--sp-4); }
+
+  .footer-response-note {
+    font-size: var(--text-xs);
+    color: var(--text-on-dark-muted);
+    max-width: 24ch;
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ── Bottom bar ──────────────────────────────────────────────────────────── */
+  .footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-4);
+    padding-top: var(--sp-6);
+    border-top: 1px solid var(--color-navy-700);
+  }
+
+  .footer-legal {
+    font-size: var(--text-xs);
+    color: var(--text-on-dark-muted);
+    max-width: none;
+    margin: 0;
+  }
+
+  .footer-legal-link {
+    font-size: var(--text-xs);
+    color: var(--text-on-dark-muted);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color var(--t-fast);
+  }
+
+  .footer-legal-link:hover { color: var(--color-chalk-50); }
+</style>

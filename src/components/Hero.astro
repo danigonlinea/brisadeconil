@@ -1,0 +1,245 @@
+---
+/**
+ * Hero — full-viewport, image with Atlantic navy overlay.
+ * The opening thesis: know what this is, where it is, what to do.
+ */
+import * as content from '../content/index';
+const { hero } = content;
+
+// Split headline on \n for two-line display
+const headlineLines = hero.headline.split('\n');
+---
+
+<section class="hero" id="hero" aria-label="Brisa de Conil">
+  <!-- Placeholder image — replace with real apartment/Conil photography -->
+  <div class="hero-image" role="img" aria-label="Vista de Conil de la Frontera con el mar Atlántico al fondo [IMAGEN PLACEHOLDER — sustituir con fotografía real]">
+    <!-- SVG placeholder that evokes sky + sea without stock images -->
+    <svg class="hero-placeholder-svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <!-- Sky — deep atlantic gradient -->
+      <defs>
+        <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#0c2d48"/>
+          <stop offset="60%"  stop-color="#1a4a6e"/>
+          <stop offset="100%" stop-color="#2a7090"/>
+        </linearGradient>
+        <linearGradient id="seaGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#1e6b8a"/>
+          <stop offset="100%" stop-color="#0c3d58"/>
+        </linearGradient>
+        <linearGradient id="sandGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#c8a97a"/>
+          <stop offset="100%" stop-color="#a88550"/>
+        </linearGradient>
+      </defs>
+      <!-- Sky -->
+      <rect width="1440" height="580" fill="url(#skyGrad)"/>
+      <!-- Horizon haze -->
+      <ellipse cx="720" cy="540" rx="900" ry="60" fill="#1d7fa0" opacity="0.3"/>
+      <!-- Sea -->
+      <rect y="520" width="1440" height="260" fill="url(#seaGrad)"/>
+      <!-- Wave lines -->
+      <path d="M0 560 Q180 545 360 562 Q540 578 720 560 Q900 542 1080 560 Q1260 578 1440 560 L1440 580 Q1260 598 1080 580 Q900 562 720 580 Q540 598 360 582 Q180 565 0 580Z" fill="#1d8caa" opacity="0.4"/>
+      <path d="M0 600 Q200 588 400 602 Q600 616 800 600 Q1000 584 1200 600 Q1350 612 1440 600 L1440 620 Q1350 632 1200 620 Q1000 604 800 620 Q600 636 400 622 Q200 608 0 620Z" fill="#2296b8" opacity="0.3"/>
+      <!-- Sand strip at bottom -->
+      <rect y="720" width="1440" height="180" fill="url(#sandGrad)"/>
+      <!-- White houses silhouette -->
+      <g fill="#e8f0f5" opacity="0.18">
+        <rect x="100" y="480" width="60" height="70" rx="2"/>
+        <rect x="155" y="495" width="45" height="55" rx="2"/>
+        <rect x="195" y="470" width="55" height="80" rx="2"/>
+        <rect x="245" y="488" width="40" height="62" rx="2"/>
+        <rect x="1100" y="475" width="65" height="75" rx="2"/>
+        <rect x="1160" y="488" width="50" height="62" rx="2"/>
+        <rect x="1205" y="470" width="60" height="80" rx="2"/>
+        <rect x="1260" y="490" width="45" height="60" rx="2"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- Overlay -->
+  <div class="hero-overlay" aria-hidden="true"></div>
+
+  <!-- Content -->
+  <div class="hero-content container">
+    <div class="hero-text">
+      <p class="hero-tagline">{hero.tagline}</p>
+      <h1 class="hero-headline">
+        {headlineLines.map((line, i) => (
+          <span class:list={['hero-headline-line', `reveal`, `reveal-delay-${i + 1}`]}>
+            {line}
+          </span>
+        ))}
+      </h1>
+      <p class="hero-subline reveal reveal-delay-3">{hero.subline}</p>
+      <div class="hero-actions reveal reveal-delay-4">
+        <a href={hero.ctaHref} class="btn btn--primary btn--lg">
+          {hero.cta}
+        </a>
+        <a href="#apartamento" class="btn btn--ghost btn--lg">
+          {hero.scrollLabel}
+        </a>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="hero-scroll-indicator reveal reveal-delay-5" aria-hidden="true">
+      <svg width="24" height="36" viewBox="0 0 24 36" fill="none">
+        <rect x="1" y="1" width="22" height="34" rx="11" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+        <circle class="scroll-dot" cx="12" cy="10" r="3" fill="white" opacity="0.8"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background-color: var(--color-navy-900);
+  }
+
+  /* ── Placeholder image / real image ──────────────────────────────────────── */
+  .hero-image {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero-placeholder-svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* When you add real photography: */
+  /* .hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+  } */
+
+  /* ── Overlay — deep Atlantic navy ────────────────────────────────────────── */
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      160deg,
+      rgba(6, 16, 22, 0.72) 0%,
+      rgba(6, 16, 22, 0.45) 55%,
+      rgba(6, 16, 22, 0.65) 100%
+    );
+  }
+
+  /* ── Content ─────────────────────────────────────────────────────────────── */
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 120px; /* clear fixed header */
+    padding-bottom: var(--sp-20);
+    min-height: 100svh;
+    min-height: 100vh;
+  }
+
+  .hero-text {
+    max-width: 680px;
+  }
+
+  /* ── Tagline — no eyebrow, just a small quiet line below the heading */
+  /* craft-floor: NO kicker above heading. Tagline sits visually below brand via size */
+  .hero-tagline {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: var(--fw-medium);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--color-teal-300);
+    margin-bottom: var(--sp-4);
+    max-width: none;
+    line-height: var(--leading-normal);
+  }
+
+  /* ── Headline ─────────────────────────────────────────────────────────────── */
+  .hero-headline {
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-serif);
+    font-size: clamp(2.75rem, 7vw, var(--text-7xl));
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-tight);
+    color: var(--color-chalk-50);
+    margin-bottom: var(--sp-6);
+  }
+
+  .hero-headline-line {
+    display: block;
+  }
+
+  /* Second line gets the teal accent */
+  .hero-headline-line:last-child {
+    color: var(--color-teal-300);
+  }
+
+  /* ── Subline ─────────────────────────────────────────────────────────────── */
+  .hero-subline {
+    font-size: clamp(var(--text-base), 2vw, var(--text-xl));
+    color: rgba(232, 240, 245, 0.82);
+    max-width: 46ch;
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--sp-10);
+  }
+
+  /* ── Actions ─────────────────────────────────────────────────────────────── */
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-4);
+    align-items: center;
+  }
+
+  /* ── Scroll indicator ────────────────────────────────────────────────────── */
+  .hero-scroll-indicator {
+    position: absolute;
+    bottom: var(--sp-8);
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .scroll-dot {
+    animation: scroll-bounce 2s var(--ease-out-expo) infinite;
+  }
+
+  @keyframes scroll-bounce {
+    0%, 100% { transform: translateY(0); opacity: 0.8; }
+    50%       { transform: translateY(12px); opacity: 0.3; }
+  }
+
+  /* ── Reveal — starts visible-ish, animates in ─────────────────────────────── */
+  /* Override default .reveal for hero (starts from slightly lower) */
+  .hero .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+
+  .hero .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── Responsive ──────────────────────────────────────────────────────────── */
+  @media (min-width: 768px) {
+    .hero-content {
+      padding-top: 140px;
+    }
+  }
+</style>

@@ -1,0 +1,123 @@
+---
+/**
+ * AmenitiesSection — equipment list with inline SVG icons.
+ * Impeccable: not a grid of same-size icon+heading+text cards as page structure.
+ * Uses a clean horizontal-scroll-friendly grid with icon + label + detail.
+ */
+import * as content from '../content/index';
+const { amenities } = content;
+
+const icons: Record<string, string> = {
+  thermometer: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>`,
+  wind: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"/><path d="M9.6 4.6A2 2 0 1 1 11 8H2"/><path d="M12.6 19.4A2 2 0 1 0 14 16H2"/></svg>`,
+  wifi: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>`,
+  tv: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="15" rx="2"/><polyline points="17 2 12 7 7 2"/></svg>`,
+  refrigerator: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="4" y1="10" x2="20" y2="10"/><line x1="9" y1="6" x2="9" y2="8"/><line x1="9" y1="14" x2="9" y2="18"/></svg>`,
+  washer: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="2"/><circle cx="12" cy="13" r="4"/><path d="M6 6h.01M10 6h.01"/></svg>`,
+  dishwasher: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M7 7v10M12 7v10M17 7v10"/><line x1="4" y1="12" x2="20" y2="12"/></svg>`,
+  microwave: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><rect x="8" y="9" width="8" height="6" rx="1"/><circle cx="18" cy="12" r="1" fill="currentColor"/></svg>`,
+};
+---
+
+<section class="section section--alt" id="comodidades" aria-labelledby="amenities-title">
+  <div class="container">
+    <header class="section-header">
+      <hr class="divider" aria-hidden="true" />
+      <p class="section-label">{amenities.sectionLabel}</p>
+      <h2 class="section-title" id="amenities-title">{amenities.headline}</h2>
+      <p class="section-lead reveal">{amenities.lead}</p>
+    </header>
+
+    <ul class="amenities-grid" role="list">
+      {amenities.items.map((item: { icon: string; label: string; detail: string }, i: number) => (
+        <li class:list={['amenity-item', 'reveal', `reveal-delay-${(i % 4) + 1}`]}>
+          <div class="amenity-icon" set:html={icons[item.icon] ?? icons.wifi} />
+          <div class="amenity-text">
+            <span class="amenity-label">{item.label}</span>
+            {item.detail && <span class="amenity-detail">{item.detail}</span>}
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .section-label {
+    display: block;
+    font-size: var(--text-sm);
+    font-weight: var(--fw-semibold);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: var(--sp-3);
+  }
+
+  .section-header {
+    margin-bottom: var(--sp-12);
+  }
+
+  /* ── Grid ─────────────────────────────────────────────────────────────────── */
+  .amenities-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--sp-3);
+    padding: 0;
+    list-style: none;
+  }
+
+  @media (min-width: 640px) {
+    .amenities-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .amenities-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  /* ── Item ─────────────────────────────────────────────────────────────────── */
+  .amenity-item {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+    padding: var(--sp-4) var(--sp-5);
+    background-color: var(--bg-base);
+    border-radius: var(--radius-lg);
+    /* craft-floor: no colored border-left on list items */
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--t-base);
+  }
+
+  .amenity-item:hover {
+    box-shadow: var(--shadow-md);
+  }
+
+  .amenity-icon {
+    color: var(--accent);
+    flex-shrink: 0;
+    display: flex;
+  }
+
+  .amenity-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  .amenity-label {
+    font-size: var(--text-sm);
+    font-weight: var(--fw-semibold);
+    color: var(--text-base);
+    line-height: var(--leading-snug);
+  }
+
+  .amenity-detail {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    line-height: var(--leading-normal);
+  }
+</style>

@@ -1,0 +1,122 @@
+---
+/**
+ * FAQSection — wraps FAQAccordion React island.
+ */
+import FAQAccordion from './FAQAccordion';
+import * as content from '../content/index';
+const { faq } = content;
+---
+
+<section class="section" id="faq" aria-labelledby="faq-title">
+  <div class="container faq-container">
+    <header class="faq-header reveal">
+      <hr class="divider" aria-hidden="true" />
+      <p class="section-label">{faq.sectionLabel}</p>
+      <h2 class="section-title" id="faq-title">{faq.headline}</h2>
+    </header>
+
+    <div class="faq-body reveal reveal-delay-1">
+      <FAQAccordion items={faq.items} client:visible />
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-label {
+    display: block;
+    font-size: var(--text-sm);
+    font-weight: var(--fw-semibold);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: var(--sp-3);
+  }
+
+  .faq-container {
+    max-width: var(--container-md);
+  }
+
+  .faq-header {
+    margin-bottom: var(--sp-10);
+  }
+
+  /* FAQ list styles (global — React island) */
+  :global(.faq-list) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+  }
+
+  :global(.faq-item) {
+    background-color: var(--card-bg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: box-shadow var(--t-base);
+  }
+
+  :global(.faq-item--open) {
+    box-shadow: var(--shadow-md);
+  }
+
+  :global(.faq-trigger) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-4);
+    width: 100%;
+    padding: var(--sp-5) var(--sp-6);
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color var(--t-fast);
+  }
+
+  :global(.faq-trigger:hover) {
+    background-color: var(--bg-surface-alt);
+  }
+
+  :global(.faq-trigger:focus-visible) {
+    outline: 3px solid var(--accent);
+    outline-offset: -3px;
+    border-radius: var(--radius-lg);
+  }
+
+  :global(.faq-question) {
+    font-family: var(--font-serif);
+    font-size: var(--text-base);
+    font-weight: var(--fw-semibold);
+    color: var(--text-base);
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
+  }
+
+  :global(.faq-chevron) {
+    color: var(--accent);
+    flex-shrink: 0;
+    display: flex;
+  }
+
+  :global(.faq-panel) {
+    padding: 0 var(--sp-6) var(--sp-5);
+  }
+
+  :global(.faq-answer) {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    max-width: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--sp-2);
+  }
+
+  :global(.faq-pending) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--sp-2);
+  }
+</style>
