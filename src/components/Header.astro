@@ -10,15 +10,14 @@ const { nav } = content;
 
 <header class="site-header" id="site-header" role="banner">
   <div class="header-inner container">
-    <!-- Brand -->
-    <a href="#" class="header-brand" aria-label="Brisa de Conil — ir al inicio">
+    <!-- Brand icon only -->
+    <a href="#" class="header-brand" aria-label="Ir al inicio">
       <span class="header-brand-icon" aria-hidden="true">
         <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
           <path d="M4 18 C8 14, 12 10, 14 14 C16 18, 20 22, 24 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/>
           <path d="M4 22 C8 18, 12 16, 16 18 C19 19.5, 22 22, 24 22" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none" opacity="0.55"/>
         </svg>
       </span>
-      <span class="header-brand-name">{nav.brand}</span>
     </a>
 
     <!-- Nav links -->
@@ -49,9 +48,6 @@ const { nav } = content;
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
         </svg>
       </button>
-
-      <!-- CTA -->
-      <a href="#contacto" class="btn btn--primary btn--sm header-cta" data-i18n="nav.cta">{nav.cta}</a>
 
       <!-- Mobile menu toggle -->
       <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu" type="button">

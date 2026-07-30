@@ -27,9 +27,8 @@ export const nav = {
 
 export const hero = {
   tagline: 'Dein Rückzugsort an der Costa de la Luz',
-  headline: 'Aufwachen mit\natlantischer Brise',
-  subline:
-    'Wohnung im Zentrum von Conil de la Frontera. Gleich neben dem Markt, Minuten vom Meer.',
+  headline: 'Wohnung im Zentrum von Conil de la Frontera.\nGleich neben dem Markt, Minuten vom Meer.',
+  subline: '',
   cta: 'Verfügbarkeit prüfen',
   ctaHref: '#contacto',
   scrollLabel: 'Mehr entdecken',
