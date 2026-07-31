@@ -27,10 +27,14 @@ const icons: Record<string, string> = {
             <span class="welcome-headline-line">{line}</span>
           ))}
         </h2>
-        <p class="welcome-lead" data-i18n="welcome.lead">{welcome.lead}</p>
-        <p class="welcome-closing">
-          <em data-i18n="welcome.closing">{welcome.closing}</em>
-        </p>
+        {welcome.lead && (
+          <p class="welcome-lead" data-i18n="welcome.lead">{welcome.lead}</p>
+        )}
+        {welcome.closing && (
+          <p class="welcome-closing">
+            <em data-i18n="welcome.closing">{welcome.closing}</em>
+          </p>
+        )}
       </div>
 
       <!-- Right: welcome items -->
@@ -83,14 +87,6 @@ const icons: Record<string, string> = {
   .welcome-grid {
     display: grid;
     gap: var(--sp-16);
-    align-items: center;
-  }
-
-  @media (min-width: 768px) {
-    .welcome-grid {
-      grid-template-columns: 1fr 1fr;
-      gap: var(--sp-20);
-    }
   }
 
   /* ── Intro ───────────────────────────────────────────────────────────────── */
@@ -121,37 +117,57 @@ const icons: Record<string, string> = {
   /* ── Items ───────────────────────────────────────────────────────────────── */
   .welcome-items {
     list-style: none;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
     gap: var(--sp-3);
     padding: 0;
   }
 
+  @media (min-width: 640px) {
+    .welcome-items {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .welcome-items {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+  }
+
   .welcome-item {
     display: flex;
-    align-items: center;
-    gap: var(--sp-4);
-    padding: var(--sp-5);
-    background-color: rgba(255, 255, 255, 0.05);
+    align-items: flex-start;
+    gap: var(--sp-3);
+    padding: var(--sp-4);
+    background-color: rgba(255, 255, 255, 0.08);
     border-radius: var(--radius-lg);
-    transition: background-color var(--t-fast);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--t-base), transform var(--t-base);
   }
 
   .welcome-item:hover {
-    background-color: rgba(255, 255, 255, 0.08);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
   }
 
   .welcome-item-icon {
     color: var(--color-teal-400);
     flex-shrink: 0;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    background-color: rgba(255, 255, 255, 0.1);
   }
 
   .welcome-item-text {
     display: flex;
     flex-direction: column;
-    gap: 2px;
-    flex: 1;
+    gap: 4px;
     min-width: 0;
   }
 

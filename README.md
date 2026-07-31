@@ -75,6 +75,7 @@ public/
 Todo el texto, datos y copy está centralizado en `src/content/es.ts`.
 
 Para actualizar textos, fotos, amenities, FAQ, etc.:
+
 1. Abre `src/content/es.ts`
 2. Edita los valores de los objetos (no cambies las claves)
 3. Guarda — el servidor de dev se recarga automáticamente
@@ -122,23 +123,27 @@ La web quedará en: `https://danigonlinea.github.io/brisadeconil/`
 Cuando compres el dominio (ej. `brisadeconil.com`):
 
 1. **`astro.config.mjs`** — cambia:
+
    ```js
    site: 'https://brisadeconil.com',  // tu dominio
    base: '/',                          // sin subpath
    ```
 
 2. **`public/CNAME`** — descomenta y pon tu dominio:
+
    ```
    brisadeconil.com
    ```
 
 3. **DNS de tu dominio** — añade estos registros A:
+
    ```
    185.199.108.153
    185.199.109.153
    185.199.110.153
    185.199.111.153
    ```
+
    Y un CNAME `www` → `danigonlinea.github.io`
 
 4. **`public/robots.txt`** — actualiza la URL del sitemap
@@ -153,13 +158,13 @@ En `src/content/index.ts`, cambia la importación:
 
 ```ts
 // Español (actual)
-export * from './es';
+export * from "./es";
 
 // Inglés
-export * from './en';
+export * from "./en";
 
 // Alemán
-export * from './de';
+export * from "./de";
 ```
 
 Los ficheros `en.ts` y `de.ts` están listos con traducción completa.
@@ -170,13 +175,14 @@ Los ficheros `en.ts` y `de.ts` están listos con traducción completa.
 
 Busca `[PENDIENTE` en `src/content/es.ts` y completa estos datos:
 
-- [ ] Horarios de check-in y check-out
-- [ ] Política de mascotas (¿se admiten? ¿bajo qué condiciones?)
-- [ ] Política de fumadores (¿se puede fumar? ¿dónde?)
-- [ ] Política de cancelación
-- [ ] Procedimiento para llegadas tardías
+- [x] Horarios de check-in y check-out
+- [x] Política de mascotas (¿se admiten? ¿bajo qué condiciones?)
+- [x] Política de fumadores (¿se puede fumar? ¿dónde?)
+- [x] Política de cancelación
+- [x] Procedimiento para llegadas tardías
 
 Busca `[IMAGEN PLACEHOLDER` en el código — sustituir por fotografías reales:
+
 - [ ] Fotos del salón (x2)
 - [ ] Foto del dormitorio
 - [ ] Foto del baño
@@ -185,27 +191,30 @@ Busca `[IMAGEN PLACEHOLDER` en el código — sustituir por fotografías reales:
 - [ ] Imagen OG (`public/og-image.jpg`) para compartir en redes
 
 Reseñas:
+
 - [ ] Sustituir los 3 testimonios placeholder en `src/content/es.ts` → `testimonials.items`
 
 Web3Forms:
+
 - [ ] Configurar la access key (`.env` + GitHub Secret `WEB3FORMS_KEY`)
 - [ ] Hacer un envío de prueba y verificar que el email llega
 
 SEO:
-- [ ] Revisar meta title y description en `src/content/es.ts` → `meta`
+
+- [x] Revisar meta title y description en `src/content/es.ts` → `meta`
 - [ ] Crear imagen OG real (`public/og-image.jpg`, 1200×630px)
 
 ---
 
 ## Decisiones técnicas
 
-| Decisión | Elección | Motivo |
-|---|---|---|
-| Framework | Astro v7 (SSG) | Estático para GitHub Pages, islas React para interactividad |
-| Estilos | CSS Custom Properties | Sin dependencias, design system propio, dark mode nativo |
-| Galería | PhotoSwipe v5 | Responsive, accesible, swipe en móvil |
-| Formulario | Web3Forms | Gratuito, sin límites, sin backend |
-| Mapa | Google Maps embed | Sin API key, universalmente reconocido |
-| Tipografía | Lora + Source Sans 3 | Cálida, boutique, sin ser cliché |
-| Animaciones | CSS + Intersection Observer | Sin dependencias, bundle ligero |
-| i18n | Ficheros de contenido (ES/EN/DE) | Sin librería extra, fácil de mantener |
+| Decisión    | Elección                         | Motivo                                                      |
+| ----------- | -------------------------------- | ----------------------------------------------------------- |
+| Framework   | Astro v7 (SSG)                   | Estático para GitHub Pages, islas React para interactividad |
+| Estilos     | CSS Custom Properties            | Sin dependencias, design system propio, dark mode nativo    |
+| Galería     | PhotoSwipe v5                    | Responsive, accesible, swipe en móvil                       |
+| Formulario  | Web3Forms                        | Gratuito, sin límites, sin backend                          |
+| Mapa        | Google Maps embed                | Sin API key, universalmente reconocido                      |
+| Tipografía  | Lora + Source Sans 3             | Cálida, boutique, sin ser cliché                            |
+| Animaciones | CSS + Intersection Observer      | Sin dependencias, bundle ligero                             |
+| i18n        | Ficheros de contenido (ES/EN/DE) | Sin librería extra, fácil de mantener                       |

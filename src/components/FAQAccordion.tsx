@@ -2,7 +2,7 @@
  * FAQAccordion — React island with accessible accordion.
  * Uses aria-expanded + aria-controls pattern.
  */
-import { useState, useId } from 'react';
+import { useState, useId } from "react";
 
 interface FAQItem {
   q: string;
@@ -14,14 +14,19 @@ interface FAQAccordionProps {
   items: FAQItem[];
 }
 
-function FAQItem({ item, id, isOpen, onToggle }: {
+function FAQItem({
+  item,
+  id,
+  isOpen,
+  onToggle,
+}: {
   item: FAQItem;
   id: string;
   isOpen: boolean;
   onToggle: () => void;
 }) {
   return (
-    <div className={`faq-item ${isOpen ? 'faq-item--open' : ''}`}>
+    <div className={`faq-item ${isOpen ? "faq-item--open" : ""}`}>
       <button
         id={`${id}-btn`}
         className="faq-trigger"
@@ -41,9 +46,12 @@ function FAQItem({ item, id, isOpen, onToggle }: {
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 250ms cubic-bezier(0.16,1,0.3,1)' }}
+            style={{
+              transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+              transition: "transform 250ms cubic-bezier(0.16,1,0.3,1)",
+            }}
           >
-            <polyline points="6 9 12 15 18 9"/>
+            <polyline points="6 9 12 15 18 9" />
           </svg>
         </span>
       </button>
@@ -52,12 +60,12 @@ function FAQItem({ item, id, isOpen, onToggle }: {
         role="region"
         aria-labelledby={`${id}-btn`}
         className="faq-panel"
-        style={{ display: isOpen ? 'block' : 'none' }}
+        style={{ display: isOpen ? "block" : "none" }}
       >
         <div className="faq-answer">
           {item.pending ? (
             <span className="faq-pending">
-              {item.a.replace(/\[PENDIENTE[^\]]*\]\.?/, '').trim()}{' '}
+              {item.a.replace(/\[PENDIENTE[^\]]*\]\.?/, "").trim()}{" "}
               <span className="placeholder-badge">Pendiente</span>
             </span>
           ) : (
@@ -71,10 +79,20 @@ function FAQItem({ item, id, isOpen, onToggle }: {
 
 export default function FAQAccordion({ items }: FAQAccordionProps) {
   const baseId = useId();
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openIndices, setOpenIndices] = useState<Set<number>>(
+    () => new Set(items.map((_, i) => i)),
+  );
 
   function toggle(i: number) {
-    setOpenIndex((prev) => (prev === i ? null : i));
+    setOpenIndices((prev) => {
+      const next = new Set(prev);
+      if (next.has(i)) {
+        next.delete(i);
+      } else {
+        next.add(i);
+      }
+      return next;
+    });
   }
 
   return (
@@ -84,7 +102,7 @@ export default function FAQAccordion({ items }: FAQAccordionProps) {
           key={i}
           item={item}
           id={`${baseId}-faq-${i}`}
-          isOpen={openIndex === i}
+          isOpen={openIndices.has(i)}
           onToggle={() => toggle(i)}
         />
       ))}

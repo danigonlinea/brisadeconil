@@ -4,16 +4,18 @@
  * Set WEB3FORMS_ACCESS_KEY in your environment or replace the placeholder below.
  * The access key is public-safe (it only controls where emails go, not sensitive data).
  */
-import { useState, useId } from 'react';
+import { useState, useId } from "react";
 
 // Replace with your Web3Forms access key from https://web3forms.com
 // Or set PUBLIC_WEB3FORMS_KEY in your .env file
 const WEB3FORMS_KEY =
-  (typeof import.meta !== 'undefined' && (import.meta as Record<string, unknown>).env
-    ? ((import.meta as Record<string, unknown>).env as Record<string, string>).PUBLIC_WEB3FORMS_KEY
-    : undefined) ?? 'YOUR_WEB3FORMS_ACCESS_KEY';
+  (typeof import.meta !== "undefined" &&
+  (import.meta as Record<string, unknown>).env
+    ? ((import.meta as Record<string, unknown>).env as Record<string, string>)
+        .PUBLIC_WEB3FORMS_KEY
+    : undefined) ?? "YOUR_WEB3FORMS_ACCESS_KEY";
 
-type FormState = 'idle' | 'sending' | 'success' | 'error';
+type FormState = "idle" | "sending" | "success" | "error";
 
 interface FormData {
   name: string;
@@ -33,14 +35,14 @@ interface FieldError {
 
 function validateForm(data: FormData): FieldError {
   const errors: FieldError = {};
-  if (!data.name.trim()) errors.name = 'El nombre es obligatorio.';
+  if (!data.name.trim()) errors.name = "El nombre es obligatorio.";
   if (!data.email.trim()) {
-    errors.email = 'El email es obligatorio.';
+    errors.email = "El email es obligatorio.";
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
-    errors.email = 'Introduce un email válido.';
+    errors.email = "Introduce un email válido.";
   }
   if (data.checkin && data.checkout && data.checkout <= data.checkin) {
-    errors.checkout = 'La fecha de salida debe ser posterior a la de entrada.';
+    errors.checkout = "La fecha de salida debe ser posterior a la de entrada.";
   }
   return errors;
 }
@@ -48,16 +50,34 @@ function validateForm(data: FormData): FieldError {
 export default function ContactForm() {
   const id = useId();
   const [form, setForm] = useState<FormData>({
-    name: '', email: '', checkin: '', checkout: '', guests: '', message: '',
+    name: "",
+    email: "",
+    checkin: "",
+    checkout: "",
+    guests: "",
+    message: "",
   });
   const [errors, setErrors] = useState<FieldError>({});
-  const [state, setState] = useState<FormState>('idle');
+  const [state, setState] = useState<FormState>("idle");
 
   function handleChange(
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
   ) {
     const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
+    setForm((prev) => {
+      if (name === "checkin") {
+        if (
+          !prev.checkout ||
+          (value && prev.checkout && value > prev.checkout)
+        ) {
+          return { ...prev, checkin: value, checkout: value };
+        }
+        return { ...prev, checkin: value };
+      }
+      return { ...prev, [name]: value };
+    });
     // Clear error on change
     if (errors[name as keyof FieldError]) {
       setErrors((prev) => ({ ...prev, [name]: undefined }));
@@ -75,41 +95,53 @@ export default function ContactForm() {
       return;
     }
 
-    setState('sending');
+    setState("sending");
     try {
-      const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
         body: JSON.stringify({
           access_key: WEB3FORMS_KEY,
           subject: `Nueva consulta de ${form.name} — Brisa de Conil`,
-          from_name: 'Brisa de Conil Web',
+          from_name: "Brisa de Conil Web",
           name: form.name,
           email: form.email,
-          'Fecha de entrada': form.checkin || 'No indicada',
-          'Fecha de salida': form.checkout || 'No indicada',
-          'Número de personas': form.guests || 'No indicado',
-          message: form.message || '(sin mensaje adicional)',
+          "Fecha de entrada": form.checkin || "No indicada",
+          "Fecha de salida": form.checkout || "No indicada",
+          "Número de personas": form.guests || "No indicado",
+          message: form.message || "(sin mensaje adicional)",
         }),
       });
       const data = await res.json();
       if (data.success) {
-        setState('success');
+        setState("success");
       } else {
-        setState('error');
+        setState("error");
       }
     } catch {
-      setState('error');
+      setState("error");
     }
   }
 
-  if (state === 'success') {
+  if (state === "success") {
     return (
       <div className="contact-success" role="alert" aria-live="polite">
         <div className="contact-success-icon" aria-hidden="true">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="12" cy="12" r="10"/>
-            <polyline points="20 6 9 17 4 12"/>
+          <svg
+            width="48"
+            height="48"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <polyline points="20 6 9 17 4 12" />
           </svg>
         </div>
         <h3 className="contact-success-headline">¡Mensaje enviado!</h3>
@@ -118,7 +150,17 @@ export default function ContactForm() {
         </p>
         <button
           className="btn btn--outline"
-          onClick={() => { setState('idle'); setForm({ name:'',email:'',checkin:'',checkout:'',guests:'',message:'' }); }}
+          onClick={() => {
+            setState("idle");
+            setForm({
+              name: "",
+              email: "",
+              checkin: "",
+              checkout: "",
+              guests: "",
+              message: "",
+            });
+          }}
           type="button"
         >
           Enviar otra consulta
@@ -156,7 +198,21 @@ export default function ContactForm() {
           />
           {errors.name && (
             <span className="form-error" id={`${id}-name-error`} role="alert">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="8" x2="12" y2="12" />
+                <line x1="12" y1="16" x2="12.01" y2="16" />
+              </svg>
               {errors.name}
             </span>
           )}
@@ -183,7 +239,21 @@ export default function ContactForm() {
           />
           {errors.email && (
             <span className="form-error" id={`${id}-email-error`} role="alert">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="8" x2="12" y2="12" />
+                <line x1="12" y1="16" x2="12.01" y2="16" />
+              </svg>
               {errors.email}
             </span>
           )}
@@ -191,7 +261,9 @@ export default function ContactForm() {
 
         {/* Check-in */}
         <div className="form-group">
-          <label className="form-label" htmlFor={`${id}-checkin`}>Fecha de entrada</label>
+          <label className="form-label" htmlFor={`${id}-checkin`}>
+            Fecha de entrada
+          </label>
           <input
             id={`${id}-checkin`}
             className="form-input"
@@ -199,13 +271,15 @@ export default function ContactForm() {
             name="checkin"
             value={form.checkin}
             onChange={handleChange}
-            min={new Date().toISOString().split('T')[0]}
+            min={new Date().toISOString().split("T")[0]}
           />
         </div>
 
         {/* Check-out */}
         <div className="form-group">
-          <label className="form-label" htmlFor={`${id}-checkout`}>Fecha de salida</label>
+          <label className="form-label" htmlFor={`${id}-checkout`}>
+            Fecha de salida
+          </label>
           <input
             id={`${id}-checkout`}
             className="form-input"
@@ -213,13 +287,33 @@ export default function ContactForm() {
             name="checkout"
             value={form.checkout}
             onChange={handleChange}
-            min={form.checkin || new Date().toISOString().split('T')[0]}
+            min={form.checkin || new Date().toISOString().split("T")[0]}
             aria-invalid={!!errors.checkout}
-            aria-describedby={errors.checkout ? `${id}-checkout-error` : undefined}
+            aria-describedby={
+              errors.checkout ? `${id}-checkout-error` : undefined
+            }
           />
           {errors.checkout && (
-            <span className="form-error" id={`${id}-checkout-error`} role="alert">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span
+              className="form-error"
+              id={`${id}-checkout-error`}
+              role="alert"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="8" x2="12" y2="12" />
+                <line x1="12" y1="16" x2="12.01" y2="16" />
+              </svg>
               {errors.checkout}
             </span>
           )}
@@ -227,7 +321,9 @@ export default function ContactForm() {
 
         {/* Guests */}
         <div className="form-group">
-          <label className="form-label" htmlFor={`${id}-guests`}>Número de personas</label>
+          <label className="form-label" htmlFor={`${id}-guests`}>
+            Número de personas
+          </label>
           <select
             id={`${id}-guests`}
             className="form-input form-select"
@@ -260,9 +356,27 @@ export default function ContactForm() {
       </div>
 
       {/* Error banner */}
-      {state === 'error' && (
-        <div className="contact-error-banner" role="alert" aria-live="assertive">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      {state === "error" && (
+        <div
+          className="contact-error-banner"
+          role="alert"
+          aria-live="assertive"
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="8" x2="12" y2="12" />
+            <line x1="12" y1="16" x2="12.01" y2="16" />
+          </svg>
           Ha ocurrido un error al enviar. Por favor, inténtalo de nuevo.
         </div>
       )}
@@ -271,20 +385,45 @@ export default function ContactForm() {
         <button
           className="btn btn--primary btn--lg contact-submit"
           type="submit"
-          disabled={state === 'sending'}
-          aria-busy={state === 'sending'}
+          disabled={state === "sending"}
+          aria-busy={state === "sending"}
         >
-          {state === 'sending' ? (
+          {state === "sending" ? (
             <>
-              <svg className="contact-spinner" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+              <svg
+                className="contact-spinner"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                aria-hidden="true"
+              >
+                <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+              </svg>
               Enviando…
             </>
           ) : (
-            'Enviar consulta'
+            "Enviar consulta"
           )}
         </button>
         <p className="contact-privacy">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+          </svg>
           Tus datos solo se usarán para responder a tu consulta.
         </p>
       </div>

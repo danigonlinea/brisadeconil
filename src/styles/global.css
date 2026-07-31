@@ -20,7 +20,7 @@
  */
 
 /* ─── Google Fonts ─────────────────────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:wght@300;400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:wght@300;400;500;600&display=swap");
 
 /* ─── Light Theme (default) ─────────────────────────────────────────────────── */
 :root {
@@ -34,10 +34,10 @@
   --color-navy-600: #235070;
   --color-navy-300: #6a9ab8;
   --color-navy-100: #c8dde8;
-  --color-navy-50:  #eaf3f8;
+  --color-navy-50: #eaf3f8;
 
   /* Whitewashed walls */
-  --color-chalk-50:  #f7f5f0;
+  --color-chalk-50: #f7f5f0;
   --color-chalk-100: #ede9e0;
   --color-chalk-200: #d8d1c4;
   --color-chalk-300: #bdb4a2;
@@ -55,78 +55,80 @@
   --color-sand-400: #b8a07a;
 
   /* ── Semantic tokens — Light ────────────────────────────────────────────── */
-  --bg-base:           var(--color-chalk-50);
-  --bg-surface:        #ffffff;
-  --bg-surface-alt:    var(--color-navy-50);
-  --bg-dark:           var(--color-navy-900);
+  --bg-base: var(--color-chalk-50);
+  --bg-surface: #ffffff;
+  --bg-surface-alt: var(--color-navy-50);
+  --bg-dark: var(--color-navy-900);
 
-  --text-base:         var(--color-navy-900);
-  --text-secondary:    var(--color-navy-700);
-  --text-muted:        var(--color-navy-600);
-  --text-on-dark:      var(--color-chalk-50);
-  --text-on-dark-muted:var(--color-navy-100);
+  --text-base: var(--color-navy-900);
+  --text-secondary: var(--color-navy-700);
+  --text-muted: var(--color-navy-600);
+  --text-on-dark: var(--color-chalk-50);
+  --text-on-dark-muted: var(--color-navy-100);
 
-  --border-subtle:     var(--color-chalk-200);
-  --border-strong:     var(--color-chalk-300);
+  --border-subtle: var(--color-chalk-200);
+  --border-strong: var(--color-chalk-300);
 
-  --accent:            var(--color-teal-500);
-  --accent-hover:      var(--color-teal-600);
-  --accent-text:       #ffffff;
+  --accent: var(--color-teal-500);
+  --accent-hover: var(--color-teal-600);
+  --accent-text: #ffffff;
 
   --header-bg-transparent: transparent;
-  --header-bg-solid:   rgba(247, 245, 240, 0.95);
-  --header-border:     var(--color-chalk-200);
+  --header-bg-solid: rgba(247, 245, 240, 0.95);
+  --header-border: var(--color-chalk-200);
 
-  --card-bg:           #ffffff;
-  --card-shadow:       0 2px 12px rgba(12, 31, 46, 0.07), 0 1px 4px rgba(12, 31, 46, 0.05);
-  --card-shadow-hover: 0 8px 28px rgba(12, 31, 46, 0.13), 0 2px 8px rgba(12, 31, 46, 0.07);
+  --card-bg: #ffffff;
+  --card-shadow:
+    0 2px 12px rgba(12, 31, 46, 0.07), 0 1px 4px rgba(12, 31, 46, 0.05);
+  --card-shadow-hover:
+    0 8px 28px rgba(12, 31, 46, 0.13), 0 2px 8px rgba(12, 31, 46, 0.07);
 
-  --hero-overlay:      rgba(6, 16, 22, 0.52);
+  --hero-overlay: rgba(6, 16, 22, 0.52);
 
   /* ── Typography ─────────────────────────────────────────────────────────── */
-  --font-serif: 'Lora', Georgia, 'Times New Roman', serif;
-  --font-sans:  'Source Sans 3', system-ui, -apple-system, sans-serif;
+  --font-serif: "Lora", Georgia, "Times New Roman", serif;
+  --font-sans: "Source Sans 3", system-ui, -apple-system, sans-serif;
 
   /* Scale — fluid where it matters */
-  --text-xs:   0.75rem;
-  --text-sm:   0.875rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
   --text-base: 1rem;
-  --text-lg:   1.125rem;
-  --text-xl:   1.25rem;
-  --text-2xl:  1.5rem;
-  --text-3xl:  1.875rem;
-  --text-4xl:  2.25rem;
-  --text-5xl:  3rem;
-  --text-6xl:  3.75rem;
-  --text-7xl:  4.5rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
+  --text-7xl: 4.5rem;
 
   /* Weight */
-  --fw-light:    300;
-  --fw-regular:  400;
-  --fw-medium:   500;
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
   --fw-semibold: 600;
-  --fw-bold:     700;
+  --fw-bold: 700;
 
   /* Leading */
-  --leading-tight:   1.15;
-  --leading-snug:    1.35;
-  --leading-normal:  1.5;
+  --leading-tight: 1.15;
+  --leading-snug: 1.35;
+  --leading-normal: 1.5;
   --leading-relaxed: 1.65;
 
   /* Tracking — floor is -0.04em per craft-floor */
-  --tracking-tight:  -0.03em;
+  --tracking-tight: -0.03em;
   --tracking-normal: -0.01em;
-  --tracking-wide:   0.08em;
-  --tracking-wider:  0.12em;
+  --tracking-wide: 0.08em;
+  --tracking-wider: 0.12em;
 
   /* ── Spacing ─────────────────────────────────────────────────────────────── */
-  --sp-1:  0.25rem;
-  --sp-2:  0.5rem;
-  --sp-3:  0.75rem;
-  --sp-4:  1rem;
-  --sp-5:  1.25rem;
-  --sp-6:  1.5rem;
-  --sp-8:  2rem;
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.25rem;
+  --sp-6: 1.5rem;
+  --sp-8: 2rem;
   --sp-10: 2.5rem;
   --sp-12: 3rem;
   --sp-16: 4rem;
@@ -135,76 +137,92 @@
   --sp-32: 8rem;
 
   /* ── Layout ──────────────────────────────────────────────────────────────── */
-  --container-sm:  640px;
-  --container-md:  768px;
-  --container-lg:  1024px;
-  --container-xl:  1280px;
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
   --container-2xl: 1440px;
 
   /* ── Radius ──────────────────────────────────────────────────────────────── */
-  --radius-sm:   4px;
-  --radius-md:   8px;
-  --radius-lg:   14px;   /* craft-floor: 12-16px for cards */
-  --radius-xl:   20px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px; /* craft-floor: 12-16px for cards */
+  --radius-xl: 20px;
   --radius-full: 9999px;
 
   /* ── Elevation — craft-floor: offset + blur, never zero-offset halo ─────── */
-  --shadow-sm:  0 1px 4px rgba(12, 31, 46, 0.08), 0 1px 2px rgba(12, 31, 46, 0.05);
-  --shadow-md:  0 4px 16px rgba(12, 31, 46, 0.10), 0 2px 6px rgba(12, 31, 46, 0.06);
-  --shadow-lg:  0 12px 36px rgba(12, 31, 46, 0.13), 0 4px 10px rgba(12, 31, 46, 0.07);
-  --shadow-xl:  0 24px 56px rgba(12, 31, 46, 0.17), 0 8px 16px rgba(12, 31, 46, 0.08);
+  --shadow-sm:
+    0 1px 4px rgba(12, 31, 46, 0.08), 0 1px 2px rgba(12, 31, 46, 0.05);
+  --shadow-md:
+    0 4px 16px rgba(12, 31, 46, 0.1), 0 2px 6px rgba(12, 31, 46, 0.06);
+  --shadow-lg:
+    0 12px 36px rgba(12, 31, 46, 0.13), 0 4px 10px rgba(12, 31, 46, 0.07);
+  --shadow-xl:
+    0 24px 56px rgba(12, 31, 46, 0.17), 0 8px 16px rgba(12, 31, 46, 0.08);
 
   /* ── Transitions ─────────────────────────────────────────────────────────── */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-in-out:   cubic-bezier(0.4, 0, 0.2, 1);
-  --t-fast:   150ms var(--ease-out-expo);
-  --t-base:   250ms var(--ease-out-expo);
-  --t-slow:   420ms var(--ease-out-expo);
-  --t-theme:  300ms var(--ease-in-out);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --t-fast: 150ms var(--ease-out-expo);
+  --t-base: 250ms var(--ease-out-expo);
+  --t-slow: 420ms var(--ease-out-expo);
+  --t-theme: 300ms var(--ease-in-out);
 
   /* ── Z-index ─────────────────────────────────────────────────────────────── */
-  --z-base:    1;
-  --z-raised:  10;
-  --z-header:  100;
-  --z-modal:   1000;
-  --z-toast:   2000;
+  --z-base: 1;
+  --z-raised: 10;
+  --z-header: 100;
+  --z-modal: 1000;
+  --z-toast: 2000;
 }
 
 /* ─── Dark Theme ─────────────────────────────────────────────────────────────── */
 [data-theme="dark"] {
-  --bg-base:           #07131c;
-  --bg-surface:        var(--color-navy-900);
-  --bg-surface-alt:    var(--color-navy-800);
-  --bg-dark:           #030b11;
+  --bg-base: #07131c;
+  --bg-surface: var(--color-navy-900);
+  --bg-surface-alt: var(--color-navy-800);
+  --bg-dark: #030b11;
 
-  --text-base:         #e8f1f6;
-  --text-secondary:    var(--color-navy-100);
-  --text-muted:        var(--color-navy-300);
-  --text-on-dark:      #e8f1f6;
-  --text-on-dark-muted:var(--color-navy-300);
+  --text-base: #e8f1f6;
+  --text-secondary: var(--color-navy-100);
+  --text-muted: var(--color-navy-300);
+  --text-on-dark: #e8f1f6;
+  --text-on-dark-muted: var(--color-navy-300);
 
-  --border-subtle:     var(--color-navy-700);
-  --border-strong:     var(--color-navy-600);
+  --border-subtle: var(--color-navy-700);
+  --border-strong: var(--color-navy-600);
 
-  --accent:            var(--color-teal-400);
-  --accent-hover:      var(--color-teal-300);
-  --accent-text:       var(--color-navy-950);
+  --accent: var(--color-teal-400);
+  --accent-hover: var(--color-teal-300);
+  --accent-text: var(--color-navy-950);
 
-  --header-bg-solid:   rgba(7, 19, 28, 0.96);
-  --header-border:     var(--color-navy-700);
+  --header-bg-solid: rgba(7, 19, 28, 0.96);
+  --header-border: var(--color-navy-700);
 
-  --card-bg:           var(--color-navy-900);
-  --card-shadow:       0 2px 12px rgba(0, 0, 0, 0.3), 0 1px 4px rgba(0, 0, 0, 0.2);
-  --card-shadow-hover: 0 8px 28px rgba(0, 0, 0, 0.45), 0 2px 8px rgba(0, 0, 0, 0.25);
+  --card-bg: var(--color-navy-900);
+  --card-shadow: 0 2px 12px rgba(0, 0, 0, 0.3), 0 1px 4px rgba(0, 0, 0, 0.2);
+  --card-shadow-hover:
+    0 8px 28px rgba(0, 0, 0, 0.45), 0 2px 8px rgba(0, 0, 0, 0.25);
 
-  --shadow-sm:  0 1px 4px rgba(0,0,0,0.2);
-  --shadow-md:  0 4px 16px rgba(0,0,0,0.3);
-  --shadow-lg:  0 12px 36px rgba(0,0,0,0.4);
-  --shadow-xl:  0 24px 56px rgba(0,0,0,0.5);
+  --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 24px 56px rgba(0, 0, 0, 0.5);
+}
+
+html[data-theme="dark"] .hero-overlay {
+  background: linear-gradient(
+    160deg,
+    rgba(6, 16, 22, 0.72) 0%,
+    rgba(6, 16, 22, 0.45) 55%,
+    rgba(6, 16, 22, 0.65) 100%
+  );
 }
 
 /* ─── Reset ──────────────────────────────────────────────────────────────────── */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -232,7 +250,12 @@ body {
 }
 
 /* ─── Typography ─────────────────────────────────────────────────────────────── */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-serif);
   font-weight: var(--fw-semibold);
   line-height: var(--leading-tight);
@@ -253,9 +276,12 @@ a {
   transition: color var(--t-fast);
 }
 
-a:hover { color: var(--accent-hover); }
+a:hover {
+  color: var(--accent-hover);
+}
 
-img, video {
+img,
+video {
   max-width: 100%;
   height: auto;
   display: block;
@@ -270,11 +296,15 @@ img, video {
 }
 
 @media (min-width: 768px) {
-  .container { padding-inline: var(--sp-10); }
+  .container {
+    padding-inline: var(--sp-10);
+  }
 }
 
 @media (min-width: 1024px) {
-  .container { padding-inline: var(--sp-16); }
+  .container {
+    padding-inline: var(--sp-16);
+  }
 }
 
 /* Sections — more space above heading than below: handled per-section */
@@ -283,11 +313,17 @@ img, video {
 }
 
 @media (min-width: 768px) {
-  .section { padding-block: var(--sp-24); }
+  .section {
+    padding-block: var(--sp-24);
+  }
 }
 
-.section--alt  { background-color: var(--bg-surface); }
-.section--sky  { background-color: var(--bg-surface-alt); }
+.section--alt {
+  background-color: var(--bg-surface);
+}
+.section--sky {
+  background-color: var(--bg-surface-alt);
+}
 .section--dark {
   background-color: var(--bg-dark);
   color: var(--text-on-dark);
@@ -296,7 +332,7 @@ img, video {
 /* ─── Section header block ────────────────────────────────────────────────────── */
 /* craft-floor: NO eyebrow/kicker above headings — banned */
 .section-header {
-  margin-bottom: var(--sp-12);  /* generous below */
+  margin-bottom: var(--sp-12); /* generous below */
 }
 
 /* The accent line replaces the eyebrow */
@@ -306,7 +342,9 @@ img, video {
   height: 2px;
   background-color: var(--accent);
   border-radius: var(--radius-full);
-  margin-bottom: var(--sp-5);   /* more space above heading via margin-top on container */
+  margin-bottom: var(
+    --sp-5
+  ); /* more space above heading via margin-top on container */
 }
 
 .section-title {
@@ -388,11 +426,11 @@ img, video {
 .btn--ghost {
   background-color: transparent;
   color: var(--text-on-dark);
-  border-color: rgba(255,255,255,0.45);
+  border-color: rgba(255, 255, 255, 0.45);
 }
 .btn--ghost:hover {
-  background-color: rgba(255,255,255,0.08);
-  border-color: rgba(255,255,255,0.75);
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.75);
   color: var(--text-on-dark);
   text-decoration: none;
 }
@@ -410,9 +448,18 @@ img, video {
 }
 
 /* Sizes */
-.btn--sm  { padding: 0.5rem 1.25rem; font-size: var(--text-sm); }
-.btn--lg  { padding: 1rem 2.25rem;   font-size: var(--text-lg); }
-.btn--xl  { padding: 1.125rem 2.5rem; font-size: var(--text-xl); }
+.btn--sm {
+  padding: 0.5rem 1.25rem;
+  font-size: var(--text-sm);
+}
+.btn--lg {
+  padding: 1rem 2.25rem;
+  font-size: var(--text-lg);
+}
+.btn--xl {
+  padding: 1.125rem 2.5rem;
+  font-size: var(--text-xl);
+}
 
 /* ─── Cards ──────────────────────────────────────────────────────────────────── */
 /* craft-floor: card radius 12-16px; elevation = border OR shadow, not both */
@@ -421,7 +468,9 @@ img, video {
   border-radius: var(--radius-lg);
   box-shadow: var(--card-shadow);
   overflow: hidden;
-  transition: box-shadow var(--t-base), transform var(--t-base);
+  transition:
+    box-shadow var(--t-base),
+    transform var(--t-base);
 }
 
 .card:hover {
@@ -445,11 +494,21 @@ img, video {
   transform: translateY(0);
 }
 
-.reveal-delay-1 { transition-delay: 80ms; }
-.reveal-delay-2 { transition-delay: 160ms; }
-.reveal-delay-3 { transition-delay: 240ms; }
-.reveal-delay-4 { transition-delay: 320ms; }
-.reveal-delay-5 { transition-delay: 400ms; }
+.reveal-delay-1 {
+  transition-delay: 80ms;
+}
+.reveal-delay-2 {
+  transition-delay: 160ms;
+}
+.reveal-delay-3 {
+  transition-delay: 240ms;
+}
+.reveal-delay-4 {
+  transition-delay: 320ms;
+}
+.reveal-delay-5 {
+  transition-delay: 400ms;
+}
 
 /* ─── Focus ──────────────────────────────────────────────────────────────────── */
 :focus-visible {
@@ -472,7 +531,9 @@ img, video {
   z-index: var(--z-toast);
   transition: top var(--t-fast);
 }
-.skip-link:focus { top: var(--sp-4); }
+.skip-link:focus {
+  top: var(--sp-4);
+}
 
 /* ─── Accessibility ──────────────────────────────────────────────────────────── */
 .sr-only {
