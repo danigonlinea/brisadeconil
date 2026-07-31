@@ -232,3 +232,42 @@ SEO:
 | Tipografía  | Lora + Source Sans 3             | Cálida, boutique, sin ser cliché                            |
 | Animaciones | CSS + Intersection Observer      | Sin dependencias, bundle ligero                             |
 | i18n        | Ficheros de contenido (ES/EN/DE) | Sin librería extra, fácil de mantener                       |
+
+## Plan de auditoría y siguientes pasos
+
+He dejado aquí el plan de trabajo para continuar la auditoría de seguridad y la limpieza de código. Lo puedes continuar mañana siguiendo los pasos numerados.
+
+1. Revisión y endurecimiento del endpoint de contacto
+   - Migrado el envío del formulario al endpoint server-side `/api/contact`.
+   - Próximo paso: implementar rate-limiting (IP + user-agent), honeypot y/o reCAPTCHA en el endpoint.
+
+2. Auditoría de XSS / sanitización
+   - Se añadió una sanitización básica en el script i18n para `data-i18n-html`.
+   - Próximo paso: revisar manualmente las traducciones que contienen HTML y evaluar uso de DOMPurify si hace falta mantener HTML rico.
+
+3. Política de seguridad de contenido (CSP)
+   - Diseñar una política CSP adecuada para el hosting (GitHub Pages o servidor objetivo).
+   - Próximo paso: probar la CSP en un entorno staging antes de forzarla en producción.
+
+4. Dependencias y vulnerabilidades
+   - Ejecutar `npm audit` y arreglar vulnerabilidades críticas/alta prioridad.
+   - Próximo paso: habilitar Dependabot o Renovate para actualizaciones automáticas.
+
+5. Revisión de `set:html` y SVGs
+   - Identificar `set:html` usado para insertar iconos SVG y evaluar reemplazo por componentes SVG o imports inline.
+
+6. Integración continua y checks automáticos
+   - Añadir en CI: `tsc --noEmit`, ESLint (con reglas para código muerto) y `npm audit` en la pipeline.
+
+7. Monitorización y observabilidad
+   - Añadir logging básico y monitorización para `/api/contact` (Sentry/Logflare/u otro) y alertas por errores/500.
+
+8. Documentación operativa
+   - Documentar variables de entorno necesarias: `WEB3FORMS_ACCESS_KEY`, y pasos para despliegue en GitHub Actions.
+
+9. Tareas menores / seguimiento
+   - Reemplazar `rel="noreferrer"` por `rel="noopener noreferrer"` en todos los enlaces externos (hecho en la política de cookies).
+   - Revisar TODOs en `src/content/en.ts` y `src/content/de.ts`.
+
+Marca los pasos completados en el TODO list del repositorio cuando los vayas completando.
+
