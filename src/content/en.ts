@@ -63,6 +63,7 @@ export const amenities = {
     { icon: 'washer',      label: 'Washing machine',   detail: '' },
     { icon: 'dishwasher',  label: 'Dishwasher',        detail: '' },
     { icon: 'microwave',   label: 'Microwave',         detail: '' },
+    { icon: 'kettle',      label: 'Kettle',            detail: '' },
   ],
 };
 
@@ -143,8 +144,6 @@ export const conil = {
       ],
     },
   ],
-  disclaimer:
-    '⚠ Check opening times and availability before your visit, especially in high season.',
 };
 
 export const rules = {
@@ -217,7 +216,8 @@ export const footer = {
   tagline: 'Your apartment on the Costa de la Luz.',
   address: 'C/ Rosa de los Vientos\nConil de la Frontera, Cádiz',
   legalNote: '© 2025 Brisa de Conil. All rights reserved.',
-  privacyLabel: 'Legal notice',
+  legalLabel: 'Legal notice',
+  privacyLabel: 'Privacy policy',
   links: [
     { label: 'The apartment', href: '#apartamento' },
     { label: 'Gallery',       href: '#galeria' },

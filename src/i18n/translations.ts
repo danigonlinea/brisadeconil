@@ -416,11 +416,6 @@ export const t: Record<string, Record<Locale, string>> = {
     en: "Gastronomy",
     de: "Gastronomie",
   },
-  "conil.disclaimer": {
-    es: "⚠ Verifica horarios y disponibilidad antes de tu visita, especialmente en temporada alta.",
-    en: "⚠ Check opening times and availability before your visit, especially in high season.",
-    de: "⚠ Öffnungszeiten und Verfügbarkeit vor dem Besuch prüfen, besonders in der Hochsaison.",
-  },
 
   // ── Rules ─────────────────────────────────────────────────────────────────
   "rules.label": {
@@ -472,11 +467,6 @@ export const t: Record<string, Record<Locale, string>> = {
     es: "Ruidos: respeta el descanso de los vecinos, especialmente en horario nocturno.",
     en: "Please respect neighbours' rest, especially at night.",
     de: "Bitte Nachtruhe der Nachbarn respektieren.",
-  },
-  "rules.placeholder-note": {
-    es: "Los campos marcados [PENDIENTE] se actualizarán antes de la publicación.",
-    en: "Fields marked [PENDING] will be updated before publication.",
-    de: "Felder mit [AUSSTEHEND] werden vor der Veröffentlichung aktualisiert.",
   },
 
   // ── Contact ───────────────────────────────────────────────────────────────

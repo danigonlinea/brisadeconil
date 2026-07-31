@@ -89,6 +89,7 @@ export const amenities = {
     },
     { icon: "bed", label: "Sinfonier", detail: "En el dormitorio" },
     { icon: "coffee", label: "Cafetera italiana", detail: "" },
+    { icon: "kettle", label: "Hervidor", detail: "" },
     { icon: "refrigerator", label: "Frigorífico", detail: "" },
     { icon: "refrigerator", label: "Congelador", detail: "" },
     { icon: "washer", label: "Lavadora", detail: "" },
@@ -191,8 +192,6 @@ export const conil = {
       ],
     },
   ],
-  disclaimer:
-    "⚠ Verifica horarios y disponibilidad antes de tu visita, especialmente en temporada alta.",
 };
 
 export const rules = {
@@ -225,8 +224,6 @@ export const rules = {
       text: "Ruidos: respeta el descanso de los vecinos, especialmente en horario nocturno.",
     },
   ],
-  placeholderNote:
-    "Los campos marcados [PENDIENTE] se actualizarán antes de la publicación.",
 };
 
 export const contact = {
@@ -280,7 +277,7 @@ export const faq = {
     },
     {
       q: "¿Qué pasa si llego más tarde de lo previsto?",
-      a: "Si llegas tarde, coordinaremos el acceso en tu confirmación de reserva para que puedas entrar sin contratiempos.",
+      a: "Si llegas más tarde, intentaremos coordinarnos para vernos y darte las llaves, así puedes entrar sin líos.",
       pending: false,
     },
     {
@@ -337,7 +334,8 @@ export const footer = {
   tagline: "Tu apartamento en la Costa de la Luz.",
   address: "C/ Rosa de los Vientos\nConil de la Frontera, Cádiz",
   legalNote: "© 2025 Brisa de Conil. Todos los derechos reservados.",
-  privacyLabel: "Aviso legal",
+  legalLabel: "Aviso legal",
+  privacyLabel: "Política de privacidad",
   links: [
     { label: "El apartamento", href: "#apartamento" },
     { label: "Galería", href: "#galeria" },

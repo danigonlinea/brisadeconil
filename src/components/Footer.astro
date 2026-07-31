@@ -4,6 +4,9 @@
  */
 import * as content from '../content/index';
 const { footer, nav } = content;
+const base = import.meta.env.BASE_URL ?? '/';
+const legalHref = `${base}aviso-legal`;
+const privacyHref = `${base}politica-privacidad`;
 ---
 
 <footer class="site-footer" role="contentinfo">
@@ -56,7 +59,10 @@ const { footer, nav } = content;
     <!-- Bottom bar -->
     <div class="footer-bottom">
       <p class="footer-legal" data-i18n="footer.legal">{footer.legalNote}</p>
-      <a href="#" class="footer-legal-link" data-i18n="footer.legal-link">{footer.privacyLabel}</a>
+      <div class="footer-legal-links">
+        <a href={legalHref} class="footer-legal-link" data-i18n="footer.legal-link">{footer.legalLabel}</a>
+        <a href={privacyHref} class="footer-legal-link" data-i18n="footer.privacy-link">{footer.privacyLabel}</a>
+      </div>
     </div>
   </div>
 </footer>
@@ -172,6 +178,12 @@ const { footer, nav } = content;
     color: var(--text-on-dark-muted);
     max-width: none;
     margin: 0;
+  }
+
+  .footer-legal-links {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-4);
   }
 
   .footer-legal-link {

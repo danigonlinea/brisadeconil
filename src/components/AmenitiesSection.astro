@@ -9,6 +9,8 @@ const icons: Record<string, string> = {
   wind: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"/><path d="M9.6 4.6A2 2 0 1 1 11 8H2"/><path d="M12.6 19.4A2 2 0 1 0 14 16H2"/></svg>`,
   wifi: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>`,
   tv: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="15" rx="2"/><polyline points="17 2 12 7 7 2"/></svg>`,
+  coffee: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 9h10a3 3 0 0 1 3 3v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-3a3 3 0 0 1 3-3z"/><path d="M7 9V7a4 4 0 0 1 8 0v2"/><path d="M14 16h4"/><line x1="9" y1="18" x2="9" y2="19"/><line x1="15" y1="18" x2="15" y2="19"/></svg>`,
+  kettle: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 8h10a5 5 0 0 1 5 5 5 5 0 0 1-5 5H7a5 5 0 0 1-5-5 5 5 0 0 1 5-5z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/><path d="M17 11h3a1 1 0 0 0 0-2h-3"/></svg>`,
   refrigerator: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="4" y1="10" x2="20" y2="10"/><line x1="9" y1="6" x2="9" y2="8"/><line x1="9" y1="14" x2="9" y2="18"/></svg>`,
   washer: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="2"/><circle cx="12" cy="13" r="4"/><path d="M6 6h.01M10 6h.01"/></svg>`,
   dishwasher: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M7 7v10M12 7v10M17 7v10"/><line x1="4" y1="12" x2="20" y2="12"/></svg>`,
@@ -27,8 +29,8 @@ const icons: Record<string, string> = {
 
     <ul class="amenities-grid" role="list">
       {amenities.items.map((item: { icon: string; label: string; detail: string }, i: number) => (
-        <li class:list={['amenity-item', 'reveal', `reveal-delay-${(i % 4) + 1}`]}>
-          <div class="amenity-icon" set:html={icons[item.icon] ?? icons.wifi} />
+          <li class:list={['amenity-item', 'reveal', `reveal-delay-${(i % 4) + 1}`]} data-icon={item.icon}>
+            <div class="amenity-icon" set:html={icons[item.icon] ?? icons.wifi} />
           <div class="amenity-text">
             <span class="amenity-label" data-i18n={`amenities.item.${AMENITY_KEYS[i]}`}>{item.label}</span>
             {item.detail && (
@@ -62,6 +64,7 @@ const icons: Record<string, string> = {
   }
   .amenity-item:hover { box-shadow: var(--shadow-md); }
   .amenity-icon { color: var(--accent); flex-shrink: 0; display: flex; }
+  .amenity-item[data-icon="kettle"] .amenity-icon { color: var(--text-muted); }
   .amenity-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
   .amenity-label { font-size: var(--text-sm); font-weight: var(--fw-semibold); color: var(--text-base); line-height: var(--leading-snug); }
   .amenity-detail { font-size: var(--text-xs); color: var(--text-muted); line-height: var(--leading-normal); }
