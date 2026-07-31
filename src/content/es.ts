@@ -15,8 +15,8 @@ export const nav = {
   brand: "Brisa de Conil",
   links: [
     { label: "El apartamento", href: "#apartamento" },
-    { label: "Galería", href: "#galeria" },
-    { label: "Ubicación", href: "#ubicacion" },
+    { label: "Equipamiento", href: "#equipamiento" },
+    { label: "Fotos", href: "#galeria" },
     { label: "Contacto", href: "#contacto" },
   ],
   cta: "Reservar fechas",
@@ -260,28 +260,28 @@ export const faq = {
   items: [
     {
       q: "¿Cuáles son los horarios de check-in y check-out?",
-      a: "[PENDIENTE — el propietario confirmará los horarios exactos. Te lo comunicaremos al confirmar la reserva.]",
-      pending: true,
+      a: "El check-in es a partir de las 16:00 y la salida se realiza entre las 11:30 y las 12:00.",
+      pending: false,
     },
     {
       q: "¿Se admiten mascotas?",
-      a: "[PENDIENTE — el propietario confirmará la política de mascotas.]",
-      pending: true,
+      a: "No se admiten mascotas en el apartamento.",
+      pending: false,
     },
     {
       q: "¿Se puede fumar en el apartamento?",
-      a: "[PENDIENTE — el propietario confirmará la política de fumadores.]",
-      pending: true,
+      a: "No se permite fumar en el apartamento.",
+      pending: false,
     },
     {
       q: "¿Cuál es la política de cancelación?",
-      a: "[PENDIENTE — el propietario confirmará las condiciones de cancelación.]",
-      pending: true,
+      a: "Puedes cancelar sin coste hasta 7 días antes de la fecha de llegada. A partir de entonces, el importe no es reembolsable.",
+      pending: false,
     },
     {
       q: "¿Qué pasa si llego más tarde de lo previsto?",
-      a: "[PENDIENTE — te indicaremos el procedimiento de entrada en tu confirmación de reserva.]",
-      pending: true,
+      a: "Si llegas tarde, coordinaremos el acceso en tu confirmación de reserva para que puedas entrar sin contratiempos.",
+      pending: false,
     },
     {
       q: "¿Cuánta gente puede alojarse?",

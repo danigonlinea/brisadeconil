@@ -16,8 +16,8 @@ export const nav = {
   brand: 'Brisa de Conil',
   links: [
     { label: 'The apartment', href: '#apartamento' },
-    { label: 'Gallery',       href: '#galeria' },
-    { label: 'Location',      href: '#ubicacion' },
+    { label: 'Amenities',     href: '#equipamiento' },
+    { label: 'Photos',        href: '#galeria' },
     { label: 'Contact',       href: '#contacto' },
   ],
   cta: 'Book your dates',
@@ -158,13 +158,11 @@ export const rules = {
   },
   rules: [
     { icon: 'trash',         text: 'Take the bins out before you leave.' },
-    { icon: 'clock',         text: 'Check-in and check-out times: [PENDING — owner to confirm].' },
-    { icon: 'paw',           text: 'Pet policy: [PENDING — owner to confirm].' },
-    { icon: 'cigarette-off', text: 'Smoking policy: [PENDING — owner to confirm].' },
-    { icon: 'volume-x',      text: 'Please respect neighbours\' rest, especially at night.' },
+    { icon: 'clock',         text: 'Check-in is from 16:00 and check-out is between 11:30 and 12:00.' },
+    { icon: 'paw',           text: 'Pets are not allowed in the apartment.' },
+    { icon: 'cigarette-off', text: 'Smoking is not allowed in the apartment.' },
+    { icon: 'volume-x',      text: 'Please respect neighbours' rest, especially at night.' },
   ],
-  placeholderNote:
-    'Fields marked [PENDING] will be updated before publication.',
 };
 
 export const contact = {
@@ -191,11 +189,11 @@ export const faq = {
   sectionLabel: 'FAQ',
   headline: 'Questions we get asked',
   items: [
-    { q: 'What are the check-in and check-out times?', a: '[PENDING — owner to confirm.]', pending: true },
-    { q: 'Are pets allowed?',                          a: '[PENDING — owner to confirm.]', pending: true },
-    { q: 'Is smoking allowed?',                        a: '[PENDING — owner to confirm.]', pending: true },
-    { q: 'What is the cancellation policy?',           a: '[PENDING — owner to confirm.]', pending: true },
-    { q: 'What if I arrive late?',                     a: '[PENDING — we will provide access instructions in your booking confirmation.]', pending: true },
+    { q: 'What are the check-in and check-out times?', a: 'Check-in is from 16:00 and check-out is between 11:30 and 12:00.', pending: false },
+    { q: 'Are pets allowed?',                          a: 'Pets are not allowed in the apartment.', pending: false },
+    { q: 'Is smoking allowed?',                        a: 'Smoking is not allowed in the apartment.', pending: false },
+    { q: 'What is the cancellation policy?',           a: 'You can cancel free of charge until 7 days before arrival. After that, the amount is non-refundable.', pending: false },
+    { q: 'What if I arrive late?',                     a: 'If you arrive late, we will coordinate access details in your booking confirmation.', pending: false },
     { q: 'How many guests can stay?', a: 'The apartment sleeps 3: 2 in the double bed and 1 on the chaise-longue sofa bed in the living room.', pending: false },
     { q: 'Is there parking nearby?',  a: 'Yes. The Mercado de Abastos, right opposite, has municipal parking. In high season we also recommend the Recinto Ferial, which is free and has plenty of space.', pending: false },
     { q: 'How is the deposit handled?', a: 'The deposit is €150, returned within 24–48 hours of checkout once everything has been checked.', pending: false },

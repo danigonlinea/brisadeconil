@@ -16,8 +16,8 @@ export const nav = {
   brand: "Brisa de Conil",
   links: [
     { label: "Die Wohnung", href: "#apartamento" },
-    { label: "Galerie", href: "#galeria" },
-    { label: "Lage", href: "#ubicacion" },
+    { label: "Ausstattung", href: "#equipamiento" },
+    { label: "Fotos", href: "#galeria" },
     { label: "Kontakt", href: "#contacto" },
   ],
   cta: "Daten buchen",
@@ -188,20 +188,18 @@ export const rules = {
     { icon: "trash", text: "Müll vor dem Abreisen rausbringen." },
     {
       icon: "clock",
-      text: "Check-in und Check-out Zeiten: [AUSSTEHEND — Eigentümer bestätigt].",
+      text: "Check-in ist ab 16:00 Uhr und Check-out zwischen 11:30 und 12:00 Uhr.",
     },
     {
       icon: "paw",
-      text: "Haustierrichtlinie: [AUSSTEHEND — Eigentümer bestätigt].",
+      text: "Haustiere sind in der Wohnung nicht erlaubt.",
     },
     {
       icon: "cigarette-off",
-      text: "Rauchrichtlinie: [AUSSTEHEND — Eigentümer bestätigt].",
+      text: "Rauchen ist in der Wohnung nicht erlaubt.",
     },
-    { icon: "volume-x", text: "Bitte Nachtruhe der Nachbarn respektieren." },
+    { icon: "volume-x", text: "Bitte respektiere die Nachtruhe der Nachbarn." },
   ],
-  placeholderNote:
-    "Felder mit [AUSSTEHEND] werden vor der Veröffentlichung aktualisiert.",
 };
 
 export const contact = {
@@ -234,28 +232,28 @@ export const faq = {
   items: [
     {
       q: "Wie sind die Check-in und Check-out Zeiten?",
-      a: "[AUSSTEHEND — Eigentümer bestätigt.]",
-      pending: true,
+      a: "Check-in ist ab 16:00 Uhr und Check-out zwischen 11:30 und 12:00 Uhr.",
+      pending: false,
     },
     {
       q: "Sind Haustiere erlaubt?",
-      a: "[AUSSTEHEND — Eigentümer bestätigt.]",
-      pending: true,
+      a: "Haustiere sind in der Wohnung nicht erlaubt.",
+      pending: false,
     },
     {
       q: "Ist Rauchen erlaubt?",
-      a: "[AUSSTEHEND — Eigentümer bestätigt.]",
-      pending: true,
+      a: "Rauchen ist in der Wohnung nicht erlaubt.",
+      pending: false,
     },
     {
       q: "Wie sind die Stornierungsbedingungen?",
-      a: "[AUSSTEHEND — Eigentümer bestätigt.]",
-      pending: true,
+      a: "Du kannst bis 7 Tage vor Anreise kostenlos stornieren. Danach ist der Betrag nicht erstattbar.",
+      pending: false,
     },
     {
       q: "Was wenn ich später ankomme?",
-      a: "[AUSSTEHEND — wir informieren dich in deiner Buchungsbestätigung.]",
-      pending: true,
+      a: "Wenn du später ankommst, stimmen wir die Zugangsdaten in deiner Buchungsbestätigung ab.",
+      pending: false,
     },
     {
       q: "Wie viele Personen können übernachten?",
