@@ -535,6 +535,16 @@ export const t: Record<string, Record<Locale, string>> = {
     en: "Legal notice",
     de: "Impressum",
   },
+  "footer.privacy-link": {
+    es: "Política de privacidad",
+    en: "Privacy policy",
+    de: "Datenschutz",
+  },
+  "footer.cookies-link": {
+    es: "Política de cookies",
+    en: "Cookies policy",
+    de: "Cookie-Richtlinie",
+  },
   "footer.link.apartamento": {
     es: "El apartamento",
     en: "The apartment",

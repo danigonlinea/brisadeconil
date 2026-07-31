@@ -336,6 +336,7 @@ export const footer = {
   legalNote: "© 2025 Brisa de Conil. Todos los derechos reservados.",
   legalLabel: "Aviso legal",
   privacyLabel: "Política de privacidad",
+  cookiesLabel: "Política de cookies",
   links: [
     { label: "El apartamento", href: "#apartamento" },
     { label: "Galería", href: "#galeria" },

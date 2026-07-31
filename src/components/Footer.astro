@@ -7,6 +7,7 @@ const { footer, nav } = content;
 const base = import.meta.env.BASE_URL ?? '/';
 const legalHref = `${base}aviso-legal`;
 const privacyHref = `${base}politica-privacidad`;
+const cookiesHref = `${base}politica-cookies`;
 ---
 
 <footer class="site-footer" role="contentinfo">
@@ -62,6 +63,7 @@ const privacyHref = `${base}politica-privacidad`;
       <div class="footer-legal-links">
         <a href={legalHref} class="footer-legal-link" data-i18n="footer.legal-link">{footer.legalLabel}</a>
         <a href={privacyHref} class="footer-legal-link" data-i18n="footer.privacy-link">{footer.privacyLabel}</a>
+        <a href={cookiesHref} class="footer-legal-link" data-i18n="footer.cookies-link">{footer.cookiesLabel}</a>
       </div>
     </div>
   </div>
