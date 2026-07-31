@@ -70,6 +70,20 @@ public/
 
 ---
 
+## Actualizaciones recientes
+
+Estas son las mejoras más recientes aplicadas a la web:
+
+- Añadidas páginas legales: `Aviso legal`, `Política de privacidad` y `Política de cookies`.
+- Añadido enlace de `Política de cookies` en el footer.
+- Corregidos los enlaces de footer y el favicon para despliegues en subcarpeta (`/brisadeconil`).
+- Añadida lógica de sincronización de fechas en el formulario de contacto:
+  - si `Fecha de salida` no está seteada, se copia automáticamente la `Fecha de entrada`.
+  - si se selecciona una `Fecha de entrada` posterior a la `Fecha de salida`, `Fecha de salida` se actualiza también.
+- Ocultada temporalmente la sección de testimonios hasta tener reseñas reales.
+
+---
+
 ## Editar contenido sin tocar código
 
 Todo el texto, datos y copy está centralizado en `src/content/es.ts`.
