@@ -233,6 +233,55 @@ SEO:
 | Animaciones | CSS + Intersection Observer      | Sin dependencias, bundle ligero                             |
 | i18n        | Ficheros de contenido (ES/EN/DE) | Sin librería extra, fácil de mantener                       |
 
+## Tareas pendientes (detalladas)
+
+Aquí tienes una descripción práctica de cada tarea pendiente, con prioridad, pasos recomendados y comandos útiles para empezarlas.
+
+- **Añadir CSP y configurar cabeceras en hosting** (Prioridad: Alta)
+   - Objetivo: reducir riesgo XSS y control de orígenes de recursos.
+   - Pasos: diseñar política CSP, probar en staging con `Content-Security-Policy-Report-Only`, ajustar reglas (fonts, scripts, styles, img, connect).
+   - Comandos / recursos:
+      ```bash
+      # Validar CSP rápida
+      curl -I -H "Content-Security-Policy: default-src 'self'" http://localhost:4321
+      ```
+
+- **Implementar rate-limiting/anti-bot en `/api/contact`** (Prioridad: Alta)
+   - Objetivo: evitar abuso del formulario (spambots, spam, solicitudes masivas).
+   - Pasos: añadir un simple contador en memoria o usar paquete ligero (express-rate-limit, but for serverless use a token bucket tied to IP), añadir honeypot field y/o reCAPTCHA v3/v2.
+   - Ejemplo rápido: limitar 5 envíos por IP en 1 hora; bloquear por 429.
+
+- **Añadir logging y monitorización de errores para la API** (Prioridad: Media)
+   - Objetivo: detectar fallos de envío y problemas de integración con Web3Forms.
+   - Pasos: integrar Sentry/Logflare/Locale-friendly logger; capturar errores 5xx y métricas de latencia.
+
+- **Configurar CI: `tsc --noEmit`, ESLint y `npm audit`** (Prioridad: Media)
+   - Objetivo: garantizar calidad y detectar regresiones automáticamente.
+   - Pasos: añadir job en GitHub Actions que corra `npm ci`, `npx tsc --noEmit`, `npx eslint src`, `npm audit --audit-level=moderate`.
+
+- **Reemplazar `set:html` iconos por componentes SVG** (Prioridad: Baja/Medio)
+   - Objetivo: mejorar seguridad y trazabilidad del markup SVG.
+   - Pasos: convertir cadenas SVG a componentes/archivos `.svg` y usarlos con `src` o imports React/TSX.
+
+- **Ejecutar `npm audit` y actualizar dependencias críticas** (Prioridad: Media)
+   - Objetivo: cerrar CVEs y mantener dependencias seguras.
+   - Pasos: ejecutar `npm audit`, aplicar `npm audit fix` y revisar cambios; abrir PRs para actualizaciones mayores.
+
+- **Habilitar Dependabot / Renovate para dependencias** (Prioridad: Media)
+   - Objetivo: automatizar actualizaciones y PRs de seguridad.
+   - Pasos: añadir `dependabot.yml` o configurar Renovate en repo; revisar PRs en staging antes de merge.
+
+- **Documentar variables de entorno y pasos de despliegue en README** (Prioridad: Baja)
+   - Objetivo: dejar claro qué secretos y pasos necesita el deploy (ej. `WEB3FORMS_ACCESS_KEY`, GitHub Secrets).
+   - Estado: añadida sección de plan; pendiente detallar valores exactos en `README` y `.env.example`.
+
+- **Revisión manual de traducciones que contienen HTML** (Prioridad: Baja)
+   - Objetivo: revisar y sanear cualquier HTML legítimo en `src/i18n/translations.ts`.
+   - Pasos: listar claves `*-html` o revisar `t` por contenido que incluya etiquetas; validar que la sanitización aplicada cumple con requerimientos.
+
+Si quieres, puedo empezar con cualquiera de estas tareas ahora: implementar rate-limiting en `/api/contact` (recomendado), añadir CI básico, o preparar PRs para dependencias.
+
+
 ## Plan de auditoría y siguientes pasos
 
 He dejado aquí el plan de trabajo para continuar la auditoría de seguridad y la limpieza de código. Lo puedes continuar mañana siguiendo los pasos numerados.
@@ -270,4 +319,3 @@ He dejado aquí el plan de trabajo para continuar la auditoría de seguridad y l
    - Revisar TODOs en `src/content/en.ts` y `src/content/de.ts`.
 
 Marca los pasos completados en el TODO list del repositorio cuando los vayas completando.
-
