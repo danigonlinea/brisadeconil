@@ -7,7 +7,7 @@ import * as content from '../content/index';
 const { testimonials } = content;
 ---
 
-<section class="section section--alt" id="opiniones" aria-labelledby="testimonials-title">
+<section class="section section--alt testimonials-hidden" id="opiniones" aria-labelledby="testimonials-title">
   <div class="container">
     <header class="testimonials-header reveal">
       <hr class="divider" aria-hidden="true" />
@@ -196,5 +196,9 @@ const { testimonials } = content;
     color: var(--text-muted);
     max-width: none;
     line-height: var(--leading-relaxed);
+  }
+
+  .testimonials-hidden {
+    display: none !important;
   }
 </style>
