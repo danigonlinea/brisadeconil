@@ -526,9 +526,9 @@ export const t: Record<string, Record<Locale, string>> = {
   },
   "footer.sections": { es: "Secciones", en: "Sections", de: "Sektionen" },
   "footer.legal": {
-    es: "© 2025 Brisa de Conil. Todos los derechos reservados.",
-    en: "© 2025 Brisa de Conil. All rights reserved.",
-    de: "© 2025 Brisa de Conil. Alle Rechte vorbehalten.",
+    es: "© 2026 Brisa de Conil. Todos los derechos reservados.",
+    en: "© 2026 Brisa de Conil. All rights reserved.",
+    de: "© 2026 Brisa de Conil. Alle Rechte vorbehalten.",
   },
   "footer.legal-link": {
     es: "Aviso legal",

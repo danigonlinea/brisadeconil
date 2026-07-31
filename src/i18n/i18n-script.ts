@@ -11,7 +11,12 @@
  * set:html. No external request, no flash.
  */
 
-import { t, SUPPORTED_LOCALES, DEFAULT_LOCALE, type Locale } from './translations';
+import {
+  t,
+  SUPPORTED_LOCALES,
+  DEFAULT_LOCALE,
+  type Locale,
+} from "./translations";
 
 /**
  * Returns the JS source to embed inline.
@@ -53,10 +58,47 @@ export function buildI18nScript(): string {
     });
 
     // 3. Translate all [data-i18n-html] elements (inner HTML — for rich text)
+    // Use a lightweight sanitizer to avoid unsafe script/style attributes
+    function sanitizeHTML(html) {
+      try {
+        var parser = new DOMParser();
+        var doc = parser.parseFromString(html || '', 'text/html');
+        var allowed = ['a','b','strong','i','em','br','p','ul','ol','li','span','div','sup','sub','small','mark','code'];
+        doc.body.querySelectorAll('*').forEach(function (node) {
+          var name = node.nodeName.toLowerCase();
+          if (allowed.indexOf(name) === -1) {
+            // replace disallowed element with its children (keeps text)
+            while (node.firstChild) node.parentNode.insertBefore(node.firstChild, node);
+            node.parentNode.removeChild(node);
+            return;
+          }
+          // remove unsafe attributes
+          Array.from(node.attributes).forEach(function (attr) {
+            var n = attr.name.toLowerCase();
+            var v = attr.value || '';
+            if (n.indexOf('on') === 0) {
+              node.removeAttribute(attr.name);
+              return;
+            }
+            if (n === 'href') {
+              var lv = v.trim().toLowerCase();
+              if (lv.indexOf('javascript:') === 0) node.removeAttribute(attr.name);
+            } else if (['class','id','title','alt','rel','target','aria-label'].indexOf(n) === -1) {
+              // remove any other attributes to reduce risk
+              node.removeAttribute(attr.name);
+            }
+          });
+        });
+        return doc.body.innerHTML;
+      } catch (e) {
+        return '';
+      }
+    }
+
     document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
       var key = el.getAttribute('data-i18n-html');
       if (T[key] && T[key][locale] !== undefined) {
-        el.innerHTML = T[key][locale];
+        el.innerHTML = sanitizeHTML(T[key][locale]);
       }
     });
 

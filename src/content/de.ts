@@ -307,7 +307,7 @@ export const footer = {
   brand: "Brisa de Conil",
   tagline: "Deine Wohnung an der Costa de la Luz.",
   address: "C/ Rosa de los Vientos\nConil de la Frontera, Cádiz",
-  legalNote: "© 2025 Brisa de Conil. Alle Rechte vorbehalten.",
+  legalNote: "© 2026 Brisa de Conil. Alle Rechte vorbehalten.",
   legalLabel: "Impressum",
   privacyLabel: "Datenschutz",
   cookiesLabel: "Cookie-Richtlinie",

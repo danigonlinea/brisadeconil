@@ -6,14 +6,9 @@
  */
 import { useState, useId } from "react";
 
-// Replace with your Web3Forms access key from https://web3forms.com
-// Or set PUBLIC_WEB3FORMS_KEY in your .env file
-const WEB3FORMS_KEY =
-  (typeof import.meta !== "undefined" &&
-  (import.meta as Record<string, unknown>).env
-    ? ((import.meta as Record<string, unknown>).env as Record<string, string>)
-        .PUBLIC_WEB3FORMS_KEY
-    : undefined) ?? "YOUR_WEB3FORMS_ACCESS_KEY";
+// The form now posts to a server-side endpoint (`/api/contact`) which
+// forwards the submission to Web3Forms using a server-only env var.
+// Do NOT include secret keys in client-side code.
 
 type FormState = "idle" | "sending" | "success" | "error";
 
@@ -47,6 +42,16 @@ function validateForm(data: FormData): FieldError {
   return errors;
 }
 
+function addDaysToDate(value: string, days: number) {
+  const [year, month, day] = value.split("-").map(Number);
+  const date = new Date(year, month - 1, day);
+  date.setDate(date.getDate() + days);
+  const nextYear = date.getFullYear();
+  const nextMonth = String(date.getMonth() + 1).padStart(2, "0");
+  const nextDay = String(date.getDate()).padStart(2, "0");
+  return `${nextYear}-${nextMonth}-${nextDay}`;
+}
+
 export default function ContactForm() {
   const id = useId();
   const [form, setForm] = useState<FormData>({
@@ -68,11 +73,9 @@ export default function ContactForm() {
     const { name, value } = e.target;
     setForm((prev) => {
       if (name === "checkin") {
-        if (
-          !prev.checkout ||
-          (value && prev.checkout && value > prev.checkout)
-        ) {
-          return { ...prev, checkin: value, checkout: value };
+        const nextDay = value ? addDaysToDate(value, 1) : "";
+        if (!prev.checkout || (prev.checkout && value >= prev.checkout)) {
+          return { ...prev, checkin: value, checkout: nextDay };
         }
         return { ...prev, checkin: value };
       }
@@ -97,26 +100,26 @@ export default function ContactForm() {
 
     setState("sending");
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
+      // Post to the local server endpoint which holds the access key
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
         body: JSON.stringify({
-          access_key: WEB3FORMS_KEY,
           subject: `Nueva consulta de ${form.name} — Brisa de Conil`,
           from_name: "Brisa de Conil Web",
           name: form.name,
           email: form.email,
-          "Fecha de entrada": form.checkin || "No indicada",
-          "Fecha de salida": form.checkout || "No indicada",
-          "Número de personas": form.guests || "No indicado",
+          checkin: form.checkin || "No indicada",
+          checkout: form.checkout || "No indicada",
+          guests: form.guests || "No indicado",
           message: form.message || "(sin mensaje adicional)",
         }),
       });
       const data = await res.json();
-      if (data.success) {
+      if (res.ok && data.success) {
         setState("success");
       } else {
         setState("error");
