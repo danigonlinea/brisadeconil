@@ -30,6 +30,9 @@ const ruleIcons: Record<string, string> = {
           <p class="deposit-label" data-i18n="rules.deposit.label">{rules.deposit.label}</p>
           <p class="deposit-amount">{rules.deposit.amount}</p>
           <p class="deposit-return" data-i18n="rules.deposit.return">{rules.deposit.return}</p>
+          {rules.deposit.payment && (
+            <p class="deposit-payment">{rules.deposit.payment}</p>
+          )}
         </div>
       </div>
 
@@ -37,11 +40,6 @@ const ruleIcons: Record<string, string> = {
       <div class="rules-content">
         <hr class="divider" aria-hidden="true" />
         <p class="section-label" data-i18n="rules.label">{rules.sectionLabel}</p>
-        <h2 class="section-title" id="rules-title">
-          {rules.headline.split('\n').map((line: string) => (
-            <span class="rules-headline-line" data-i18n={line.includes('sencillas') || line.includes('simple') || line.includes('einfache') ? 'rules.title' : undefined}>{line}</span>
-          ))}
-        </h2>
         <p class="section-lead reveal" data-i18n="rules.lead">{rules.lead}</p>
 
         <ul class="rules-list reveal reveal-delay-1" role="list">
@@ -142,6 +140,14 @@ const ruleIcons: Record<string, string> = {
   .deposit-return {
     font-size: var(--text-sm);
     color: var(--text-on-dark-muted);
+    line-height: var(--leading-relaxed);
+    max-width: 32ch;
+  }
+
+  .deposit-payment {
+    margin-top: var(--sp-4);
+    font-size: var(--text-sm);
+    color: var(--text-on-dark);
     line-height: var(--leading-relaxed);
     max-width: 32ch;
   }

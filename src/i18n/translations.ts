@@ -163,6 +163,16 @@ export const t: Record<string, Record<Locale, string>> = {
     en: "Supermarket, pharmacy and banks nearby",
     de: "Supermarkt, Apotheke und Banken in der Nähe",
   },
+  "apt.spec.rooftop.label": {
+    es: "Azotea comunitaria",
+    en: "Communal rooftop",
+    de: "Gemeinschaftsdachterrasse",
+  },
+  "apt.spec.rooftop.value": {
+    es: "Para estar al fresco o tender la ropa",
+    en: "For evening breeze or drying clothes",
+    de: "Zum Frischluft genießen oder Wäsche aufhängen",
+  },
   "apt.access-note": {
     es: "El apartamento se encuentra en una primera planta con acceso por escalera desde la calle.",
     en: "The apartment is on the ground floor with direct street access. Arrive, drop the bags and you're already on holiday.",

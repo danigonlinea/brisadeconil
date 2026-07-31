@@ -44,6 +44,7 @@ export const apartment = {
     { icon: 'bath',     label: 'Bathroom',       value: 'Walk-in shower' },
     { icon: 'layout',   label: 'Layout',         value: 'Open-plan living & kitchen' },
     { icon: 'door',     label: 'Access',         value: 'Ground floor, no stairs' },
+    { icon: 'sun',      label: 'Communal rooftop', value: 'For evening breeze or drying clothes' },
   ],
   accessNote:
     'The apartment is on the ground floor with direct street access. Arrive, drop the bags and you're already on holiday.',

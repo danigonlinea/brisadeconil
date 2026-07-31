@@ -27,7 +27,8 @@ export const nav = {
 export const hero = {
   tagline: "Vente a conocer la brisa de Conil",
   headline: "Apartamento en el centro de\nConil de la Frontera",
-  subline: "A pasos del mercado, a minutos del mar.",
+  subline:
+    "En la Calle Rosa de los Vientos: A pasos del mercado, a minutos del mar.",
   cta: "Consulta disponibilidad",
   ctaHref: "#contacto",
   scrollLabel: "Descubre más",
@@ -45,12 +46,17 @@ export const apartment = {
         "3 personas (1 persona tiene que dormir en el sofá cama chaiselongue)",
     },
     { icon: "bed", label: "Dormitorio", value: "Cama de matrimonio de 135" },
-    { icon: "bath", label: "Baño", value: "" },
+    { icon: "bath", label: "Baño", value: "Placa ducha y bidé" },
     { icon: "layout", label: "Distribución", value: "Salón-cocina integrado" },
     {
       icon: "door",
       label: "Acceso",
       value: "Primera planta, acceso por escalera",
+    },
+    {
+      icon: "sun",
+      label: "Azotea comunitaria",
+      value: "Para estar al fresco o tender la ropa",
     },
     {
       icon: "store",
@@ -74,7 +80,17 @@ export const amenities = {
     { icon: "wind", label: "Ventilador de techo", detail: "En el dormitorio" },
     { icon: "wifi", label: "Fibra óptica", detail: "En todo el apartamento" },
     { icon: "tv", label: "Televisión", detail: "60 pulgadas" },
+    { icon: "thermometer", label: "Agua caliente", detail: "" },
+    { icon: "store", label: "Productos de limpieza", detail: "" },
+    {
+      icon: "door",
+      label: "2 armarios",
+      detail: "Para guardar la ropa y demás",
+    },
+    { icon: "bed", label: "Sinfonier", detail: "En el dormitorio" },
+    { icon: "coffee", label: "Cafetera italiana", detail: "" },
     { icon: "refrigerator", label: "Frigorífico", detail: "" },
+    { icon: "refrigerator", label: "Congelador", detail: "" },
     { icon: "washer", label: "Lavadora", detail: "" },
     { icon: "dishwasher", label: "Lavavajillas", detail: "" },
     { icon: "microwave", label: "Microondas", detail: "" },
@@ -182,26 +198,27 @@ export const conil = {
 export const rules = {
   sectionLabel: "Normas de la casa",
   headline: "Unas normas sencillas\npara un final tranquilo",
-  lead: "Nada complicado. Solo lo necesario para que todo quede bien para el siguiente huésped.",
+  lead: "Solo lo necesario para que todo quede bien para el siguiente huésped.",
   deposit: {
     label: "Fianza",
     amount: "150 €",
     return:
       "Se devuelve entre 24 y 48 horas tras la salida, una vez comprobado que todo está en orden.",
+    payment: "Se puede pagar por Bizum o en efectivo.",
   },
   rules: [
     { icon: "trash", text: "Saca la basura antes de irte." },
     {
       icon: "clock",
-      text: "Check-in y check-out: [PENDIENTE — el propietario confirmará los horarios].",
+      text: "Check-in a partir de las 16:00 y salida entre las 11:30 y las 12:00.",
     },
     {
       icon: "paw",
-      text: "Política de mascotas: [PENDIENTE — el propietario confirmará].",
+      text: "No se admiten mascotas en el apartamento.",
     },
     {
       icon: "cigarette-off",
-      text: "Política de fumadores: [PENDIENTE — el propietario confirmará].",
+      text: "No se permite fumar en el apartamento.",
     },
     {
       icon: "volume-x",
