@@ -265,12 +265,12 @@ export const t: Record<string, Record<Locale, string>> = {
     de: "Von Anfang an",
   },
   "welcome.title": {
-    es: "Como en casa desde que llegas",
+    es: "Queremos que te sientas como en casa",
     en: "Home from the moment you arrive",
     de: "Wie zuhause von Anfang an",
   },
   "welcome.lead": {
-    es: "No hace falta parar en el súper al llegar. Todo lo básico ya está esperándote.",
+    es: "",
     en: "No need to stop at the supermarket when you land. The essentials are already waiting for you.",
     de: "Kein Stopp im Supermarkt nötig. Das Wichtigste wartet schon auf dich.",
   },
@@ -311,7 +311,7 @@ export const t: Record<string, Record<Locale, string>> = {
     de: "Öl, Essig und Servietten",
   },
   "welcome.closing": {
-    es: "Solo trae las ganas de descansar.",
+    es: "",
     en: "Just bring the desire to rest.",
     de: "Bring nur die Lust auf Erholung mit.",
   },

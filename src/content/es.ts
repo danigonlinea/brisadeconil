@@ -36,7 +36,7 @@ export const hero = {
 export const apartment = {
   sectionLabel: "El apartamento",
   headline: "Todo lo que necesitas,\nsin nada que sobre",
-  lead: "Cómodo, bien equipado y en el mejor sitio de Conil.",
+  lead: "",
   specs: [
     {
       icon: "users",
@@ -58,8 +58,7 @@ export const apartment = {
       value: "Supermercado, farmacia y bancos cerca",
     },
   ],
-  accessNote:
-    "El apartamento se encuentra en una primera planta con acceso por escalera desde la calle.",
+  accessNote: "",
 };
 
 export const amenities = {
@@ -86,8 +85,8 @@ export const amenities = {
 
 export const welcome = {
   sectionLabel: "Desde el primer día",
-  headline: "Como en casa\ndesde que llegas",
-  lead: "No hace falta parar en el súper al llegar. Todo lo básico ya está esperándote.",
+  headline: "Queremos que te sientas\ncomo en casa",
+  lead: "",
   items: [
     {
       icon: "towel",
@@ -106,7 +105,7 @@ export const welcome = {
       detail: "Aceite, vinagre y servilletas",
     },
   ],
-  closing: "Solo trae las ganas de descansar.",
+  closing: "",
 };
 
 export const location = {
