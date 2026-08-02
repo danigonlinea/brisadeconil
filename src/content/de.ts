@@ -26,7 +26,7 @@ export const nav = {
 };
 
 export const hero = {
-  tagline: "Dein Rückzugsort an der Costa de la Luz",
+  tagline: "Dein Erlebnis in Conil beginnt hier",
   headline:
     "Wohnung im Zentrum von\n Conil de la Frontera.\nGleich neben dem Markt, Minuten vom Meer.",
   subline:

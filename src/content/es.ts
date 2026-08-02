@@ -25,7 +25,7 @@ export const nav = {
 };
 
 export const hero = {
-  tagline: "Vente a conocer la brisa de Conil",
+  tagline: "Tu experiencia en Conil empieza aquí",
   headline: "Apartamento en el centro de\n Conil de la Frontera",
   subline:
     "En la Calle Rosa de los Vientos: A pasos del mercado, a minutos del mar.",

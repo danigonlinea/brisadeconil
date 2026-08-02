@@ -26,7 +26,7 @@ export const nav = {
 };
 
 export const hero = {
-  tagline: 'Your corner on the Costa de la Luz',
+  tagline: 'Your experience in Conil starts here',
   headline: 'Apartment in the centre of\n Conil de la Frontera.\nSteps from the market, minutes from the sea.',
   subline: 'On Calle Rosa de los Vientos: Steps from the market, minutes from the sea.',
   cta: 'Check availability',

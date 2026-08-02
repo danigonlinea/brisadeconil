@@ -61,9 +61,9 @@ export const t: Record<string, Record<Locale, string>> = {
 
   // ── Hero ──────────────────────────────────────────────────────────────────
   "hero.tagline": {
-    es: "Vente a conocer la brisa de Conil",
-    en: "Come discover Brisa de Conil",
-    de: "Komm und entdecke Brisa de Conil",
+    es: "Tu experiencia en Conil empieza aquí",
+    en: "Your experience in Conil starts here",
+    de: "Dein Erlebnis in Conil beginnt hier",
   },
   "hero.headline-1": {
     es: "Apartamento en el centro de",

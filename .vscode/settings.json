@@ -4,6 +4,7 @@
     "sips": true,
     "N": true,
     "do": true,
-    "done": true
+    "done": true,
+    "git remote": true
   }
 }
