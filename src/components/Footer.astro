@@ -5,9 +5,12 @@
 import * as content from '../content/index';
 const { footer, nav } = content;
 const base = import.meta.env.BASE_URL ?? '/';
-const legalHref = `${base}aviso-legal`;
-const privacyHref = `${base}politica-privacidad`;
-const cookiesHref = `${base}politica-cookies`;
+function createLegalHref(path: string) {
+  return `${base.replace(/\/$/, '')}/${path.replace(/^\//, '')}`;
+}
+const legalHref = createLegalHref('aviso-legal');
+const privacyHref = createLegalHref('politica-privacidad');
+const cookiesHref = createLegalHref('politica-cookies');
 ---
 
 <footer class="site-footer" role="contentinfo">
