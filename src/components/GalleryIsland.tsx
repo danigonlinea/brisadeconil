@@ -100,26 +100,6 @@ const GALLERY_ITEMS: GalleryItem[] = [
     highlight: true,
   },
   {
-    id: "salon-cocina",
-    texts: {
-      es: {
-        label: "Salón y cocina abierta",
-        alt: "Espacio abierto entre salón y cocina",
-      },
-      en: {
-        label: "Living room and open kitchen",
-        alt: "Open space between living room and kitchen",
-      },
-      de: {
-        label: "Wohnzimmer und offene Küche",
-        alt: "Offener Raum zwischen Wohnzimmer und Küche",
-      },
-    },
-    ...createResponsiveImage("salon-cocina", 3072),
-    width: 3072,
-    height: 4080,
-  },
-  {
     id: "cocina-cara-1",
     texts: {
       es: {

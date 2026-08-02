@@ -99,7 +99,6 @@ export const amenities = {
 export const welcome = {
   sectionLabel: "Desde el primer día",
   headline: "Queremos que te sientas\ncomo en casa",
-  lead: "No necesitas parar en el supermercado cuando llegas. Lo esencial ya te está esperando.",
   items: [
     {
       icon: "towel",
@@ -118,7 +117,6 @@ export const welcome = {
       detail: "Aceite, vinagre y servilletas",
     },
   ],
-  closing: "Solo trae las ganas de descansar.",
 };
 
 export const location = {

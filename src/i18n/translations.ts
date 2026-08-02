@@ -91,17 +91,6 @@ export const t: Record<string, Record<Locale, string>> = {
     de: "Mehr entdecken",
   },
 
-  "welcome.lead": {
-    es: "No hace falta parar en el supermercado al llegar. Lo esencial ya te espera.",
-    en: "No need to stop at the supermarket when you land. The essentials are already waiting for you.",
-    de: "Du musst bei der Ankunft nicht im Supermarkt stoppen. Die wichtigsten Dinge warten bereits auf dich.",
-  },
-  "welcome.closing": {
-    es: "Solo trae las ganas de descansar.",
-    en: "Just bring the desire to rest.",
-    de: "Bring einfach die Lust auf Erholung mit.",
-  },
-
   // ── Gallery ───────────────────────────────────────────────────────────────
   "gallery.label": {
     es: "Galería de fotos",

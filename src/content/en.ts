@@ -78,14 +78,12 @@ export const amenities = {
 export const welcome = {
   sectionLabel: 'From day one',
   headline: 'Home from the\nmoment you arrive',
-  lead: 'No need to stop at the supermarket when you land. The essentials are already waiting for you.',
   items: [
     { icon: 'towel',    label: 'Towels & bed linen',    detail: 'Included and freshly laundered' },
     { icon: 'droplets', label: 'Detergent & softener',  detail: 'For your first wash' },
     { icon: 'wind',     label: 'Hair dryer',            detail: '' },
     { icon: 'flask',    label: 'Kitchen basics',        detail: 'Oil, vinegar and napkins' },
   ],
-  closing: 'Just bring the desire to rest.',
 };
 
 export const location = {
