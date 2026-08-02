@@ -261,26 +261,6 @@ const GALLERY_ITEMS: GalleryItem[] = [
     width: 4080,
     height: 3072,
   },
-  {
-    id: "aseo-cara-2",
-    texts: {
-      es: {
-        label: "Aseo con detalle",
-        alt: "Detalle del aseo del apartamento",
-      },
-      en: {
-        label: "Bathroom detail",
-        alt: "Detail of the apartment bathroom",
-      },
-      de: {
-        label: "Baddetail",
-        alt: "Detail des Badezimmers der Wohnung",
-      },
-    },
-    ...createResponsiveImage("aseo-cara-2", 3072),
-    width: 3072,
-    height: 4080,
-  },
 ];
 
 function GalleryCard({
