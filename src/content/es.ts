@@ -26,7 +26,7 @@ export const nav = {
 
 export const hero = {
   tagline: "Vente a conocer la brisa de Conil",
-  headline: "Apartamento en el centro de\nConil de la Frontera",
+  headline: "Apartamento en el centro de\n Conil de la Frontera",
   subline:
     "En la Calle Rosa de los Vientos: A pasos del mercado, a minutos del mar.",
   cta: "Consulta disponibilidad",
@@ -118,7 +118,7 @@ export const welcome = {
       detail: "Aceite, vinagre y servilletas",
     },
   ],
-  closing: "Solo trae la gana de descansar.",
+  closing: "Solo trae las ganas de descansar.",
 };
 
 export const location = {
@@ -239,11 +239,20 @@ export const contact = {
   submit: "Enviar consulta",
   sending: "Enviando…",
   successHeadline: "¡Mensaje enviado!",
+  successButton: "Enviar otra consulta",
   successMessage:
     "Gracias por contactarnos. Te respondemos a la mayor brevedad posible.",
   errorMessage:
     "Ha ocurrido un error al enviar. Por favor, inténtalo de nuevo o escríbenos directamente.",
   privacy: "Tus datos solo se usarán para responder a tu consulta.",
+  formAriaLabel: "Formulario de contacto para reservas",
+  errors: {
+    nameRequired: "El nombre es obligatorio.",
+    emailRequired: "El email es obligatorio.",
+    emailInvalid: "Introduce un email válido.",
+    checkoutAfterCheckin:
+      "La fecha de salida debe ser posterior a la de entrada.",
+  },
 };
 
 export const faq = {

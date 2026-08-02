@@ -49,74 +49,82 @@ export function buildI18nScript(): string {
     // 1. Set lang attribute
     document.documentElement.lang = locale;
 
-    // 2. Translate all [data-i18n] elements (text content)
-    document.querySelectorAll('[data-i18n]').forEach(function (el) {
-      var key = el.getAttribute('data-i18n');
-      if (T[key] && T[key][locale] !== undefined) {
-        el.textContent = T[key][locale];
-      }
-    });
+    function translatePage() {
+      // 2. Translate all [data-i18n] elements (text content)
+      document.querySelectorAll('[data-i18n]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n');
+        if (T[key] && T[key][locale] !== undefined) {
+          el.textContent = T[key][locale];
+        }
+      });
 
-    // 3. Translate all [data-i18n-html] elements (inner HTML — for rich text)
-    // Use a lightweight sanitizer to avoid unsafe script/style attributes
-    function sanitizeHTML(html) {
-      try {
-        var parser = new DOMParser();
-        var doc = parser.parseFromString(html || '', 'text/html');
-        var allowed = ['a','b','strong','i','em','br','p','ul','ol','li','span','div','sup','sub','small','mark','code'];
-        doc.body.querySelectorAll('*').forEach(function (node) {
-          var name = node.nodeName.toLowerCase();
-          if (allowed.indexOf(name) === -1) {
-            // replace disallowed element with its children (keeps text)
-            while (node.firstChild) node.parentNode.insertBefore(node.firstChild, node);
-            node.parentNode.removeChild(node);
-            return;
-          }
-          // remove unsafe attributes
-          Array.from(node.attributes).forEach(function (attr) {
-            var n = attr.name.toLowerCase();
-            var v = attr.value || '';
-            if (n.indexOf('on') === 0) {
-              node.removeAttribute(attr.name);
+      // 3. Translate all [data-i18n-html] elements (inner HTML — for rich text)
+      // Use a lightweight sanitizer to avoid unsafe script/style attributes
+      function sanitizeHTML(html) {
+        try {
+          var parser = new DOMParser();
+          var doc = parser.parseFromString(html || '', 'text/html');
+          var allowed = ['a','b','strong','i','em','br','p','ul','ol','li','span','div','sup','sub','small','mark','code'];
+          doc.body.querySelectorAll('*').forEach(function (node) {
+            var name = node.nodeName.toLowerCase();
+            if (allowed.indexOf(name) === -1) {
+              // replace disallowed element with its children (keeps text)
+              while (node.firstChild) node.parentNode.insertBefore(node.firstChild, node);
+              node.parentNode.removeChild(node);
               return;
             }
-            if (n === 'href') {
-              var lv = v.trim().toLowerCase();
-              if (lv.indexOf('javascript:') === 0) node.removeAttribute(attr.name);
-            } else if (['class','id','title','alt','rel','target','aria-label'].indexOf(n) === -1) {
-              // remove any other attributes to reduce risk
-              node.removeAttribute(attr.name);
-            }
+            // remove unsafe attributes
+            Array.from(node.attributes).forEach(function (attr) {
+              var n = attr.name.toLowerCase();
+              var v = attr.value || '';
+              if (n.indexOf('on') === 0) {
+                node.removeAttribute(attr.name);
+                return;
+              }
+              if (n === 'href') {
+                var lv = v.trim().toLowerCase();
+                if (lv.indexOf('javascript:') === 0) node.removeAttribute(attr.name);
+              } else if (['class','id','title','alt','rel','target','aria-label'].indexOf(n) === -1) {
+                // remove any other attributes to reduce risk
+                node.removeAttribute(attr.name);
+              }
+            });
           });
-        });
-        return doc.body.innerHTML;
-      } catch (e) {
-        return '';
+          return doc.body.innerHTML;
+        } catch (e) {
+          return '';
+        }
       }
+
+      document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n-html');
+        if (T[key] && T[key][locale] !== undefined) {
+          el.innerHTML = sanitizeHTML(T[key][locale]);
+        }
+      });
+
+      // 4. Translate placeholder attributes
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n-placeholder');
+        if (T[key] && T[key][locale] !== undefined) {
+          el.setAttribute('placeholder', T[key][locale]);
+        }
+      });
+
+      // 5. Translate aria-label attributes
+      document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n-aria');
+        if (T[key] && T[key][locale] !== undefined) {
+          el.setAttribute('aria-label', T[key][locale]);
+        }
+      });
     }
 
-    document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
-      var key = el.getAttribute('data-i18n-html');
-      if (T[key] && T[key][locale] !== undefined) {
-        el.innerHTML = sanitizeHTML(T[key][locale]);
-      }
-    });
-
-    // 4. Translate placeholder attributes
-    document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
-      var key = el.getAttribute('data-i18n-placeholder');
-      if (T[key] && T[key][locale] !== undefined) {
-        el.setAttribute('placeholder', T[key][locale]);
-      }
-    });
-
-    // 5. Translate aria-label attributes
-    document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
-      var key = el.getAttribute('data-i18n-aria');
-      if (T[key] && T[key][locale] !== undefined) {
-        el.setAttribute('aria-label', T[key][locale]);
-      }
-    });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', translatePage, { once: true });
+    } else {
+      translatePage();
+    }
 
     // 6. Mark active locale on <html> for CSS / switcher
     document.documentElement.setAttribute('data-locale', locale);

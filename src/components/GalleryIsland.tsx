@@ -1,134 +1,168 @@
 /**
  * GalleryIsland — React component with PhotoSwipe lightbox.
- * Uses PhotoSwipe v5 imperative API.
- * All images are SVG placeholders — replace src with real photos.
+ * Uses actual public/gallery photographs and presents them in a responsive grid.
  */
-import { useEffect, useRef, useCallback } from "react";
+import { useCallback } from "react";
 import "photoswipe/style.css";
 
 interface GalleryItem {
   id: string;
   label: string;
-  placeholder: string; // room type for placeholder styling
+  alt: string;
+  src: string;
   width: number;
   height: number;
+  highlight?: boolean;
 }
+
+const publicBase = import.meta.env.BASE_URL || "/";
+const asset = (path: string) =>
+  `${publicBase.replace(/\/$/, "")}/${path.replace(/^\//, "")}`;
 
 const GALLERY_ITEMS: GalleryItem[] = [
   {
-    id: "salon",
-    label: "Salón",
-    placeholder: "salon",
-    width: 1200,
-    height: 800,
+    id: "entrada",
+    label: "Entrada luminosa",
+    alt: "Entrada del apartamento con luz natural",
+    src: asset("gallery/entrada.jpg"),
+    width: 4080,
+    height: 3072,
+    highlight: true,
   },
   {
-    id: "dormitorio",
-    label: "Dormitorio",
-    placeholder: "dormitorio",
-    width: 1200,
-    height: 800,
+    id: "salon-cara-1",
+    label: "Salón espacioso",
+    alt: "Salón amplio con decoración fresca",
+    src: asset("gallery/salon-cara-1.jpg"),
+    width: 4080,
+    height: 3072,
   },
   {
-    id: "salon-2",
-    label: "Salón desde la cocina",
-    placeholder: "salon",
-    width: 900,
-    height: 1200,
-  },
-  { id: "bano", label: "Baño", placeholder: "bano", width: 900, height: 1200 },
-  {
-    id: "cocina",
-    label: "Cocina",
-    placeholder: "cocina",
-    width: 1200,
-    height: 900,
+    id: "salon-cara-2",
+    label: "Salón y zona de estar",
+    alt: "Salón desde la otra perspectiva",
+    src: asset("gallery/salon-cara-2.jpg"),
+    width: 4080,
+    height: 3072,
+    highlight: true,
   },
   {
-    id: "exterior",
-    label: "Entrada / Calle",
-    placeholder: "exterior",
-    width: 1200,
-    height: 800,
+    id: "salon-cocina",
+    label: "Salón y cocina abierta",
+    alt: "Espacio abierto entre salón y cocina",
+    src: asset("gallery/salon-cocina.jpg"),
+    width: 3072,
+    height: 4080,
+  },
+  {
+    id: "cocina-cara-1",
+    label: "Cocina equipada",
+    alt: "Cocina moderna con todos los electrodomésticos",
+    src: asset("gallery/cocina-cara-1.jpg"),
+    width: 3072,
+    height: 4080,
+  },
+  {
+    id: "cocina-cara-2",
+    label: "Cocina con encimera",
+    alt: "Detalle de la cocina y encimera amplia",
+    src: asset("gallery/cocina-cara-2.jpg"),
+    width: 3072,
+    height: 4080,
+  },
+  {
+    id: "cocina-cara-3",
+    label: "Cocina vista lateral",
+    alt: "Cocina desde un ángulo lateral",
+    src: asset("gallery/cocina-cara-3.jpg"),
+    width: 4080,
+    height: 3072,
+    highlight: true,
+  },
+  {
+    id: "dormitorio-cara-a",
+    label: "Dormitorio principal",
+    alt: "Dormitorio con cama doble y luz natural",
+    src: asset("gallery/dormitorio-cara-a.jpg"),
+    width: 3072,
+    height: 4080,
+    highlight: true,
+  },
+  {
+    id: "dormitorio-cara-b",
+    label: "Dormitorio secundario",
+    alt: "Otro ángulo del dormitorio",
+    src: asset("gallery/dormitorio-cara-b.jpg"),
+    width: 3072,
+    height: 4080,
+  },
+  {
+    id: "recibidor",
+    label: "Recibidor acogedor",
+    alt: "Recibidor y acceso al resto del apartamento",
+    src: asset("gallery/recibidor.jpg"),
+    width: 3072,
+    height: 4080,
+  },
+  {
+    id: "aseo-cara-1",
+    label: "Aseo elegante",
+    alt: "Aseo moderno y funcional",
+    src: asset("gallery/aseo-cara-1.jpg"),
+    width: 4080,
+    height: 3072,
+  },
+  {
+    id: "aseo-cara-2",
+    label: "Aseo con detalle",
+    alt: "Detalle del aseo del apartamento",
+    src: asset("gallery/aseo-cara-2.jpg"),
+    width: 3072,
+    height: 4080,
+  },
+  {
+    id: "aseo-cara-3",
+    label: "Aseo completo",
+    alt: "Aseo limpio y espacioso",
+    src: asset("gallery/aseo-cara-3.jpg"),
+    width: 4080,
+    height: 3072,
   },
 ];
 
-// Placeholder colors per room type
-const PLACEHOLDER_COLORS: Record<string, { bg: string; text: string }> = {
-  salon: { bg: "#c8dde8", text: "#1a3d54" },
-  dormitorio: { bg: "#d6c0a0", text: "#4a2e0a" },
-  bano: { bg: "#c4d8c4", text: "#1a3a1a" },
-  cocina: { bg: "#e8d9c4", text: "#3a2a0a" },
-  exterior: { bg: "#b8d4e8", text: "#0a2a3a" },
-};
-
-function PlaceholderImage({
+function GalleryCard({
   item,
   onClick,
 }: {
   item: GalleryItem;
   onClick: () => void;
 }) {
-  const colors =
-    PLACEHOLDER_COLORS[item.placeholder] ?? PLACEHOLDER_COLORS.salon;
-  const isPortrait = item.height > item.width;
-
   return (
     <button
-      className={`gallery-thumb ${isPortrait ? "gallery-thumb--portrait" : ""}`}
+      className={`gallery-thumb ${item.highlight ? "gallery-thumb--highlight" : ""}`}
       onClick={onClick}
-      aria-label={`Ver foto: ${item.label} (placeholder — imagen real pendiente)`}
+      aria-label={`Ver foto: ${item.label}`}
       type="button"
     >
-      <div
-        className="gallery-placeholder"
-        style={{ backgroundColor: colors.bg }}
-        role="img"
-        aria-label={`${item.label} — [IMAGEN PLACEHOLDER — sustituir con fotografía real]`}
-      >
-        <svg
-          viewBox="0 0 120 80"
-          width="60"
-          height="40"
-          fill="none"
-          aria-hidden="true"
-        >
-          <rect
-            x="10"
-            y="15"
-            width="100"
-            height="50"
-            rx="4"
-            fill={colors.text}
-            opacity="0.12"
-          />
-          <circle cx="35" cy="35" r="8" fill={colors.text} opacity="0.2" />
-          <path
-            d="M10 60 L30 38 L50 52 L70 30 L110 60Z"
-            fill={colors.text}
-            opacity="0.15"
-          />
-        </svg>
-        <span
-          className="gallery-placeholder-label"
-          style={{ color: colors.text }}
-        >
-          {item.label}
-        </span>
-        <span className="gallery-placeholder-badge" aria-hidden="true">
-          📷 Placeholder
-        </span>
+      <img
+        className="gallery-img"
+        src={item.src}
+        alt={item.alt}
+        loading="lazy"
+      />
+      <div className="gallery-caption">
+        <span>{item.label}</span>
+        <small>{item.alt}</small>
       </div>
       <div className="gallery-thumb-overlay" aria-hidden="true">
         <svg
-          width="24"
-          height="24"
           viewBox="0 0 24 24"
           fill="none"
-          stroke="white"
+          stroke="currentColor"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
+          aria-hidden="true"
         >
           <circle cx="11" cy="11" r="8" />
           <line x1="21" y1="21" x2="16.65" y2="16.65" />
@@ -141,25 +175,14 @@ function PlaceholderImage({
 }
 
 export default function GalleryIsland() {
-  const galleryRef = useRef<HTMLDivElement>(null);
-
   const openLightbox = useCallback(async (index: number) => {
     const PhotoSwipe = (await import("photoswipe")).default;
-
-    // Build datasource with placeholder SVG data URIs
-    const dataSource = GALLERY_ITEMS.map((item) => {
-      const colors =
-        PLACEHOLDER_COLORS[item.placeholder] ?? PLACEHOLDER_COLORS.salon;
-      // Create a minimal SVG placeholder as data URI
-      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${item.width}" height="${item.height}" viewBox="0 0 ${item.width} ${item.height}"><rect width="${item.width}" height="${item.height}" fill="${colors.bg}"/><text x="50%" y="45%" dominant-baseline="middle" text-anchor="middle" font-family="serif" font-size="48" fill="${colors.text}" opacity="0.5">${item.label}</text><text x="50%" y="58%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="24" fill="${colors.text}" opacity="0.35">[Fotografía real pendiente]</text></svg>`;
-      const dataUri = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
-      return {
-        src: dataUri,
-        width: item.width,
-        height: item.height,
-        alt: `${item.label} — imagen placeholder, fotografía real pendiente`,
-      };
-    });
+    const dataSource = GALLERY_ITEMS.map((item) => ({
+      src: item.src,
+      width: item.width,
+      height: item.height,
+      alt: item.alt,
+    }));
 
     const pswp = new PhotoSwipe({
       dataSource,
@@ -174,7 +197,6 @@ export default function GalleryIsland() {
 
   return (
     <div
-      ref={galleryRef}
       className="gallery-grid"
       role="list"
       aria-label="Galería de fotos del apartamento"
@@ -183,13 +205,13 @@ export default function GalleryIsland() {
         <div
           key={item.id}
           className={
-            item.height > item.width
-              ? "gallery-item gallery-item--portrait"
+            item.highlight
+              ? "gallery-item gallery-item--highlight"
               : "gallery-item"
           }
           role="listitem"
         >
-          <PlaceholderImage item={item} onClick={() => openLightbox(index)} />
+          <GalleryCard item={item} onClick={() => openLightbox(index)} />
         </div>
       ))}
     </div>

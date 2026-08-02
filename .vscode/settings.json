@@ -1,5 +1,9 @@
 {
   "chat.tools.terminal.autoApprove": {
-    "npm exec": true
+    "npm exec": true,
+    "sips": true,
+    "N": true,
+    "do": true,
+    "done": true
   }
 }

@@ -27,8 +27,8 @@ export const nav = {
 
 export const hero = {
   tagline: 'Your corner on the Costa de la Luz',
-  headline: 'Apartment in the centre of Conil de la Frontera.\nSteps from the market, minutes from the sea.',
-  subline: '',
+  headline: 'Apartment in the centre of\n Conil de la Frontera.\nSteps from the market, minutes from the sea.',
+  subline: 'On Calle Rosa de los Vientos: Steps from the market, minutes from the sea.',
   cta: 'Check availability',
   ctaHref: '#contacto',
   scrollLabel: 'Discover more',
@@ -187,9 +187,17 @@ export const contact = {
   submit: 'Send enquiry',
   sending: 'Sending…',
   successHeadline: 'Message sent!',
+  successButton: 'Send another enquiry',
   successMessage: 'Thank you for getting in touch. We will reply as soon as possible.',
   errorMessage: 'Something went wrong. Please try again or contact us directly.',
   privacy: 'Your details will only be used to respond to your enquiry.',
+  formAriaLabel: 'Contact form for bookings',
+  errors: {
+    nameRequired: 'Your name is required.',
+    emailRequired: 'Contact email is required.',
+    emailInvalid: 'Please enter a valid email address.',
+    checkoutAfterCheckin: 'Check-out must be after check-in.',
+  },
 };
 
 export const faq = {

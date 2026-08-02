@@ -4,8 +4,7 @@
  * Set WEB3FORMS_ACCESS_KEY in your environment or replace the placeholder below.
  * The access key is public-safe (it only controls where emails go, not sensitive data).
  */
-import { useState, useId } from "react";
-
+import { useState, useId } from "react";import { contact } from "../content/index";
 // The form now posts to a server-side endpoint (`/api/contact`) which
 // forwards the submission to Web3Forms using a server-only env var.
 // Do NOT include secret keys in client-side code.
@@ -29,14 +28,14 @@ interface FieldError {
 
 function validateForm(data: FormData): FieldError {
   const errors: FieldError = {};
-  if (!data.name.trim()) errors.name = "El nombre es obligatorio.";
+  if (!data.name.trim()) errors.name = contact.errors.nameRequired;
   if (!data.email.trim()) {
-    errors.email = "El email es obligatorio.";
+    errors.email = contact.errors.emailRequired;
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
-    errors.email = "Introduce un email válido.";
+    errors.email = contact.errors.emailInvalid;
   }
   if (data.checkin && data.checkout && data.checkout <= data.checkin) {
-    errors.checkout = "La fecha de salida debe ser posterior a la de entrada.";
+    errors.checkout = contact.errors.checkoutAfterCheckin;
   }
   return errors;
 }
@@ -144,10 +143,8 @@ export default function ContactForm() {
             <polyline points="20 6 9 17 4 12" />
           </svg>
         </div>
-        <h3 className="contact-success-headline">¡Mensaje enviado!</h3>
-        <p className="contact-success-message">
-          Gracias por contactarnos. Te respondemos a la mayor brevedad posible.
-        </p>
+        <h3 className="contact-success-headline">{contact.successHeadline}</h3>
+        <p className="contact-success-message">{contact.successMessage}</p>
         <button
           className="btn btn--outline"
           onClick={() => {
@@ -162,7 +159,7 @@ export default function ContactForm() {
           }}
           type="button"
         >
-          Enviar otra consulta
+          {contact.successButton}
         </button>
       </div>
     );
@@ -173,13 +170,13 @@ export default function ContactForm() {
       className="contact-form"
       onSubmit={handleSubmit}
       noValidate
-      aria-label="Formulario de contacto para reservas"
+      aria-label={contact.formAriaLabel}
     >
       <div className="contact-form-grid">
         {/* Name */}
         <div className="form-group">
           <label className="form-label" htmlFor={`${id}-name`}>
-            Tu nombre <span aria-hidden="true">*</span>
+            {contact.fields.name.label} <span aria-hidden="true">*</span>
           </label>
           <input
             id={`${id}-name`}
@@ -188,7 +185,7 @@ export default function ContactForm() {
             name="name"
             value={form.name}
             onChange={handleChange}
-            placeholder="Ana García"
+            placeholder={contact.fields.name.placeholder}
             autoComplete="name"
             required
             aria-required="true"
@@ -220,7 +217,7 @@ export default function ContactForm() {
         {/* Email */}
         <div className="form-group">
           <label className="form-label" htmlFor={`${id}-email`}>
-            Email de contacto <span aria-hidden="true">*</span>
+            {contact.fields.email.label} <span aria-hidden="true">*</span>
           </label>
           <input
             id={`${id}-email`}
@@ -229,7 +226,7 @@ export default function ContactForm() {
             name="email"
             value={form.email}
             onChange={handleChange}
-            placeholder="ana@ejemplo.com"
+            placeholder={contact.fields.email.placeholder}
             autoComplete="email"
             required
             aria-required="true"
@@ -261,7 +258,7 @@ export default function ContactForm() {
         {/* Check-in */}
         <div className="form-group">
           <label className="form-label" htmlFor={`${id}-checkin`}>
-            Fecha de entrada
+            {contact.fields.checkin.label}
           </label>
           <input
             id={`${id}-checkin`}
@@ -277,7 +274,7 @@ export default function ContactForm() {
         {/* Check-out */}
         <div className="form-group">
           <label className="form-label" htmlFor={`${id}-checkout`}>
-            Fecha de salida
+            {contact.fields.checkout.label}
           </label>
           <input
             id={`${id}-checkout`}
@@ -321,7 +318,7 @@ export default function ContactForm() {
         {/* Message — spans full width */}
         <div className="form-group contact-form-message">
           <label className="form-label" htmlFor={`${id}-message`}>
-            Mensaje (opcional)
+            {contact.fields.message.label}
           </label>
           <textarea
             id={`${id}-message`}
@@ -329,7 +326,7 @@ export default function ContactForm() {
             name="message"
             value={form.message}
             onChange={handleChange}
-            placeholder="¿Tienes alguna pregunta o petición especial?"
+            placeholder={contact.fields.message.placeholder}
             rows={4}
           />
         </div>
@@ -357,7 +354,7 @@ export default function ContactForm() {
             <line x1="12" y1="8" x2="12" y2="12" />
             <line x1="12" y1="16" x2="12.01" y2="16" />
           </svg>
-          Ha ocurrido un error al enviar. Por favor, inténtalo de nuevo.
+          {contact.errorMessage}
         </div>
       )}
 
@@ -383,10 +380,10 @@ export default function ContactForm() {
               >
                 <path d="M21 12a9 9 0 1 1-6.219-8.56" />
               </svg>
-              Enviando…
+              {contact.sending}
             </>
           ) : (
-            "Enviar consulta"
+            contact.submit
           )}
         </button>
         <p className="contact-privacy">
@@ -404,7 +401,7 @@ export default function ContactForm() {
             <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
             <path d="M7 11V7a5 5 0 0 1 10 0v4" />
           </svg>
-          Tus datos solo se usarán para responder a tu consulta.
+          {contact.privacy}
         </p>
       </div>
     </form>

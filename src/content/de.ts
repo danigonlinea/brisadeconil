@@ -28,8 +28,9 @@ export const nav = {
 export const hero = {
   tagline: "Dein Rückzugsort an der Costa de la Luz",
   headline:
-    "Wohnung im Zentrum von Conil de la Frontera.\nGleich neben dem Markt, Minuten vom Meer.",
-  subline: "",
+    "Wohnung im Zentrum von\n Conil de la Frontera.\nGleich neben dem Markt, Minuten vom Meer.",
+  subline:
+    "In der Calle Rosa de los Vientos: Gleich neben dem Markt, Minuten vom Meer.",
   cta: "Verfügbarkeit prüfen",
   ctaHref: "#contacto",
   scrollLabel: "Mehr entdecken",
@@ -231,10 +232,18 @@ export const contact = {
   submit: "Anfrage senden",
   sending: "Wird gesendet…",
   successHeadline: "Nachricht gesendet!",
+  successButton: "Neue Anfrage senden",
   successMessage:
     "Danke für deine Anfrage. Wir melden uns so schnell wie möglich.",
   errorMessage: "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
   privacy: "Deine Daten werden nur zur Beantwortung deiner Anfrage verwendet.",
+  formAriaLabel: "Kontaktformular für Buchungsanfragen",
+  errors: {
+    nameRequired: "Dein Name ist erforderlich.",
+    emailRequired: "Kontakt-E-Mail ist erforderlich.",
+    emailInvalid: "Bitte gib eine gültige E-Mail-Adresse ein.",
+    checkoutAfterCheckin: "Das Abreisedatum muss nach dem Anreisedatum liegen.",
+  },
 };
 
 export const faq = {

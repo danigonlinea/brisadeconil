@@ -62,18 +62,23 @@ export const t: Record<string, Record<Locale, string>> = {
   // ── Hero ──────────────────────────────────────────────────────────────────
   "hero.tagline": {
     es: "Vente a conocer la brisa de Conil",
-    en: "Your corner on the Costa de la Luz",
-    de: "Dein Rückzugsort an der Costa de la Luz",
+    en: "Come discover Brisa de Conil",
+    de: "Komm und entdecke Brisa de Conil",
   },
   "hero.headline-1": {
-    es: "Apartamento en el centro de Conil de la Frontera.",
-    en: "Apartment in the centre of Conil de la Frontera.",
-    de: "Wohnung im Zentrum von Conil de la Frontera.",
+    es: "Apartamento en el centro de",
+    en: "Apartment in the centre of",
+    de: "Wohnung im Zentrum von",
   },
   "hero.headline-2": {
-    es: "A pasos del mercado, a minutos del mar.",
-    en: "Steps from the market, minutes from the sea.",
-    de: "Gleich neben dem Markt, Minuten vom Meer.",
+    es: " Conil de la Frontera",
+    en: " Conil de la Frontera",
+    de: " Conil de la Frontera",
+  },
+  "hero.subline": {
+    es: "En la Calle Rosa de los Vientos: A pasos del mercado, a minutos del mar.",
+    en: "On Calle Rosa de los Vientos: Steps from the market, minutes from the sea.",
+    de: "In der Calle Rosa de los Vientos: Schritte vom Markt, Minuten vom Meer.",
   },
   "hero.cta": {
     es: "Consulta disponibilidad",
@@ -84,6 +89,17 @@ export const t: Record<string, Record<Locale, string>> = {
     es: "Descubre más",
     en: "Discover more",
     de: "Mehr entdecken",
+  },
+
+  "welcome.lead": {
+    es: "No hace falta parar en el supermercado al llegar. Lo esencial ya te espera.",
+    en: "No need to stop at the supermarket when you land. The essentials are already waiting for you.",
+    de: "Du musst bei der Ankunft nicht im Supermarkt stoppen. Die wichtigsten Dinge warten bereits auf dich.",
+  },
+  "welcome.closing": {
+    es: "Solo trae las ganas de descansar.",
+    en: "Just bring the desire to rest.",
+    de: "Bring einfach die Lust auf Erholung mit.",
   },
 
   // ── Gallery ───────────────────────────────────────────────────────────────
@@ -279,11 +295,6 @@ export const t: Record<string, Record<Locale, string>> = {
     en: "Home from the moment you arrive",
     de: "Wie zuhause von Anfang an",
   },
-  "welcome.lead": {
-    es: "",
-    en: "No need to stop at the supermarket when you land. The essentials are already waiting for you.",
-    de: "Kein Stopp im Supermarkt nötig. Das Wichtigste wartet schon auf dich.",
-  },
   "welcome.item.towels": {
     es: "Toallas y sábanas",
     en: "Towels & bed linen",
@@ -319,11 +330,6 @@ export const t: Record<string, Record<Locale, string>> = {
     es: "Aceite, vinagre y servilletas",
     en: "Oil, vinegar and napkins",
     de: "Öl, Essig und Servietten",
-  },
-  "welcome.closing": {
-    es: "",
-    en: "Just bring the desire to rest.",
-    de: "Bring nur die Lust auf Erholung mit.",
   },
 
   // ── Location ──────────────────────────────────────────────────────────────
@@ -449,19 +455,19 @@ export const t: Record<string, Record<Locale, string>> = {
     de: "Müll vor dem Abreisen rausbringen.",
   },
   "rules.rule.checkin": {
-    es: "Check-in y check-out: [PENDIENTE — el propietario confirmará los horarios].",
-    en: "Check-in and check-out times: [PENDING — owner to confirm].",
-    de: "Check-in und Check-out Zeiten: [AUSSTEHEND — Eigentümer bestätigt].",
+    es: "Check-in a partir de las 16:00 y salida entre las 11:30 y las 12:00.",
+    en: "Check-in is from 16:00 and check-out is between 11:30 and 12:00.",
+    de: "Check-in ist ab 16:00 Uhr und Check-out zwischen 11:30 und 12:00 Uhr.",
   },
   "rules.rule.pets": {
-    es: "Política de mascotas: [PENDIENTE — el propietario confirmará].",
-    en: "Pet policy: [PENDING — owner to confirm].",
-    de: "Haustierrichtlinie: [AUSSTEHEND — Eigentümer bestätigt].",
+    es: "No se admiten mascotas en el apartamento.",
+    en: "Pets are not allowed in the apartment.",
+    de: "Haustiere sind in der Wohnung nicht erlaubt.",
   },
   "rules.rule.smoking": {
-    es: "Política de fumadores: [PENDIENTE — el propietario confirmará].",
-    en: "Smoking policy: [PENDING — owner to confirm].",
-    de: "Rauchrichtlinie: [AUSSTEHEND — Eigentümer bestätigt].",
+    es: "No se permite fumar en el apartamento.",
+    en: "Smoking is not allowed in the apartment.",
+    de: "Rauchen ist in der Wohnung nicht erlaubt.",
   },
   "rules.rule.noise": {
     es: "Ruidos: respeta el descanso de los vecinos, especialmente en horario nocturno.",
@@ -503,6 +509,101 @@ export const t: Record<string, Record<Locale, string>> = {
     es: "Lo que nos suelen preguntar",
     en: "Questions we get asked",
     de: "Was uns oft gefragt wird",
+  },
+  "faq.item.0.q": {
+    es: "¿Cuáles son los horarios de check-in y check-out?",
+    en: "What are the check-in and check-out times?",
+    de: "Wie sind die Check-in und Check-out Zeiten?",
+  },
+  "faq.item.0.a": {
+    es: "El check-in es a partir de las 16:00 y la salida se realiza entre las 11:30 y las 12:00.",
+    en: "Check-in is from 16:00 and check-out is between 11:30 and 12:00.",
+    de: "Check-in ist ab 16:00 Uhr und Check-out zwischen 11:30 und 12:00 Uhr.",
+  },
+  "faq.item.1.q": {
+    es: "¿Se admiten mascotas?",
+    en: "Are pets allowed?",
+    de: "Sind Haustiere erlaubt?",
+  },
+  "faq.item.1.a": {
+    es: "No se admiten mascotas en el apartamento.",
+    en: "Pets are not allowed in the apartment.",
+    de: "Haustiere sind in der Wohnung nicht erlaubt.",
+  },
+  "faq.item.2.q": {
+    es: "¿Se puede fumar en el apartamento?",
+    en: "Is smoking allowed?",
+    de: "Ist Rauchen erlaubt?",
+  },
+  "faq.item.2.a": {
+    es: "No se permite fumar en el apartamento.",
+    en: "Smoking is not allowed in the apartment.",
+    de: "Rauchen ist in der Wohnung nicht erlaubt.",
+  },
+  "faq.item.3.q": {
+    es: "¿Cuál es la política de cancelación?",
+    en: "What is the cancellation policy?",
+    de: "Wie sind die Stornierungsbedingungen?",
+  },
+  "faq.item.3.a": {
+    es: "Puedes cancelar sin coste hasta 7 días antes de la fecha de llegada. A partir de entonces, el importe no es reembolsable.",
+    en: "You can cancel free of charge until 7 days before arrival. After that, the amount is non-refundable.",
+    de: "Du kannst bis 7 Tage vor Anreise kostenlos stornieren. Danach ist der Betrag nicht erstattbar.",
+  },
+  "faq.item.4.q": {
+    es: "¿Qué pasa si llego más tarde de lo previsto?",
+    en: "What if I arrive late?",
+    de: "Was wenn ich später ankomme?",
+  },
+  "faq.item.4.a": {
+    es: "Si llegas más tarde, intentaremos coordinarnos para vernos y darte las llaves, así puedes entrar sin líos.",
+    en: "If you arrive late, we will coordinate access details in your booking confirmation.",
+    de: "Wenn du später ankommst, stimmen wir die Zugangsdaten in deiner Buchungsbestätigung ab.",
+  },
+  "faq.item.5.q": {
+    es: "¿Cuánta gente puede alojarse?",
+    en: "How many guests can stay?",
+    de: "Wie viele Personen können übernachten?",
+  },
+  "faq.item.5.a": {
+    es: "El apartamento tiene capacidad para 3 personas: 2 en la cama de matrimonio del dormitorio y 1 en el sofá cama chaise-longue del salón.",
+    en: "The apartment sleeps 3: 2 in the double bed and 1 on the chaise-longue sofa bed in the living room.",
+    de: "Die Wohnung schläft 3: 2 im Doppelbett und 1 auf dem Schlafsofa im Wohnzimmer.",
+  },
+  "faq.item.6.q": {
+    es: "¿Hay aparcamiento cerca?",
+    en: "Is there parking nearby?",
+    de: "Gibt es Parkmöglichkeiten in der Nähe?",
+  },
+  "faq.item.6.a": {
+    es: "Sí. El Mercado de Abastos, justo frente al apartamento, tiene zona de aparcamiento municipal. En temporada alta también recomendamos el Recinto Ferial, gratuito y con mucha capacidad.",
+    en: "Yes. The Mercado de Abastos, right opposite, has municipal parking. In high season we also recommend the Recinto Ferial, which is free and has plenty of space.",
+    de: "Ja. Der Mercado de Abastos direkt gegenüber hat städtisches Parken. In der Hochsaison empfehlen wir das Recinto Ferial, das kostenlos ist und viel Platz bietet.",
+  },
+  "faq.item.7.q": {
+    es: "¿Cómo se paga la fianza?",
+    en: "How is the deposit handled?",
+    de: "Wie wird die Kaution gehandhabt?",
+  },
+  "faq.item.7.a": {
+    es: "La fianza es de 150 € y se devuelve entre 24 y 48 horas después de tu salida, una vez verificado que todo está en orden.",
+    en: "The deposit is €150, returned within 24–48 hours of checkout once everything has been checked.",
+    de: "Die Kaution beträgt 150 € und wird 24–48 Stunden nach dem Auszug zurückgezahlt, sobald alles geprüft wurde.",
+  },
+  "faq.item.8.q": {
+    es: "¿Hay que llevar toallas y sábanas?",
+    en: "Do I need to bring towels and bed linen?",
+    de: "Muss ich Handtücher und Bettwäsche mitbringen?",
+  },
+  "faq.item.8.a": {
+    es: "No. Toallas y sábanas están incluidas y limpias. También encontrarás detergente, suavizante, secador de pelo y básicos de cocina (aceite, vinagre y servilletas).",
+    en: "No. Towels and bed linen are included. You will also find detergent, softener, a hair dryer and basic kitchen supplies.",
+    de: "Nein. Handtücher und Bettwäsche sind inklusive. Du findest auch Waschmittel, Weichspüler, einen Föhn und Küchenbasics.",
+  },
+  "faq.pending-badge": {
+    es: "Pendiente",
+    en: "Pending",
+    de: "Ausstehend",
   },
 
   // ── Testimonials ──────────────────────────────────────────────────────────

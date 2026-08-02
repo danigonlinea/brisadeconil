@@ -2,7 +2,7 @@
  * FAQAccordion — React island with accessible accordion.
  * Uses aria-expanded + aria-controls pattern.
  */
-import { useState, useId } from "react";
+import { useEffect, useState, useId } from "react";
 
 interface FAQItem {
   q: string;
@@ -17,11 +17,13 @@ interface FAQAccordionProps {
 function FAQItem({
   item,
   id,
+  index,
   isOpen,
   onToggle,
 }: {
   item: FAQItem;
   id: string;
+  index: number;
   isOpen: boolean;
   onToggle: () => void;
 }) {
@@ -35,7 +37,9 @@ function FAQItem({
         onClick={onToggle}
         type="button"
       >
-        <span className="faq-question">{item.q}</span>
+        <span className="faq-question" data-i18n={`faq.item.${index}.q`}>
+          {item.q}
+        </span>
         <span className="faq-chevron" aria-hidden="true">
           <svg
             width="18"
@@ -83,6 +87,13 @@ export default function FAQAccordion({ items }: FAQAccordionProps) {
     () => new Set(items.map((_, i) => i)),
   );
 
+  useEffect(() => {
+    const locale = window.__brisaGetLocale?.();
+    if (locale && window.__brisaSetLocale) {
+      window.__brisaSetLocale(locale);
+    }
+  }, []);
+
   function toggle(i: number) {
     setOpenIndices((prev) => {
       const next = new Set(prev);
@@ -101,6 +112,7 @@ export default function FAQAccordion({ items }: FAQAccordionProps) {
         <FAQItem
           key={i}
           item={item}
+          index={i}
           id={`${baseId}-faq-${i}`}
           isOpen={openIndices.has(i)}
           onToggle={() => toggle(i)}
