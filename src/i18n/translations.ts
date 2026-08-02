@@ -40,6 +40,11 @@ export const t: Record<string, Record<Locale, string>> = {
     en: "The apartment",
     de: "Die Wohnung",
   },
+  "nav.link.equipamiento": {
+    es: "Equipamiento",
+    en: "Amenities",
+    de: "Ausstattung",
+  },
   "nav.link.galeria": { es: "Galería", en: "Gallery", de: "Galerie" },
   "nav.link.ubicacion": { es: "Ubicación", en: "Location", de: "Lage" },
   "nav.link.contacto": { es: "Contacto", en: "Contact", de: "Kontakt" },
@@ -475,6 +480,116 @@ export const t: Record<string, Record<Locale, string>> = {
     es: "Cuéntanos tus fechas y te respondemos a la mayor brevedad posible.",
     en: "Tell us your dates and we will get back to you as soon as possible.",
     de: "Nenn uns deine Daten und wir melden uns so schnell wie möglich.",
+  },
+  "contact.formAriaLabel": {
+    es: "Formulario de contacto para reservas",
+    en: "Contact form for bookings",
+    de: "Kontaktformular für Buchungsanfragen",
+  },
+  "contact.fields.name.label": {
+    es: "Tu nombre",
+    en: "Your name",
+    de: "Dein Name",
+  },
+  "contact.fields.name.placeholder": {
+    es: "Ana García",
+    en: "Anna Smith",
+    de: "Anna Müller",
+  },
+  "contact.fields.email.label": {
+    es: "Email de contacto",
+    en: "Contact email",
+    de: "Kontakt-E-Mail",
+  },
+  "contact.fields.email.placeholder": {
+    es: "ana@ejemplo.com",
+    en: "anna@example.com",
+    de: "anna@beispiel.de",
+  },
+  "contact.fields.checkin.label": {
+    es: "Fecha de entrada",
+    en: "Check-in date",
+    de: "Anreisedatum",
+  },
+  "contact.fields.checkin.placeholder": {
+    es: "",
+    en: "",
+    de: "",
+  },
+  "contact.fields.checkout.label": {
+    es: "Fecha de salida",
+    en: "Check-out date",
+    de: "Abreisedatum",
+  },
+  "contact.fields.checkout.placeholder": {
+    es: "",
+    en: "",
+    de: "",
+  },
+  "contact.fields.message.label": {
+    es: "Mensaje (opcional)",
+    en: "Message (optional)",
+    de: "Nachricht (optional)",
+  },
+  "contact.fields.message.placeholder": {
+    es: "¿Tienes alguna pregunta o petición especial?",
+    en: "Any questions or special requests?",
+    de: "Hast du Fragen oder besondere Wünsche?",
+  },
+  "contact.submit": {
+    es: "Enviar consulta",
+    en: "Send enquiry",
+    de: "Anfrage senden",
+  },
+  "contact.sending": {
+    es: "Enviando…",
+    en: "Sending…",
+    de: "Wird gesendet…",
+  },
+  "contact.successHeadline": {
+    es: "¡Mensaje enviado!",
+    en: "Message sent!",
+    de: "Nachricht gesendet!",
+  },
+  "contact.successButton": {
+    es: "Enviar otra consulta",
+    en: "Send another enquiry",
+    de: "Neue Anfrage senden",
+  },
+  "contact.successMessage": {
+    es: "Gracias por contactarnos. Te respondemos a la mayor brevedad posible.",
+    en: "Thank you for getting in touch. We will reply as soon as possible.",
+    de: "Danke für deine Anfrage. Wir melden uns so schnell wie möglich.",
+  },
+  "contact.errorMessage": {
+    es: "Ha ocurrido un error al enviar. Por favor, inténtalo de nuevo o escríbenos directamente.",
+    en: "Something went wrong. Please try again or contact us directly.",
+    de: "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
+  },
+  "contact.privacy": {
+    es: "Tus datos solo se usarán para responder a tu consulta.",
+    en: "Your details will only be used to respond to your enquiry.",
+    de: "Deine Daten werden nur zur Beantwortung deiner Anfrage verwendet.",
+  },
+  "contact.errors.nameRequired": {
+    es: "El nombre es obligatorio.",
+    en: "Your name is required.",
+    de: "Dein Name ist erforderlich.",
+  },
+  "contact.errors.emailRequired": {
+    es: "El email es obligatorio.",
+    en: "Contact email is required.",
+    de: "Kontakt-E-Mail ist erforderlich.",
+  },
+  "contact.errors.emailInvalid": {
+    es: "Introduce un email válido.",
+    en: "Please enter a valid email address.",
+    de: "Bitte gib eine gültige E-Mail-Adresse ein.",
+  },
+  "contact.errors.checkoutAfterCheckin": {
+    es: "La fecha de salida debe ser posterior a la de entrada.",
+    en: "Check-out must be after check-in.",
+    de: "Das Abreisedatum muss nach dem Anreisedatum liegen.",
   },
   "contact.reassurance.1": {
     es: "Respuesta rápida — normalmente en el mismo día",

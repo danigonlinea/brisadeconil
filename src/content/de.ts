@@ -193,7 +193,7 @@ export const rules = {
     amount: "150 €",
     return:
       "Wird 24–48 Stunden nach dem Auszug zurückgezahlt, sobald alles geprüft wurde.",
-    payment: "Kann per Banküberweisung oder Bar bezahlt werden.",
+    payment: "Sie können per Bizum oder bar zahlen.",
   },
   rules: [
     { icon: "trash", text: "Müll vor dem Abreisen rausbringen." },

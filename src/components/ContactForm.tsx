@@ -4,12 +4,43 @@
  * Set WEB3FORMS_ACCESS_KEY in your environment or replace the placeholder below.
  * The access key is public-safe (it only controls where emails go, not sensitive data).
  */
-import { useState, useId } from "react";import { contact } from "../content/index";
+import { useEffect, useMemo, useState, useId } from "react";
+import type { Locale } from "../i18n/translations";
+import { t as translations } from "../i18n/translations";
 // The form now posts to a server-side endpoint (`/api/contact`) which
 // forwards the submission to Web3Forms using a server-only env var.
 // Do NOT include secret keys in client-side code.
 
 type FormState = "idle" | "sending" | "success" | "error";
+
+interface ContactField {
+  label: string;
+  placeholder: string;
+}
+
+interface ContactText {
+  formAriaLabel: string;
+  fields: {
+    name: ContactField;
+    email: ContactField;
+    checkin: ContactField;
+    checkout: ContactField;
+    message: ContactField;
+  };
+  submit: string;
+  sending: string;
+  successHeadline: string;
+  successButton: string;
+  successMessage: string;
+  errorMessage: string;
+  privacy: string;
+  errors: {
+    nameRequired: string;
+    emailRequired: string;
+    emailInvalid: string;
+    checkoutAfterCheckin: string;
+  };
+}
 
 interface FormData {
   name: string;
@@ -26,7 +57,7 @@ interface FieldError {
   checkout?: string;
 }
 
-function validateForm(data: FormData): FieldError {
+function validateForm(data: FormData, contact: ContactText): FieldError {
   const errors: FieldError = {};
   if (!data.name.trim()) errors.name = contact.errors.nameRequired;
   if (!data.email.trim()) {
@@ -38,6 +69,54 @@ function validateForm(data: FormData): FieldError {
     errors.checkout = contact.errors.checkoutAfterCheckin;
   }
   return errors;
+}
+
+function translate(key: string, locale: Locale): string {
+  return translations[key]?.[locale] ?? translations[key]?.["es"] ?? "";
+}
+
+function buildContactText(locale: Locale): ContactText {
+  return {
+    formAriaLabel: translate("contact.formAriaLabel", locale),
+    fields: {
+      name: {
+        label: translate("contact.fields.name.label", locale),
+        placeholder: translate("contact.fields.name.placeholder", locale),
+      },
+      email: {
+        label: translate("contact.fields.email.label", locale),
+        placeholder: translate("contact.fields.email.placeholder", locale),
+      },
+      checkin: {
+        label: translate("contact.fields.checkin.label", locale),
+        placeholder: translate("contact.fields.checkin.placeholder", locale),
+      },
+      checkout: {
+        label: translate("contact.fields.checkout.label", locale),
+        placeholder: translate("contact.fields.checkout.placeholder", locale),
+      },
+      message: {
+        label: translate("contact.fields.message.label", locale),
+        placeholder: translate("contact.fields.message.placeholder", locale),
+      },
+    },
+    submit: translate("contact.submit", locale),
+    sending: translate("contact.sending", locale),
+    successHeadline: translate("contact.successHeadline", locale),
+    successButton: translate("contact.successButton", locale),
+    successMessage: translate("contact.successMessage", locale),
+    errorMessage: translate("contact.errorMessage", locale),
+    privacy: translate("contact.privacy", locale),
+    errors: {
+      nameRequired: translate("contact.errors.nameRequired", locale),
+      emailRequired: translate("contact.errors.emailRequired", locale),
+      emailInvalid: translate("contact.errors.emailInvalid", locale),
+      checkoutAfterCheckin: translate(
+        "contact.errors.checkoutAfterCheckin",
+        locale,
+      ),
+    },
+  };
 }
 
 function addDaysToDate(value: string, days: number) {
@@ -52,6 +131,8 @@ function addDaysToDate(value: string, days: number) {
 
 export default function ContactForm() {
   const id = useId();
+  const [locale, setLocale] = useState<Locale>("es");
+  const contact = useMemo(() => buildContactText(locale), [locale]);
   const [form, setForm] = useState<FormData>({
     name: "",
     email: "",
@@ -61,6 +142,22 @@ export default function ContactForm() {
   });
   const [errors, setErrors] = useState<FieldError>({});
   const [state, setState] = useState<FormState>("idle");
+
+  useEffect(() => {
+    const currentLocale = (window.__brisaGetLocale?.() ?? "es") as Locale;
+    setLocale(currentLocale);
+
+    const handleLocaleChange = (event: Event) => {
+      const detail = (event as CustomEvent).detail;
+      if (detail?.locale) {
+        setLocale(detail.locale);
+      }
+    };
+
+    window.addEventListener("brisa:locale-change", handleLocaleChange);
+    return () =>
+      window.removeEventListener("brisa:locale-change", handleLocaleChange);
+  }, []);
 
   function handleChange(
     e: React.ChangeEvent<
@@ -86,7 +183,7 @@ export default function ContactForm() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const fieldErrors = validateForm(form);
+    const fieldErrors = validateForm(form, contact);
     if (Object.keys(fieldErrors).length > 0) {
       setErrors(fieldErrors);
       // Focus first error field

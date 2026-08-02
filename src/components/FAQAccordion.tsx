@@ -69,11 +69,15 @@ function FAQItem({
         <div className="faq-answer">
           {item.pending ? (
             <span className="faq-pending">
-              {item.a.replace(/\[PENDIENTE[^\]]*\]\.?/, "").trim()}{" "}
-              <span className="placeholder-badge">Pendiente</span>
+              <span data-i18n={`faq.item.${index}.a`}>
+                {item.a.replace(/\[PENDIENTE[^\]]*\]\.\?/, "").trim()}
+              </span>{" "}
+              <span className="placeholder-badge" data-i18n="faq.pending-badge">
+                Pendiente
+              </span>
             </span>
           ) : (
-            item.a
+            <span data-i18n={`faq.item.${index}.a`}>{item.a}</span>
           )}
         </div>
       </div>

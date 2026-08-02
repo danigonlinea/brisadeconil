@@ -160,7 +160,7 @@ export const rules = {
     label: 'Security deposit',
     amount: '€150',
     return: 'Returned within 24–48 hours of checkout, once we have confirmed everything is in order.',
-    payment: 'Can be paid by bank transfer or cash.',
+    payment: 'You can pay by Bizum or cash.',
   },
   rules: [
     { icon: 'trash',         text: 'Take the bins out before you leave.' },
