@@ -276,7 +276,56 @@ export const t: Record<string, Record<Locale, string>> = {
     en: "Oven",
     de: "Backofen",
   },
-  "amenities.item.oven.detail": { es: "", en: "", de: "" },
+  "amenities.item.hot-water": {
+    es: "Agua caliente",
+    en: "Hot water",
+    de: "Warmwasser",
+  },
+  "amenities.item.hot-water.detail": { es: "", en: "", de: "" },
+  "amenities.item.store": {
+    es: "Productos de limpieza",
+    en: "Cleaning products",
+    de: "Reinigungsprodukte",
+  },
+  "amenities.item.store.detail": { es: "", en: "", de: "" },
+  "amenities.item.door": {
+    es: "2 armarios",
+    en: "2 wardrobes",
+    de: "2 Schränke",
+  },
+  "amenities.item.door.detail": {
+    es: "Para guardar la ropa y demás",
+    en: "For storing clothes and more",
+    de: "Zum Verstauen von Kleidung und mehr",
+  },
+  "amenities.item.bed": {
+    es: "Sinfonier",
+    en: "Chest of drawers",
+    de: "Kommode",
+  },
+  "amenities.item.bed.detail": {
+    es: "En el dormitorio",
+    en: "In the bedroom",
+    de: "Im Schlafzimmer",
+  },
+  "amenities.item.coffee": {
+    es: "Cafetera italiana",
+    en: "Moka pot",
+    de: "Mokkakanne",
+  },
+  "amenities.item.coffee.detail": { es: "", en: "", de: "" },
+  "amenities.item.kettle": {
+    es: "Hervidor",
+    en: "Kettle",
+    de: "Wasserkocher",
+  },
+  "amenities.item.kettle.detail": { es: "", en: "", de: "" },
+  "amenities.item.freezer": {
+    es: "Congelador",
+    en: "Freezer",
+    de: "Gefrierschrank",
+  },
+  "amenities.item.freezer.detail": { es: "", en: "", de: "" },
 
   // ── Welcome ───────────────────────────────────────────────────────────────
   "welcome.label": {
@@ -442,6 +491,11 @@ export const t: Record<string, Record<Locale, string>> = {
     es: "Se devuelve entre 24 y 48 horas tras la salida, una vez comprobado que todo está en orden.",
     en: "Returned within 24–48 hours of checkout, once we have confirmed everything is in order.",
     de: "Wird 24–48 Stunden nach dem Auszug zurückgezahlt, sobald alles geprüft wurde.",
+  },
+  "rules.deposit.payment": {
+    es: "Se puede pagar por Bizum o en efectivo.",
+    en: "You can pay by Bizum or cash.",
+    de: "Sie können per Bizum oder bar zahlen.",
   },
   "rules.rule.trash": {
     es: "Saca la basura antes de irte.",
