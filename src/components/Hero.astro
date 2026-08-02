@@ -58,8 +58,8 @@ const { hero } = content;
     display: flex; align-items: center; overflow: hidden;
     background-color: var(--color-navy-900);
   }
-  .hero-image { position: absolute; inset: 0; z-index: 0; }
-  .hero-placeholder-svg { width: 100%; height: 100%; object-fit: cover; }
+  .hero-image { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+  .hero-placeholder-svg { display: block; width: 100%; height: 100%; object-fit: cover; }
   .hero-overlay {
     position: absolute; inset: 0; z-index: 1;
     background: none;

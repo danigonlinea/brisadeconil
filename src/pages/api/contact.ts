@@ -1,16 +1,8 @@
 export async function POST({ request }: { request: Request }) {
   try {
     const body = await request.json();
-    const {
-      subject,
-      from_name,
-      name,
-      email,
-      checkin,
-      checkout,
-      guests,
-      message,
-    } = body || {};
+    const { subject, from_name, name, email, checkin, checkout, message } =
+      body || {};
 
     if (!name || !email) {
       return new Response(
@@ -47,7 +39,6 @@ export async function POST({ request }: { request: Request }) {
         email,
         "Fecha de entrada": checkin || "No indicada",
         "Fecha de salida": checkout || "No indicada",
-        "Número de personas": guests || "No indicado",
         message: message || "(sin mensaje adicional)",
       }),
     });

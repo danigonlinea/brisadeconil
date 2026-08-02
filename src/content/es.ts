@@ -37,7 +37,7 @@ export const hero = {
 export const apartment = {
   sectionLabel: "El apartamento",
   headline: "Todo lo que necesitas,\nsin nada que sobre",
-  lead: "",
+  lead: "Cómodo, bien equipado y en el mejor sitio de Conil.",
   specs: [
     {
       icon: "users",
@@ -58,24 +58,20 @@ export const apartment = {
       label: "Azotea comunitaria",
       value: "Para estar al fresco o tender la ropa",
     },
-    {
-      icon: "store",
-      label: "Servicios cercanos",
-      value: "Supermercado, farmacia y bancos cerca",
-    },
   ],
-  accessNote: "",
+  accessNote:
+    "El apartamento está en planta baja con acceso directo desde la calle. Llega, suelta el equipaje y ya estás de vacaciones.",
 };
 
 export const amenities = {
   sectionLabel: "Equipamiento",
   headline: "Todo lo que necesitas",
-  lead: "",
+  lead: "Electrodomésticos, climatización y conectividad.",
   items: [
     {
       icon: "thermometer",
       label: "Aire acondicionado",
-      detail: "",
+      detail: "En el dormitorio",
     },
     { icon: "wind", label: "Ventilador de techo", detail: "En el dormitorio" },
     { icon: "wifi", label: "Fibra óptica", detail: "En todo el apartamento" },
@@ -90,7 +86,7 @@ export const amenities = {
     { icon: "bed", label: "Sinfonier", detail: "En el dormitorio" },
     { icon: "coffee", label: "Cafetera italiana", detail: "" },
     { icon: "kettle", label: "Hervidor", detail: "" },
-    { icon: "refrigerator", label: "Frigorífico", detail: "" },
+    { icon: "refrigerator", label: "Frigorífico", detail: "Completo" },
     { icon: "refrigerator", label: "Congelador", detail: "" },
     { icon: "washer", label: "Lavadora", detail: "" },
     { icon: "dishwasher", label: "Lavavajillas", detail: "" },
@@ -103,7 +99,7 @@ export const amenities = {
 export const welcome = {
   sectionLabel: "Desde el primer día",
   headline: "Queremos que te sientas\ncomo en casa",
-  lead: "",
+  lead: "No necesitas parar en el supermercado cuando llegas. Lo esencial ya te está esperando.",
   items: [
     {
       icon: "towel",
@@ -122,14 +118,14 @@ export const welcome = {
       detail: "Aceite, vinagre y servilletas",
     },
   ],
-  closing: "",
+  closing: "Solo trae la gana de descansar.",
 };
 
 export const location = {
   sectionLabel: "Dónde estamos",
   headline: "En el corazón de Conil",
   lead: "Calle Rosa de los Vientos, frente al Mercado de Abastos. Todo a pie.",
-  address: "",
+  address: "C/ Rosa de los Vientos, Conil de la Frontera (Cádiz)",
   mapEmbedUrl:
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3196.0!2d-6.0897!3d36.2778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd0c4e0b0b0b0b0b%3A0x0!2sMercado+de+Abastos+Conil!5e0!3m2!1ses!2ses!4v1690000000000",
   parking: {
@@ -235,7 +231,6 @@ export const contact = {
     email: { label: "Email de contacto", placeholder: "ana@ejemplo.com" },
     checkin: { label: "Fecha de entrada", placeholder: "" },
     checkout: { label: "Fecha de salida", placeholder: "" },
-    guests: { label: "Número de personas", placeholder: "1–3" },
     message: {
       label: "Mensaje (opcional)",
       placeholder: "¿Tienes alguna pregunta o petición especial?",

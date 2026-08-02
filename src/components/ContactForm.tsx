@@ -17,7 +17,6 @@ interface FormData {
   email: string;
   checkin: string;
   checkout: string;
-  guests: string;
   message: string;
 }
 
@@ -59,7 +58,6 @@ export default function ContactForm() {
     email: "",
     checkin: "",
     checkout: "",
-    guests: "",
     message: "",
   });
   const [errors, setErrors] = useState<FieldError>({});
@@ -114,7 +112,6 @@ export default function ContactForm() {
           email: form.email,
           checkin: form.checkin || "No indicada",
           checkout: form.checkout || "No indicada",
-          guests: form.guests || "No indicado",
           message: form.message || "(sin mensaje adicional)",
         }),
       });
@@ -160,7 +157,6 @@ export default function ContactForm() {
               email: "",
               checkin: "",
               checkout: "",
-              guests: "",
               message: "",
             });
           }}
@@ -320,25 +316,6 @@ export default function ContactForm() {
               {errors.checkout}
             </span>
           )}
-        </div>
-
-        {/* Guests */}
-        <div className="form-group">
-          <label className="form-label" htmlFor={`${id}-guests`}>
-            Número de personas
-          </label>
-          <select
-            id={`${id}-guests`}
-            className="form-input form-select"
-            name="guests"
-            value={form.guests}
-            onChange={handleChange}
-          >
-            <option value="">Selecciona…</option>
-            <option value="1">1 persona</option>
-            <option value="2">2 personas</option>
-            <option value="3">3 personas (máximo)</option>
-          </select>
         </div>
 
         {/* Message — spans full width */}

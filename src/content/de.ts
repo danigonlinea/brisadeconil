@@ -72,11 +72,23 @@ export const amenities = {
       detail: "In der gesamten Wohnung",
     },
     { icon: "tv", label: "Fernseher", detail: "60 Zoll" },
+    { icon: "thermometer", label: "Warmwasser", detail: "" },
+    { icon: "store", label: "Reinigungsprodukte", detail: "" },
+    {
+      icon: "door",
+      label: "2 Schränke",
+      detail: "Zum Verstauen von Kleidung und mehr",
+    },
+    { icon: "bed", label: "Kommode", detail: "Im Schlafzimmer" },
+    { icon: "coffee", label: "Mokkakanne", detail: "" },
+    { icon: "kettle", label: "Wasserkocher", detail: "" },
     { icon: "refrigerator", label: "Kühlschrank", detail: "Vollständig" },
+    { icon: "refrigerator", label: "Gefrierschrank", detail: "" },
     { icon: "washer", label: "Waschmaschine", detail: "" },
     { icon: "dishwasher", label: "Geschirrspüler", detail: "" },
     { icon: "microwave", label: "Mikrowelle", detail: "" },
-    { icon: "kettle", label: "Wasserkocher", detail: "" },
+    { icon: "toaster", label: "Toaster", detail: "" },
+    { icon: "oven", label: "Backofen", detail: "" },
   ],
 };
 
@@ -182,6 +194,7 @@ export const rules = {
     amount: "150 €",
     return:
       "Wird 24–48 Stunden nach dem Auszug zurückgezahlt, sobald alles geprüft wurde.",
+    payment: "Kann per Banküberweisung oder Bar bezahlt werden.",
   },
   rules: [
     { icon: "trash", text: "Müll vor dem Abreisen rausbringen." },
@@ -210,7 +223,6 @@ export const contact = {
     email: { label: "Kontakt-E-Mail", placeholder: "anna@beispiel.de" },
     checkin: { label: "Anreisedatum", placeholder: "" },
     checkout: { label: "Abreisedatum", placeholder: "" },
-    guests: { label: "Anzahl der Personen", placeholder: "1–3" },
     message: {
       label: "Nachricht (optional)",
       placeholder: "Hast du Fragen oder besondere Wünsche?",
