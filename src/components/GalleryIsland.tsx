@@ -10,6 +10,9 @@ interface GalleryItem {
   label: string;
   alt: string;
   src: string;
+  srcSet: string;
+  sizes: string;
+  fullSrc: string;
   width: number;
   height: number;
   highlight?: boolean;
@@ -19,12 +22,25 @@ const publicBase = import.meta.env.BASE_URL || "/";
 const asset = (path: string) =>
   `${publicBase.replace(/\/$/, "")}/${path.replace(/^\//, "")}`;
 
+const createResponsiveImage = (id: string, maxWidth: number) => {
+  const base = asset(`gallery/${id}.jpg`);
+  const small = asset(`gallery/optimized/${id}-640.jpg`);
+  const large = asset(`gallery/optimized/${id}-1600.jpg`);
+
+  return {
+    src: small,
+    srcSet: `${small} 640w, ${large} 1600w, ${base} ${maxWidth}w`,
+    sizes: "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+    fullSrc: base,
+  };
+};
+
 const GALLERY_ITEMS: GalleryItem[] = [
   {
     id: "entrada",
     label: "Entrada luminosa",
     alt: "Entrada del apartamento con luz natural",
-    src: asset("gallery/entrada.jpg"),
+    ...createResponsiveImage("entrada", 4080),
     width: 4080,
     height: 3072,
     highlight: true,
@@ -33,7 +49,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     id: "salon-cara-1",
     label: "Salón espacioso",
     alt: "Salón amplio con decoración fresca",
-    src: asset("gallery/salon-cara-1.jpg"),
+    ...createResponsiveImage("salon-cara-1", 4080),
     width: 4080,
     height: 3072,
   },
@@ -41,7 +57,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     id: "salon-cara-2",
     label: "Salón y zona de estar",
     alt: "Salón desde la otra perspectiva",
-    src: asset("gallery/salon-cara-2.jpg"),
+    ...createResponsiveImage("salon-cara-2", 4080),
     width: 4080,
     height: 3072,
     highlight: true,
@@ -50,7 +66,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     id: "salon-cocina",
     label: "Salón y cocina abierta",
     alt: "Espacio abierto entre salón y cocina",
-    src: asset("gallery/salon-cocina.jpg"),
+    ...createResponsiveImage("salon-cocina", 3072),
     width: 3072,
     height: 4080,
   },
@@ -58,7 +74,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     id: "cocina-cara-1",
     label: "Cocina equipada",
     alt: "Cocina moderna con todos los electrodomésticos",
-    src: asset("gallery/cocina-cara-1.jpg"),
+    ...createResponsiveImage("cocina-cara-1", 3072),
     width: 3072,
     height: 4080,
   },
@@ -66,7 +82,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     id: "cocina-cara-2",
     label: "Cocina con encimera",
     alt: "Detalle de la cocina y encimera amplia",
-    src: asset("gallery/cocina-cara-2.jpg"),
+    ...createResponsiveImage("cocina-cara-2", 3072),
     width: 3072,
     height: 4080,
   },
@@ -74,7 +90,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     id: "cocina-cara-3",
     label: "Cocina vista lateral",
     alt: "Cocina desde un ángulo lateral",
-    src: asset("gallery/cocina-cara-3.jpg"),
+    ...createResponsiveImage("cocina-cara-3", 4080),
     width: 4080,
     height: 3072,
     highlight: true,
@@ -83,7 +99,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     id: "dormitorio-cara-a",
     label: "Dormitorio principal",
     alt: "Dormitorio con cama doble y luz natural",
-    src: asset("gallery/dormitorio-cara-a.jpg"),
+    ...createResponsiveImage("dormitorio-cara-a", 3072),
     width: 3072,
     height: 4080,
     highlight: true,
@@ -92,7 +108,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     id: "dormitorio-cara-b",
     label: "Dormitorio secundario",
     alt: "Otro ángulo del dormitorio",
-    src: asset("gallery/dormitorio-cara-b.jpg"),
+    ...createResponsiveImage("dormitorio-cara-b", 3072),
     width: 3072,
     height: 4080,
   },
@@ -100,7 +116,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     id: "recibidor",
     label: "Recibidor acogedor",
     alt: "Recibidor y acceso al resto del apartamento",
-    src: asset("gallery/recibidor.jpg"),
+    ...createResponsiveImage("recibidor", 3072),
     width: 3072,
     height: 4080,
   },
@@ -108,7 +124,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     id: "aseo-cara-1",
     label: "Aseo elegante",
     alt: "Aseo moderno y funcional",
-    src: asset("gallery/aseo-cara-1.jpg"),
+    ...createResponsiveImage("aseo-cara-1", 4080),
     width: 4080,
     height: 3072,
   },
@@ -116,7 +132,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     id: "aseo-cara-2",
     label: "Aseo con detalle",
     alt: "Detalle del aseo del apartamento",
-    src: asset("gallery/aseo-cara-2.jpg"),
+    ...createResponsiveImage("aseo-cara-2", 3072),
     width: 3072,
     height: 4080,
   },
@@ -124,7 +140,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     id: "aseo-cara-3",
     label: "Aseo completo",
     alt: "Aseo limpio y espacioso",
-    src: asset("gallery/aseo-cara-3.jpg"),
+    ...createResponsiveImage("aseo-cara-3", 4080),
     width: 4080,
     height: 3072,
   },
@@ -147,8 +163,11 @@ function GalleryCard({
       <img
         className="gallery-img"
         src={item.src}
+        srcSet={item.srcSet}
+        sizes={item.sizes}
         alt={item.alt}
         loading="lazy"
+        decoding="async"
       />
       <div className="gallery-caption">
         <span>{item.label}</span>
@@ -178,7 +197,7 @@ export default function GalleryIsland() {
   const openLightbox = useCallback(async (index: number) => {
     const PhotoSwipe = (await import("photoswipe")).default;
     const dataSource = GALLERY_ITEMS.map((item) => ({
-      src: item.src,
+      src: item.fullSrc,
       width: item.width,
       height: item.height,
       alt: item.alt,
