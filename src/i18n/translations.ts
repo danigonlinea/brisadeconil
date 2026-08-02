@@ -429,9 +429,9 @@ export const t: Record<string, Record<Locale, string>> = {
     de: "Einfache Regeln für einen ruhigen Auszug",
   },
   "rules.lead": {
-    es: "Nada complicado. Solo lo necesario para que todo quede bien para el siguiente huésped.",
-    en: "Nothing complicated. Just what is needed to leave things in good order for the next guest.",
-    de: "Nichts Kompliziertes. Nur das Nötigste, damit alles für den nächsten Gast stimmt.",
+    es: "Solo lo necesario para que todo quede bien para el siguiente huésped.",
+    en: "Just what is needed to leave things in good order for the next guest.",
+    de: "Nur das Nötigste, damit alles für den nächsten Gast stimmt.",
   },
   "rules.deposit.label": {
     es: "Fianza",
