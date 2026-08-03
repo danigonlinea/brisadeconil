@@ -53,15 +53,33 @@
   padding: 0;
   cursor: pointer;
   background: none;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+/* The inline LQIP (blur-up placeholder) is the card background.
+   The real <img> sits on top and fades in once loaded. */
+.gallery-picture {
+  display: contents;
 }
 
 .gallery-img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
   display: block;
-  transition: transform var(--t-base);
+  opacity: 0;
+  transition:
+    transform var(--t-base),
+    opacity 0.45s ease;
+}
+
+.gallery-thumb.is-loaded .gallery-img {
+  opacity: 1;
 }
 
 .gallery-thumb:hover .gallery-img,

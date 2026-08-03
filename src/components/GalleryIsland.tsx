@@ -1,21 +1,39 @@
 /**
  * GalleryIsland — React component with PhotoSwipe lightbox.
- * Uses actual public/gallery photographs and presents them in a responsive grid.
+ *
+ * Image loading strategy (optimised for slow connections):
+ *  - <picture> with AVIF → WebP → JPEG sources; the browser downloads one file.
+ *  - srcSet only ever offers 640w / 1600w for the grid (never the multi-MB
+ *    originals). The 2000w variants are reserved for the lightbox.
+ *  - Each card renders an inline LQIP (20px JPEG data URI) as a blurred
+ *    background so *something* shows instantly while the real image streams in.
+ *  - A per-card IntersectionObserver defers setting <img src>/<source srcSet>
+ *    until the card is near the viewport (rootMargin 300px). Until then, no
+ *    network request is made for that image at all.
+ *  - On load the real image fades in over the LQIP (blur-up).
  */
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import "photoswipe/style.css";
 import type { Locale } from "../i18n/translations";
+import galleryManifest from "../data/gallery-manifest";
 
 interface GalleryItem {
   id: string;
   texts: Record<Locale, { label: string; alt: string }>;
-  src: string;
-  srcSet: string;
-  sizes: string;
-  fullSrc: string;
-  width: number;
-  height: number;
   highlight?: boolean;
+}
+
+interface ResponsiveImage {
+  lqip: string;
+  aspectRatio: number;
+  sizes: string;
+  avifSrcSet: string;
+  webpSrcSet: string;
+  jpg640: string;
+  jpgSrcSet: string;
+  fullSrc: string;
+  fullWidth: number;
+  fullHeight: number;
 }
 
 const DEFAULT_LOCALE: Locale = "es";
@@ -23,16 +41,29 @@ const publicBase = import.meta.env.BASE_URL || "/";
 const asset = (path: string) =>
   `${publicBase.replace(/\/$/, "")}/${path.replace(/^\//, "")}`;
 
-const createResponsiveImage = (id: string, maxWidth: number) => {
-  const base = asset(`gallery/${id}.jpg`);
-  const small = asset(`gallery/optimized/${id}-640.jpg`);
-  const large = asset(`gallery/optimized/${id}-1600.jpg`);
+const GRID_SIZES =
+  "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw";
+const GRID_WIDTHS = [640, 1600] as const;
 
+const buildSrcSet = (id: string, width: number, ext: string) =>
+  `${asset(`gallery/optimized/${id}-${width}.${ext}`)} ${width}w`;
+
+const createResponsiveImage = (id: string): ResponsiveImage => {
+  const entry = galleryManifest[id];
+  if (!entry) {
+    throw new Error(`Gallery manifest is missing an entry for "${id}".`);
+  }
   return {
-    src: small,
-    srcSet: `${small} 640w, ${large} 1600w, ${base} ${maxWidth}w`,
-    sizes: "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
-    fullSrc: base,
+    lqip: entry.lqip,
+    aspectRatio: entry.aspectRatio,
+    sizes: GRID_SIZES,
+    avifSrcSet: GRID_WIDTHS.map((w) => buildSrcSet(id, w, "avif")).join(", "),
+    webpSrcSet: GRID_WIDTHS.map((w) => buildSrcSet(id, w, "webp")).join(", "),
+    jpg640: asset(`gallery/optimized/${id}-640.jpg`),
+    jpgSrcSet: GRID_WIDTHS.map((w) => buildSrcSet(id, w, "jpg")).join(", "),
+    fullSrc: asset(`gallery/optimized/${id}-2000.webp`),
+    fullWidth: entry.full.width,
+    fullHeight: entry.full.height,
   };
 };
 
@@ -53,9 +84,6 @@ const GALLERY_ITEMS: GalleryItem[] = [
         alt: "Eingang der Wohnung mit natürlichem Licht",
       },
     },
-    ...createResponsiveImage("entrada", 4080),
-    width: 4080,
-    height: 3072,
     highlight: true,
   },
   {
@@ -74,9 +102,6 @@ const GALLERY_ITEMS: GalleryItem[] = [
         alt: "Geräumiges Wohnzimmer mit frischer Einrichtung",
       },
     },
-    ...createResponsiveImage("salon-cara-1", 4080),
-    width: 4080,
-    height: 3072,
   },
   {
     id: "salon-cara-2",
@@ -94,9 +119,6 @@ const GALLERY_ITEMS: GalleryItem[] = [
         alt: "Wohnzimmer aus einer anderen Perspektive",
       },
     },
-    ...createResponsiveImage("salon-cara-2", 4080),
-    width: 4080,
-    height: 3072,
     highlight: true,
   },
   {
@@ -115,9 +137,6 @@ const GALLERY_ITEMS: GalleryItem[] = [
         alt: "Moderne Küche mit allen Geräten",
       },
     },
-    ...createResponsiveImage("cocina-cara-1", 3072),
-    width: 3072,
-    height: 4080,
   },
   {
     id: "cocina-cara-2",
@@ -135,9 +154,6 @@ const GALLERY_ITEMS: GalleryItem[] = [
         alt: "Detail der Küche und großer Arbeitsfläche",
       },
     },
-    ...createResponsiveImage("cocina-cara-2", 3072),
-    width: 3072,
-    height: 4080,
   },
   {
     id: "cocina-cara-3",
@@ -155,9 +171,6 @@ const GALLERY_ITEMS: GalleryItem[] = [
         alt: "Küche aus seitlicher Perspektive",
       },
     },
-    ...createResponsiveImage("cocina-cara-3", 4080),
-    width: 4080,
-    height: 3072,
     highlight: true,
   },
   {
@@ -176,9 +189,6 @@ const GALLERY_ITEMS: GalleryItem[] = [
         alt: "Schlafzimmer mit Doppelbett und Tageslicht",
       },
     },
-    ...createResponsiveImage("dormitorio-cara-a", 3072),
-    width: 3072,
-    height: 4080,
     highlight: true,
   },
   {
@@ -197,9 +207,6 @@ const GALLERY_ITEMS: GalleryItem[] = [
         alt: "Ein weiterer Blick auf das Schlafzimmer",
       },
     },
-    ...createResponsiveImage("dormitorio-cara-b", 3072),
-    width: 3072,
-    height: 4080,
   },
   {
     id: "recibidor",
@@ -217,9 +224,6 @@ const GALLERY_ITEMS: GalleryItem[] = [
         alt: "Flur und Zugang zum Rest der Wohnung",
       },
     },
-    ...createResponsiveImage("recibidor", 3072),
-    width: 3072,
-    height: 4080,
   },
   {
     id: "aseo-cara-1",
@@ -237,39 +241,96 @@ const GALLERY_ITEMS: GalleryItem[] = [
         alt: "Modernes und funktionales Badezimmer",
       },
     },
-    ...createResponsiveImage("aseo-cara-1", 4080),
-    width: 4080,
-    height: 3072,
   },
 ];
+
+/** Pre-compute responsive image data once (module scope, not per render). */
+const GALLERY_IMAGES = new Map<string, ResponsiveImage>(
+  GALLERY_ITEMS.map((item) => [item.id, createResponsiveImage(item.id)]),
+);
+
+/**
+ * useInView — starts true once the element is within `rootMargin` of the
+ * viewport, then disconnects. Falls back to `true` immediately when
+ * IntersectionObserver is unavailable (SSR / very old browsers) so images are
+ * never permanently blocked.
+ */
+function useInView<T extends HTMLElement>(rootMargin = "300px 0px") {
+  const ref = useRef<T>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (typeof IntersectionObserver === "undefined") {
+      setInView(true);
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setInView(true);
+            io.disconnect();
+            break;
+          }
+        }
+      },
+      { rootMargin, threshold: 0 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [rootMargin]);
+
+  return [ref, inView] as const;
+}
 
 function GalleryCard({
   item,
   currentLocale,
+  index,
   onClick,
 }: {
   item: GalleryItem;
   currentLocale: Locale;
+  index: number;
   onClick: () => void;
 }) {
-  const current = item.texts[currentLocale];
+  const current = item.texts[currentLocale] ?? item.texts[DEFAULT_LOCALE];
+  const img = GALLERY_IMAGES.get(item.id)!;
+  const [ref, inView] = useInView<HTMLButtonElement>();
+  const [loaded, setLoaded] = useState(false);
+  const isAboveFold = index === 0;
 
   return (
     <button
-      className={`gallery-thumb ${item.highlight ? "gallery-thumb--highlight" : ""}`}
+      ref={ref}
+      className={`gallery-thumb ${item.highlight ? "gallery-thumb--highlight" : ""} ${loaded ? "is-loaded" : ""}`}
       onClick={onClick}
       aria-label={current.label}
       type="button"
+      style={{
+        backgroundImage: `url("${img.lqip}")`,
+        aspectRatio: String(img.aspectRatio),
+      }}
     >
-      <img
-        className="gallery-img"
-        src={item.src}
-        srcSet={item.srcSet}
-        sizes={item.sizes}
-        alt={current.alt}
-        loading="lazy"
-        decoding="async"
-      />
+      {inView && (
+        <picture className="gallery-picture">
+          <source type="image/avif" srcSet={img.avifSrcSet} sizes={img.sizes} />
+          <source type="image/webp" srcSet={img.webpSrcSet} sizes={img.sizes} />
+          <img
+            className="gallery-img"
+            src={img.jpg640}
+            srcSet={img.jpgSrcSet}
+            sizes={img.sizes}
+            alt={current.alt}
+            loading={isAboveFold ? "eager" : "lazy"}
+            decoding="async"
+            fetchPriority={isAboveFold ? "high" : "low"}
+            onLoad={() => setLoaded(true)}
+          />
+        </picture>
+      )}
       <div className="gallery-caption">
         <span>{current.label}</span>
         <small>{current.alt}</small>
@@ -316,12 +377,15 @@ export default function GalleryIsland() {
   const openLightbox = useCallback(
     async (index: number) => {
       const PhotoSwipe = (await import("photoswipe")).default;
-      const dataSource = GALLERY_ITEMS.map((item) => ({
-        src: item.fullSrc,
-        width: item.width,
-        height: item.height,
-        alt: item.texts[locale]?.alt ?? item.texts[DEFAULT_LOCALE].alt,
-      }));
+      const dataSource = GALLERY_ITEMS.map((item) => {
+        const img = GALLERY_IMAGES.get(item.id)!;
+        return {
+          src: img.fullSrc,
+          width: img.fullWidth,
+          height: img.fullHeight,
+          alt: item.texts[locale]?.alt ?? item.texts[DEFAULT_LOCALE].alt,
+        };
+      });
 
       const pswp = new PhotoSwipe({
         dataSource,
@@ -391,6 +455,7 @@ export default function GalleryIsland() {
           <GalleryCard
             item={item}
             currentLocale={locale}
+            index={index}
             onClick={() => openLightbox(index)}
           />
         </div>

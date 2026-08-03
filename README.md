@@ -59,13 +59,20 @@ src/
 │   └── BaseLayout.astro  # Meta, dark theme, SEO, schema.org
 ├── pages/
 │   └── index.astro       # Página principal — ensambla secciones
+├── data/
+│   └── gallery-manifest.ts  # AUTO-GENERADO — LQIP + dimensiones (ver `npm run optimize:gallery`)
 └── styles/
     ├── global.css         # Design system completo (tokens, componentes)
     └── gallery.css        # Estilos de galería PhotoSwipe
+scripts/
+└── optimize-gallery.mjs  # Genera variantes AVIF/WebP/JPEG + manifest (sharp)
 public/
 ├── favicon.svg
 ├── robots.txt
-└── CNAME               # Ver sección "Dominio propio"
+├── CNAME               # Ver sección "Dominio propio"
+└── gallery/
+    ├── *.jpg            # Fotos originales (resolución completa — no editar a mano)
+    └── optimized/      # AUTO-GENERADO — variantes 640/1600/2000px (avif/webp/jpg)
 ```
 
 ---
@@ -80,6 +87,10 @@ Estas son las mejoras más recientes aplicadas a la web:
 - Añadida lógica de sincronización de fechas en el formulario de contacto:
   - si `Fecha de salida` no está seteada, se copia automáticamente la `Fecha de entrada`.
   - si se selecciona una `Fecha de entrada` posterior a la `Fecha de salida`, `Fecha de salida` se actualiza también.
+- Optimización de carga de la galería de fotos:
+  - Generación automática de variantes AVIF/WebP/JPEG (640/1600px para la cuadrícula, 2000px para el lightbox) con `npm run optimize:gallery` (sharp).
+  - LQIP (placeholder difuminado) inline para feedback instantáneo y carga diferida con `IntersectionObserver` (solo se descarga la imagen al entrar en el viewport).
+  - Corregido el `srcSet` que incluía las fotos a resolución completa (hasta 6.8 MB) — ahora la cuadrícula solo sirve hasta 1600px.
 - Ocultada temporalmente la sección de testimonios hasta tener reseñas reales.
 
 ---

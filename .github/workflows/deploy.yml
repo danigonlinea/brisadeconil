@@ -35,6 +35,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Generate optimized gallery images
+        run: npm run optimize:gallery
+
       - name: Build Astro site
         run: npm run build
         env:
