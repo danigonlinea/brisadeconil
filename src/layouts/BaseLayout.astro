@@ -25,6 +25,7 @@ const siteUrl = import.meta.env.SITE ?? 'https://www.brisadeconil.com';
 const base = import.meta.env.BASE_URL ?? '/';
 const canonical = canonicalUrl ?? siteUrl;
 const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
+const cookiesPage = `${base.replace(/\/$/, '')}/politica-cookies`;
 ---
 
 <!doctype html>
@@ -88,13 +89,85 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`
     <link rel="alternate icon" href={`${base}favicon.ico`} />
     <link rel="apple-touch-icon" sizes="180x180" href={`${base}apple-touch-icon.png`} />
 
-    <!-- Google tag (gtag.js) — Google Analytics -->
-    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-27RGED8JEV"></script>
+    <!-- Cookie consent + Google Analytics (loaded only after explicit consent)
+         Non-intrusive: GA is NOT loaded until the visitor clicks "Accept".
+         Decision persisted in localStorage so the banner doesn't reappear. -->
     <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-27RGED8JEV');
+      (function () {
+        var GA_ID = 'G-27RGED8JEV';
+        var CONSENT_KEY = 'brisa-consent';
+
+        function readConsent() {
+          try { return localStorage.getItem(CONSENT_KEY); } catch (e) { return null; }
+        }
+        function writeConsent(value) {
+          try { localStorage.setItem(CONSENT_KEY, value); } catch (e) {}
+        }
+
+        function loadGtag() {
+          if (window.__brisaConsentLoaded) return;
+          var s1 = document.createElement('script');
+          s1.async = true;
+          s1.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+          document.head.appendChild(s1);
+
+          var s2 = document.createElement('script');
+          s2.textContent =
+            "window.dataLayer = window.dataLayer || [];" +
+            "function gtag(){dataLayer.push(arguments);}" +
+            "gtag('js', new Date());" +
+            "gtag('config', '" + GA_ID + "', { anonymize_ip: true });";
+          document.head.appendChild(s2);
+          window.__brisaConsentLoaded = true;
+        }
+
+        function onReady(fn) {
+          if (document.readyState !== 'loading') { fn(); }
+          else { document.addEventListener('DOMContentLoaded', fn); }
+        }
+
+        // Already decided on a previous visit?
+        var decision = readConsent();
+        if (decision === 'accepted') { loadGtag(); return; }
+        if (decision === 'rejected') { return; }
+
+        // No decision yet → show the banner and let the user choose.
+        // Scrolling down also counts as acceptance ("scroll = consent").
+        onReady(function () {
+          var banner = document.getElementById('cookie-banner');
+          if (!banner) return;
+          banner.hidden = false;
+
+          var decided = false;
+          function decide(value, viaScroll) {
+            if (decided) return;
+            decided = true;
+            writeConsent(value);
+            if (value === 'accepted') {
+              loadGtag();
+              try {
+                window.gtag && window.gtag('event', 'cookie_consent', {
+                  decision: viaScroll ? 'accepted_scroll' : 'accepted',
+                });
+              } catch (e) {}
+            }
+            banner.hidden = true;
+            window.removeEventListener('scroll', onScroll);
+          }
+
+          var accept = banner.querySelector('[data-cookie-accept]');
+          var reject = banner.querySelector('[data-cookie-reject]');
+          if (accept) accept.addEventListener('click', function () { decide('accepted', false); });
+          if (reject) reject.addEventListener('click', function () { decide('rejected', false); });
+
+          // Implicit consent: a meaningful downward scroll counts as acceptance.
+          var threshold = Math.round(window.innerHeight * 0.4);
+          function onScroll() {
+            if (window.scrollY > threshold) decide('accepted', true);
+          }
+          window.addEventListener('scroll', onScroll, { passive: true });
+        });
+      })();
     </script>
 
     <!-- Fonts preconnect -->
@@ -130,6 +203,89 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`
       FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review,
         the verdict, and DESIGN.md.
     -->
+
+    <!-- Cookie consent banner (non-intrusive bottom card) -->
+    <aside
+      id="cookie-banner"
+      class="cookie-banner"
+      role="region"
+      aria-label="Aviso de cookies"
+      hidden
+    >
+      <div class="cookie-banner-inner">
+        <p class="cookie-banner-text" data-i18n="cookies.text">
+          Usamos cookies para mejorar tu experiencia y entender cómo se usa la web. Solo activamos las analíticas si lo aceptas.
+        </p>
+        <div class="cookie-banner-actions">
+          <a class="cookie-banner-link" href={cookiesPage} data-i18n="cookies.policy">Más información</a>
+          <button type="button" class="cookie-banner-btn cookie-banner-btn--ghost" data-cookie-reject data-i18n="cookies.reject">Solo lo esencial</button>
+          <button type="button" class="cookie-banner-btn cookie-banner-btn--primary" data-cookie-accept data-i18n="cookies.accept">Aceptar</button>
+        </div>
+      </div>
+    </aside>
+
+    <style>
+      .cookie-banner {
+        position: fixed;
+        left: 50%;
+        bottom: var(--sp-4, 1rem);
+        transform: translateX(-50%);
+        width: min(96vw, 720px);
+        z-index: 1000;
+        background-color: var(--bg-surface, #ffffff);
+        color: var(--text-base, #0f172a);
+        border: 1px solid var(--border-default, #e2e8f0);
+        border-radius: var(--radius-lg, 12px);
+        box-shadow: 0 12px 32px rgba(2, 6, 23, 0.2);
+      }
+      .cookie-banner[hidden] { display: none !important; }
+      .cookie-banner-inner {
+        display: flex;
+        flex-direction: column;
+        gap: var(--sp-3, 0.75rem);
+        padding: var(--sp-4, 1rem) var(--sp-5, 1.25rem);
+      }
+      .cookie-banner-text {
+        margin: 0;
+        font-size: var(--text-sm, 0.875rem);
+        line-height: var(--leading-relaxed, 1.6);
+      }
+      .cookie-banner-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: var(--sp-2, 0.5rem) var(--sp-3, 0.75rem);
+      }
+      .cookie-banner-link {
+        margin-right: auto;
+        font-size: var(--text-xs, 0.75rem);
+        color: var(--accent, #0d9488);
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+      .cookie-banner-btn {
+        font-family: inherit;
+        font-size: var(--text-sm, 0.875rem);
+        font-weight: 600;
+        padding: var(--sp-2, 0.5rem) var(--sp-4, 1rem);
+        border-radius: var(--radius-md, 8px);
+        cursor: pointer;
+        border: 1px solid transparent;
+      }
+      .cookie-banner-btn--ghost {
+        background: transparent;
+        color: var(--text-secondary, #475569);
+        border-color: var(--border-default, #e2e8f0);
+      }
+      .cookie-banner-btn--primary {
+        background-color: var(--accent, #0d9488);
+        color: #ffffff;
+      }
+      @media (max-width: 480px) {
+        .cookie-banner { width: calc(100vw - var(--sp-4, 1rem) * 2); }
+        .cookie-banner-actions .cookie-banner-btn { flex: 1 1 auto; }
+      }
+    </style>
 
     <slot />
 

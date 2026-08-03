@@ -818,4 +818,26 @@ export const t: Record<string, Record<Locale, string>> = {
     en: "We usually reply the same day.",
     de: "Wir antworten normalerweise am selben Tag.",
   },
+
+  // ── Cookie consent banner ────────────────────────────────────────────────
+  "cookies.text": {
+    es: "Usamos cookies para mejorar tu experiencia y entender cómo se usa la web. Solo activamos las analíticas si lo aceptas.",
+    en: "We use cookies to improve your experience and understand how the site is used. We only enable analytics if you accept.",
+    de: "Wir verwenden Cookies, um dein Erlebnis zu verbessern und zu verstehen, wie die Website genutzt wird. Wir aktivieren Analysen nur, wenn du zustimmst.",
+  },
+  "cookies.accept": {
+    es: "Aceptar",
+    en: "Accept",
+    de: "Akzeptieren",
+  },
+  "cookies.reject": {
+    es: "Solo lo esencial",
+    en: "Essential only",
+    de: "Nur das Nötigste",
+  },
+  "cookies.policy": {
+    es: "Más información",
+    en: "Learn more",
+    de: "Mehr erfahren",
+  },
 };
