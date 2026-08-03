@@ -821,9 +821,9 @@ export const t: Record<string, Record<Locale, string>> = {
 
   // ── Cookie consent banner ────────────────────────────────────────────────
   "cookies.text": {
-    es: "Usamos cookies para mejorar tu experiencia y entender cómo se usa la web. Solo activamos las analíticas si lo aceptas.",
-    en: "We use cookies to improve your experience and understand how the site is used. We only enable analytics if you accept.",
-    de: "Wir verwenden Cookies, um dein Erlebnis zu verbessern und zu verstehen, wie die Website genutzt wird. Wir aktivieren Analysen nur, wenn du zustimmst.",
+    es: "Usamos cookies para mejorar tu experiencia y entender cómo se usa la web.",
+    en: "We use cookies to improve your experience and understand how the site is used.",
+    de: "Wir verwenden Cookies, um dein Erlebnis zu verbessern und zu verstehen, wie die Website genutzt wird.",
   },
   "cookies.accept": {
     es: "Aceptar",

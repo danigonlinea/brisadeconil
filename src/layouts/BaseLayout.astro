@@ -214,7 +214,7 @@ const cookiesPage = `${base.replace(/\/$/, '')}/politica-cookies`;
     >
       <div class="cookie-banner-inner">
         <p class="cookie-banner-text" data-i18n="cookies.text">
-          Usamos cookies para mejorar tu experiencia y entender cómo se usa la web. Solo activamos las analíticas si lo aceptas.
+          Usamos cookies para mejorar tu experiencia y entender cómo se usa la web.
         </p>
         <div class="cookie-banner-actions">
           <a class="cookie-banner-link" href={cookiesPage} data-i18n="cookies.policy">Más información</a>
@@ -228,49 +228,53 @@ const cookiesPage = `${base.replace(/\/$/, '')}/politica-cookies`;
       .cookie-banner {
         position: fixed;
         left: 50%;
-        bottom: var(--sp-4, 1rem);
+        bottom: var(--sp-3, 0.75rem);
         transform: translateX(-50%);
-        width: min(96vw, 720px);
+        width: min(94vw, 600px);
         z-index: 1000;
         background-color: var(--bg-surface, #ffffff);
         color: var(--text-base, #0f172a);
         border: 1px solid var(--border-default, #e2e8f0);
         border-radius: var(--radius-lg, 12px);
-        box-shadow: 0 12px 32px rgba(2, 6, 23, 0.2);
+        box-shadow: 0 12px 32px rgba(2, 6, 23, 0.18);
       }
       .cookie-banner[hidden] { display: none !important; }
       .cookie-banner-inner {
         display: flex;
-        flex-direction: column;
-        gap: var(--sp-3, 0.75rem);
-        padding: var(--sp-4, 1rem) var(--sp-5, 1.25rem);
+        flex-wrap: wrap;
+        align-items: center;
+        column-gap: var(--sp-3, 0.75rem);
+        row-gap: var(--sp-2, 0.5rem);
+        padding: var(--sp-2, 0.5rem) var(--sp-4, 1rem);
       }
       .cookie-banner-text {
         margin: 0;
-        font-size: var(--text-sm, 0.875rem);
-        line-height: var(--leading-relaxed, 1.6);
+        flex: 1 1 15rem;
+        font-size: var(--text-xs, 0.75rem);
+        line-height: var(--leading-normal, 1.5);
       }
       .cookie-banner-actions {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        gap: var(--sp-2, 0.5rem) var(--sp-3, 0.75rem);
+        gap: var(--sp-2, 0.5rem);
       }
       .cookie-banner-link {
-        margin-right: auto;
         font-size: var(--text-xs, 0.75rem);
         color: var(--accent, #0d9488);
         text-decoration: underline;
         text-underline-offset: 2px;
+        white-space: nowrap;
       }
       .cookie-banner-btn {
         font-family: inherit;
-        font-size: var(--text-sm, 0.875rem);
+        font-size: var(--text-xs, 0.75rem);
         font-weight: 600;
-        padding: var(--sp-2, 0.5rem) var(--sp-4, 1rem);
+        padding: calc(var(--sp-1, 0.25rem) + 1px) var(--sp-3, 0.75rem);
         border-radius: var(--radius-md, 8px);
         cursor: pointer;
         border: 1px solid transparent;
+        white-space: nowrap;
       }
       .cookie-banner-btn--ghost {
         background: transparent;
@@ -282,8 +286,8 @@ const cookiesPage = `${base.replace(/\/$/, '')}/politica-cookies`;
         color: #ffffff;
       }
       @media (max-width: 480px) {
-        .cookie-banner { width: calc(100vw - var(--sp-4, 1rem) * 2); }
-        .cookie-banner-actions .cookie-banner-btn { flex: 1 1 auto; }
+        .cookie-banner { width: calc(100vw - var(--sp-3, 0.75rem) * 2); }
+        .cookie-banner-btn--ghost, .cookie-banner-btn--primary { flex: 1 1 auto; }
       }
     </style>
 
