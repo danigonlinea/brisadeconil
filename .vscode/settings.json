@@ -5,6 +5,18 @@
     "N": true,
     "do": true,
     "done": true,
-    "git remote": true
+    "git remote": true,
+    "command": true,
+    "true": true,
+    "/^python3 -c \"import PIL; print\\(PIL\\.__file__\\)\"$/": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "npx --yes svgexport": true,
+    "/^node -e \"const ps = require\\('photoswipe'\\); console\\.log\\(Object\\.keys\\(ps\\.default\\.prototype\\)\\.slice\\(0,50\\)\\);\"$/": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "xxd": true
   }
 }

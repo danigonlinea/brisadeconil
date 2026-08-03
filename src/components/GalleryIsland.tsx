@@ -331,6 +331,42 @@ export default function GalleryIsland() {
         loop: true,
       });
 
+      let popstateTriggered = false;
+      const previousHistoryState = window.history.state;
+      const historyState = {
+        ...(typeof previousHistoryState === "object" &&
+        previousHistoryState !== null
+          ? previousHistoryState
+          : {}),
+        brisaGalleryOpen: true,
+      };
+
+      const handlePopState = (event: PopStateEvent) => {
+        const state = event.state;
+
+        if (state && state.brisaGalleryOpen) {
+          return;
+        }
+
+        popstateTriggered = true;
+        pswp.close();
+      };
+
+      const cleanupPopState = () => {
+        window.removeEventListener("popstate", handlePopState);
+      };
+
+      pswp.on("destroy", () => {
+        cleanupPopState();
+
+        if (!popstateTriggered && window.history.state?.brisaGalleryOpen) {
+          window.history.back();
+        }
+      });
+
+      window.history.pushState(historyState, "", window.location.href);
+      window.addEventListener("popstate", handlePopState);
+
       pswp.init();
     },
     [locale],
