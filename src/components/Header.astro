@@ -230,12 +230,23 @@ function getNavLabelKey(href: string) {
     html.setAttribute('data-theme', next);
     localStorage.setItem(STORAGE_KEY, next);
     toggle.setAttribute('aria-label', next === 'dark' ? 'Activar modo claro' : 'Activar modo oscuro');
+    window.gtag?.('event', 'theme_toggle', { theme: next });
   });
 
   mobileToggle.addEventListener('click', () => {
     const expanded = mobileToggle.getAttribute('aria-expanded') === 'true';
     mobileToggle.setAttribute('aria-expanded', String(!expanded));
     mobileMenu.hidden = expanded;
+    if (!expanded) {
+      window.gtag?.('event', 'menu_open', { menu: 'mobile' });
+    }
+  });
+
+  // Track nav link clicks (desktop + mobile)
+  document.querySelectorAll('.header-nav-link, .mobile-nav-link').forEach((link) => {
+    link.addEventListener('click', () => {
+      window.gtag?.('event', 'nav_click', { link: (link as HTMLAnchorElement).getAttribute('href') });
+    });
   });
 
   mobileMenu.querySelectorAll('a').forEach((link) => {

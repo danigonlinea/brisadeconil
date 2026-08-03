@@ -88,6 +88,15 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`
     <link rel="alternate icon" href={`${base}favicon.ico`} />
     <link rel="apple-touch-icon" sizes="180x180" href={`${base}apple-touch-icon.png`} />
 
+    <!-- Google tag (gtag.js) — Google Analytics -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-27RGED8JEV"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-27RGED8JEV');
+    </script>
+
     <!-- Fonts preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

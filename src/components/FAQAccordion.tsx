@@ -3,6 +3,7 @@
  * Uses aria-expanded + aria-controls pattern.
  */
 import { useEffect, useState, useId } from "react";
+import { trackEvent } from "../lib/analytics";
 
 interface FAQItem {
   q: string;
@@ -99,6 +100,11 @@ export default function FAQAccordion({ items }: FAQAccordionProps) {
   }, []);
 
   function toggle(i: number) {
+    const willOpen = !openIndices.has(i);
+    trackEvent("faq_toggle", {
+      question: i + 1,
+      action: willOpen ? "open" : "close",
+    });
     setOpenIndices((prev) => {
       const next = new Set(prev);
       if (next.has(i)) {

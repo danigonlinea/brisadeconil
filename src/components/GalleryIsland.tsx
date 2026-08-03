@@ -16,6 +16,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import "photoswipe/style.css";
 import type { Locale } from "../i18n/translations";
 import galleryManifest from "../data/gallery-manifest";
+import { trackEvent } from "../lib/analytics";
 
 interface GalleryItem {
   id: string;
@@ -376,6 +377,8 @@ export default function GalleryIsland() {
 
   const openLightbox = useCallback(
     async (index: number) => {
+      const item = GALLERY_ITEMS[index];
+      trackEvent("gallery_open", { item: item?.id ?? null, index });
       const PhotoSwipe = (await import("photoswipe")).default;
       const dataSource = GALLERY_ITEMS.map((item) => {
         const img = GALLERY_IMAGES.get(item.id)!;

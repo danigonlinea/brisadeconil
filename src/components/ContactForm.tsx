@@ -7,6 +7,7 @@
 import { useEffect, useMemo, useState, useId } from "react";
 import type { Locale } from "../i18n/translations";
 import { t as translations } from "../i18n/translations";
+import { trackEvent } from "../lib/analytics";
 // The form now posts to a server-side endpoint (`/api/contact`) which
 // forwards the submission to Web3Forms using a server-only env var.
 // Do NOT include secret keys in client-side code.
@@ -186,12 +187,14 @@ export default function ContactForm() {
     const fieldErrors = validateForm(form, contact);
     if (Object.keys(fieldErrors).length > 0) {
       setErrors(fieldErrors);
+      trackEvent("form_submit_error", { form: "contact", reason: "validation" });
       // Focus first error field
       const firstErrorKey = Object.keys(fieldErrors)[0];
       document.getElementById(`${id}-${firstErrorKey}`)?.focus();
       return;
     }
 
+    trackEvent("form_submit", { form: "contact" });
     setState("sending");
     try {
       // Post to the local server endpoint which holds the access key
@@ -213,11 +216,14 @@ export default function ContactForm() {
       });
       const data = await res.json();
       if (res.ok && data.success) {
+        trackEvent("generate_lead", { form: "contact", method: "Web3Forms" });
         setState("success");
       } else {
+        trackEvent("form_submit_error", { form: "contact", reason: "server" });
         setState("error");
       }
     } catch {
+      trackEvent("form_submit_error", { form: "contact", reason: "network" });
       setState("error");
     }
   }

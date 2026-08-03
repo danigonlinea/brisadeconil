@@ -10,6 +10,7 @@
  */
 
 import { useEffect, useRef, useState } from 'react';
+import { trackEvent } from '../lib/analytics';
 
 type Locale = 'es' | 'en' | 'de';
 
@@ -78,6 +79,7 @@ export default function LanguageSwitcher() {
   }, [open]);
 
   const select = (locale: Locale) => {
+    trackEvent('language_switch', { language: locale });
     window.__brisaSetLocale?.(locale);
     setCurrent(locale);
     setOpen(false);
