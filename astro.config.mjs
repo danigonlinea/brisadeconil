@@ -11,7 +11,15 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   site: "https://www.brisadeconil.com",
   base: "/",
-  integrations: [react(), sitemap()],
+  integrations: [
+    react(),
+    // Sitemap options: freshness + priority signals for crawlers and answer engines.
+    sitemap({
+      lastmod: new Date(),
+      changefreq: "monthly",
+      priority: 0.7,
+    }),
+  ],
   image: {
     // Use Astro's built-in image optimization
     remotePatterns: [],

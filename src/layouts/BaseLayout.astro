@@ -6,12 +6,15 @@
 import '../styles/global.css';
 import * as content from '../content/index';
 import { buildI18nScript } from '../i18n/i18n-script';
+import galleryManifest from '../data/gallery-manifest';
 
 interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
   canonicalUrl?: string;
+  /** Inject the LodgingBusiness structured data (home only). */
+  lodgingSchema?: boolean;
 }
 
 const {
@@ -19,6 +22,7 @@ const {
   description = content.meta.description,
   ogImage = content.meta.ogImage,
   canonicalUrl,
+  lodgingSchema = false,
 } = Astro.props;
 
 const siteUrl = import.meta.env.SITE ?? 'https://www.brisadeconil.com';
@@ -26,6 +30,53 @@ const base = import.meta.env.BASE_URL ?? '/';
 const canonical = canonicalUrl ?? siteUrl;
 const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
 const cookiesPage = `${base.replace(/\/$/, '')}/politica-cookies`;
+
+// Structured data — LodgingBusiness (home only). Enriched for answer engines.
+const galleryPhotos = Object.keys(galleryManifest).map(
+  (id) => `${siteUrl}${base}gallery/optimized/${id}-1600.jpg`,
+);
+const cancellationPolicy =
+  content.faq.items.find((item) => item.q.toLowerCase().includes('cancelaci'))?.a ??
+  'Cancelación gratuita hasta 7 días antes de la fecha de llegada.';
+const amenityFeatures = content.amenities.items.map((item) => ({
+  '@type': 'LocationFeatureSpecification',
+  name: item.label,
+  value: true,
+}));
+
+const lodgingSchemaData = {
+  '@context': 'https://schema.org',
+  '@type': 'LodgingBusiness',
+  name: 'Brisa de Conil',
+  description,
+  url: canonical,
+  image: galleryPhotos,
+  photo: galleryPhotos,
+  email: 'brisadeconil@gmail.com',
+  priceRange: '€€',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Calle Rosa de los Vientos',
+    addressLocality: 'Conil de la Frontera',
+    addressRegion: 'Cádiz',
+    postalCode: '11140',
+    addressCountry: 'ES',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    // Approximate — Mercado de Abastos (frente al apartamento).
+    latitude: 36.2778,
+    longitude: -6.0897,
+  },
+  numberOfRooms: 1,
+  occupancy: { '@type': 'QuantitativeValue', maxValue: 3 },
+  checkinTime: '16:00',
+  checkoutTime: '11:30',
+  petsAllowed: false,
+  smokingAllowed: false,
+  amenityFeature: amenityFeatures,
+  cancellationPolicy,
+};
 ---
 
 <!doctype html>
@@ -55,32 +106,10 @@ const cookiesPage = `${base.replace(/\/$/, '')}/politica-cookies`;
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image"       content={ogImageUrl} />
 
-    <!-- Schema.org — VacationRental -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "LodgingBusiness",
-      "name": "Brisa de Conil",
-      "description": description,
-      "url": canonical,
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Calle Rosa de los Vientos",
-        "addressLocality": "Conil de la Frontera",
-        "addressRegion": "Cádiz",
-        "addressCountry": "ES"
-      },
-      "numberOfRooms": 1,
-      "occupancy": {
-        "@type": "QuantitativeValue",
-        "maxValue": 3
-      },
-      "amenityFeature": [
-        { "@type": "LocationFeatureSpecification", "name": "Aire acondicionado", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "WiFi", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Lavadora", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Lavavajillas", "value": true }
-      ]
-    })} />
+    {/* Schema.org — LodgingBusiness (home only). Enriched for answer engines. */}
+    {lodgingSchema && (
+      <script type="application/ld+json" set:html={JSON.stringify(lodgingSchemaData)} />
+    )}
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
