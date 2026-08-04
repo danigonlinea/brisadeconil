@@ -1,4 +1,17 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://danigonlinea.github.io/brisadeconil/sitemap-index.xml
+# Explicitly allow AI / answer-engine crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://www.brisadeconil.com/sitemap-index.xml
