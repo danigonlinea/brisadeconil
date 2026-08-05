@@ -49,6 +49,7 @@ interface FormData {
   checkin: string;
   checkout: string;
   message: string;
+  _gotcha?: string;
 }
 
 interface FieldError {
@@ -140,6 +141,7 @@ export default function ContactForm() {
     checkin: "",
     checkout: "",
     message: "",
+    _gotcha: "",
   });
   const [errors, setErrors] = useState<FieldError>({});
   const [state, setState] = useState<FormState>("idle");
@@ -197,25 +199,27 @@ export default function ContactForm() {
     trackEvent("form_submit", { form: "contact" });
     setState("sending");
     try {
-      // Post to the local server endpoint which holds the access key
-      const res = await fetch("/api/contact", {
+      // Post directly to Web3Forms
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
         body: JSON.stringify({
+          access_key: import.meta.env.PUBLIC_WEB3FORMS_KEY,
           subject: `Nueva consulta de ${form.name} — Brisa de Conil`,
           from_name: "Brisa de Conil Web",
           name: form.name,
           email: form.email,
-          checkin: form.checkin || "No indicada",
-          checkout: form.checkout || "No indicada",
+          "Fecha de entrada": form.checkin || "No indicada",
+          "Fecha de salida": form.checkout || "No indicada",
           message: form.message || "(sin mensaje adicional)",
+          _gotcha: form._gotcha,
         }),
       });
       const data = await res.json();
-      if (res.ok && data.success) {
+      if (data.success) {
         trackEvent("generate_lead", { form: "contact", method: "Web3Forms" });
         setState("success");
       } else {
@@ -258,6 +262,7 @@ export default function ContactForm() {
               checkin: "",
               checkout: "",
               message: "",
+              _gotcha: "",
             });
           }}
           type="button"
@@ -276,6 +281,22 @@ export default function ContactForm() {
       aria-label={contact.formAriaLabel}
     >
       <div className="contact-form-grid">
+        <div className="form-group" style={{ display: "none" }}>
+          <label className="form-label" htmlFor={`${id}-gotcha`}>No rellenes este campo</label>
+          <input
+            id={`${id}-gotcha`}
+            className="form-input"
+            type="text"
+            name="_gotcha"
+            value={form._gotcha ?? ""}
+            onChange={(e) =>
+              setForm((prev) => ({ ...prev, _gotcha: e.target.value }))
+            }
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+          />
+        </div>
         {/* Name */}
         <div className="form-group">
           <label className="form-label" htmlFor={`${id}-name`}>

@@ -8,7 +8,7 @@ Guía canónica para cualquier agente de IA (Codex, Cursor, Claude Code, etc.) q
 
 ## 1. Qué es este proyecto
 
-Landing page estática del apartamento vacacional **Brisa de Conil** (Conil de la Frontera, Cádiz). Una sola página principal (`src/pages/index.astro`) + páginas legales (`aviso-legal`, `politica-cookies`, `politica-privacidad`) + un endpoint de API (`src/pages/api/contact.ts`). Se publica en GitHub Pages desde la rama `main`.
+Landing page estática del apartamento vacacional **Brisa de Conil** (Conil de la Frontera, Cádiz). Una sola página principal (`src/pages/index.astro`) + páginas legales (`aviso-legal`, `politica-cookies`, `politica-privacidad`). El formulario de contacto postea directo a Web3Forms (sin endpoint de API). Se publica en GitHub Pages desde la rama `main`.
 
 ### Stack
 
@@ -98,7 +98,7 @@ Estas reglas son **obligatorias**; romperlas rompe el build o el flujo de conten
 - La cuadrícula solo sirve hasta 1600px; el lightbox hasta 2000px. No sirvas los multi-MB originales al navegador.
 
 ### Seguridad
-- **Nunca pongas secretos en código cliente.** El formulario postea a `/api/contact` (server-side), que usa `process.env.WEB3FORMS_ACCESS_KEY`. La key pública `PUBLIC_WEB3FORMS_KEY` es la única que puede ir al cliente.
+- **Nunca pongas secretos en código cliente.** El formulario postea directo a Web3Forms (`https://api.web3forms.com/submit`), que usa `import.meta.env.PUBLIC_WEB3FORMS_KEY` (inyectada por CI). Esta key pública controla dónde van los emails, no almacena datos sensibles.
 - **Nunca commitees `.env`** ni claves reales. `.env` está en `.gitignore`.
 - Cuidado con `set:html`: se usa para insertar iconos SVG. El README tiene pendiente reemplazarlo por componentes SVG. Si tocas ese markup, prefiere imports/components SVG sobre cadenas HTML.
 
@@ -148,8 +148,7 @@ Para **quitar** una foto: elimina el original, quita la entrada de `GALLERY_ITEM
 
 | Variable                | Ámbito  | Dónde se usa                        | Notas                                                          |
 | ----------------------- | ------- | ----------------------------------- | -------------------------------------------------------------- |
-| `PUBLIC_WEB3FORMS_KEY`  | cliente | (legacy / `.env.example`)           | Key pública de Web3Forms; pública-segura                       |
-| `WEB3FORMS_ACCESS_KEY`  | server  | `src/pages/api/contact.ts`          | Server-only. **NUNCA** en código cliente.                      |
+| `PUBLIC_WEB3FORMS_KEY`  | cliente | `src/components/ContactForm.tsx`    | Key pública de Web3Forms; pública-segura, usada directamente en POST a Web3Forms |
 | `WEB3FORMS_KEY`         | CI      | `.github/workflows/deploy.yml`      | GitHub Secret inyectado como `PUBLIC_WEB3FORMS_KEY` en el build |
 
 Para desarrollo local: copia `.env.example` → `.env` y rellena la key. Para CI/despliegue, define el GitHub Secret `WEB3FORMS_KEY` (Settings → Secrets and variables → Actions).

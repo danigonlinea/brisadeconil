@@ -124,6 +124,10 @@ El formulario usa **Web3Forms** — gratuito, sin límite de envíos, sin backen
    - Nombre del secret: `WEB3FORMS_KEY`
    - Valor: tu access key
 
+**Nota importante:** El formulario postea DIRECTAMENTE a Web3Forms (`https://api.web3forms.com/submit`). Esto es necesario porque GitHub Pages no soporta funciones serverless, y así evitamos que el endpoint `/api/contact` (que antes hacía rate-limiting) falle en producción.
+
+**Seguridad:** Se usa un honeypot field (`_gotcha`) para prevenir spam y bots automáticos. El campo está oculto visualmente pero es procesado por Web3Forms.
+
 Los emails llegarán directamente a la dirección que registraste en Web3Forms.
 
 ---
