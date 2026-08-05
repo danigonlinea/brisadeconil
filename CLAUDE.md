@@ -35,4 +35,4 @@ Node `>=22.12.0`. Package manager: `npm`.
 
 ## Pendiente (no asumir resuelto)
 
-CSP, rate-limiting en `/api/contact`, auditoría XSS de `translations.ts`, `npm audit` + Dependabot, reemplazar `set:html` de SVGs, CI con `tsc --noEmit`/ESLint/`npm audit`, logging de `/api/contact`, testimonios reales y `public/og-image.jpg`. Ver §10 de `AGENTS.md`.
+CSP, anti-spam del formulario (honeypot activo; evaluar hCaptcha/botcheck de Web3Forms), auditoría XSS de `translations.ts`, `npm audit` + Dependabot, reemplazar `set:html` de SVGs, CI con `tsc --noEmit`/ESLint/`npm audit`, monitorización de los envíos vía Web3Forms, testimonios reales y `public/og-image.jpg`. Ver §10 de `AGENTS.md`.

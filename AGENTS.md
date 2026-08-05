@@ -70,7 +70,6 @@ src/
 │   ├── aviso-legal.astro
 │   ├── politica-cookies.astro
 │   ├── politica-privacidad.astro
-│   └── api/contact.ts   # endpoint POST del formulario → Web3Forms
 └── styles/
     ├── global.css        # design system completo (tokens, light/dark, componentes)
     └── gallery.css       # estilos de PhotoSwipe
