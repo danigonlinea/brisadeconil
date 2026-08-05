@@ -1,16 +1,16 @@
 /**
  * ContactForm — React island.
  * Service: Web3Forms (https://web3forms.com)
- * Set WEB3FORMS_ACCESS_KEY in your environment or replace the placeholder below.
- * The access key is public-safe (it only controls where emails go, not sensitive data).
+ * Set PUBLIC_WEB3FORMS_KEY in your environment or replace the placeholder below.
+ * The public key is safe for client-side use (controls where emails go, no sensitive data).
+ * Form posts directly to Web3Forms with a honeypot (_gotcha) field to block bots.
  */
 import { useEffect, useMemo, useState, useId } from "react";
 import type { Locale } from "../i18n/translations";
 import { t as translations } from "../i18n/translations";
 import { trackEvent } from "../lib/analytics";
-// The form now posts to a server-side endpoint (`/api/contact`) which
-// forwards the submission to Web3Forms using a server-only env var.
-// Do NOT include secret keys in client-side code.
+// The form posts directly to Web3Forms (`https://api.web3forms.com/submit`) using the public key.
+  // The form includes a honeypot field (`_gotcha`) to block bots.
 
 type FormState = "idle" | "sending" | "success" | "error";
 
@@ -282,7 +282,6 @@ export default function ContactForm() {
     >
       <div className="contact-form-grid">
         <div className="form-group" style={{ display: "none" }}>
-          <label className="form-label" htmlFor={`${id}-gotcha`}>No rellenes este campo</label>
           <input
             id={`${id}-gotcha`}
             className="form-input"

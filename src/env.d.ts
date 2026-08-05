@@ -1,0 +1,10 @@
+// Tipo de declaración para import.meta.env (por Astro/TS)
+/// <reference types="astro/client" />
+
+interface ImportMetaEnv {
+  readonly PUBLIC_WEB3FORMS_KEY: string;
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv;
+}

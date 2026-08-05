@@ -183,12 +183,12 @@ Antes de marcar una tarea como hecha, verifica:
 Está pendiente (no lo asumas resuelto):
 
 - **CSP y cabeceras** de seguridad en el hosting.
-- **Rate-limiting / anti-bot** en `/api/contact` (honeypot, reCAPTCHA o contador por IP).
+- **Anti-spam en el formulario** (honeypot `_gotcha` activo; evaluar hCaptcha/botcheck de Web3Forms si hiciera falta).
 - **Auditoría de XSS / sanitización** del HTML legítimo en `src/i18n/translations.ts`.
 - **`npm audit`** + Dependabot/Renovate.
 - **Reemplazar `set:html`** de iconos SVG por componentes/imports SVG.
 - **CI con checks** `tsc --noEmit`, ESLint y `npm audit`.
-- **Logging/monitorización** de `/api/contact`.
+- **Monitorización de envíos** vía Web3Forms (revisar dashboard / API).
 - Sustituir **testimonios placeholder** y crear **`public/og-image.jpg`** real (1200×630).
 
 Cuando completes un punto, márcalo en el TODO del repo y actualiza esta lista si procede.

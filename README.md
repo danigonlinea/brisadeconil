@@ -261,10 +261,10 @@ Aquí tienes una descripción práctica de cada tarea pendiente, con prioridad, 
     curl -I -H "Content-Security-Policy: default-src 'self'" http://localhost:4321
     ```
 
-- **Implementar rate-limiting/anti-bot en `/api/contact`** (Prioridad: Alta)
-  - Objetivo: evitar abuso del formulario (spambots, spam, solicitudes masivas).
-  - Pasos: añadir un simple contador en memoria o usar paquete ligero (express-rate-limit, but for serverless use a token bucket tied to IP), añadir honeypot field y/o reCAPTCHA v3/v2.
-  - Ejemplo rápido: limitar 5 envíos por IP en 1 hora; bloquear por 429.
+- **Evaluar anti-spam adicional en Web3Forms** (Prioridad: Baja/Medio)
+  - Objetivo: considerar hCaptcha/botcheck de Web3Forms además del honeypot actual.
+  - Pasos: probar la interfaz de Web3Forms; evaluar si un factor extra reduce el spam aceptable; verificar compatibilidad con SEO/accesibilidad.
+  - Nota: por ahora usar solo el honeypot activo (`_gotcha`). Si el spam aumenta, evaluar hCaptcha/botcheck.
 
 - **Añadir logging y monitorización de errores para la API** (Prioridad: Media)
   - Objetivo: detectar fallos de envío y problemas de integración con Web3Forms.
@@ -300,9 +300,9 @@ Si quieres, puedo empezar con cualquiera de estas tareas ahora: implementar rate
 
 He dejado aquí el plan de trabajo para continuar la auditoría de seguridad y la limpieza de código. Lo puedes continuar mañana siguiendo los pasos numerados.
 
-1. Revisión y endurecimiento del endpoint de contacto
-   - Migrado el envío del formulario al endpoint server-side `/api/contact`.
-   - Próximo paso: implementar rate-limiting (IP + user-agent), honeypot y/o reCAPTCHA en el endpoint.
+1. Revisión y endurecimiento del formulario de contacto
+   - Se revirtió el envío del formulario a endpoint server-side `/api/contact` y se volvió a POST directo a Web3Forms (GitHub Pages no soporta serverless).
+   - Próximo paso: evaluar si se necesita anti-spam adicional (hCaptcha/botcheck) además del honeypot activo (`_gotcha`).
 
 2. Auditoría de XSS / sanitización
    - Se añadió una sanitización básica en el script i18n para `data-i18n-html`.
