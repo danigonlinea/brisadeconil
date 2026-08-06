@@ -208,7 +208,7 @@ export const faq = {
     { q: 'What is the cancellation policy?',           a: 'You can cancel free of charge until 7 days before arrival. After that, the amount is non-refundable.', pending: false },
     { q: 'What if I arrive late?',                     a: 'If you arrive late, we will coordinate access details in your booking confirmation.', pending: false },
     { q: 'How many guests can stay?', a: 'The apartment sleeps 3: 2 in the double bed and 1 on the chaise-longue sofa bed in the living room.', pending: false },
-    { q: 'How do you access the apartment?', a: 'The apartment is on the ground floor with direct street access. Arrive, drop the bags and you\'re already on holiday.', pending: false },
+    { q: 'How do you access the apartment?', a: 'The apartment is on the first floor, accessed by stairs from the street. Arrive, carry your bags up and you\'re already on holiday.', pending: false },
     { q: 'Is there municipal parking nearby?', a: 'Yes. The Mercado de Abastos, right opposite, has municipal parking. In high season we also recommend the Recinto Ferial, which is free and has plenty of space.', pending: false },
     { q: 'Are there private parking areas nearby?', a: 'Yes. In addition to the municipal parking at Mercado de Abastos opposite the apartment, there are several private parking areas nearby. In high season we recommend the Recinto Ferial, which is free and spacious.', pending: false },
     { q: 'What is the closest beach walking distance?', a: 'Playa de los Bateles is the closest, about a 5-minute walk along the seafront promenade. It\'s the main beach in the centre, with a Blue Flag and all amenities.', pending: false },

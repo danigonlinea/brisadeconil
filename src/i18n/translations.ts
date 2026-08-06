@@ -724,9 +724,9 @@ export const t: Record<string, Record<Locale, string>> = {
     de: "Wie gelangt man zur Wohnung?",
   },
   "faq.item.5.a": {
-    es: "El apartamento está en planta baja con acceso directo desde la calle. Llega, suelta el equipaje y ya estás de vacaciones.",
-    en: "The apartment is on the ground floor with direct street access. Arrive, drop the bags and you're already on holiday.",
-    de: "Die Wohnung liegt im Erdgeschoss mit direktem Straßenzugang. Ankommen, Koffer abstellen und Urlaub genießen.",
+    es: "El apartamento está en primera planta, accediendo por escalera desde la calle. Llega, sube el equipaje y ya estás de vacaciones.",
+    en: "The apartment is on the first floor, accessed by stairs from the street. Arrive, carry your bags up and you're already on holiday.",
+    de: "Die Wohnung liegt im ersten Stock, erreichbar über eine Treppe von der Straße. Ankommen, Koffer hochtragen und Urlaub genießen.",
   },
   "faq.item.6.q": {
     es: "¿Hay aparcamiento cerca?",

@@ -284,7 +284,7 @@ export const faq = {
     },
     {
       q: "¿Cómo se accede al apartamento?",
-      a: "El apartamento está en planta baja con acceso directo desde la calle. Llega, suelta el equipaje y ya estás de vacaciones.",
+      a: "El apartamento está en primera planta, accediendo por escalera desde la calle. Llega, sube el equipaje y ya estás de vacaciones.",
       pending: false,
     },
     {

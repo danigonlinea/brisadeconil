@@ -280,7 +280,7 @@ export const faq = {
     },
     {
       q: "Wie gelangt man zur Wohnung?",
-      a: "Die Wohnung liegt im Erdgeschoss mit direktem Straßenzugang. Ankommen, Koffer abstellen und Urlaub genießen.",
+      a: "Die Wohnung liegt im ersten Stock, erreichbar über eine Treppe von der Straße. Ankommen, Koffer hochtragen und Urlaub genießen.",
       pending: false,
     },
     {
