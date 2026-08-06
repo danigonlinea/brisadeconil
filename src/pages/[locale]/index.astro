@@ -1,0 +1,65 @@
+---
+/**
+ * [locale]/index.astro — Main landing page, localized per route.
+ * getStaticPaths generates /es/, /en/ and /de/.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Hero from '../../components/Hero.astro';
+import GallerySection from '../../components/GallerySection.astro';
+import ApartmentSection from '../../components/ApartmentSection.astro';
+import WelcomeSection from '../../components/WelcomeSection.astro';
+import LocationSection from '../../components/LocationSection.astro';
+import ConilSection from '../../components/ConilSection.astro';
+import RulesSection from '../../components/RulesSection.astro';
+import ContactSection from '../../components/ContactSection.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import TestimonialsSection from '../../components/TestimonialsSection.astro';
+import Footer from '../../components/Footer.astro';
+import { SUPPORTED_LOCALES, type Locale } from '../../i18n/translations';
+import '../../styles/gallery.css';
+
+export function getStaticPaths() {
+  return SUPPORTED_LOCALES.map((locale) => ({ params: { locale } }));
+}
+
+const locale = (Astro.params.locale as Locale) ?? 'es';
+---
+
+<BaseLayout locale={locale} lodgingSchema>
+  <Header locale={locale} />
+
+  <main id="main-content" tabindex="-1">
+    <!-- 1. Hero -->
+    <Hero locale={locale} />
+
+    <!-- 2. Gallery -->
+    <GallerySection locale={locale} />
+
+    <!-- 3. El apartamento + equipamiento -->
+    <ApartmentSection locale={locale} />
+
+    <!-- 4. Como en casa desde el primer día -->
+    <WelcomeSection locale={locale} />
+
+    <!-- 6. Ubicación y aparcamiento -->
+    <LocationSection locale={locale} />
+
+    <!-- 8. Normas de la casa y fianza -->
+    <RulesSection locale={locale} />
+
+    <!-- 9. Formulario de contacto -->
+    <ContactSection locale={locale} />
+
+    <!-- 10. FAQ -->
+    <FAQSection locale={locale} />
+
+    <!-- 11. Qué hacer en Conil (secondary / quieter) -->
+    <ConilSection locale={locale} />
+
+    <!-- 12. Testimonios -->
+    <TestimonialsSection locale={locale} />
+  </main>
+
+  <Footer locale={locale} />
+</BaseLayout>

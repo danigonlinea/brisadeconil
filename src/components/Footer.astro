@@ -2,7 +2,14 @@
 /**
  * Footer — brand, address, nav links, legal.
  */
-import * as content from '../content/index';
+import { getContent, type Locale } from '../content/index';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'es' } = Astro.props;
+const content = await getContent(locale);
 const { footer, nav } = content;
 const base = import.meta.env.BASE_URL ?? '/';
 function createLegalHref(path: string) {
@@ -28,7 +35,7 @@ const cookiesHref = createLegalHref('politica-cookies');
         <p class="footer-tagline" data-i18n="footer.tagline">{footer.tagline}</p>
         <address class="footer-address">
           {footer.address.split('\n').map((line: string, i: number) => (
-            <span key={i}>
+            <span>
               {line}
               {i < footer.address.split('\n').length - 1 && <br />}
             </span>

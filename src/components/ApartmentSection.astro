@@ -3,7 +3,14 @@
  * ApartmentSection — capacity, layout, access note.
  * Impeccable: split layout (text left, specs right), no icon+heading+text card grid.
  */
-import * as content from '../content/index';
+import { getContent, type Locale } from '../content/index';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'es' } = Astro.props;
+const content = await getContent(locale);
 const { apartment, amenities } = content;
 
 const AMENITY_KEYS = ['ac','fan','wifi','tv','hot-water','store','door','bed','coffee','kettle','fridge','freezer','washer','dishwasher','microwave','toaster','oven'];

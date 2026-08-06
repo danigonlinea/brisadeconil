@@ -1,14 +1,13 @@
 /**
- * LanguageSwitcher — compact dropdown to switch between ES, EN and DE.
+ * LanguageSwitcher — text-only dropdown to switch between ES, EN and DE.
  *
- * Mounts into #language-switcher-mount via client:only="react".
- * Uses the window.__brisaSetLocale / __brisaGetLocale API injected by the
- * inline i18n script in BaseLayout.
+ * Each option is a real link to the localized route (/es/, /en/, /de/), so the
+ * server renders the correct language (no in-page text swapping). Clicking also
+ * persists the choice in localStorage so the root "/" redirect honors it on
+ * future visits.
  *
- * Listens to the 'brisa:locale-change' event to stay in sync when locale
- * changes from another source.
+ * Mounted into the Header via client:only="react".
  */
-
 import { useEffect, useRef, useState } from 'react';
 import { trackEvent } from '../lib/analytics';
 
@@ -20,41 +19,27 @@ interface LocaleOption {
   label: string;
   /** Full name for aria-label */
   name: string;
-  /** Flag emoji */
-  flag: string;
 }
 
 const LOCALES: LocaleOption[] = [
-  { code: 'es', label: 'ES', name: 'Español',  flag: '🇪🇸' },
-  { code: 'en', label: 'EN', name: 'English',  flag: '🇬🇧' },
-  { code: 'de', label: 'DE', name: 'Deutsch',  flag: '🇩🇪' },
+  { code: 'es', label: 'ES', name: 'Español' },
+  { code: 'en', label: 'EN', name: 'English' },
+  { code: 'de', label: 'DE', name: 'Deutsch' },
 ];
 
-declare global {
-  interface Window {
-    __brisaSetLocale?: (locale: Locale) => void;
-    __brisaGetLocale?: () => Locale;
-  }
+const LOCALE_KEY = 'brisa-locale';
+
+interface LanguageSwitcherProps {
+  /** Currently active locale (server-rendered route) */
+  locale?: Locale;
 }
 
-export default function LanguageSwitcher() {
-  const [current, setCurrent] = useState<Locale>('es');
+export default function LanguageSwitcher({ locale = 'es' }: LanguageSwitcherProps) {
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Read initial locale from the i18n runtime
-  useEffect(() => {
-    const locale = (window.__brisaGetLocale?.() ?? 'es') as Locale;
-    setCurrent(locale);
-
-    // Stay in sync when locale is changed by another component
-    const handler = (e: Event) => {
-      const detail = (e as CustomEvent<{ locale: Locale }>).detail;
-      setCurrent(detail.locale);
-    };
-    window.addEventListener('brisa:locale-change', handler);
-    return () => window.removeEventListener('brisa:locale-change', handler);
-  }, []);
+  const baseNoSlash = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
+  const current = LOCALES.find((l) => l.code === locale) ?? LOCALES[0];
 
   // Close on outside click
   useEffect(() => {
@@ -78,14 +63,17 @@ export default function LanguageSwitcher() {
     return () => document.removeEventListener('keydown', handleKey);
   }, [open]);
 
-  const select = (locale: Locale) => {
-    trackEvent('language_switch', { language: locale });
-    window.__brisaSetLocale?.(locale);
-    setCurrent(locale);
+  const hrefFor = (code: Locale) => `${baseNoSlash}/${code}/`;
+
+  const select = (code: Locale) => {
+    trackEvent('language_switch', { language: code });
+    try {
+      localStorage.setItem(LOCALE_KEY, code);
+    } catch (e) {
+      /* ignore */
+    }
     setOpen(false);
   };
-
-  const currentOption = LOCALES.find((l) => l.code === current) ?? LOCALES[0];
 
   return (
     <div
@@ -97,13 +85,12 @@ export default function LanguageSwitcher() {
       <button
         type="button"
         className="lang-switcher__trigger"
-        aria-haspopup="listbox"
+        aria-haspopup="true"
         aria-expanded={open}
-        aria-label={`Idioma: ${currentOption.name}. Cambiar idioma`}
+        aria-label={`Idioma: ${current.name}. Cambiar idioma`}
         onClick={() => setOpen((v) => !v)}
       >
-        <span aria-hidden="true">{currentOption.flag}</span>
-        <span className="lang-switcher__label">{currentOption.label}</span>
+        <span className="lang-switcher__label">{current.label}</span>
         <svg
           className={`lang-switcher__chevron${open ? ' lang-switcher__chevron--open' : ''}`}
           width="12"
@@ -111,7 +98,7 @@ export default function LanguageSwitcher() {
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          strokeWidth="2.5"
+          strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
           aria-hidden="true"
@@ -127,23 +114,18 @@ export default function LanguageSwitcher() {
           aria-label="Seleccionar idioma"
           className="lang-switcher__dropdown"
         >
-          {LOCALES.map((locale) => (
-            <li
-              key={locale.code}
-              role="option"
-              aria-selected={locale.code === current}
-              className={`lang-switcher__option${locale.code === current ? ' lang-switcher__option--active' : ''}`}
-              onClick={() => select(locale.code)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  select(locale.code);
-                }
-              }}
-              tabIndex={0}
-            >
-              <span aria-hidden="true">{locale.flag}</span>
-              <span>{locale.name}</span>
+          {LOCALES.map((option) => (
+            <li key={option.code} role="option" aria-selected={option.code === current.code}>
+              <a
+                className={`lang-switcher__option${
+                  option.code === current.code ? ' lang-switcher__option--active' : ''
+                }`}
+                href={hrefFor(option.code)}
+                onClick={() => select(option.code)}
+              >
+                <span>{option.name}</span>
+                <span className="lang-switcher__option-code">{option.label}</span>
+              </a>
             </li>
           ))}
         </ul>
@@ -158,7 +140,8 @@ export default function LanguageSwitcher() {
           border: none;
           cursor: pointer;
           font-size: 13px;
-          font-weight: 500;
+          font-weight: 600;
+          letter-spacing: 0.04em;
           color: rgba(255, 255, 255, 0.85);
           padding: 6px 8px;
           border-radius: 6px;
@@ -179,7 +162,6 @@ export default function LanguageSwitcher() {
         }
         .lang-switcher__label {
           font-family: var(--font-sans, system-ui);
-          letter-spacing: 0.04em;
         }
         .lang-switcher__chevron {
           opacity: 0.7;
@@ -199,18 +181,20 @@ export default function LanguageSwitcher() {
           list-style: none;
           margin: 0;
           padding: 4px;
-          min-width: 130px;
+          min-width: 132px;
           z-index: 200;
         }
         .lang-switcher__option {
           display: flex;
           align-items: center;
-          gap: 8px;
+          justify-content: space-between;
+          gap: 12px;
           padding: 8px 12px;
           border-radius: 6px;
           font-size: 13px;
           font-family: var(--font-sans, system-ui);
           color: var(--text-base, #111);
+          text-decoration: none;
           cursor: pointer;
           transition: background-color 120ms ease;
           outline: none;
@@ -218,12 +202,20 @@ export default function LanguageSwitcher() {
         .lang-switcher__option:hover,
         .lang-switcher__option:focus-visible {
           background-color: var(--bg-surface-alt, #f5f5f5);
+          color: var(--text-base, #111);
         }
         .lang-switcher__option--active {
           font-weight: 600;
           color: var(--accent, #0d9488);
         }
+        .lang-switcher__option-code {
+          font-size: 11px;
+          font-weight: 600;
+          letter-spacing: 0.05em;
+          opacity: 0.7;
+        }
       `}</style>
     </div>
   );
 }
+
