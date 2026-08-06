@@ -758,6 +758,76 @@ export const t: Record<string, Record<Locale, string>> = {
     en: "No. Towels and bed linen are included. You will also find detergent, softener, a hair dryer and basic kitchen supplies.",
     de: "Nein. Handtücher und Bettwäsche sind inklusive. Du findest auch Waschmittel, Weichspüler, einen Föhn und Küchenbasics.",
   },
+  "faq.item.9.q": {
+    es: "¿Hay parking cerca del apartamento?",
+    en: "Is there parking near the apartment?",
+    de: "Gibt es Parkmöglichkeiten in der Nähe der Wohnung?",
+  },
+  "faq.item.9.a": {
+    es: "Sí. El Mercado de Abastos, justo frente al apartamento, tiene zona de aparcamiento municipal. En temporada alta también recomendamos el Recinto Ferial, gratuito y con mucha capacidad. Además hay Zona Azul (ORA) en las calles cercanas.",
+    en: "Yes. The Mercado de Abastos, right opposite, has municipal parking. In high season we also recommend the Recinto Ferial, which is free and spacious. There is also Blue Zone (ORA) parking on nearby streets.",
+    de: "Ja. Der Mercado de Abastos direkt gegenüber hat städtisches Parken. In der Hochsaison empfehlen wir das Recinto Ferial, das kostenlos ist und viel Platz bietet. Es gibt auch Blaue Zone (ORA)-Parkplätze in den nahegelegenen Straßen.",
+  },
+  "faq.item.10.q": {
+    es: "¿Cuál es la playa más cercana caminando?",
+    en: "What is the closest beach within walking distance?",
+    de: "Welcher ist der nächste Strand zu Fuß erreichbar?",
+  },
+  "faq.item.10.a": {
+    es: "La Playa de los Bateles es la más cercana, a unos 5 minutos caminando por el paseo marítimo. También está la Playa de la Fontanilla, un poco más tranquila, a unos 10 minutos.",
+    en: "Playa de los Bateles is the closest, about a 5-minute walk along the seafront. Playa de la Fontanilla, a bit quieter, is about a 10-minute walk.",
+    de: "Der Playa de los Bateles ist der nächste, etwa 5 Minuten zu Fuß entlang der Strandpromenade. Der Playa de la Fontanilla, etwas ruhiger, ist etwa 10 Minuten zu Fuß entfernt.",
+  },
+  "faq.item.11.q": {
+    es: "¿Se puede fumar en la terraza/azotea?",
+    en: "Is smoking allowed on the terrace/rooftop?",
+    de: "Ist Rauchen auf der Terrasse/Dachterrasse erlaubt?",
+  },
+  "faq.item.11.a": {
+    es: "No se permite fumar en el apartamento ni en la azotea comunitaria.",
+    en: "Smoking is not allowed in the apartment or on the communal rooftop.",
+    de: "Rauchen ist in der Wohnung und auf der gemeinschaftlichen Dachterrasse nicht erlaubt.",
+  },
+  "faq.item.12.q": {
+    es: "¿Hay supermercos o tiendas de alimentación cerca?",
+    en: "Are there supermarkets or grocery stores nearby?",
+    de: "Gibt es Supermärkte oder Lebensmittelgeschäfte in der Nähe?",
+  },
+  "faq.item.12.a": {
+    es: "Sí. El Mercado de Abastos está justo enfrente y es el más cercano. También hay varios supermercados y tiendas de alimentación a pocos minutos caminando por el centro.",
+    en: "Yes. The Mercado de Abastos is right opposite and the closest. There are also several supermarkets and grocery stores a few minutes' walk from the centre.",
+    de: "Ja. Der Mercado de Abastos ist direkt gegenüber und der nächste. Es gibt auch mehrere Supermärkte und Lebensmittelgeschäfte nur wenige Minuten zu Fuß vom Zentrum entfernt.",
+  },
+  "faq.item.13.q": {
+    es: "¿Admite reservas de última hora?",
+    en: "Do you accept last-minute bookings?",
+    de: "Werden Last-Minute-Buchungen akzeptiert?",
+  },
+  "faq.item.13.a": {
+    es: "Sí, según disponibilidad. Consulta nuestras fechas disponibles y te responderemos lo antes posible.",
+    en: "Yes, subject to availability. Check our available dates and we will get back to you as soon as possible.",
+    de: "Ja, je nach Verfügbarkeit. Schau dir unsere verfügbaren Daten an und wir melden uns so schnell wie möglich bei dir.",
+  },
+  "faq.item.14.q": {
+    es: "¿Cómo se llega desde el aeropuerto de Jerez?",
+    en: "How do I get there from Jerez airport?",
+    de: "Wie komme ich vom Flughafen Jerez dorthin?",
+  },
+  "faq.item.14.a": {
+    es: "El aeropuerto de Jerez está a unos 40 km. En coche se tarda aproximadamente 40 minutos. También puedes tomar un autobús o taxi hasta Conil.",
+    en: "Jerez airport is about 40 km away. By car it takes approximately 40 minutes. You can also take a bus or taxi to Conil.",
+    de: "Der Flughafen Jerez ist etwa 40 km entfernt. Mit dem Auto dauert es etwa 40 Minuten. Du kannst auch einen Bus oder ein Taxi nach Conil nehmen.",
+  },
+  "faq.item.15.q": {
+    es: "¿El apartamento es accesible para personas con movilidad reducida?",
+    en: "Is the apartment accessible for people with reduced mobility?",
+    de: "Ist die Wohnung für Menschen mit eingeschränkter Mobilität zugänglich?",
+  },
+  "faq.item.15.a": {
+    es: "El apartamento está en primera planta con acceso por escalera, por lo que no es accesible para personas con movilidad reducida.",
+    en: "The apartment is on the first floor with stair access, so it is not accessible for people with reduced mobility.",
+    de: "Die Wohnung liegt im ersten Stock mit Treppenzugang, daher ist sie für Menschen mit eingeschränkter Mobilität nicht zugänglich.",
+  },
   "faq.pending-badge": {
     es: "Pendiente",
     en: "Pending",
