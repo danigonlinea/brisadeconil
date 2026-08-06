@@ -11,6 +11,7 @@ function createLegalHref(path: string) {
 const legalHref = createLegalHref('aviso-legal');
 const privacyHref = createLegalHref('politica-privacidad');
 const cookiesHref = createLegalHref('politica-cookies');
+const guiaHref = createLegalHref('guia-conil');
 ---
 
 <footer class="site-footer" role="contentinfo">
@@ -97,6 +98,7 @@ const cookiesHref = createLegalHref('politica-cookies');
           <li><a href="#ubicacion"   class="footer-nav-link" data-i18n="footer.link.ubicacion">{footer.links[2]?.label ?? 'Ubicación'}</a></li>
           <li><a href="#contacto"    class="footer-nav-link" data-i18n="footer.link.contacto">{footer.links[3]?.label ?? 'Contacto'}</a></li>
           <li><a href="#faq"         class="footer-nav-link" data-i18n="footer.link.faq">{footer.links[4]?.label ?? 'FAQ'}</a></li>
+          <li><a href={guiaHref}     class="footer-nav-link">Guía de Conil</a></li>
         </ul>
       </nav>
 

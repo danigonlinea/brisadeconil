@@ -1,0 +1,924 @@
+---
+/**
+ * Guía Local de Conil — página SEO independiente.
+ * Schema.org: TouristDestination + Article
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import {
+  guiaMeta,
+  guiaHero,
+  guiaPlayas,
+  guiaRestaurantes,
+  guiaVisitas,
+  guiaEventos,
+  guiaComoLlegar,
+  guiaConsejos,
+  guiaCTA,
+} from '../content/guia-conil';
+
+const base = import.meta.env.BASE_URL ?? '/';
+const siteUrl = import.meta.env.SITE ?? 'https://www.brisadeconil.com';
+const canonicalUrl = `${siteUrl}${base.replace(/\/$/, '')}${guiaMeta.canonicalPath}`;
+
+// ── Schema.org ───────────────────────────────────────────────────────────────
+
+const touristDestinationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TouristDestination',
+  name: 'Conil de la Frontera',
+  description: guiaMeta.description,
+  url: canonicalUrl,
+  touristType: ['Families', 'Beach', 'Culture', 'Gastronomy'],
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 36.2778,
+    longitude: -6.0897,
+  },
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Conil de la Frontera',
+    addressRegion: 'Cádiz',
+    addressCountry: 'ES',
+  },
+  includesAttraction: [
+    ...guiaPlayas.items.map((p) => ({
+      '@type': 'Beach',
+      name: p.name,
+      description: p.description,
+    })),
+    ...guiaVisitas.items.map((v) => ({
+      '@type': 'TouristAttraction',
+      name: v.name,
+      description: v.description,
+    })),
+  ],
+};
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: guiaMeta.title,
+  description: guiaMeta.description,
+  url: canonicalUrl,
+  datePublished: '2025-05-01',
+  dateModified: '2025-08-01',
+  author: {
+    '@type': 'Organization',
+    name: 'Brisa de Conil',
+    url: siteUrl,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Brisa de Conil',
+    url: siteUrl,
+  },
+  about: {
+    '@type': 'Place',
+    name: 'Conil de la Frontera',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Conil de la Frontera',
+      addressRegion: 'Cádiz',
+      addressCountry: 'ES',
+    },
+  },
+};
+
+// Map de iconos SVG inline para transport icons
+const transportIcons: Record<string, string> = {
+  plane: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21 4 19 4c-1 0-1.5.5-3.5 2.5L11 8 2.8 6.2c-.5-.1-.9.4-.7.9l2.3 3.9 4-1 1.9 1.9-1 4 3.9 2.3c.4.2.9-.2.8-.7z"/></svg>`,
+  car: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v9a2 2 0 0 1-2 2h-2"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>`,
+};
+
+const consejoIcons: Record<string, string> = {
+  calendar: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`,
+  thermometer: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>`,
+  'shopping-bag': `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>`,
+  'credit-card': `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>`,
+  sun: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>`,
+};
+---
+
+<BaseLayout
+  title={guiaMeta.title}
+  description={guiaMeta.description}
+  canonicalUrl={canonicalUrl}
+  extraSchemas={[touristDestinationSchema, articleSchema]}
+>
+
+  <main id="main-content" tabindex="-1" class="guia-page">
+
+    <!-- ── Hero ─────────────────────────────────────────────────────────── -->
+    <section class="guia-hero">
+      <div class="container">
+        <p class="section-label">{guiaHero.sectionLabel}</p>
+        <h1 class="guia-hero__headline">{guiaHero.headline}</h1>
+        <p class="guia-hero__lead">{guiaHero.lead}</p>
+        <nav class="guia-toc" aria-label="Índice de la guía">
+          <a href="#playas" class="guia-toc__link">Playas</a>
+          <a href="#restaurantes" class="guia-toc__link">Restaurantes</a>
+          <a href="#que-ver" class="guia-toc__link">Qué ver</a>
+          <a href="#eventos" class="guia-toc__link">Eventos</a>
+          <a href="#como-llegar" class="guia-toc__link">Cómo llegar</a>
+          <a href="#consejos" class="guia-toc__link">Consejos</a>
+        </nav>
+      </div>
+    </section>
+
+    <!-- ── Playas ────────────────────────────────────────────────────────── -->
+    <section id="playas" class="guia-section guia-section--alt">
+      <div class="container">
+        <header class="guia-section__header reveal">
+          <p class="section-label">{guiaPlayas.sectionLabel}</p>
+          <h2>{guiaPlayas.headline}</h2>
+          <p class="guia-section__intro">{guiaPlayas.intro}</p>
+        </header>
+
+        <ul class="guia-cards" role="list">
+          {guiaPlayas.items.map((playa) => (
+            <li class="guia-card reveal">
+              <div class="guia-card__img-wrap">
+                <div class="guia-card__img-placeholder" aria-label={playa.image}></div>
+              </div>
+              <div class="guia-card__body">
+                <div class="guia-card__meta">
+                  <span class="guia-card__distance">{playa.distance}</span>
+                  <div class="guia-card__tags">
+                    {playa.tags.map((tag) => (
+                      <span class="guia-tag">{tag}</span>
+                    ))}
+                  </div>
+                </div>
+                <h3 class="guia-card__title">{playa.name}</h3>
+                <p class="guia-card__desc">{playa.description}</p>
+                <p class="guia-card__best">
+                  <strong>Ideal para:</strong> {playa.bestFor}
+                </p>
+                <a
+                  href={playa.mapHref}
+                  class="guia-card__map-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Ver ${playa.name} en Google Maps`}
+                >
+                  Ver en mapa →
+                </a>
+              </div>
+            </li>
+          ))}
+        </ul>
+
+        <aside class="guia-tip reveal">
+          <span class="guia-tip__icon" aria-hidden="true">💡</span>
+          <p>{guiaPlayas.tip}</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ── Restaurantes ──────────────────────────────────────────────────── -->
+    <section id="restaurantes" class="guia-section">
+      <div class="container">
+        <header class="guia-section__header reveal">
+          <p class="section-label">{guiaRestaurantes.sectionLabel}</p>
+          <h2>{guiaRestaurantes.headline}</h2>
+          <p class="guia-section__intro">{guiaRestaurantes.intro}</p>
+        </header>
+
+        <ul class="guia-cards" role="list">
+          {guiaRestaurantes.items.map((rest) => (
+            <li class="guia-card reveal">
+              <div class="guia-card__img-wrap">
+                <div class="guia-card__img-placeholder" aria-label={rest.image}></div>
+              </div>
+              <div class="guia-card__body">
+                <div class="guia-card__meta">
+                  <span class="guia-card__distance">{rest.distance}</span>
+                  <span class="guia-tag guia-tag--price">{rest.priceRange}</span>
+                </div>
+                <h3 class="guia-card__title">{rest.name}</h3>
+                <p class="guia-card__tipo">{rest.tipo}</p>
+                <p class="guia-card__desc">{rest.description}</p>
+                <p class="guia-card__best">
+                  <strong>Pide sí o sí:</strong> {rest.mustTry}
+                </p>
+                <a
+                  href={rest.mapHref}
+                  class="guia-card__map-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Ver ${rest.name} en Google Maps`}
+                >
+                  Ver en mapa →
+                </a>
+              </div>
+            </li>
+          ))}
+        </ul>
+
+        <aside class="guia-tip reveal">
+          <span class="guia-tip__icon" aria-hidden="true">🛒</span>
+          <p>{guiaRestaurantes.tip}</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ── Qué ver ───────────────────────────────────────────────────────── -->
+    <section id="que-ver" class="guia-section guia-section--alt">
+      <div class="container">
+        <header class="guia-section__header reveal">
+          <p class="section-label">{guiaVisitas.sectionLabel}</p>
+          <h2>{guiaVisitas.headline}</h2>
+          <p class="guia-section__intro">{guiaVisitas.intro}</p>
+        </header>
+
+        <ul class="guia-visitas" role="list">
+          {guiaVisitas.items.map((visita) => (
+            <li class="guia-visita reveal">
+              <div class="guia-visita__img-wrap">
+                <div class="guia-card__img-placeholder" aria-label={visita.image}></div>
+              </div>
+              <div class="guia-visita__body">
+                <div class="guia-visita__meta">
+                  <span class="guia-tag">{visita.tipo}</span>
+                  <span class="guia-card__distance">{visita.distance}</span>
+                </div>
+                <h3 class="guia-visita__title">{visita.name}</h3>
+                <p class="guia-visita__desc">{visita.description}</p>
+                <a
+                  href={visita.mapHref}
+                  class="guia-card__map-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Ver ${visita.name} en Google Maps`}
+                >
+                  Ver en mapa →
+                </a>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- ── Eventos ───────────────────────────────────────────────────────── -->
+    <section id="eventos" class="guia-section">
+      <div class="container">
+        <header class="guia-section__header reveal">
+          <p class="section-label">{guiaEventos.sectionLabel}</p>
+          <h2>{guiaEventos.headline}</h2>
+          <p class="guia-section__intro">{guiaEventos.intro}</p>
+        </header>
+
+        <ul class="guia-eventos" role="list">
+          {guiaEventos.items.map((ev) => (
+            <li class={`guia-evento reveal${ev.highlight ? ' guia-evento--highlight' : ''}`}>
+              <div class="guia-evento__months">{ev.months}</div>
+              <div class="guia-evento__body">
+                <div class="guia-evento__tipo">{ev.tipo}</div>
+                <h3 class="guia-evento__title">{ev.name}</h3>
+                <p class="guia-evento__desc">{ev.description}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- ── Cómo llegar ───────────────────────────────────────────────────── -->
+    <section id="como-llegar" class="guia-section guia-section--alt">
+      <div class="container">
+        <header class="guia-section__header reveal">
+          <p class="section-label">{guiaComoLlegar.sectionLabel}</p>
+          <h2>{guiaComoLlegar.headline}</h2>
+          <p class="guia-section__intro">{guiaComoLlegar.intro}</p>
+        </header>
+
+        <ul class="guia-rutas" role="list">
+          {guiaComoLlegar.items.map((ruta) => (
+            <li class="guia-ruta reveal">
+              <div class="guia-ruta__icon" set:html={transportIcons[ruta.icon] ?? transportIcons['car']} />
+              <div class="guia-ruta__body">
+                <div class="guia-ruta__meta">
+                  <strong class="guia-ruta__desde">{ruta.desde}</strong>
+                  <span class="guia-ruta__time">{ruta.tiempo} · {ruta.distancia}</span>
+                </div>
+                <p class="guia-ruta__desc">{ruta.description}</p>
+                <p class="guia-ruta__tip">
+                  <span aria-hidden="true">💡 </span>{ruta.tip}
+                </p>
+              </div>
+            </li>
+          ))}
+        </ul>
+
+        <aside class="guia-aparcamiento reveal">
+          <h3>{guiaComoLlegar.aparcamiento.headline}</h3>
+          <p>{guiaComoLlegar.aparcamiento.text}</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ── Consejos ──────────────────────────────────────────────────────── -->
+    <section id="consejos" class="guia-section">
+      <div class="container">
+        <header class="guia-section__header reveal">
+          <p class="section-label">{guiaConsejos.sectionLabel}</p>
+          <h2>{guiaConsejos.headline}</h2>
+        </header>
+
+        <ul class="guia-consejos" role="list">
+          {guiaConsejos.items.map((c) => (
+            <li class="guia-consejo reveal">
+              <div class="guia-consejo__icon" set:html={consejoIcons[c.icon] ?? consejoIcons['sun']} />
+              <div class="guia-consejo__body">
+                <h3 class="guia-consejo__title">{c.title}</h3>
+                <p class="guia-consejo__text">{c.text}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- ── CTA ──────────────────────────────────────────────────────────── -->
+    <section class="guia-cta-section">
+      <div class="container">
+        <div class="guia-cta reveal">
+          <h2 class="guia-cta__headline">{guiaCTA.headline}</h2>
+          <p class="guia-cta__lead">{guiaCTA.lead}</p>
+          <a href={`${base.replace(/\/$/, '')}${guiaCTA.ctaHref}`} class="btn btn--primary btn--lg">
+            {guiaCTA.cta}
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</BaseLayout>
+
+<style>
+  /* ── Page wrapper ────────────────────────────────────────────────────────── */
+  .guia-page {
+    background-color: var(--bg-base);
+    color: var(--text-base);
+  }
+
+  /* ── Hero ────────────────────────────────────────────────────────────────── */
+  .guia-hero {
+    background-color: var(--bg-dark);
+    color: var(--text-on-dark);
+    padding-block: var(--sp-20) var(--sp-16);
+  }
+
+  .guia-hero .section-label {
+    color: var(--color-teal-400);
+    margin-bottom: var(--sp-4);
+  }
+
+  .guia-hero__headline {
+    font-family: var(--font-serif);
+    font-size: clamp(var(--text-4xl), 6vw, var(--text-6xl));
+    font-weight: var(--fw-bold);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
+    white-space: pre-line;
+    margin-bottom: var(--sp-5);
+    max-width: 18ch;
+  }
+
+  .guia-hero__lead {
+    font-size: var(--text-lg);
+    color: var(--text-on-dark-muted);
+    max-width: 60ch;
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--sp-8);
+  }
+
+  /* ── ToC ─────────────────────────────────────────────────────────────────── */
+  .guia-toc {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-2);
+  }
+
+  .guia-toc__link {
+    font-size: var(--text-sm);
+    font-weight: var(--fw-semibold);
+    color: var(--color-teal-300);
+    background-color: rgba(42, 165, 152, 0.12);
+    border: 1px solid rgba(42, 165, 152, 0.25);
+    border-radius: var(--radius-full, 9999px);
+    padding: var(--sp-1) var(--sp-3);
+    text-decoration: none;
+    transition: background-color 0.15s, color 0.15s;
+  }
+
+  .guia-toc__link:hover {
+    background-color: rgba(42, 165, 152, 0.22);
+    color: var(--color-teal-200, #a7f3d0);
+    text-decoration: none;
+  }
+
+  /* ── Sections ────────────────────────────────────────────────────────────── */
+  .guia-section {
+    padding-block: var(--sp-20);
+  }
+
+  .guia-section--alt {
+    background-color: var(--bg-surface-alt);
+  }
+
+  .guia-section__header {
+    margin-bottom: var(--sp-12);
+  }
+
+  .guia-section__header .section-label {
+    margin-bottom: var(--sp-3);
+  }
+
+  .guia-section__header h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(var(--text-3xl), 4vw, var(--text-4xl));
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-tight);
+    margin-bottom: var(--sp-4);
+    max-width: 30ch;
+  }
+
+  .guia-section__intro {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    max-width: 64ch;
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ── Cards (playas y restaurantes) ──────────────────────────────────────── */
+  .guia-cards {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--sp-6);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+    margin-bottom: var(--sp-8);
+  }
+
+  .guia-card {
+    background: var(--card-bg);
+    border-radius: var(--radius-lg, 12px);
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+
+  .guia-card:hover {
+    box-shadow: var(--card-shadow-hover);
+    transform: translateY(-2px);
+  }
+
+  .guia-card__img-wrap {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background-color: var(--color-navy-100);
+  }
+
+  .guia-card__img-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      135deg,
+      var(--color-navy-100) 0%,
+      var(--color-teal-300) 50%,
+      var(--color-navy-100) 100%
+    );
+    opacity: 0.45;
+  }
+
+  .guia-card__body {
+    padding: var(--sp-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+    flex: 1;
+  }
+
+  .guia-card__meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--sp-2);
+  }
+
+  .guia-card__distance {
+    font-size: var(--text-xs);
+    font-weight: var(--fw-semibold);
+    color: var(--accent);
+    background-color: rgba(42, 165, 152, 0.1);
+    border-radius: var(--radius-full, 9999px);
+    padding: 2px var(--sp-2);
+  }
+
+  .guia-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-1);
+  }
+
+  .guia-tag {
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    background-color: var(--bg-surface-alt);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-full, 9999px);
+    padding: 2px var(--sp-2);
+    white-space: nowrap;
+  }
+
+  .guia-tag--price {
+    font-weight: var(--fw-bold);
+    color: var(--color-teal-600);
+  }
+
+  .guia-card__title {
+    font-family: var(--font-serif);
+    font-size: var(--text-xl);
+    font-weight: var(--fw-semibold);
+    color: var(--text-base);
+    margin: 0;
+  }
+
+  .guia-card__tipo {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  .guia-card__desc {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  .guia-card__best {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  .guia-card__best strong {
+    color: var(--text-base);
+  }
+
+  .guia-card__map-link {
+    margin-top: auto;
+    font-size: var(--text-sm);
+    font-weight: var(--fw-semibold);
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .guia-card__map-link:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
+  }
+
+  /* ── Tip ─────────────────────────────────────────────────────────────────── */
+  .guia-tip {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--sp-3);
+    background-color: rgba(42, 165, 152, 0.08);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius-md, 8px) var(--radius-md, 8px) 0;
+    padding: var(--sp-4) var(--sp-5);
+    max-width: 70ch;
+  }
+
+  .guia-tip__icon {
+    font-size: var(--text-lg);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .guia-tip p {
+    margin: 0;
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ── Visitas ─────────────────────────────────────────────────────────────── */
+  .guia-visitas {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--sp-6);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  }
+
+  .guia-visita {
+    background: var(--card-bg);
+    border-radius: var(--radius-lg, 12px);
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+
+  .guia-visita:hover {
+    box-shadow: var(--card-shadow-hover);
+    transform: translateY(-2px);
+  }
+
+  .guia-visita__img-wrap {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background-color: var(--color-navy-100);
+  }
+
+  .guia-visita__body {
+    padding: var(--sp-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+    flex: 1;
+  }
+
+  .guia-visita__meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--sp-2);
+  }
+
+  .guia-visita__title {
+    font-family: var(--font-serif);
+    font-size: var(--text-xl);
+    font-weight: var(--fw-semibold);
+    color: var(--text-base);
+    margin: 0;
+  }
+
+  .guia-visita__desc {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+    flex: 1;
+  }
+
+  /* ── Eventos ─────────────────────────────────────────────────────────────── */
+  .guia-eventos {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--sp-4);
+  }
+
+  .guia-evento {
+    display: grid;
+    grid-template-columns: 12rem 1fr;
+    gap: var(--sp-6);
+    background: var(--card-bg);
+    border-radius: var(--radius-lg, 12px);
+    box-shadow: var(--card-shadow);
+    padding: var(--sp-6);
+    border-left: 3px solid var(--border-subtle);
+    transition: box-shadow 0.2s;
+  }
+
+  .guia-evento--highlight {
+    border-left-color: var(--accent);
+  }
+
+  .guia-evento:hover {
+    box-shadow: var(--card-shadow-hover);
+  }
+
+  @media (max-width: 640px) {
+    .guia-evento {
+      grid-template-columns: 1fr;
+      gap: var(--sp-3);
+    }
+  }
+
+  .guia-evento__months {
+    font-size: var(--text-sm);
+    font-weight: var(--fw-semibold);
+    color: var(--accent);
+    align-self: start;
+    padding-top: 3px;
+  }
+
+  .guia-evento__tipo {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    margin-bottom: var(--sp-1);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider, 0.08em);
+  }
+
+  .guia-evento__title {
+    font-family: var(--font-serif);
+    font-size: var(--text-xl);
+    font-weight: var(--fw-semibold);
+    color: var(--text-base);
+    margin: 0 0 var(--sp-2);
+  }
+
+  .guia-evento__desc {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  /* ── Rutas / Cómo llegar ─────────────────────────────────────────────────── */
+  .guia-rutas {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--sp-5);
+    margin-bottom: var(--sp-8);
+  }
+
+  .guia-ruta {
+    display: flex;
+    gap: var(--sp-5);
+    background: var(--card-bg);
+    border-radius: var(--radius-lg, 12px);
+    box-shadow: var(--card-shadow);
+    padding: var(--sp-6);
+    align-items: flex-start;
+    transition: box-shadow 0.2s;
+  }
+
+  .guia-ruta:hover {
+    box-shadow: var(--card-shadow-hover);
+  }
+
+  .guia-ruta__icon {
+    flex-shrink: 0;
+    color: var(--accent);
+    margin-top: 2px;
+  }
+
+  .guia-ruta__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+  }
+
+  .guia-ruta__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--sp-3);
+  }
+
+  .guia-ruta__desde {
+    font-size: var(--text-lg);
+    color: var(--text-base);
+  }
+
+  .guia-ruta__time {
+    font-size: var(--text-sm);
+    color: var(--accent);
+    font-weight: var(--fw-semibold);
+  }
+
+  .guia-ruta__desc {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  .guia-ruta__tip {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    margin: 0;
+    font-style: italic;
+  }
+
+  /* ── Aparcamiento callout ────────────────────────────────────────────────── */
+  .guia-aparcamiento {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg, 12px);
+    padding: var(--sp-6);
+    max-width: 70ch;
+  }
+
+  .guia-aparcamiento h3 {
+    font-size: var(--text-lg);
+    font-weight: var(--fw-semibold);
+    color: var(--text-base);
+    margin-bottom: var(--sp-2);
+  }
+
+  .guia-aparcamiento p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  /* ── Consejos ────────────────────────────────────────────────────────────── */
+  .guia-consejos {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--sp-5);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+  }
+
+  .guia-consejo {
+    display: flex;
+    gap: var(--sp-4);
+    background: var(--card-bg);
+    border-radius: var(--radius-lg, 12px);
+    box-shadow: var(--card-shadow);
+    padding: var(--sp-5);
+    align-items: flex-start;
+    transition: box-shadow 0.2s;
+  }
+
+  .guia-consejo:hover {
+    box-shadow: var(--card-shadow-hover);
+  }
+
+  .guia-consejo__icon {
+    flex-shrink: 0;
+    color: var(--accent);
+    margin-top: 2px;
+  }
+
+  .guia-consejo__title {
+    font-size: var(--text-base);
+    font-weight: var(--fw-semibold);
+    color: var(--text-base);
+    margin: 0 0 var(--sp-2);
+  }
+
+  .guia-consejo__text {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  /* ── CTA final ───────────────────────────────────────────────────────────── */
+  .guia-cta-section {
+    background-color: var(--bg-dark);
+    padding-block: var(--sp-20);
+  }
+
+  .guia-cta {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--sp-5);
+  }
+
+  .guia-cta__headline {
+    font-family: var(--font-serif);
+    font-size: clamp(var(--text-3xl), 4vw, var(--text-4xl));
+    font-weight: var(--fw-bold);
+    color: var(--text-on-dark);
+    letter-spacing: var(--tracking-tight);
+    max-width: 20ch;
+  }
+
+  .guia-cta__lead {
+    font-size: var(--text-lg);
+    color: var(--text-on-dark-muted);
+    max-width: 48ch;
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ── Reveal animation ────────────────────────────────────────────────────── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>

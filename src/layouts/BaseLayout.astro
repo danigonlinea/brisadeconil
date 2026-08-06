@@ -15,6 +15,11 @@ interface Props {
   canonicalUrl?: string;
   /** Inject the LodgingBusiness structured data (home only). */
   lodgingSchema?: boolean;
+  /**
+   * Additional JSON-LD schema objects to inject in <head>.
+   * Pass an array of plain objects; each gets its own <script type="application/ld+json">.
+   */
+  extraSchemas?: object[];
 }
 
 const {
@@ -23,6 +28,7 @@ const {
   ogImage = content.meta.ogImage,
   canonicalUrl,
   lodgingSchema = false,
+  extraSchemas = [],
 } = Astro.props;
 
 const siteUrl = import.meta.env.SITE ?? 'https://www.brisadeconil.com';
@@ -110,6 +116,11 @@ const lodgingSchemaData = {
     {lodgingSchema && (
       <script type="application/ld+json" set:html={JSON.stringify(lodgingSchemaData)} />
     )}
+
+    {/* Extra schemas — injected per-page (e.g. TouristDestination, Article). */}
+    {extraSchemas.map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
