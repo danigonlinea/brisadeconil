@@ -77,6 +77,18 @@ const lodgingSchemaData = {
   amenityFeature: amenityFeatures,
   cancellationPolicy,
 };
+
+const faqSchemaData = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: content.faq.items
+    .filter((item) => !item.pending)
+    .map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a },
+    })),
+};
 ---
 
 <!doctype html>
@@ -110,6 +122,9 @@ const lodgingSchemaData = {
     {lodgingSchema && (
       <script type="application/ld+json" set:html={JSON.stringify(lodgingSchemaData)} />
     )}
+
+    {/* Schema.org — FAQPage (answer engines). */}
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchemaData)} />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
