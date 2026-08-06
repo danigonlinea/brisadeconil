@@ -8,7 +8,7 @@ Guía canónica para cualquier agente de IA (Codex, Cursor, Claude Code, etc.) q
 
 ## 1. Qué es este proyecto
 
-Landing page estática del apartamento vacacional **Brisa de Conil** (Conil de la Frontera, Cádiz). Una sola página principal (`src/pages/index.astro`) + páginas legales (`aviso-legal`, `politica-cookies`, `politica-privacidad`) + un endpoint de API (`src/pages/api/contact.ts`). Se publica en GitHub Pages desde la rama `main`.
+Landing page estática del apartamento vacacional **Brisa de Conil** (Conil de la Frontera, Cádiz). Una sola página principal (`src/pages/index.astro`) + páginas legales (`aviso-legal`, `politica-cookies`, `politica-privacidad`). Se publica en GitHub Pages desde la rama `main`.
 
 ### Stack
 
@@ -66,11 +66,10 @@ src/
 ├── layouts/
 │   └── BaseLayout.astro # meta/SEO, schema.org, dark theme, estilos globales, i18n script
 ├── pages/
-│   ├── index.astro      # página principal (ensambla las secciones)
+│   ├── index.astro      # Página principal — ensambla secciones
 │   ├── aviso-legal.astro
 │   ├── politica-cookies.astro
-│   ├── politica-privacidad.astro
-│   └── api/contact.ts   # endpoint POST del formulario → Web3Forms
+│   └── politica-privacidad.astro
 └── styles/
     ├── global.css        # design system completo (tokens, light/dark, componentes)
     └── gallery.css       # estilos de PhotoSwipe
@@ -98,7 +97,7 @@ Estas reglas son **obligatorias**; romperlas rompe el build o el flujo de conten
 - La cuadrícula solo sirve hasta 1600px; el lightbox hasta 2000px. No sirvas los multi-MB originales al navegador.
 
 ### Seguridad
-- **Nunca pongas secretos en código cliente.** El formulario postea a `/api/contact` (server-side), que usa `process.env.WEB3FORMS_ACCESS_KEY`. La key pública `PUBLIC_WEB3FORMS_KEY` es la única que puede ir al cliente.
+- **Nunca pongas secretos en código cliente.** El formulario postea a Web3Forms directamente (eliminada la API server-side `/api/contact`). `PUBLIC_WEB3FORMS_KEY` es la única key permitida en cliente. Nunca commitees `.env`.
 - **Nunca commitees `.env`** ni claves reales. `.env` está en `.gitignore`.
 - Cuidado con `set:html`: se usa para insertar iconos SVG. El README tiene pendiente reemplazarlo por componentes SVG. Si tocas ese markup, prefiere imports/components SVG sobre cadenas HTML.
 
@@ -149,7 +148,6 @@ Para **quitar** una foto: elimina el original, quita la entrada de `GALLERY_ITEM
 | Variable                | Ámbito  | Dónde se usa                        | Notas                                                          |
 | ----------------------- | ------- | ----------------------------------- | -------------------------------------------------------------- |
 | `PUBLIC_WEB3FORMS_KEY`  | cliente | (legacy / `.env.example`)           | Key pública de Web3Forms; pública-segura                       |
-| `WEB3FORMS_ACCESS_KEY`  | server  | `src/pages/api/contact.ts`          | Server-only. **NUNCA** en código cliente.                      |
 | `WEB3FORMS_KEY`         | CI      | `.github/workflows/deploy.yml`      | GitHub Secret inyectado como `PUBLIC_WEB3FORMS_KEY` en el build |
 
 Para desarrollo local: copia `.env.example` → `.env` y rellena la key. Para CI/despliegue, define el GitHub Secret `WEB3FORMS_KEY` (Settings → Secrets and variables → Actions).
@@ -184,12 +182,12 @@ Antes de marcar una tarea como hecha, verifica:
 Está pendiente (no lo asumas resuelto):
 
 - **CSP y cabeceras** de seguridad en el hosting.
-- **Rate-limiting / anti-bot** en `/api/contact` (honeypot, reCAPTCHA o contador por IP).
+- **Implementar anti-spam del formulario (honeypot `_gotcha` activo; evaluar hCaptcha/botcheck de Web3Forms)**.
 - **Auditoría de XSS / sanitización** del HTML legítimo en `src/i18n/translations.ts`.
 - **`npm audit`** + Dependabot/Renovate.
 - **Reemplazar `set:html`** de iconos SVG por componentes/imports SVG.
 - **CI con checks** `tsc --noEmit`, ESLint y `npm audit`.
-- **Logging/monitorización** de `/api/contact`.
+- **Añadir monitorización de los envíos vía Web3Forms (dashboard / API de Web3Forms) y revisar periodicamente los fallos.**
 - Sustituir **testimonios placeholder** y crear **`public/og-image.jpg`** real (1200×630).
 
 Cuando completes un punto, márcalo en el TODO del repo y actualiza esta lista si procede.

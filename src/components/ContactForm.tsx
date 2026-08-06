@@ -1,16 +1,14 @@
 /**
  * ContactForm — React island.
  * Service: Web3Forms (https://web3forms.com)
- * Set WEB3FORMS_ACCESS_KEY in your environment or replace the placeholder below.
- * The access key is public-safe (it only controls where emails go, not sensitive data).
+ * Set PUBLIC_WEB3FORMS_KEY in your environment or replace the placeholder below.
+ * The key is public-safe (it only controls where emails go, not sensitive data).
+ * Includes honeypot `_gotcha` for anti-spam protection.
  */
 import { useEffect, useMemo, useState, useId } from "react";
 import type { Locale } from "../i18n/translations";
 import { t as translations } from "../i18n/translations";
 import { trackEvent } from "../lib/analytics";
-// The form now posts to a server-side endpoint (`/api/contact`) which
-// forwards the submission to Web3Forms using a server-only env var.
-// Do NOT include secret keys in client-side code.
 
 type FormState = "idle" | "sending" | "success" | "error";
 
@@ -197,23 +195,26 @@ export default function ContactForm() {
     trackEvent("form_submit", { form: "contact" });
     setState("sending");
     try {
-      // Post to the local server endpoint which holds the access key
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          subject: `Nueva consulta de ${form.name} — Brisa de Conil`,
-          from_name: "Brisa de Conil Web",
-          name: form.name,
-          email: form.email,
-          checkin: form.checkin || "No indicada",
-          checkout: form.checkout || "No indicada",
-          message: form.message || "(sin mensaje adicional)",
-        }),
-      });
+      // Post directly to Web3Forms (no server-side endpoint)
+      const res = await fetch(
+        `https://api.web3forms.com/submit?access_key=${process.env.PUBLIC_WEB3FORMS_KEY}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            subject: `Nueva consulta de ${form.name} — Brisa de Conil`,
+            from_name: "Brisa de Conil Web",
+            name: form.name,
+            email: form.email,
+            checkin: form.checkin || "No indicada",
+            checkout: form.checkout || "No indicada",
+            message: form.message || "(sin mensaje adicional)",
+            _gotcha: "", // Honeypot for anti-spam
+          }),
+        }
+      );
       const data = await res.json();
       if (res.ok && data.success) {
         trackEvent("generate_lead", { form: "contact", method: "Web3Forms" });

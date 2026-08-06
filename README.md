@@ -257,7 +257,7 @@ Aquí tienes una descripción práctica de cada tarea pendiente, con prioridad, 
     curl -I -H "Content-Security-Policy: default-src 'self'" http://localhost:4321
     ```
 
-- **Implementar rate-limiting/anti-bot en `/api/contact`** (Prioridad: Alta)
+- **Implementar anti-spam del formulario (honeypot `_gotcha` activo; evaluar hCaptcha/botcheck de Web3Forms)** (Prioridad: Alta)
   - Objetivo: evitar abuso del formulario (spambots, spam, solicitudes masivas).
   - Pasos: añadir un simple contador en memoria o usar paquete ligero (express-rate-limit, but for serverless use a token bucket tied to IP), añadir honeypot field y/o reCAPTCHA v3/v2.
   - Ejemplo rápido: limitar 5 envíos por IP en 1 hora; bloquear por 429.
@@ -283,22 +283,22 @@ Aquí tienes una descripción práctica de cada tarea pendiente, con prioridad, 
   - Pasos: añadir `dependabot.yml` o configurar Renovate en repo; revisar PRs en staging antes de merge.
 
 - **Documentar variables de entorno y pasos de despliegue en README** (Prioridad: Baja)
-  - Objetivo: dejar claro qué secretos y pasos necesita el deploy (ej. `WEB3FORMS_ACCESS_KEY`, GitHub Secrets).
+  - Objetivo: dejar claro qué secretos y pasos necesita el deploy (ej. `PUBLIC_WEB3FORMS_KEY`, GitHub Secrets).
   - Estado: añadida sección de plan; pendiente detallar valores exactos en `README` y `.env.example`.
 
 - **Revisión manual de traducciones que contienen HTML** (Prioridad: Baja)
   - Objetivo: revisar y sanear cualquier HTML legítimo en `src/i18n/translations.ts`.
   - Pasos: listar claves `*-html` o revisar `t` por contenido que incluya etiquetas; validar que la sanitización aplicada cumple con requerimientos.
 
-Si quieres, puedo empezar con cualquiera de estas tareas ahora: implementar rate-limiting en `/api/contact` (recomendado), añadir CI básico, o preparar PRs para dependencias.
+Si quieres, puedo empezar con cualquiera de estas tareas ahora: evaluar hCaptcha/botcheck de Web3Forms para el formulario (recomendado), añadir CI básico, o preparar PRs para dependencias.
 
 ## Plan de auditoría y siguientes pasos
 
 He dejado aquí el plan de trabajo para continuar la auditoría de seguridad y la limpieza de código. Lo puedes continuar mañana siguiendo los pasos numerados.
 
 1. Revisión y endurecimiento del endpoint de contacto
-   - Migrado el envío del formulario al endpoint server-side `/api/contact`.
-   - Próximo paso: implementar rate-limiting (IP + user-agent), honeypot y/o reCAPTCHA en el endpoint.
+   - Migrado el envío del formulario a Web3Forms (eliminada la API server-side `/api/contact`).
+   - Próximo paso: implementar anti-spam del formulario (honeypot `_gotcha` activo; evaluar hCaptcha/botcheck de Web3Forms).
 
 2. Auditoría de XSS / sanitización
    - Se añadió una sanitización básica en el script i18n para `data-i18n-html`.
@@ -319,10 +319,10 @@ He dejado aquí el plan de trabajo para continuar la auditoría de seguridad y l
    - Añadir en CI: `tsc --noEmit`, ESLint (con reglas para código muerto) y `npm audit` en la pipeline.
 
 7. Monitorización y observabilidad
-   - Añadir logging básico y monitorización para `/api/contact` (Sentry/Logflare/u otro) y alertas por errores/500.
+   - Añadir monitorización de los envíos vía Web3Forms (dashboard / API de Web3Forms) y revisar periodicamente los fallos.
 
 8. Documentación operativa
-   - Documentar variables de entorno necesarias: `WEB3FORMS_ACCESS_KEY`, y pasos para despliegue en GitHub Actions.
+   - Documentar variables de entorno necesarias: `PUBLIC_WEB3FORMS_KEY`, y pasos para despliegue en GitHub Actions.
 
 9. Tareas menores / seguimiento
    - Reemplazar `rel="noreferrer"` por `rel="noopener noreferrer"` en todos los enlaces externos (hecho en la política de cookies).

@@ -211,6 +211,13 @@ export const faq = {
     { q: 'Is there parking nearby?',  a: 'Yes. The Mercado de Abastos, right opposite, has municipal parking. In high season we also recommend the Recinto Ferial, which is free and has plenty of space.', pending: false },
     { q: 'How is the deposit handled?', a: 'The deposit is €150, returned within 24–48 hours of checkout once everything has been checked.', pending: false },
     { q: 'Do I need to bring towels and bed linen?', a: 'No. Towels and bed linen are included. You will also find detergent, softener, a hair dryer and basic kitchen supplies.', pending: false },
+    { q: 'Is there parking near the apartment?', a: 'Yes. The Mercado de Abastos, right opposite, has municipal parking. In high season we also recommend the Recinto Ferial, which is free and spacious. There is also Blue Zone (ORA) parking on nearby streets.', pending: false },
+    { q: 'What is the closest beach within walking distance?', a: 'Playa de los Bateles is the closest, about a 5-minute walk along the seafront. Playa de la Fontanilla, a bit quieter, is about a 10-minute walk.', pending: false },
+    { q: 'Is smoking allowed on the terrace/rooftop?', a: 'Smoking is not allowed in the apartment or on the communal rooftop.', pending: false },
+    { q: 'Are there supermarkets or grocery stores nearby?', a: 'Yes. The Mercado de Abastos is right opposite and the closest. There are also several supermarkets and grocery stores a few minutes\' walk from the centre.', pending: false },
+    { q: 'Do you accept last-minute bookings?', a: 'Yes, subject to availability. Check our available dates and we will get back to you as soon as possible.', pending: false },
+    { q: 'How do I get there from Jerez airport?', a: 'Jerez airport is about 40 km away. By car it takes approximately 40 minutes. You can also take a bus or taxi to Conil.', pending: false },
+    { q: 'Is the apartment accessible for people with reduced mobility?', a: 'The apartment is on the first floor with stair access, so it is not accessible for people with reduced mobility.', pending: false },
   ],
 };
 

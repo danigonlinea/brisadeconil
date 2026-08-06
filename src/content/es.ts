@@ -302,6 +302,41 @@ export const faq = {
       a: "No. Toallas y sábanas están incluidas y limpias. También encontrarás detergente, suavizante, secador de pelo y básicos de cocina (aceite, vinagre y servilletas).",
       pending: false,
     },
+    {
+      q: "¿Hay parking cerca del apartamento?",
+      a: "Sí. El Mercado de Abastos, justo frente al apartamento, tiene zona de aparcamiento municipal. En temporada alta también recomendamos el Recinto Ferial, gratuito y con mucha capacidad. Además hay Zona Azul (ORA) en las calles cercanas.",
+      pending: false,
+    },
+    {
+      q: "¿Cuál es la playa más cercana caminando?",
+      a: "La Playa de los Bateles es la más cercana, a unos 5 minutos caminando por el paseo marítimo. También está la Playa de la Fontanilla, un poco más tranquila, a unos 10 minutos.",
+      pending: false,
+    },
+    {
+      q: "¿Se puede fumar en la terraza/azotea?",
+      a: "No se permite fumar en el apartamento ni en la azotea comunitaria.",
+      pending: false,
+    },
+    {
+      q: "¿Hay supermercos o tiendas de alimentación cerca?",
+      a: "Sí. El Mercado de Abastos está justo enfrente y es el más cercano. También hay varios supermercados y tiendas de alimentación a pocos minutos caminando por el centro.",
+      pending: false,
+    },
+    {
+      q: "¿Admite reservas de última hora?",
+      a: "Sí, según disponibilidad. Consulta nuestras fechas disponibles y te responderemos lo antes posible.",
+      pending: false,
+    },
+    {
+      q: "¿Cómo se llega desde el aeropuerto de Jerez?",
+      a: "El aeropuerto de Jerez está a unos 40 km. En coche se tarda aproximadamente 40 minutos. También puedes tomar un autobús o taxi hasta Conil.",
+      pending: false,
+    },
+    {
+      q: "¿El apartamento es accesible para personas con movilidad reducida?",
+      a: "El apartamento está en primera planta con acceso por escalera, por lo que no es accesible para personas con movilidad reducida.",
+      pending: false,
+    },
   ],
 };
 

@@ -289,8 +289,43 @@ export const faq = {
       pending: false,
     },
     {
-      q: "Muss ich Handtücher mitbringen?",
-      a: "Nein. Handtücher und Bettwäsche sind inklusive. Du findest auch Waschmittel, Weichspüler, Haartrockner und Küchengrundausstattung.",
+      q: "Muss ich Handtücher und Bettwäsche mitbringen?",
+      a: "Nein. Handtücher und Bettwäsche sind inklusive. Du findest auch Waschmittel, Weichspüler, einen Föhn und Küchenbasics.",
+      pending: false,
+    },
+    {
+      q: "Gibt es Parkmöglichkeiten in der Nähe der Wohnung?",
+      a: "Ja. Der Mercado de Abastos direkt gegenüber hat städtisches Parken. In der Hochsaison empfehlen wir das Recinto Ferial (kostenlos). Es gibt auch Blaue Zone (ORA)-Parkplätze in den nahegelegenen Straßen.",
+      pending: false,
+    },
+    {
+      q: "Welcher ist der nächste Strand zu Fuß erreichbar?",
+      a: "Der Playa de los Bateles ist der nächste, etwa 5 Minuten zu Fuß entlang der Strandpromenade. Der Playa de la Fontanilla, etwas ruhiger, ist etwa 10 Minuten zu Fuß entfernt.",
+      pending: false,
+    },
+    {
+      q: "Ist Rauchen auf der Terrasse/Dachterrasse erlaubt?",
+      a: "Rauchen ist in der Wohnung und auf der gemeinschaftlichen Dachterrasse nicht erlaubt.",
+      pending: false,
+    },
+    {
+      q: "Gibt es Supermärkte oder Lebensmittelgeschäfte in der Nähe?",
+      a: "Ja. Der Mercado de Abastos ist direkt gegenüber und der nächste. Es gibt auch mehrere Supermärkte und Lebensmittelgeschäfte nur wenige Minuten zu Fuß vom Zentrum entfernt.",
+      pending: false,
+    },
+    {
+      q: "Werden Last-Minute-Buchungen akzeptiert?",
+      a: "Ja, je nach Verfügbarkeit. Schau dir unsere verfügbaren Daten an und wir melden uns so schnell wie möglich bei dir.",
+      pending: false,
+    },
+    {
+      q: "Wie komme ich vom Flughafen Jerez dorthin?",
+      a: "Der Flughafen Jerez ist etwa 40 km entfernt. Mit dem Auto dauert es etwa 40 Minuten. Du kannst auch einen Bus oder ein Taxi nach Conil nehmen.",
+      pending: false,
+    },
+    {
+      q: "Ist die Wohnung für Menschen mit eingeschränkter Mobilität zugänglich?",
+      a: "Die Wohnung liegt im ersten Stock mit Treppenzugang, daher ist sie für Menschen mit eingeschränkter Mobilität nicht zugänglich.",
       pending: false,
     },
   ],
