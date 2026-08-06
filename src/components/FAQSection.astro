@@ -5,19 +5,6 @@
 import FAQAccordion from './FAQAccordion';
 import * as content from '../content/index';
 const { faq } = content;
-
-// FAQPage structured data for answer engines (generated from content).
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.items
-    .filter((item) => !item.pending)
-    .map((item) => ({
-      '@type': 'Question',
-      name: item.q,
-      acceptedAnswer: { '@type': 'Answer', text: item.a },
-    })),
-};
 ---
 
 <section class="section" id="faq" aria-labelledby="faq-title">
@@ -32,9 +19,6 @@ const faqSchema = {
       <FAQAccordion items={faq.items} client:visible />
     </div>
   </div>
-
-  <!-- Schema.org — FAQPage (answer engines) -->
-  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 </section>
 
 <style>
