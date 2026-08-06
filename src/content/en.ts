@@ -167,7 +167,7 @@ export const rules = {
     { icon: 'clock',         text: 'Check-in is from 16:00 and check-out is between 11:30 and 12:00.' },
     { icon: 'paw',           text: 'Pets are not allowed in the apartment.' },
     { icon: 'cigarette-off', text: 'Smoking is not allowed in the apartment.' },
-    { icon: 'volume-x',      text: 'Please respect neighbours' rest, especially at night.' },
+    { icon: 'volume-x',      text: 'Please respect neighbours rest, especially at night.' },
   ],
 };
 

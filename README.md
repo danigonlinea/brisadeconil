@@ -143,6 +143,32 @@ La web quedará en: `https://danigonlinea.github.io/brisadeconil/`
 
 ---
 
+## Google Search Console
+
+1) Verifica la propiedad: https://search.google.com/search-console
+   (propiedad https://www.brisadeconil.com/ — DNS TXT o archivo HTML).
+2) Envía el sitemap: https://www.brisadeconil.com/sitemap-index.xml
+3) Solicita indexación de: https://www.brisadeconil.com/ ,
+   https://www.brisadeconil.com/aviso-legal ,
+   https://www.brisadeconil.com/politica-privacidad ,
+   https://www.brisadeconil.com/politica-cookies
+
+---
+
+---
+
+## Google Search Console
+
+1) Verifica la propiedad: https://search.google.com/search-console
+   (propiedad https://www.brisadeconil.com/ — DNS TXT o archivo HTML).
+2) Envía el sitemap: https://www.brisadeconil.com/sitemap-index.xml
+3) Solicita indexación de: https://www.brisadeconil.com/ ,
+   https://www.brisadeconil.com/aviso-legal ,
+   https://www.brisadeconil.com/politica-privacidad ,
+   https://www.brisadeconil.com/politica-cookies
+
+---
+
 ## Migrar a dominio propio
 
 Cuando compres el dominio (ej. `brisadeconil.com`):
