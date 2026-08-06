@@ -719,19 +719,19 @@ export const t: Record<string, Record<Locale, string>> = {
     de: "Wenn du später ankommst, stimmen wir die Zugangsdaten in deiner Buchungsbestätigung ab.",
   },
   "faq.item.5.q": {
-    es: "¿Cuánta gente puede alojarse?",
-    en: "How many guests can stay?",
-    de: "Wie viele Personen können übernachten?",
+    es: "¿Cómo se accede al apartamento?",
+    en: "How do you access the apartment?",
+    de: "Wie gelangt man zur Wohnung?",
   },
   "faq.item.5.a": {
-    es: "El apartamento tiene capacidad para 3 personas: 2 en la cama de matrimonio del dormitorio y 1 en el sofá cama chaise-longue del salón.",
-    en: "The apartment sleeps 3: 2 in the double bed and 1 on the chaise-longue sofa bed in the living room.",
-    de: "Die Wohnung schläft 3: 2 im Doppelbett und 1 auf dem Schlafsofa im Wohnzimmer.",
+    es: "El apartamento está en primera planta, accediendo por escalera desde la calle. Llega, sube el equipaje y ya estás de vacaciones.",
+    en: "The apartment is on the first floor, accessed by stairs from the street. Arrive, carry your bags up and you're already on holiday.",
+    de: "Die Wohnung liegt im ersten Stock, erreichbar über eine Treppe von der Straße. Ankommen, Koffer hochtragen und Urlaub genießen.",
   },
   "faq.item.6.q": {
     es: "¿Hay aparcamiento cerca?",
-    en: "Is there parking nearby?",
-    de: "Gibt es Parkmöglichkeiten in der Nähe?",
+    en: "Is there municipal parking nearby?",
+    de: "Gibt es städtisches Parken in der Nähe?",
   },
   "faq.item.6.a": {
     es: "Sí. El Mercado de Abastos, justo frente al apartamento, tiene zona de aparcamiento municipal. En temporada alta también recomendamos el Recinto Ferial, gratuito y con mucha capacidad.",
@@ -739,21 +739,71 @@ export const t: Record<string, Record<Locale, string>> = {
     de: "Ja. Der Mercado de Abastos direkt gegenüber hat städtisches Parken. In der Hochsaison empfehlen wir das Recinto Ferial, das kostenlos ist und viel Platz bietet.",
   },
   "faq.item.7.q": {
+    es: "¿Hay parking cerca?",
+    en: "Are there private parking areas nearby?",
+    de: "Gibt es private Parkzonen in der Nähe?",
+  },
+  "faq.item.7.a": {
+    es: "Sí. Además del aparcamiento municipal del Mercado de Abastos frente al apartamento, hay varias zonas de parking en los alrededores. En temporada alta recomendamos el Recinto Ferial, gratuito y con amplia capacidad.",
+    en: "Yes. In addition to the municipal parking at Mercado de Abastos opposite the apartment, there are several private parking areas nearby. In high season we recommend the Recinto Ferial, which is free and spacious.",
+    de: "Ja. Zusätzlich zum städtischen Parkplatz am Mercado de Abastos gegenüber gibt es mehrere private Parkzonen in der Nähe. In der Hochsaison empfehlen wir das Recinto Ferial, das kostenlos und geräumig ist.",
+  },
+  "faq.item.8.q": {
+    es: "¿Cuál es la playa más cercana caminando?",
+    en: "What is the closest beach walking distance?",
+    de: "Welcher Strand ist am nächsten zu Fuß erreichbar?",
+  },
+  "faq.item.8.a": {
+    es: "La Playa de los Bateles es la más cercana, a unos 5 minutos caminando por el paseo marítimo. Es la playa principal del centro, con bandera azul y todos los servicios.",
+    en: "Playa de los Bateles is the closest, about a 5-minute walk along the seafront promenade. It's the main beach in the centre, with a Blue Flag and all amenities.",
+    de: "Die Playa de los Bateles ist die nächste, etwa 5 Minuten zu Fuß entlang der Strandpromenade. Es ist der Hauptstrand im Zentrum mit Blauer Flagge und allen Einrichtungen.",
+  },
+  "faq.item.9.q": {
+    es: "¿Se puede fumar en la terraza?",
+    en: "Is smoking allowed on the terrace?",
+    de: "Ist Rauchen auf der Terrasse erlaubt?",
+  },
+  "faq.item.9.a": {
+    es: "No se permite fumar en el apartamento, incluida la terraza. Es una norma de la casa para garantizar la comodidad de todos los huéspedes.",
+    en: "Smoking is not allowed in the apartment, including the terrace. This is a house rule to ensure comfort for all guests.",
+    de: "Rauchen ist in der Wohnung nicht erlaubt, einschließlich der Terrasse. Dies ist eine Hausregel, um den Komfort aller Gäste zu gewährleisten.",
+  },
+  "faq.item.10.q": {
+    es: "¿Hay supermercados cerca?",
+    en: "Are there supermarkets nearby?",
+    de: "Gibt es Supermärkte in der Nähe?",
+  },
+  "faq.item.10.a": {
+    es: "Sí. El Mercado de Abastos está justo frente al apartamento y tiene puestos de alimentación fresca. También hay supermercados a pocos minutos caminando del centro.",
+    en: "Yes. The Mercado de Abastos is right opposite the apartment with fresh food stalls. There are also supermarkets a short walk from the town centre.",
+    de: "Ja. Der Mercado de Abastos ist direkt gegenüber der Wohnung mit frischen Lebensmitteln. Es gibt auch Supermärkte einen kurzen Spaziergang vom Stadtzentrum entfernt.",
+  },
+  "faq.item.11.q": {
+    es: "¿Admite reservas de última hora?",
+    en: "Do you accept last-minute bookings?",
+    de: "Werden Last-Minute-Buchungen akzeptiert?",
+  },
+  "faq.item.11.a": {
+    es: "Sí, si hay disponibilidad. Consulta tus fechas y te respondemos lo antes posible. En temporada alta es recomendable reservar con antelación.",
+    en: "Yes, if availability allows. Check your dates and we'll respond as soon as possible. In high season it's recommended to book in advance.",
+    de: "Ja, wenn Verfügbarkeit vorhanden ist. Nennen Sie Ihre Daten und wir melden uns so schnell wie möglich. In der Hochsaison ist eine frühzeitige Buchung empfehlenswert.",
+  },
+  "faq.item.12.q": {
     es: "¿Cómo se paga la fianza?",
     en: "How is the deposit handled?",
     de: "Wie wird die Kaution gehandhabt?",
   },
-  "faq.item.7.a": {
+  "faq.item.12.a": {
     es: "La fianza es de 150 € y se devuelve entre 24 y 48 horas después de tu salida, una vez verificado que todo está en orden.",
     en: "The deposit is €150, returned within 24–48 hours of checkout once everything has been checked.",
     de: "Die Kaution beträgt 150 € und wird 24–48 Stunden nach dem Auszug zurückgezahlt, sobald alles geprüft wurde.",
   },
-  "faq.item.8.q": {
+  "faq.item.13.q": {
     es: "¿Hay que llevar toallas y sábanas?",
     en: "Do I need to bring towels and bed linen?",
     de: "Muss ich Handtücher und Bettwäsche mitbringen?",
   },
-  "faq.item.8.a": {
+  "faq.item.13.a": {
     es: "No. Toallas y sábanas están incluidas y limpias. También encontrarás detergente, suavizante, secador de pelo y básicos de cocina (aceite, vinagre y servilletas).",
     en: "No. Towels and bed linen are included. You will also find detergent, softener, a hair dryer and basic kitchen supplies.",
     de: "Nein. Handtücher und Bettwäsche sind inklusive. Du findest auch Waschmittel, Weichspüler, einen Föhn und Küchenbasics.",
