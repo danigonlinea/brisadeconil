@@ -13,12 +13,6 @@ export default defineConfig({
   base: "/",
   integrations: [
     react(),
-    // Sitemap options: freshness + priority signals for crawlers and answer engines.
-    sitemap({
-      lastmod: new Date(),
-      changefreq: "monthly",
-      priority: 0.7,
-    }),
   ],
   image: {
     // Use Astro's built-in image optimization

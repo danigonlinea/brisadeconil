@@ -27,7 +27,12 @@ const {
 
 const siteUrl = import.meta.env.SITE ?? 'https://www.brisadeconil.com';
 const base = import.meta.env.BASE_URL ?? '/';
-const canonical = canonicalUrl ?? siteUrl;
+// Canonical absoluta: si se pasa canonicalUrl (relativa o absoluta) se resuelve
+// contra el site; si no, se deriva del path de la propia página para que cada
+// página se canonalice a sí misma (evita duplicados y caídas en home).
+const canonical = canonicalUrl
+  ? new URL(canonicalUrl, siteUrl).href
+  : new URL(Astro.url.pathname, siteUrl).href;
 const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
 const cookiesPage = `${base.replace(/\/$/, '')}/politica-cookies`;
 
@@ -90,6 +95,14 @@ const lodgingSchemaData = {
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+
+    <!-- hreflang — sitio monolingüe que sirve español en "/".
+         Cuando el PR i18n cree rutas /en y /de (rama danigonlinea/feat-i18n-en-de),
+         descomentar las líneas y ajustar rutas por página si aplica. -->
+    <link rel="alternate" hreflang="x-default" href={canonical} />
+    <link rel="alternate" hreflang="es" href={canonical} />
+    <!-- <link rel="alternate" hreflang="en" href="https://www.brisadeconil.com/en" /> -->
+    <!-- <link rel="alternate" hreflang="de" href="https://www.brisadeconil.com/de" /> -->
 
     <!-- Open Graph -->
     <meta property="og:type"        content="website" />
