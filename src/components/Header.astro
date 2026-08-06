@@ -1,10 +1,16 @@
 ---
 /**
  * Header — sticky, transparent over hero, solid on scroll.
- * All text has data-i18n attributes for client-side translation.
  */
-import * as content from '../content/index';
+import { getContent, type Locale } from '../content/index';
 import LanguageSwitcher from './LanguageSwitcher';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'es' } = Astro.props;
+const content = await getContent(locale);
 const { nav } = content;
 const NAV_TRANSLATION_KEYS: Record<string, string> = {
   '#apartamento': 'nav.link.apartamento',
@@ -50,7 +56,7 @@ function getNavLabelKey(href: string) {
     <!-- Right controls -->
     <div class="header-controls">
       <!-- Language switcher island -->
-      <LanguageSwitcher client:only="react" />
+      <LanguageSwitcher locale={locale} client:only="react" />
 
       <!-- Dark mode toggle -->
       <button id="theme-toggle" class="theme-toggle" aria-label={nav.toggleDark} data-i18n-aria="nav.toggle-dark" type="button">

@@ -4,7 +4,14 @@
  * Brief: visually secondary, doesn't compete with conversion sections.
  * Uses a collapsible accordion-style with 3 categories.
  */
-import * as content from '../content/index';
+import { getContent, type Locale } from '../content/index';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'es' } = Astro.props;
+const content = await getContent(locale);
 const { conil } = content;
 
 const categoryIcons: Record<string, string> = {

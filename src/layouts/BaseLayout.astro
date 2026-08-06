@@ -1,11 +1,11 @@
 ---
 /**
  * BaseLayout — root layout for all pages.
- * Handles: meta/SEO, dark-theme script, global styles, skip link, i18n script.
+ * Handles: per-locale meta/SEO, dark-theme script, global styles, skip link, hreflang.
  */
 import '../styles/global.css';
-import * as content from '../content/index';
-import { buildI18nScript } from '../i18n/i18n-script';
+import { getContent, type Content } from '../content/index';
+import { SUPPORTED_LOCALES, type Locale } from '../i18n/translations';
 import galleryManifest from '../data/gallery-manifest';
 
 interface Props {
@@ -13,23 +13,41 @@ interface Props {
   description?: string;
   ogImage?: string;
   canonicalUrl?: string;
+  locale?: Locale;
+  /** hreflang alternates for this page. Defaults to the three localized landing URLs. */
+  alternates?: { code: Locale; url: string }[];
   /** Inject the LodgingBusiness structured data (home only). */
   lodgingSchema?: boolean;
 }
 
 const {
-  title = content.meta.title,
-  description = content.meta.description,
-  ogImage = content.meta.ogImage,
+  title,
+  description,
+  ogImage,
   canonicalUrl,
+  locale = 'es',
+  alternates,
   lodgingSchema = false,
 } = Astro.props;
 
+const content: Content = await getContent(locale);
+
+const resolvedTitle = title ?? content.meta.title;
+const resolvedDescription = description ?? content.meta.description;
+const resolvedOgImage = ogImage ?? content.meta.ogImage;
+
 const siteUrl = import.meta.env.SITE ?? 'https://www.brisadeconil.com';
 const base = import.meta.env.BASE_URL ?? '/';
-const canonical = canonicalUrl ?? siteUrl;
-const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
-const cookiesPage = `${base.replace(/\/$/, '')}/politica-cookies`;
+const baseNoSlash = base.replace(/\/$/, '');
+const localizedUrl = (code: Locale) => `${siteUrl}${baseNoSlash}/${code}/`;
+const canonical = canonicalUrl ?? localizedUrl(locale);
+const ogImageUrl = resolvedOgImage.startsWith('http') ? resolvedOgImage : `${siteUrl}${resolvedOgImage}`;
+const cookiesPage = `${baseNoSlash}/politica-cookies`;
+
+// hreflang alternates — localized URLs of this page, plus x-default → default locale.
+const hreflangLinks: { code: Locale; url: string }[] =
+  alternates ?? SUPPORTED_LOCALES.map((code) => ({ code, url: localizedUrl(code) }));
+const xDefaultUrl = hreflangLinks.find((h) => h.code === 'es')?.url ?? hreflangLinks[0]?.url ?? siteUrl;
 
 // Structured data — LodgingBusiness (home only). Enriched for answer engines.
 const galleryPhotos = Object.keys(galleryManifest).map(
@@ -48,7 +66,7 @@ const lodgingSchemaData = {
   '@context': 'https://schema.org',
   '@type': 'LodgingBusiness',
   name: 'Brisa de Conil',
-  description,
+  description: resolvedDescription,
   url: canonical,
   image: galleryPhotos,
   photo: galleryPhotos,
@@ -80,30 +98,36 @@ const lodgingSchemaData = {
 ---
 
 <!doctype html>
-<html lang="es" data-theme="light">
+<html lang={locale} data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
 
     <!-- Primary meta -->
-    <title>{title}</title>
-    <meta name="description" content={description} />
+    <title>{resolvedTitle}</title>
+    <meta name="description" content={resolvedDescription} />
     <link rel="canonical" href={canonical} />
+
+    <!-- hreflang — localized alternates plus x-default for the default locale -->
+    {hreflangLinks.map((h) => (
+      <link rel="alternate" hreflang={h.code} href={h.url} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={xDefaultUrl} />
 
     <!-- Open Graph -->
     <meta property="og:type"        content="website" />
     <meta property="og:url"         content={canonical} />
-    <meta property="og:title"       content={title} />
-    <meta property="og:description" content={description} />
+    <meta property="og:title"       content={resolvedTitle} />
+    <meta property="og:description" content={resolvedDescription} />
     <meta property="og:image"       content={ogImageUrl} />
     <meta property="og:locale"      content={content.meta.locale} />
     <meta property="og:site_name"   content="Brisa de Conil" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card"        content="summary_large_image" />
-    <meta name="twitter:title"       content={title} />
-    <meta name="twitter:description" content={description} />
+    <meta name="twitter:title"       content={resolvedTitle} />
+    <meta name="twitter:description" content={resolvedDescription} />
     <meta name="twitter:image"       content={ogImageUrl} />
 
     {/* Schema.org — LodgingBusiness (home only). Enriched for answer engines. */}
@@ -214,8 +238,23 @@ const lodgingSchemaData = {
       })();
     </script>
 
-    <!-- Inline i18n script — detects locale and translates data-i18n elements before first paint -->
-    <script is:inline set:html={buildI18nScript()} />
+    <!-- Inline locale shim — exposes window.__brisaGetLocale/__brisaSetLocale so
+         the React islands can read the server-rendered locale. The document's
+         <html lang> is already set server-side per route; we never swap DOM text. -->
+    <script is:inline>
+      (function () {
+        var LOCALE_KEY = 'brisa-locale';
+        var SUPPORTED = ['es', 'en', 'de'];
+        window.__brisaGetLocale = function () {
+          return document.documentElement.getAttribute('lang') || 'es';
+        };
+        window.__brisaSetLocale = function (locale) {
+          if (SUPPORTED.indexOf(locale) === -1) return;
+          try { localStorage.setItem(LOCALE_KEY, locale); } catch (e) {}
+          document.documentElement.setAttribute('lang', locale);
+        };
+      })();
+    </script>
   </head>
   <body>
     <!-- Skip navigation for keyboard users -->

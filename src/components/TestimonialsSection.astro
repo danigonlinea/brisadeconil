@@ -3,7 +3,14 @@
  * TestimonialsSection — placeholders clearly marked.
  * Replace placeholder text with real reviews before publishing.
  */
-import * as content from '../content/index';
+import { getContent, type Locale } from '../content/index';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'es' } = Astro.props;
+const content = await getContent(locale);
 const { testimonials } = content;
 ---
 

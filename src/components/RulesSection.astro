@@ -3,7 +3,14 @@
  * RulesSection — house rules & deposit.
  * Tone: warm, not legal fine print. No aggressive formatting.
  */
-import * as content from '../content/index';
+import { getContent, type Locale } from '../content/index';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'es' } = Astro.props;
+const content = await getContent(locale);
 const { rules } = content;
 
 const ruleIcons: Record<string, string> = {
@@ -65,8 +72,6 @@ const ruleIcons: Record<string, string> = {
           });
         })()}
         </ul>
-
-        <p class="rules-placeholder-note reveal reveal-delay-2" data-i18n="rules.placeholder-note">{rules.placeholderNote}</p>
       </div>
     </div>
   </div>

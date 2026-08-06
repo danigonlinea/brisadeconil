@@ -1,58 +1,55 @@
 ---
 /**
- * index.astro — Main landing page.
- * All sections assembled in brief order (section 4 of the brief).
+ * index.astro (root) — Detect the visitor's preferred browser locale and
+ * redirect to the matching localized route (/es, /en or /de).
+ *
+ * Order: an explicit choice (localStorage 'brisa-locale', set by the
+ * LanguageSwitcher) wins; otherwise we fall back to navigator.language;
+ * finally Spanish (the default locale).
  */
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import GallerySection from '../components/GallerySection.astro';
-import ApartmentSection from '../components/ApartmentSection.astro';
-import WelcomeSection from '../components/WelcomeSection.astro';
-import LocationSection from '../components/LocationSection.astro';
-import ConilSection from '../components/ConilSection.astro';
-import RulesSection from '../components/RulesSection.astro';
-import ContactSection from '../components/ContactSection.astro';
-import FAQSection from '../components/FAQSection.astro';
-import TestimonialsSection from '../components/TestimonialsSection.astro';
-import Footer from '../components/Footer.astro';
-import '../styles/gallery.css';
+const siteUrl = import.meta.env.SITE ?? 'https://www.brisadeconil.com';
+const esUrl = `${siteUrl}/es/`;
+const enUrl = `${siteUrl}/en/`;
+const deUrl = `${siteUrl}/de/`;
 ---
 
-<BaseLayout lodgingSchema>
-  <Header />
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Brisa de Conil</title>
+    <link rel="canonical" href={esUrl} />
+    <link rel="alternate" hreflang="es" href={esUrl} />
+    <link rel="alternate" hreflang="en" href={enUrl} />
+    <link rel="alternate" hreflang="de" href={deUrl} />
+    <link rel="alternate" hreflang="x-default" href={esUrl} />
 
-  <main id="main-content" tabindex="-1">
-    <!-- 1. Hero -->
-    <Hero />
-
-    <!-- 2. Gallery -->
-    <GallerySection />
-
-    <!-- 3. El apartamento + equipamiento -->
-    <ApartmentSection />
-
-    <!-- 4. Como en casa desde el primer día -->
-    <WelcomeSection />
-
-    <!-- 6. Ubicación y aparcamiento -->
-    <LocationSection />
-
-    <!-- 8. Normas de la casa y fianza -->
-    <RulesSection />
-
-    <!-- 9. Formulario de contacto -->
-    <ContactSection />
-
-    <!-- 10. FAQ -->
-    <FAQSection />
-
-    <!-- 11. Qué hacer en Conil (secondary / quieter) -->
-    <ConilSection />
-
-    <!-- 12. Testimonios -->
-    <TestimonialsSection />
-  </main>
-
-  <Footer />
-</BaseLayout>
+    <script is:inline>
+      (function () {
+        var LOCALE_KEY = 'brisa-locale';
+        var saved = null;
+        try { saved = localStorage.getItem(LOCALE_KEY); } catch (e) {}
+        var lang = (navigator.language || '').toLowerCase();
+        var target;
+        if (saved === 'es' || saved === 'en' || saved === 'de') {
+          target = saved;
+        } else if (lang.indexOf('de') === 0) {
+          target = 'de';
+        } else if (lang.indexOf('en') === 0) {
+          target = 'en';
+        } else {
+          target = 'es';
+        }
+        location.replace('/' + target + '/');
+      })();
+    </script>
+  </head>
+  <body>
+    <noscript>
+      <meta http-equiv="refresh" content="0; url=/es/" />
+      <p><a href="/es/">Brisa de Conil</a></p>
+    </noscript>
+  </body>
+</html>

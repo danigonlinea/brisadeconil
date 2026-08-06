@@ -4,7 +4,14 @@
  * This is a differentiation section, not a list of appliances.
  * Give it visual prominence: dark background, large serif heading, generous spacing.
  */
-import * as content from '../content/index';
+import { getContent, type Locale } from '../content/index';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'es' } = Astro.props;
+const content = await getContent(locale);
 const { welcome } = content;
 
 const icons: Record<string, string> = {
@@ -27,14 +34,6 @@ const icons: Record<string, string> = {
             <span class="welcome-headline-line">{line}</span>
           ))}
         </h2>
-        {welcome.lead && (
-          <p class="welcome-lead" data-i18n="welcome.lead">{welcome.lead}</p>
-        )}
-        {welcome.closing && (
-          <p class="welcome-closing">
-            <em data-i18n="welcome.closing">{welcome.closing}</em>
-          </p>
-        )}
       </div>
 
       <!-- Right: welcome items -->

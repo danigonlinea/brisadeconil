@@ -1,11 +1,21 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import type { Locale } from '../i18n/translations';
 
 const title = 'Política de privacidad – Brisa de Conil';
 const description = 'Política de privacidad del sitio web Brisa de Conil.';
+const siteUrl = import.meta.env.SITE ?? 'https://www.brisadeconil.com';
+const canonicalUrl = `${siteUrl}/politica-privacidad`;
+const alternates: { code: Locale; url: string }[] = [{ code: 'es', url: canonicalUrl }];
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout
+  title={title}
+  description={description}
+  locale="es"
+  canonicalUrl={canonicalUrl}
+  alternates={alternates}
+>
   <main id="main-content" tabindex="-1">
     <section class="legal-page container">
       <header class="legal-header">
