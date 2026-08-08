@@ -232,6 +232,34 @@
         color: var(--color-navy-900);
         line-height: 1.65;
       }
+
+      /* ── Print styles ── */
+      @media print {
+        @page {
+          size: 14cm 23cm;
+          margin: 0.3cm; /* bleed */
+        }
+
+        body {
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
+          background: white !important;
+          padding: 0 !important;
+        }
+
+        .poster {
+          margin: 0 !important;
+          box-shadow: none !important;
+          width: 14cm;
+          height: 23cm;
+        }
+
+        .poster-wifi,
+        .poster-rules {
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
+        }
+      }
     </style>
   </head>
   <body>
