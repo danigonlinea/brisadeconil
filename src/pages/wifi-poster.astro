@@ -176,6 +176,62 @@
         font-size: 9pt;
         color: var(--color-navy-700);
       }
+
+      /* ── Rules section ── */
+      .poster-rules {
+        background-color: var(--color-chalk-100);
+        border-radius: 8px;
+        padding: 0.5cm;
+        margin-bottom: 0.5cm;
+      }
+
+      .poster-rules-title {
+        font-family: var(--font-serif);
+        font-weight: 600;
+        font-size: 16pt;
+        color: var(--color-navy-900);
+        margin-bottom: 0.4cm;
+      }
+
+      .poster-rules-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25cm;
+      }
+
+      .poster-rule {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.3cm;
+        font-family: var(--font-sans);
+        font-weight: 400;
+        font-size: 10pt;
+        color: var(--color-navy-900);
+        line-height: 1.4;
+      }
+
+      .poster-rule-icon {
+        flex-shrink: 0;
+        font-size: 12pt;
+        line-height: 1.4;
+      }
+
+      /* ── Welcome section ── */
+      .poster-welcome {
+        text-align: center;
+        padding-top: 0.3cm;
+        border-top: 2px solid var(--color-teal-500);
+      }
+
+      .poster-welcome-text {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-weight: 400;
+        font-size: 12pt;
+        color: var(--color-navy-900);
+        line-height: 1.65;
+      }
     </style>
   </head>
   <body>
@@ -208,6 +264,41 @@
             <p class="poster-wifi-hint">Escanea el código para conectarte</p>
           </div>
         </div>
+      </section>
+
+      <!-- Rules -->
+      <section class="poster-rules">
+        <h2 class="poster-rules-title">Normas de la casa</h2>
+        <ul class="poster-rules-list">
+          <li class="poster-rule">
+            <span class="poster-rule-icon">🗑️</span>
+            <span>Saca la basura antes de irte.</span>
+          </li>
+          <li class="poster-rule">
+            <span class="poster-rule-icon">🕐</span>
+            <span>Check-in a partir de las 16:00 y salida entre las 11:30 y las 12:00.</span>
+          </li>
+          <li class="poster-rule">
+            <span class="poster-rule-icon">🐾</span>
+            <span>No se admiten mascotas en el apartamento.</span>
+          </li>
+          <li class="poster-rule">
+            <span class="poster-rule-icon">🚭</span>
+            <span>No se permite fumar en el apartamento.</span>
+          </li>
+          <li class="poster-rule">
+            <span class="poster-rule-icon">🔇</span>
+            <span>Ruidos: respeta el descanso de los vecinos, especialmente en horario nocturno.</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Welcome / closing -->
+      <section class="poster-welcome">
+        <p class="poster-welcome-text">
+          Que disfrutéis de la luz, el mar y los atardeceres de Conil.<br />
+          ¡Bienvenidos a vuestra casa!
+        </p>
       </section>
     </main>
   </body>
