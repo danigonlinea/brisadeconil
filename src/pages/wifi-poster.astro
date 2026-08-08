@@ -27,6 +27,8 @@
         --color-chalk-200: #d8d1c4;
         --color-teal-500: #2aa598;
         --color-teal-600: #1d8a7e;
+        --bg-surface: #ffffff;
+        --screen-preview-bg: #e5e5e5;
         --font-serif: "Lora", Georgia, "Times New Roman", serif;
         --font-sans: "Source Sans 3", system-ui, -apple-system, sans-serif;
       }
@@ -58,7 +60,7 @@
       /* ── Screen preview ── */
       @media screen {
         body {
-          background-color: #e5e5e5;
+          background-color: var(--screen-preview-bg);
           padding: 2rem 0;
         }
       }
@@ -84,10 +86,18 @@
       .poster-header {
         display: flex;
         align-items: center;
-        gap: 0.5cm;
-        padding-bottom: 0.4cm;
-        border-bottom: 2px solid var(--color-teal-500);
+        gap: 0.5cm 0;
+        flex-wrap: wrap;
         margin-bottom: 0.6cm;
+      }
+
+      .poster-header::after {
+        content: "";
+        display: block;
+        width: 1.3cm;
+        height: 2px;
+        background-color: var(--color-teal-500);
+        margin-top: 0.4cm;
       }
 
       .poster-logo {
@@ -115,7 +125,7 @@
 
       /* ── WiFi section ── */
       .poster-wifi {
-        background-color: #ffffff;
+        background-color: var(--bg-surface);
         border-radius: 8px;
         padding: 0.5cm;
         margin-bottom: 0.5cm;
@@ -220,8 +230,15 @@
       /* ── Welcome section ── */
       .poster-welcome {
         text-align: center;
-        padding-top: 0.3cm;
-        border-top: 2px solid var(--color-teal-500);
+      }
+
+      .poster-welcome::before {
+        content: "";
+        display: block;
+        width: 1.3cm;
+        height: 2px;
+        background-color: var(--color-teal-500);
+        margin: 0 auto 0.3cm;
       }
 
       .poster-welcome-text {
@@ -254,7 +271,6 @@
           height: 23cm;
         }
 
-        .poster-wifi,
         .poster-rules {
           -webkit-print-color-adjust: exact !important;
           print-color-adjust: exact !important;
@@ -280,8 +296,8 @@
       </header>
 
       <!-- WiFi -->
-      <section class="poster-wifi">
-        <h2 class="poster-wifi-title">WiFi</h2>
+      <section class="poster-wifi" aria-labelledby="wifi-title">
+        <h2 class="poster-wifi-title" id="wifi-title">WiFi</h2>
         <div class="poster-wifi-content">
           <div class="poster-qr">
             <span class="poster-qr-placeholder">[QR]</span>
@@ -295,8 +311,8 @@
       </section>
 
       <!-- Rules -->
-      <section class="poster-rules">
-        <h2 class="poster-rules-title">Normas de la casa</h2>
+      <section class="poster-rules" aria-labelledby="rules-title">
+        <h2 class="poster-rules-title" id="rules-title">Normas de la casa</h2>
         <ul class="poster-rules-list">
           <li class="poster-rule">
             <span class="poster-rule-icon">🗑️</span>
@@ -322,10 +338,10 @@
       </section>
 
       <!-- Welcome / closing -->
-      <section class="poster-welcome">
+      <section class="poster-welcome" aria-label="Bienvenida">
         <p class="poster-welcome-text">
-          Que disfrutéis de la luz, el mar y los atardeceres de Conil.<br />
-          ¡Bienvenidos a vuestra casa!
+          &ldquo;Que disfrutéis de la luz, el mar y los atardeceres de Conil.<br />
+          ¡Bienvenidos a vuestra casa!&rdquo;
         </p>
       </section>
     </main>
