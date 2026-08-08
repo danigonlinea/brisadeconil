@@ -1,13 +1,13 @@
 /**
- * generate-key-tags.mjs — Generate a print-ready A4 PDF of the key tags sheet.
+ * generate-pdf.mjs — Generate a print-ready PDF of the WiFi poster.
  *
  * Serves `dist/` over a local HTTP server (the built HTML uses absolute
  * paths like /logos/... which would not resolve under file://), renders
- * the sheet in headless Chrome and exports it as an exact A4 PDF.
+ * the poster in headless Chrome and exports it as an exact 140×230 mm PDF.
  *
- * NOTE: page margins must be 0 — the `.sheet` element is styled at
- * exactly 210×297 mm and fills the whole page. Non-zero page margins shrink
- * the content box, and Chrome clips the sheet at the content-box boundary,
+ * NOTE: page margins must be 0 — the `.poster` element is styled at
+ * exactly 14×23 cm and fills the whole page. Non-zero page margins shrink
+ * the content box, and Chrome clips the poster at the content-box boundary,
  * leaving white strips on the right/bottom edges.
  */
 import http from "node:http";
@@ -18,9 +18,9 @@ import { fileURLToPath } from "node:url";
 import puppeteer from "puppeteer";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const DIST_DIR = resolve(__dirname, "../dist");
-const SHEET_PATH = "/key-tags/";
-const OUT_PATH = resolve(__dirname, "../dist/key-tags.pdf");
+const DIST_DIR = resolve(__dirname, "../../../dist");
+const POSTER_PATH = "/wifi-poster/";
+const OUT_PATH = resolve(__dirname, "../../../dist/wifi-poster.pdf");
 
 const MIME_TYPES = {
   ".html": "text/html; charset=utf-8",
@@ -68,17 +68,17 @@ async function main() {
   const { port } = server.address();
   const baseUrl = `http://127.0.0.1:${port}`;
 
-  console.log(`Serving ${DIST_DIR} at ${baseUrl}${SHEET_PATH}`);
+  console.log(`Serving ${DIST_DIR} at ${baseUrl}${POSTER_PATH}`);
 
   const browser = await puppeteer.launch({ headless: true });
   try {
     const page = await browser.newPage();
-    await page.goto(`${baseUrl}${SHEET_PATH}`, { waitUntil: "networkidle0" });
+    await page.goto(`${baseUrl}${POSTER_PATH}`, { waitUntil: "networkidle0" });
 
     await page.pdf({
       path: OUT_PATH,
-      width: "210mm",
-      height: "297mm",
+      width: "140mm",
+      height: "230mm",
       printBackground: true,
       margin: { top: "0", bottom: "0", left: "0", right: "0" },
     });
