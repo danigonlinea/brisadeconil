@@ -62,11 +62,153 @@
           padding: 2rem 0;
         }
       }
+
+      /* ── Poster container ── */
+      .poster {
+        width: 14cm;
+        height: 23cm;
+        margin: 0 auto;
+        padding: 0.5cm;
+        background-color: var(--color-chalk-50);
+        position: relative;
+        overflow: hidden;
+      }
+
+      @media screen {
+        .poster {
+          box-shadow: 0 4px 24px rgba(12, 31, 46, 0.18);
+        }
+      }
+
+      /* ── Header ── */
+      .poster-header {
+        display: flex;
+        align-items: center;
+        gap: 0.5cm;
+        padding-bottom: 0.4cm;
+        border-bottom: 2px solid var(--color-teal-500);
+        margin-bottom: 0.6cm;
+      }
+
+      .poster-logo {
+        height: 2.5cm;
+        width: auto;
+        display: block;
+      }
+
+      .poster-brand {
+        font-family: var(--font-serif);
+        font-weight: 600;
+        font-size: 22pt;
+        color: var(--color-navy-900);
+        line-height: 1.15;
+        letter-spacing: -0.03em;
+      }
+
+      .poster-subtitle {
+        font-family: var(--font-sans);
+        font-weight: 400;
+        font-size: 11pt;
+        color: var(--color-navy-700);
+        margin-top: 2px;
+      }
+
+      /* ── WiFi section ── */
+      .poster-wifi {
+        background-color: #ffffff;
+        border-radius: 8px;
+        padding: 0.5cm;
+        margin-bottom: 0.5cm;
+      }
+
+      .poster-wifi-title {
+        font-family: var(--font-serif);
+        font-weight: 600;
+        font-size: 16pt;
+        color: var(--color-navy-900);
+        margin-bottom: 0.4cm;
+      }
+
+      .poster-wifi-content {
+        display: flex;
+        align-items: center;
+        gap: 0.5cm;
+      }
+
+      .poster-qr {
+        width: 4cm;
+        height: 4cm;
+        border: 1px solid var(--color-chalk-200);
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        background-color: #ffffff;
+      }
+
+      .poster-qr-placeholder {
+        font-family: var(--font-sans);
+        font-size: 10pt;
+        color: var(--color-navy-600);
+        text-align: center;
+      }
+
+      .poster-password-label {
+        font-family: var(--font-sans);
+        font-weight: 400;
+        font-size: 10pt;
+        color: var(--color-navy-700);
+        margin-bottom: 2px;
+      }
+
+      .poster-password {
+        font-family: var(--font-sans);
+        font-weight: 500;
+        font-size: 20pt;
+        color: var(--color-navy-900);
+        margin-bottom: 0.3cm;
+      }
+
+      .poster-wifi-hint {
+        font-family: var(--font-sans);
+        font-weight: 400;
+        font-size: 9pt;
+        color: var(--color-navy-700);
+      }
     </style>
   </head>
   <body>
     <main class="poster">
-      <!-- Content added in Tasks 2-4 -->
+      <!-- Header -->
+      <header class="poster-header">
+        <img
+          class="poster-logo"
+          src="/logos/brisadeconil-logo.png"
+          alt="Logo Brisa de Conil"
+          width="128"
+          height="128"
+        />
+        <div class="poster-header-text">
+          <h1 class="poster-brand">Brisa de Conil</h1>
+          <p class="poster-subtitle">Apartamento vacacional</p>
+        </div>
+      </header>
+
+      <!-- WiFi -->
+      <section class="poster-wifi">
+        <h2 class="poster-wifi-title">WiFi</h2>
+        <div class="poster-wifi-content">
+          <div class="poster-qr">
+            <span class="poster-qr-placeholder">[QR]</span>
+          </div>
+          <div class="poster-wifi-info">
+            <p class="poster-password-label">Contraseña:</p>
+            <p class="poster-password">Daniel3487</p>
+            <p class="poster-wifi-hint">Escanea el código para conectarte</p>
+          </div>
+        </div>
+      </section>
     </main>
   </body>
 </html>
