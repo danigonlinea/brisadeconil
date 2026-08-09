@@ -108,7 +108,7 @@ const lodgingSchemaData = {
 
     {/* Schema.org — LodgingBusiness (home only). Enriched for answer engines. */}
     {lodgingSchema && (
-      <script type="application/ld+json" set:html={JSON.stringify(lodgingSchemaData)} />
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(lodgingSchemaData)} />
     )}
 
     <!-- Favicon -->

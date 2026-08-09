@@ -11,12 +11,7 @@
  * set:html. No external request, no flash.
  */
 
-import {
-  t,
-  SUPPORTED_LOCALES,
-  DEFAULT_LOCALE,
-  type Locale,
-} from "./translations";
+import { t, SUPPORTED_LOCALES, DEFAULT_LOCALE } from "./translations";
 
 /**
  * Returns the JS source to embed inline.

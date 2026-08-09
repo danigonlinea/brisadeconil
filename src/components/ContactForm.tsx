@@ -182,12 +182,15 @@ export default function ContactForm() {
     }
   }
 
-  async function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
     e.preventDefault();
     const fieldErrors = validateForm(form, contact);
     if (Object.keys(fieldErrors).length > 0) {
       setErrors(fieldErrors);
-      trackEvent("form_submit_error", { form: "contact", reason: "validation" });
+      trackEvent("form_submit_error", {
+        form: "contact",
+        reason: "validation",
+      });
       // Focus first error field
       const firstErrorKey = Object.keys(fieldErrors)[0];
       document.getElementById(`${id}-${firstErrorKey}`)?.focus();
