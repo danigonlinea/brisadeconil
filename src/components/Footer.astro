@@ -28,7 +28,7 @@ const cookiesHref = createLegalHref('politica-cookies');
         <p class="footer-tagline" data-i18n="footer.tagline">{footer.tagline}</p>
         <address class="footer-address">
           {footer.address.split('\n').map((line: string, i: number) => (
-            <span key={i}>
+            <span>
               {line}
               {i < footer.address.split('\n').length - 1 && <br />}
             </span>

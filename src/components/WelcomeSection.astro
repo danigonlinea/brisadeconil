@@ -27,14 +27,6 @@ const icons: Record<string, string> = {
             <span class="welcome-headline-line">{line}</span>
           ))}
         </h2>
-        {welcome.lead && (
-          <p class="welcome-lead" data-i18n="welcome.lead">{welcome.lead}</p>
-        )}
-        {welcome.closing && (
-          <p class="welcome-closing">
-            <em data-i18n="welcome.closing">{welcome.closing}</em>
-          </p>
-        )}
       </div>
 
       <!-- Right: welcome items -->
@@ -96,23 +88,6 @@ const icons: Record<string, string> = {
   }
 
   .welcome-headline-line { display: block; }
-
-  .welcome-lead {
-    color: var(--text-on-dark-muted);
-    font-size: var(--text-lg);
-    max-width: 42ch;
-    line-height: var(--leading-relaxed);
-    margin-bottom: var(--sp-6);
-  }
-
-  .welcome-closing {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: var(--text-xl);
-    color: var(--color-teal-300);
-    max-width: none;
-    line-height: var(--leading-snug);
-  }
 
   /* ── Items ───────────────────────────────────────────────────────────────── */
   .welcome-items {
