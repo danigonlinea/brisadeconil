@@ -283,13 +283,38 @@ export const faq = {
       pending: false,
     },
     {
-      q: "¿Cuánta gente puede alojarse?",
-      a: "El apartamento tiene capacidad para 3 personas: 2 en la cama de matrimonio del dormitorio y 1 en el sofá cama chaise-longue del salón.",
+      q: "¿Cómo se accede al apartamento?",
+      a: "El apartamento está en primera planta, accediendo por escalera desde la calle. Llega, sube el equipaje y ya estás de vacaciones.",
       pending: false,
     },
     {
       q: "¿Hay aparcamiento cerca?",
       a: "Sí. El Mercado de Abastos, justo frente al apartamento, tiene zona de aparcamiento municipal. En temporada alta también recomendamos el Recinto Ferial, gratuito y con mucha capacidad.",
+      pending: false,
+    },
+    {
+      q: "¿Hay parking cerca?",
+      a: "Sí. Además del aparcamiento municipal del Mercado de Abastos frente al apartamento, hay varias zonas de parking en los alrededores. En temporada alta recomendamos el Recinto Ferial, gratuito y con amplia capacidad.",
+      pending: false,
+    },
+    {
+      q: "¿Cuál es la playa más cercana caminando?",
+      a: "La Playa de los Bateles es la más cercana, a unos 5 minutos caminando por el paseo marítimo. Es la playa principal del centro, con bandera azul y todos los servicios.",
+      pending: false,
+    },
+    {
+      q: "¿Se puede fumar en la terraza?",
+      a: "No se permite fumar en el apartamento, incluida la terraza. Es una norma de la casa para garantizar la comodidad de todos los huéspedes.",
+      pending: false,
+    },
+    {
+      q: "¿Hay supermercados cerca?",
+      a: "Sí. El Mercado de Abastos está justo frente al apartamento y tiene puestos de alimentación fresca. También hay supermercados a pocos minutos caminando del centro.",
+      pending: false,
+    },
+    {
+      q: "¿Admite reservas de última hora?",
+      a: "Sí, si hay disponibilidad. Consulta tus fechas y te respondemos lo antes posible. En temporada alta es recomendable reservar con antelación.",
       pending: false,
     },
     {

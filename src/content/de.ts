@@ -279,8 +279,38 @@ export const faq = {
       pending: false,
     },
     {
+      q: "Wie gelangt man zur Wohnung?",
+      a: "Die Wohnung liegt im ersten Stock, erreichbar über eine Treppe von der Straße. Ankommen, Koffer hochtragen und Urlaub genießen.",
+      pending: false,
+    },
+    {
       q: "Gibt es Parkmöglichkeiten in der Nähe?",
-      a: "Ja. Der Mercado de Abastos direkt gegenüber hat städtisches Parken. In der Hochsaison empfehlen wir das Recinto Ferial (kostenlos).",
+      a: "Ja. Der Mercado de Abastos direkt gegenüber hat städtisches Parken. In der Hochsaison empfehlen wir das Recinto Ferial, das kostenlos ist und viel Platz bietet.",
+      pending: false,
+    },
+    {
+      q: "Gibt es private Parkzonen in der Nähe?",
+      a: "Ja. Zusätzlich zum städtischen Parkplatz am Mercado de Abastos gegenüber gibt es mehrere Parkzonen in der Nähe. In der Hochsaison empfehlen wir das Recinto Ferial, das kostenlos und geräumig ist.",
+      pending: false,
+    },
+    {
+      q: "Welcher Strand ist am nächsten zu Fuß erreichbar?",
+      a: "Die Playa de los Bateles ist die nächste, etwa 5 Minuten zu Fuß entlang der Strandpromenade. Es ist der Hauptstrand im Zentrum mit Blauer Flagge und allen Einrichtungen.",
+      pending: false,
+    },
+    {
+      q: "Ist Rauchen auf der Terrasse erlaubt?",
+      a: "Rauchen ist in der Wohnung nicht erlaubt, einschließlich der Terrasse. Dies ist eine Hausregel, um den Komfort aller Gäste zu gewährleisten.",
+      pending: false,
+    },
+    {
+      q: "Gibt es Supermärkte in der Nähe?",
+      a: "Ja. Der Mercado de Abastos ist direkt gegenüber der Wohnung mit frischen Lebensmitteln. Es gibt auch Supermärkte einen kurzen Spaziergang vom Stadtzentrum entfernt.",
+      pending: false,
+    },
+    {
+      q: "Werden Last-Minute-Buchungen akzeptiert?",
+      a: "Ja, wenn Verfügbarkeit vorhanden ist. Nennen Sie Ihre Daten und wir melden uns so schnell wie möglich. In der Hochsaison ist eine frühzeitige Buchung empfehlenswert.",
       pending: false,
     },
     {
