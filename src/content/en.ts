@@ -36,7 +36,7 @@ export const hero = {
 
 export const apartment = {
   sectionLabel: 'The apartment',
-  headline: 'Everything you need,\nnothing you don't',
+  headline: "Everything you need,\nnothing you don't",
   lead: 'A space designed for real rest. Comfortable, well-equipped and in the best spot in Conil.',
   specs: [
     { icon: 'users',    label: 'Capacity',       value: '3 guests' },
@@ -47,7 +47,7 @@ export const apartment = {
     { icon: 'sun',      label: 'Communal rooftop', value: 'For evening breeze or drying clothes' },
   ],
   accessNote:
-    'The apartment is on the ground floor with direct street access. Arrive, drop the bags and you're already on holiday.',
+    "The apartment is on the ground floor with direct street access. Arrive, drop the bags and you're already on holiday.",
 };
 
 export const amenities = {
@@ -167,7 +167,7 @@ export const rules = {
     { icon: 'clock',         text: 'Check-in is from 16:00 and check-out is between 11:30 and 12:00.' },
     { icon: 'paw',           text: 'Pets are not allowed in the apartment.' },
     { icon: 'cigarette-off', text: 'Smoking is not allowed in the apartment.' },
-    { icon: 'volume-x',      text: 'Please respect neighbours' rest, especially at night.' },
+    { icon: 'volume-x',      text: "Please respect neighbours' rest, especially at night." },
   ],
 };
 
