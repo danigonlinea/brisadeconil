@@ -71,6 +71,7 @@
 
   --accent: var(--color-teal-500);
   --accent-hover: var(--color-teal-600);
+  --accent-strong: var(--color-teal-700);
   --accent-text: #ffffff;
 
   --header-bg-transparent: transparent;
@@ -411,7 +412,7 @@ video {
 
 /* Primary — teal fill */
 .btn--primary {
-  background-color: var(--accent);
+  background-color: var(--accent-strong);
   color: var(--accent-text);
   box-shadow: 0 2px 8px rgba(42, 165, 152, 0.28);
 }
