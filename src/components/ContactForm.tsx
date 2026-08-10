@@ -1,7 +1,7 @@
 /**
  * ContactForm — React island.
  * Service: Web3Forms (https://web3forms.com)
- * Set WEB3FORMS_ACCESS_KEY in your environment or replace the placeholder below.
+ * Form submits to the server-side `/api/contact` endpoint.
  * The access key is public-safe (it only controls where emails go, not sensitive data).
  */
 import { useEffect, useMemo, useState, useId } from "react";
