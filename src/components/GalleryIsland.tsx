@@ -259,7 +259,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
         alt: "Gemeinsame Dachterrasse des Gebäudes mit Blick auf Conil",
       },
     },
-    highlight: true,
+    highlight: false,
   },
 ];
 
