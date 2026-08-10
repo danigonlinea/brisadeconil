@@ -39,7 +39,7 @@ const ruleIcons: Record<string, string> = {
       <!-- Rules list -->
       <div class="rules-content">
         <hr class="divider" aria-hidden="true" />
-        <p class="section-label" data-i18n="rules.label">{rules.sectionLabel}</p>
+        <p class="section-label" id="rules-title" data-i18n="rules.label">{rules.sectionLabel}</p>
         <p class="section-lead reveal" data-i18n="rules.lead">{rules.lead}</p>
 
         <ul class="rules-list reveal reveal-delay-1" role="list">
@@ -77,7 +77,7 @@ const ruleIcons: Record<string, string> = {
     font-weight: var(--fw-semibold);
     letter-spacing: var(--tracking-wider);
     text-transform: uppercase;
-    color: var(--accent);
+    color: var(--accent-strong);
     margin-bottom: var(--sp-3);
   }
 

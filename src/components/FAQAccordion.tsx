@@ -117,7 +117,7 @@ export default function FAQAccordion({ items }: FAQAccordionProps) {
   }
 
   return (
-    <div className="faq-list" role="list">
+    <div className="faq-list">
       {items.map((item, i) => (
         <FAQItem
           key={i}

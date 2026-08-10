@@ -42,13 +42,13 @@ const icons: Record<string, string> = {
       </div>
 
       <!-- Right: spec grid -->
-      <dl class="apt-specs">
+      <div class="apt-specs">
         {apartment.specs.map((spec: { icon: string; label: string; value: string }, i: number) => (
           <div class:list={['apt-spec', 'reveal', `reveal-delay-${i}`, i === 0 && 'apt-spec--highlight']}>
             <div class="apt-spec-icon" set:html={icons[spec.icon] ?? icons.door} />
             <div class="apt-spec-text">
-              <dt class="apt-spec-label" data-i18n={`apt.spec.${['capacity','bed','bath','layout','access','store','rooftop'][i]}.label`}>{spec.label}</dt>
-              <dd class="apt-spec-value" data-i18n={`apt.spec.${['capacity','bed','bath','layout','access','store','rooftop'][i]}.value`}>
+              <div class="apt-spec-label" data-i18n={`apt.spec.${['capacity','bed','bath','layout','access','store','rooftop'][i]}.label`}>{spec.label}</div>
+              <div class="apt-spec-value" data-i18n={`apt.spec.${['capacity','bed','bath','layout','access','store','rooftop'][i]}.value`}>
                 {spec.icon === 'users' ? (
                   <>
                     <span class="apt-spec-value--primary">{spec.value.split(' (')[0]}</span>
@@ -59,11 +59,11 @@ const icons: Record<string, string> = {
                 ) : (
                   spec.value
                 )}
-              </dd>
+              </div>
             </div>
           </div>
         ))}
-      </dl>
+      </div>
     </div>
 
     <div class="apt-amenities">
@@ -98,7 +98,7 @@ const icons: Record<string, string> = {
     font-weight: var(--fw-semibold);
     letter-spacing: var(--tracking-wider);
     text-transform: uppercase;
-    color: var(--accent);
+    color: var(--accent-strong);
     margin-bottom: var(--sp-3);
   }
 
