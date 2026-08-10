@@ -1,0 +1,36 @@
+# Orca per-workspace orchestration harness for Brisa de Conil
+#
+# Configure orca.yaml so every Orca workspace/worktree of this repo is
+# prepared consistently before agents work, opens useful default tabs, and
+# can use a disposable runtime per workspace (environment recipe).
+#
+# Validate the recipes with the Orca CLI:
+#   orca vm recipe doctor <recipe-id> --repo-path . --json
+
+# Environment setup run in a fresh workspace/worktree before agents start.
+scripts:
+  setup: npm install
+
+# Terminal tabs Orca opens by default in each new workspace.
+defaultTabs:
+  - title: Dev server
+    command: npm run dev
+    color: '#0e7490'
+  - title: Astro check
+    command: npx astro check
+
+# Per-workspace environment recipes (lifecycle: create/suspend/resume/destroy).
+#
+# Brisa de Conil is a static Astro site with no cloud VM: the environment is a
+# local Node.js >=22.12 worktree (package manager: npm). The lifecycle scripts
+# under scripts/orca-vm/ are scaffolded in a follow-up task; this file defines
+# the contract Orca reads to drive them.
+environmentRecipes:
+  - id: local
+    name: Local Node workspace
+    description: >
+      Local Node.js >=22.12 development environment for the static Astro site.
+      No remote/cloud runtime: create provisions the repo-local worktree and
+      destroy tears nothing down remotely.
+    create: ./scripts/orca-vm/local-create.sh
+    destroy: ./scripts/orca-vm/local-destroy.sh
