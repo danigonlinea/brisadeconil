@@ -49,6 +49,7 @@ interface FormData {
   checkin: string;
   checkout: string;
   message: string;
+  website: string;
 }
 
 interface FieldError {
@@ -140,6 +141,7 @@ export default function ContactForm() {
     checkin: "",
     checkout: "",
     message: "",
+    website: "",
   });
   const [errors, setErrors] = useState<FieldError>({});
   const [state, setState] = useState<FormState>("idle");
@@ -261,6 +263,7 @@ export default function ContactForm() {
               checkin: "",
               checkout: "",
               message: "",
+              website: "",
             });
           }}
           type="button"
@@ -434,6 +437,23 @@ export default function ContactForm() {
             onChange={handleChange}
             placeholder={contact.fields.message.placeholder}
             rows={4}
+          />
+        </div>
+
+        {/* Honeypot — hidden from users, visible to bots */}
+        <div className="contact-form-honeypot" aria-hidden="true">
+          <label className="form-label" htmlFor={`${id}-website`}>
+            Sitio web
+          </label>
+          <input
+            id={`${id}-website`}
+            className="form-input"
+            type="text"
+            name="website"
+            value={form.website}
+            onChange={handleChange}
+            tabIndex={-1}
+            autoComplete="off"
           />
         </div>
       </div>
