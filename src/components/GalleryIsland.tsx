@@ -243,6 +243,24 @@ const GALLERY_ITEMS: GalleryItem[] = [
       },
     },
   },
+  {
+    id: "azotea-comunitaria",
+    texts: {
+      es: {
+        label: "Azotea comunitaria",
+        alt: "Azotea compartida del edificio con vistas a Conil",
+      },
+      en: {
+        label: "Communal rooftop",
+        alt: "Shared rooftop of the building with views over Conil",
+      },
+      de: {
+        label: "Gemeinschaftsdachterrasse",
+        alt: "Gemeinsame Dachterrasse des Gebäudes mit Blick auf Conil",
+      },
+    },
+    highlight: true,
+  },
 ];
 
 /** Pre-compute responsive image data once (module scope, not per render). */
