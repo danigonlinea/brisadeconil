@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "🔒 Pre-commit: ejecutando validación rápida..."
+if bash scripts/validate.sh --fast; then
+  echo "✅ Validación rápida pasada. Continuando con el commit."
+else
+  echo "❌ Validación rápida falló. Commit bloqueado."
+  echo "   Corrige los errores o usa 'git commit --no-verify' para saltar la validación."
+  exit 1
+fi
