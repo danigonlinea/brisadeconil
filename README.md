@@ -111,6 +111,8 @@ Para actualizar textos, fotos, amenities, FAQ, etc.:
 
 El formulario usa **Web3Forms** — gratuito, sin límite de envíos, sin backend propio.
 
+El envío usa una estrategia de dos pasos: primero intenta `POST /api/contact` (endpoint server-side que reenvía a Web3Forms con la access key) y, si falla, hace un `POST` directo a `api.web3forms.com` desde el navegador con la key pública `PUBLIC_WEB3FORMS_KEY`. El segundo camino es el que funciona en la práctica: GitHub Pages es un hosting estático, así que el endpoint no puede ejecutarse en tiempo de ejecución.
+
 ### Configuración (5 minutos):
 
 1. Ve a [https://web3forms.com](https://web3forms.com)

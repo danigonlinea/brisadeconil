@@ -2,15 +2,17 @@
  * ContactForm — React island.
  * Service: Web3Forms (https://web3forms.com)
  * Form submits to the server-side `/api/contact` endpoint.
- * The access key is public-safe (it only controls where emails go, not sensitive data).
+ *
+ * Submission strategy:
+ * 1. POST to /api/contact (server-side endpoint; requires WEB3FORMS_ACCESS_KEY).
+ * 2. If that fails (e.g. GitHub Pages static hosting where the endpoint does
+ *    not exist at runtime), fall back to a direct POST to api.web3forms.com
+ *    using the client-safe PUBLIC_WEB3FORMS_KEY (it only routes emails).
  */
 import { useEffect, useMemo, useState, useId } from "react";
 import type { Locale } from "../i18n/translations";
 import { t as translations } from "../i18n/translations";
 import { trackEvent } from "../lib/analytics";
-// The form now posts to a server-side endpoint (`/api/contact`) which
-// forwards the submission to Web3Forms using a server-only env var.
-// Do NOT include secret keys in client-side code.
 
 type FormState = "idle" | "sending" | "success" | "error";
 
@@ -120,6 +122,130 @@ function buildContactText(locale: Locale): ContactText {
   };
 }
 
+const SERVER_ENDPOINT = "/api/contact";
+const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
+
+interface ContactPayload {
+  subject: string;
+  from_name: string;
+  name: string;
+  email: string;
+  checkin: string;
+  checkout: string;
+  message: string;
+}
+
+function buildContactPayload(form: FormData): ContactPayload {
+  return {
+    subject: `Nueva consulta de ${form.name} — Brisa de Conil`,
+    from_name: "Brisa de Conil Web",
+    name: form.name,
+    email: form.email,
+    checkin: form.checkin || "No indicada",
+    checkout: form.checkout || "No indicada",
+    message: form.message || "(sin mensaje adicional)",
+  };
+}
+
+function toWeb3FormsBody(
+  payload: ContactPayload,
+  accessKey: string,
+): Record<string, string> {
+  return {
+    access_key: accessKey,
+    subject: payload.subject,
+    from_name: payload.from_name,
+    name: payload.name,
+    email: payload.email,
+    "Fecha de entrada": payload.checkin,
+    "Fecha de salida": payload.checkout,
+    message: payload.message,
+  };
+}
+
+async function postJson(url: string, body: unknown): Promise<Response> {
+  return fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify(body),
+  });
+}
+
+/**
+ * Why a submission attempt failed.
+ * - "server": an HTTP endpoint responded but with a non-OK status or a
+ *   non-success body (e.g. /api/contact 404, or Web3Forms 4xx/5xx).
+ * - "network": the request itself threw (unreachable, DNS, CORS) or the body
+ *   wasn't JSON (e.g. an HTML error page).
+ */
+type FailureReason = "network" | "server";
+
+/** Reason attached to a submit result: the path that succeeded, or why it failed. */
+type SubmitReason = FailureReason | "fallback";
+
+interface SubmitResult {
+  ok: boolean;
+  /** "server"/"fallback" when ok (which path delivered it); failure cause when !ok. */
+  reason: SubmitReason;
+}
+
+/**
+ * Classify a submission response: "ok" on HTTP 2xx + { success: true },
+ * otherwise the granular failure reason.
+ */
+async function classifyResponse(res: Response): Promise<"ok" | FailureReason> {
+  if (!res.ok) return "server";
+  try {
+    const data = await res.json();
+    return !!data.success ? "ok" : "server";
+  } catch {
+    return "network";
+  }
+}
+
+async function submitViaServer(payload: ContactPayload): Promise<SubmitResult> {
+  const res = await postJson(SERVER_ENDPOINT, payload).catch(() => null);
+  if (!res) return { ok: false, reason: "network" };
+  const outcome = await classifyResponse(res);
+  return outcome === "ok"
+    ? { ok: true, reason: "server" }
+    : { ok: false, reason: outcome };
+}
+
+async function submitViaWeb3Forms(
+  payload: ContactPayload,
+  accessKey: string,
+): Promise<SubmitResult> {
+  const res = await postJson(
+    WEB3FORMS_ENDPOINT,
+    toWeb3FormsBody(payload, accessKey),
+  ).catch(() => null);
+  if (!res) return { ok: false, reason: "network" };
+  const outcome = await classifyResponse(res);
+  return outcome === "ok"
+    ? { ok: true, reason: "fallback" }
+    : { ok: false, reason: outcome };
+}
+
+async function submitContact(payload: ContactPayload): Promise<SubmitResult> {
+  // 1) Server-side endpoint first (needs WEB3FORMS_ACCESS_KEY at runtime).
+  const serverResult = await submitViaServer(payload);
+  if (serverResult.ok) return serverResult;
+
+  // 2) Static-hosting fallback: direct Web3Forms POST with the client-safe key.
+  //
+  // Tradeoff: on a future server host, if /api/contact forwards the lead but
+  // responds non-OK/non-JSON, the fallback re-sends the same lead (duplicate
+  // email risk). Accepted for the two-step design; dormant on GitHub Pages,
+  // where the endpoint never runs.
+  const publicKey = import.meta.env.PUBLIC_WEB3FORMS_KEY;
+  if (!publicKey) return serverResult;
+  return submitViaWeb3Forms(payload, publicKey);
+}
+
 function addDaysToDate(value: string, days: number) {
   const [year, month, day] = value.split("-").map(Number);
   const date = new Date(year, month - 1, day);
@@ -199,34 +325,15 @@ export default function ContactForm() {
 
     trackEvent("form_submit", { form: "contact" });
     setState("sending");
-    try {
-      // Post to the local server endpoint which holds the access key
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          subject: `Nueva consulta de ${form.name} — Brisa de Conil`,
-          from_name: "Brisa de Conil Web",
-          name: form.name,
-          email: form.email,
-          checkin: form.checkin || "No indicada",
-          checkout: form.checkout || "No indicada",
-          message: form.message || "(sin mensaje adicional)",
-        }),
+    const result = await submitContact(buildContactPayload(form));
+    if (result.ok) {
+      trackEvent("generate_lead", { form: "contact", method: "Web3Forms" });
+      setState("success");
+    } else {
+      trackEvent("form_submit_error", {
+        form: "contact",
+        reason: result.reason,
       });
-      const data = await res.json();
-      if (res.ok && data.success) {
-        trackEvent("generate_lead", { form: "contact", method: "Web3Forms" });
-        setState("success");
-      } else {
-        trackEvent("form_submit_error", { form: "contact", reason: "server" });
-        setState("error");
-      }
-    } catch {
-      trackEvent("form_submit_error", { form: "contact", reason: "network" });
       setState("error");
     }
   }

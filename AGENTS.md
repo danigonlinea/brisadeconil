@@ -36,7 +36,7 @@ npm install                      # instalar dependencias
 npm run dev                      # servidor de desarrollo → http://localhost:4321/
 npm run build                    # build de producción → dist/
 npm run preview                  # previsualizar el build
-pm run optimize:gallery         # regenerar imágenes optimizadas + manifest (ver §6)
+npm run optimize:gallery        # regenerar imágenes optimizadas + manifest (ver §6)
 npx astro check                  # type-check del proyecto
 ```
 
@@ -98,7 +98,7 @@ Estas reglas son **obligatorias**; romperlas rompe el build o el flujo de conten
 - La cuadrícula solo sirve hasta 1600px; el lightbox hasta 2000px. No sirvas los multi-MB originales al navegador.
 
 ### Seguridad
-- **Nunca pongas secretos en código cliente.** El formulario postea a `/api/contact` (server-side), que usa `process.env.WEB3FORMS_ACCESS_KEY`. La key pública `PUBLIC_WEB3FORMS_KEY` es la única que puede ir al cliente.
+- **Nunca pongas secretos en código cliente.** El formulario intenta primero `POST /api/contact` (server-side, usa `process.env.WEB3FORMS_ACCESS_KEY`) y, si falla, cae a un `POST` directo a `api.web3forms.com` con la key pública `PUBLIC_WEB3FORMS_KEY` — ese fallback es el camino que funciona en GitHub Pages (hosting estático). `PUBLIC_WEB3FORMS_KEY` es la única key que puede ir al cliente.
 - **Nunca commitees `.env`** ni claves reales. `.env` está en `.gitignore`.
 - Cuidado con `set:html`: se usa para insertar iconos SVG. El README tiene pendiente reemplazarlo por componentes SVG. Si tocas ese markup, prefiere imports/components SVG sobre cadenas HTML.
 
@@ -148,9 +148,9 @@ Para **quitar** una foto: elimina el original, quita la entrada de `GALLERY_ITEM
 
 | Variable                | Ámbito  | Dónde se usa                        | Notas                                                          |
 | ----------------------- | ------- | ----------------------------------- | -------------------------------------------------------------- |
-| `PUBLIC_WEB3FORMS_KEY`  | cliente | (legacy / `.env.example`)           | Key pública de Web3Forms; pública-segura                       |
-| `WEB3FORMS_ACCESS_KEY`  | server  | `src/pages/api/contact.ts`          | Server-only. **NUNCA** en código cliente.                      |
-| `WEB3FORMS_KEY`         | CI      | `.github/workflows/deploy.yml`      | GitHub Secret inyectado como `PUBLIC_WEB3FORMS_KEY` en el build |
+| `PUBLIC_WEB3FORMS_KEY`  | cliente | `src/components/ContactForm.tsx`    | Key pública; fallback del formulario con POST directo a Web3Forms. Es el camino principal en la práctica (GitHub Pages es estático; el endpoint server no corre allí). Pública-segura |
+| `WEB3FORMS_ACCESS_KEY`  | server  | `src/pages/api/contact.ts`          | Server-only. **NUNCA** en código cliente. Se mantiene para futuro hosting con servidor; hoy no es funcional en GitHub Pages |
+| `WEB3FORMS_KEY`         | CI      | `.github/workflows/deploy.yml`      | GitHub Secret inyectado en el build como `PUBLIC_WEB3FORMS_KEY` (cliente) y `WEB3FORMS_ACCESS_KEY` (server, para `/api/contact`) |
 
 Para desarrollo local: copia `.env.example` → `.env` y rellena la key. Para CI/despliegue, define el GitHub Secret `WEB3FORMS_KEY` (Settings → Secrets and variables → Actions).
 

@@ -64,8 +64,13 @@ jobs:
       - name: Build Astro site
         run: npm run build
         env:
-          # Add your Web3Forms key as a GitHub secret named WEB3FORMS_KEY
-          # Settings > Secrets and variables > Actions > New repository secret
+          # GitHub secret: WEB3FORMS_KEY (Settings > Secrets and variables > Actions)
+          # WEB3FORMS_ACCESS_KEY: server-side; la consume el endpoint /api/contact
+          # (src/pages/api/contact.ts) para reenviar el formulario a Web3Forms.
+          WEB3FORMS_ACCESS_KEY: ${{ secrets.WEB3FORMS_KEY }}
+          # PUBLIC_WEB3FORMS_KEY: key pública (client-safe) que el build inyecta en
+          # el cliente; ContactForm la usa como fallback cuando el endpoint
+          # server-side no está disponible (p. ej. GitHub Pages, hosting estático).
           PUBLIC_WEB3FORMS_KEY: ${{ secrets.WEB3FORMS_KEY }}
 
       - name: Upload Pages artifact
