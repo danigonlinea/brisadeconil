@@ -7,7 +7,7 @@ const AMENITY_KEYS = ['ac','fan','wifi','tv','hot-water','store','door','bed','c
 
 ---
 
-<section class="section section--alt" id="comodidades" aria-labelledby="amenities-title">
+<section class="section section--alt" id="equipamiento" aria-labelledby="amenities-title">
   <div class="container">
     <header class="section-header">
       <hr class="divider" aria-hidden="true" />
@@ -58,3 +58,10 @@ const AMENITY_KEYS = ['ac','fan','wifi','tv','hot-water','store','door','bed','c
   .amenity-label { font-size: var(--text-sm); font-weight: var(--fw-semibold); color: var(--text-base); line-height: var(--leading-snug); }
   .amenity-detail { font-size: var(--text-xs); color: var(--text-muted); line-height: var(--leading-normal); }
 </style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".reveal").forEach(e => e.classList.add("visible"));
+  });
+</script>
+</section>
