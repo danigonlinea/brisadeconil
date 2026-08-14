@@ -272,9 +272,7 @@ Aquí tienes una descripción práctica de cada tarea pendiente, con prioridad, 
   - Objetivo: garantizar calidad y detectar regresiones automáticamente.
   - Pasos: añadir job en GitHub Actions que corra `npm ci`, `npx tsc --noEmit`, `npx eslint src`, `npm audit --audit-level=moderate`.
 
-- **Reemplazar `set:html` iconos por componentes SVG** (Prioridad: Baja/Medio)
-  - Objetivo: mejorar seguridad y trazabilidad del markup SVG.
-  - Pasos: convertir cadenas SVG a componentes/archivos `.svg` y usarlos con `src` o imports React/TSX.
+- ~~**Reemplazar `set:html` iconos por componentes SVG**~~ (Prioridad: Baja/Medio) — **Hecho** (2026-08-14): iconos centralizados en `src/components/SvgIcon.astro`.
 
 - **Ejecutar `npm audit` y actualizar dependencias críticas** (Prioridad: Media)
   - Objetivo: cerrar CVEs y mantener dependencias seguras.
@@ -314,8 +312,7 @@ He dejado aquí el plan de trabajo para continuar la auditoría de seguridad y l
    - Ejecutar `npm audit` y arreglar vulnerabilidades críticas/alta prioridad.
    - Próximo paso: habilitar Dependabot o Renovate para actualizaciones automáticas.
 
-5. Revisión de `set:html` y SVGs
-   - Identificar `set:html` usado para insertar iconos SVG y evaluar reemplazo por componentes SVG o imports inline.
+5. Revisión de `set:html` y SVGs — **Hecho** (2026-08-14): iconos migrados a `src/components/SvgIcon.astro`; ya no se usa `set:html` para SVGs.
 
 6. Integración continua y checks automáticos
    - Añadir en CI: `tsc --noEmit`, ESLint (con reglas para código muerto) y `npm audit` en la pipeline.

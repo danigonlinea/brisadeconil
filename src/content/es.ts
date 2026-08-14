@@ -60,7 +60,7 @@ export const apartment = {
     },
   ],
   accessNote:
-    "El apartamento está en planta baja con acceso directo desde la calle. Llega, suelta el equipaje y ya estás de vacaciones.",
+    "El apartamento está en una primera planta, con acceso por escalera desde la calle. Llega, sube el equipaje y ya estás de vacaciones.",
 };
 
 export const amenities = {
