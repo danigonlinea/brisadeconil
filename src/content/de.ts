@@ -49,7 +49,7 @@ export const apartment = {
     },
     { icon: "bath", label: "Badezimmer", value: "Dusche" },
     { icon: "layout", label: "Aufteilung", value: "Offene Wohnküche" },
-    { icon: "door", label: "Zugang", value: "Erdgeschoss, keine Treppen" },
+    { icon: "door", label: "Zugang", value: "Erster Stock, erreichbar über eine Treppe" },
     {
       icon: "sun",
       label: "Gemeinschaftsdachterrasse",
@@ -57,7 +57,7 @@ export const apartment = {
     },
   ],
   accessNote:
-    "Die Wohnung liegt im Erdgeschoss mit direktem Straßenzugang. Ankommen, Koffer abstellen und Urlaub genießen.",
+    "Die Wohnung liegt im ersten Stock, erreichbar über eine Treppe von der Straße. Ankommen, Koffer hochtragen und Urlaub genießen.",
 };
 
 export const amenities = {

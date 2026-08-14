@@ -1,24 +1,13 @@
 ---
 import * as content from '../content/index';
+import SvgIcon, { type IconName } from './SvgIcon.astro';
 const { amenities } = content;
 
 const AMENITY_KEYS = ['ac','fan','wifi','tv','hot-water','store','door','bed','coffee','kettle','fridge','freezer','washer','dishwasher','microwave','toaster','oven'];
 
-const icons: Record<string, string> = {
-  thermometer: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>`,
-  wind: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"/><path d="M9.6 4.6A2 2 0 1 1 11 8H2"/><path d="M12.6 19.4A2 2 0 1 0 14 16H2"/></svg>`,
-  wifi: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>`,
-  tv: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="15" rx="2"/><polyline points="17 2 12 7 7 2"/></svg>`,
-  coffee: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 4.8v-1.3"/><path d="M8.6 4.8h3.4l2 5H7.2z"/><path d="M7.2 10.1h6.6"/><path d="M7 10.3h7l-.9 7.9h-5.2z"/><path d="M13.6 6.9c3.1 0 4.7 1 4.7 2.1s-1.4 1.9-4.5 2.1"/></svg>`,
-  kettle: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.2 3.6c-.5.6-.5 1.3 0 1.9"/><path d="M6 2.6c.5.6.5 1.2 0 1.8"/><path d="M6.9 9.6c-1.7 0-2.9-1-3.1-2.4"/><path d="M6.5 9.5h8l.9 7.6a.9.9 0 0 1-.9.9H6.5a.9.9 0 0 1-.9-.9z"/><path d="M7.2 12h6.4"/><path d="M14.8 8.6c3 0 4.6 1.1 4.6 2.3 0 1.1-1.5 2.2-4.4 2.4"/></svg>`,
-  refrigerator: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="4" y1="10" x2="20" y2="10"/><line x1="9" y1="6" x2="9" y2="8"/><line x1="9" y1="14" x2="9" y2="18"/></svg>`,
-  washer: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="2"/><circle cx="12" cy="13" r="4"/><path d="M6 6h.01M10 6h.01"/></svg>`,
-  dishwasher: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M7 7v10M12 7v10M17 7v10"/><line x1="4" y1="12" x2="20" y2="12"/></svg>`,
-  microwave: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><rect x="8" y="9" width="8" height="6" rx="1"/><circle cx="18" cy="12" r="1" fill="currentColor"/></svg>`,
-};
 ---
 
-<section class="section section--alt" id="comodidades" aria-labelledby="amenities-title">
+<section class="section section--alt" id="equipamiento" aria-labelledby="amenities-title">
   <div class="container">
     <header class="section-header">
       <hr class="divider" aria-hidden="true" />
@@ -30,7 +19,7 @@ const icons: Record<string, string> = {
     <ul class="amenities-grid" role="list">
       {amenities.items.map((item: { icon: string; label: string; detail: string }, i: number) => (
           <li class:list={['amenity-item', 'reveal', `reveal-delay-${(i % 4) + 1}`]} data-icon={item.icon}>
-            <div class="amenity-icon" set:html={icons[item.icon] ?? icons.wifi} />
+            <div class="amenity-icon"><SvgIcon name={item.icon as IconName} /></div>
           <div class="amenity-text">
             <span class="amenity-label" data-i18n={`amenities.item.${AMENITY_KEYS[i]}`}>{item.label}</span>
             {item.detail && (
@@ -69,3 +58,10 @@ const icons: Record<string, string> = {
   .amenity-label { font-size: var(--text-sm); font-weight: var(--fw-semibold); color: var(--text-base); line-height: var(--leading-snug); }
   .amenity-detail { font-size: var(--text-xs); color: var(--text-muted); line-height: var(--leading-normal); }
 </style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".reveal").forEach(e => e.classList.add("visible"));
+  });
+</script>
+</section>

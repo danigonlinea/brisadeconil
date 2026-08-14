@@ -100,7 +100,7 @@ Estas reglas son **obligatorias**; romperlas rompe el build o el flujo de conten
 ### Seguridad
 - **Nunca pongas secretos en código cliente.** El formulario intenta primero `POST /api/contact` (server-side, usa `process.env.WEB3FORMS_ACCESS_KEY`) y, si falla, cae a un `POST` directo a `api.web3forms.com` con la key pública `PUBLIC_WEB3FORMS_KEY` — ese fallback es el camino que funciona en GitHub Pages (hosting estático). `PUBLIC_WEB3FORMS_KEY` es la única key que puede ir al cliente.
 - **Nunca commitees `.env`** ni claves reales. `.env` está en `.gitignore`.
-- Cuidado con `set:html`: se usa para insertar iconos SVG. El README tiene pendiente reemplazarlo por componentes SVG. Si tocas ese markup, prefiere imports/components SVG sobre cadenas HTML.
+- Cuidado con `set:html`: su uso queda reservado a markup legítimo generado por el build (JSON-LD en `FAQSection`/`BaseLayout` y el `i18n-script`). Los iconos SVG ya NO se inyectan con `set:html`: se renderizan vía el componente compartido `src/components/SvgIcon.astro` (tipado, sin inyección). Si tocas iconos, usa `SvgIcon` y añade el `name` correspondiente a su set.
 
 ### Estilos
 - **Sin Tailwind, sin framework CSS.** Se usan CSS Custom Properties definidos en `src/styles/global.css` (paleta navy/chalk/teal, tipografías Lora + Source Sans 3, dark mode nativo).
@@ -187,7 +187,7 @@ Está pendiente (no lo asumas resuelto):
 - **Rate-limiting / anti-bot** en `/api/contact` (honeypot, reCAPTCHA o contador por IP).
 - **Auditoría de XSS / sanitización** del HTML legítimo en `src/i18n/translations.ts`.
 - **`npm audit`** + Dependabot/Renovate.
-- **Reemplazar `set:html`** de iconos SVG por componentes/imports SVG.
+- ~~**Reemplazar `set:html`** de iconos SVG por componentes/imports SVG.~~ — **Hecho**: los iconos están centralizados en `src/components/SvgIcon.astro` (2026-08-14).
 - **CI con checks** `tsc --noEmit`, ESLint y `npm audit`.
 - **Logging/monitorización** de `/api/contact`.
 - Sustituir **testimonios placeholder** y crear **`public/og-image.jpg`** real (1200×630).

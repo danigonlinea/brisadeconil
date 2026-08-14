@@ -160,8 +160,8 @@ export const t: Record<string, Record<Locale, string>> = {
   "apt.spec.access.label": { es: "Acceso", en: "Access", de: "Zugang" },
   "apt.spec.access.value": {
     es: "Primera planta, acceso por escalera",
-    en: "Ground floor, no stairs",
-    de: "Erdgeschoss, keine Treppen",
+    en: "First floor, accessed by stairs",
+    de: "Erster Stock, erreichbar über eine Treppe",
   },
   "apt.spec.store.label": {
     es: "Servicios cercanos",
@@ -185,8 +185,8 @@ export const t: Record<string, Record<Locale, string>> = {
   },
   "apt.access-note": {
     es: "El apartamento se encuentra en una primera planta con acceso por escalera desde la calle.",
-    en: "The apartment is on the ground floor with direct street access. Arrive, drop the bags and you're already on holiday.",
-    de: "Die Wohnung liegt im Erdgeschoss mit direktem Straßenzugang. Ankommen, Koffer abstellen und Urlaub genießen.",
+    en: "The apartment is on the first floor, accessed by stairs from the street. Arrive, carry your bags up and you're already on holiday.",
+    de: "Die Wohnung liegt im ersten Stock, erreichbar über eine Treppe von der Straße. Ankommen, Koffer hochtragen und Urlaub genießen.",
   },
 
   // ── Amenities ─────────────────────────────────────────────────────────────
