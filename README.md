@@ -272,8 +272,6 @@ Aquí tienes una descripción práctica de cada tarea pendiente, con prioridad, 
   - Objetivo: garantizar calidad y detectar regresiones automáticamente.
   - Pasos: añadir job en GitHub Actions que corra `npm ci`, `npx tsc --noEmit`, `npx eslint src`, `npm audit --audit-level=moderate`.
 
-- ~~**Reemplazar `set:html` iconos por componentes SVG**~~ (Prioridad: Baja/Medio) — **Hecho** (2026-08-14): iconos centralizados en `src/components/SvgIcon.astro`.
-
 - **Ejecutar `npm audit` y actualizar dependencias críticas** (Prioridad: Media)
   - Objetivo: cerrar CVEs y mantener dependencias seguras.
   - Pasos: ejecutar `npm audit`, aplicar `npm audit fix` y revisar cambios; abrir PRs para actualizaciones mayores.
@@ -312,19 +310,16 @@ He dejado aquí el plan de trabajo para continuar la auditoría de seguridad y l
    - Ejecutar `npm audit` y arreglar vulnerabilidades críticas/alta prioridad.
    - Próximo paso: habilitar Dependabot o Renovate para actualizaciones automáticas.
 
-5. Revisión de `set:html` y SVGs — **Hecho** (2026-08-14): iconos migrados a `src/components/SvgIcon.astro`; ya no se usa `set:html` para SVGs.
-
-6. Integración continua y checks automáticos
+5. Integración continua y checks automáticos
    - Añadir en CI: `tsc --noEmit`, ESLint (con reglas para código muerto) y `npm audit` en la pipeline.
 
-7. Monitorización y observabilidad
+6. Monitorización y observabilidad
    - Añadir logging básico y monitorización para `/api/contact` (Sentry/Logflare/u otro) y alertas por errores/500.
 
-8. Documentación operativa
+7. Documentación operativa
    - Documentar variables de entorno necesarias: `WEB3FORMS_ACCESS_KEY`, y pasos para despliegue en GitHub Actions.
 
-9. Tareas menores / seguimiento
-   - Reemplazar `rel="noreferrer"` por `rel="noopener noreferrer"` en todos los enlaces externos (hecho en la política de cookies).
+8. Tareas menores / seguimiento
    - Revisar TODOs en `src/content/en.ts` y `src/content/de.ts`.
 
 Marca los pasos completados en el TODO list del repositorio cuando los vayas completando.
