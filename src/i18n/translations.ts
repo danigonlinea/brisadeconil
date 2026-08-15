@@ -276,6 +276,11 @@ export const t: Record<string, Record<Locale, string>> = {
     en: "Oven",
     de: "Backofen",
   },
+  "amenities.item.iron": {
+    es: "Plancha y tabla de planchar",
+    en: "Iron & ironing board",
+    de: "Bügeleisen & Bügelbrett",
+  },
   "amenities.item.hot-water": {
     es: "Agua caliente",
     en: "Hot water",
