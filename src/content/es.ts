@@ -55,6 +55,11 @@ export const apartment = {
     },
     {
       icon: "sun",
+      label: "Servicios cercanos",
+      value: "Supermercado, farmacia y bancos cerca",
+    },
+    {
+      icon: "sun",
       label: "Azotea comunitaria",
       value: "Para estar al fresco o tender la ropa",
     },
@@ -93,6 +98,7 @@ export const amenities = {
     { icon: "microwave", label: "Microondas", detail: "" },
     { icon: "toaster", label: "Tostador", detail: "" },
     { icon: "oven", label: "Horno", detail: "" },
+    { icon: "iron", label: "Plancha y tabla de planchar", detail: "" },
   ],
 };
 

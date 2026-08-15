@@ -52,6 +52,11 @@ export const apartment = {
     { icon: "door", label: "Zugang", value: "Erster Stock, erreichbar über eine Treppe" },
     {
       icon: "sun",
+      label: "In der Nähe",
+      value: "Supermarkt, Apotheke und Banken in der Nähe",
+    },
+    {
+      icon: "sun",
       label: "Gemeinschaftsdachterrasse",
       value: "Zum Frischluft genießen oder Wäsche aufhängen",
     },
@@ -90,6 +95,7 @@ export const amenities = {
     { icon: "microwave", label: "Mikrowelle", detail: "" },
     { icon: "toaster", label: "Toaster", detail: "" },
     { icon: "oven", label: "Backofen", detail: "" },
+    { icon: "iron", label: "Bügeleisen & Bügelbrett", detail: "" },
   ],
 };
 

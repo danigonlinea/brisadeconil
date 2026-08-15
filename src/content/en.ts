@@ -44,6 +44,7 @@ export const apartment = {
     { icon: 'bath',     label: 'Bathroom',       value: 'Walk-in shower' },
     { icon: 'layout',   label: 'Layout',         value: 'Open-plan living & kitchen' },
     { icon: 'door',     label: 'Access',         value: 'First floor, accessed by stairs' },
+    { icon: 'sun',      label: 'Nearby services', value: 'Supermarket, pharmacy and banks nearby' },
     { icon: 'sun',      label: 'Communal rooftop', value: 'For evening breeze or drying clothes' },
   ],
   accessNote:
@@ -72,6 +73,7 @@ export const amenities = {
     { icon: 'microwave',   label: 'Microwave',         detail: '' },
     { icon: 'toaster',     label: 'Toaster',           detail: '' },
     { icon: 'oven',        label: 'Oven',              detail: '' },
+    { icon: 'iron',        label: 'Iron & ironing board', detail: '' },
   ],
 };
 
