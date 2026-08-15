@@ -39,7 +39,6 @@ src/
 │   ├── GallerySection.astro
 │   ├── GalleryIsland.tsx     ← React + PhotoSwipe
 │   ├── ApartmentSection.astro
-│   ├── AmenitiesSection.astro
 │   ├── WelcomeSection.astro
 │   ├── LocationSection.astro
 │   ├── ConilSection.astro
