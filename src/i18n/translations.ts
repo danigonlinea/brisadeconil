@@ -71,14 +71,14 @@ export const t: Record<string, Record<Locale, string>> = {
     de: "Dein Erlebnis in Conil beginnt hier",
   },
   "hero.headline-1": {
-    es: "Apartamento en el centro de",
-    en: "Apartment in the centre of",
-    de: "Wohnung im Zentrum von",
+    es: "Brisa de Conil — Apartamento en el",
+    en: "Brisa de Conil — Apartment in the",
+    de: "Brisa de Conil — Wohnung im",
   },
   "hero.headline-2": {
-    es: " Conil de la Frontera",
-    en: " Conil de la Frontera",
-    de: " Conil de la Frontera",
+    es: " centro de Conil de la Frontera",
+    en: " centre of Conil de la Frontera",
+    de: " Zentrum von Conil de la Frontera",
   },
   "hero.subline": {
     es: "En la Calle Rosa de los Vientos: A pasos del mercado, a minutos del mar.",

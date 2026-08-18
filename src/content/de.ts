@@ -7,7 +7,7 @@
 export const meta = {
   title: "Brisa de Conil — Ferienwohnung in Conil de la Frontera",
   description:
-    "Miete eine gemütliche Wohnung im Herzen von Conil de la Frontera (Cádiz). Gleich neben dem Markt, für 3 Personen. Buche deine Daten.",
+    "Brisa de Conil: Ferienwohnung im Zentrum von Conil de la Frontera (Cádiz), direkt neben dem Markt. Für 3 Personen. Buche deine Daten.",
   ogImage: "/og-image.jpg",
   locale: "de_DE",
 };
@@ -28,7 +28,7 @@ export const nav = {
 export const hero = {
   tagline: "Dein Erlebnis in Conil beginnt hier",
   headline:
-    "Wohnung im Zentrum von\n Conil de la Frontera.\nGleich neben dem Markt, Minuten vom Meer.",
+    "Brisa de Conil — Wohnung im\n Zentrum von Conil de la Frontera",
   subline:
     "In der Calle Rosa de los Vientos: Gleich neben dem Markt, Minuten vom Meer.",
   cta: "Verfügbarkeit prüfen",

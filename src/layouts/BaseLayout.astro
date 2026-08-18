@@ -203,6 +203,26 @@ const lodgingSchemaData = {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
+    <!-- Fonts (non-blocking): loaded via JS so they never block first paint.
+         display=swap renders the hero headline with a fallback font instantly. -->
+    <script is:inline>
+      (function () {
+        var url =
+          'https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:wght@300;400;500;600&display=swap';
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = url;
+        link.media = 'print';
+        link.onload = function () {
+          link.media = 'all';
+        };
+        document.head.appendChild(link);
+      })();
+    </script>
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:wght@300;400;500;600&display=swap" />
+    </noscript>
+
     <!-- Inline dark theme script — must run before first paint to avoid flash -->
     <script is:inline>
       (function () {
