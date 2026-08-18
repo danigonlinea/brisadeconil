@@ -329,6 +329,21 @@ export const faq = {
       a: "Nein. Handtücher und Bettwäsche sind inklusive. Du findest auch Waschmittel, Weichspüler, Haartrockner und Küchengrundausstattung.",
       pending: false,
     },
+    {
+      q: "Ist die Küche komplett zum Kochen ausgestattet?",
+      a: "Ja. Die Küche ist offen zum Wohnzimmer und mit Mikrowelle, Backofen, Mokkakanne, Wasserkocher und komplettem Kochgeschirr (Töpfe, Pfannen, Besteck und Geschirr) ausgestattet. Es gibt auch eine Spülmaschine und eine Waschmaschine.",
+      pending: false,
+    },
+    {
+      q: "Gibt es Klimaanlage und WLAN?",
+      a: "Ja. Im Schlafzimmer gibt es Klimaanlage und einen Deckenventilator, und Glasfaser-WLAN ist in der gesamten Wohnung verfügbar. Der Fernseher hat 60 Zoll.",
+      pending: false,
+    },
+    {
+      q: "Nehmt ihr lange Aufenthalte oder Buchungen für eine Nacht an?",
+      a: "Ja, wir akzeptieren sowohl lange Aufenthalte als auch Last-Minute-Buchungen, wenn Verfügbarkeit besteht — besonders außerhalb der Hochsaison. Schreib uns deine Daten und wir erstellen ein individuelles Angebot.",
+      pending: false,
+    },
   ],
 };
 

@@ -813,6 +813,36 @@ export const t: Record<string, Record<Locale, string>> = {
     en: "No. Towels and bed linen are included. You will also find detergent, softener, a hair dryer and basic kitchen supplies.",
     de: "Nein. Handtücher und Bettwäsche sind inklusive. Du findest auch Waschmittel, Weichspüler, einen Föhn und Küchenbasics.",
   },
+  "faq.item.14.q": {
+    es: "¿La cocina está completa para cocinar?",
+    en: "Is the kitchen fully equipped for cooking?",
+    de: "Ist die Küche komplett zum Kochen ausgestattet?",
+  },
+  "faq.item.14.a": {
+    es: "Sí. La cocina abre al salón y está equipada con microondas, horno, cafetera italiana, hervidor y todo el menaje (ollas, sartenes, cubertería y vajilla). También hay lavavajillas y lavadora.",
+    en: "Yes. The kitchen opens onto the living room and includes a microwave, oven, moka pot, kettle and full cookware (pots, pans, cutlery and tableware). There is also a dishwasher and a washing machine.",
+    de: "Ja. Die Küche ist offen zum Wohnzimmer und mit Mikrowelle, Backofen, Mokkakanne, Wasserkocher und komplettem Kochgeschirr (Töpfe, Pfannen, Besteck und Geschirr) ausgestattet. Es gibt auch eine Spülmaschine und eine Waschmaschine.",
+  },
+  "faq.item.15.q": {
+    es: "¿Tiene aire acondicionado y wifi?",
+    en: "Is there air conditioning and WiFi?",
+    de: "Gibt es Klimaanlage und WLAN?",
+  },
+  "faq.item.15.a": {
+    es: "Sí. Hay aire acondicionado y ventilador de techo en el dormitorio, y fibra óptica con wifi en todo el apartamento. La televisión es de 60 pulgadas.",
+    en: "Yes. There is air conditioning and a ceiling fan in the bedroom, plus fibre broadband with WiFi throughout the apartment. The TV is 60 inches.",
+    de: "Ja. Im Schlafzimmer gibt es Klimaanlage und einen Deckenventilator, und Glasfaser-WLAN ist in der gesamten Wohnung verfügbar. Der Fernseher hat 60 Zoll.",
+  },
+  "faq.item.16.q": {
+    es: "¿Aceptáis estancias largas o reservas de una noche?",
+    en: "Do you accept long stays or single-night bookings?",
+    de: "Nehmt ihr lange Aufenthalte oder Buchungen für eine Nacht an?",
+  },
+  "faq.item.16.a": {
+    es: "Sí, aceptamos tanto estancias largas como reservas de última hora si hay disponibilidad, especialmente fuera de temporada alta. Escríbenos tus fechas y te preparamos una oferta a medida.",
+    en: "Yes, we accept both long stays and last-minute bookings when availability allows, especially outside peak season. Send us your dates and we'll put together a tailored offer.",
+    de: "Ja, wir akzeptieren sowohl lange Aufenthalte als auch Last-Minute-Buchungen, wenn Verfügbarkeit besteht — besonders außerhalb der Hochsaison. Schreib uns deine Daten und wir erstellen ein individuelles Angebot.",
+  },
   "faq.pending-badge": {
     es: "Pendiente",
     en: "Pending",

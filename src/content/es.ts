@@ -334,6 +334,21 @@ export const faq = {
       a: "No. Toallas y sábanas están incluidas y limpias. También encontrarás detergente, suavizante, secador de pelo y básicos de cocina (aceite, vinagre y servilletas).",
       pending: false,
     },
+    {
+      q: "¿La cocina está completa para cocinar?",
+      a: "Sí. La cocina abre al salón y está equipada con microondas, horno, cafetera italiana, hervidor y todo el menaje (ollas, sartenes, cubertería y vajilla). También hay lavavajillas y lavadora.",
+      pending: false,
+    },
+    {
+      q: "¿Tiene aire acondicionado y wifi?",
+      a: "Sí. Hay aire acondicionado y ventilador de techo en el dormitorio, y fibra óptica con wifi en todo el apartamento. La televisión es de 60 pulgadas.",
+      pending: false,
+    },
+    {
+      q: "¿Aceptáis estancias largas o reservas de una noche?",
+      a: "Sí, aceptamos tanto estancias largas como reservas de última hora si hay disponibilidad, especialmente fuera de temporada alta. Escríbenos tus fechas y te preparamos una oferta a medida.",
+      pending: false,
+    },
   ],
 };
 
