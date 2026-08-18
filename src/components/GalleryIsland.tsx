@@ -13,7 +13,6 @@
  *  - On load the real image fades in over the LQIP (blur-up).
  */
 import { useCallback, useEffect, useRef, useState } from "react";
-import "photoswipe/style.css";
 import type { Locale } from "../i18n/translations";
 import galleryManifest from "../data/gallery-manifest";
 import { trackEvent } from "../lib/analytics";
@@ -397,7 +396,10 @@ export default function GalleryIsland() {
     async (index: number) => {
       const item = GALLERY_ITEMS[index];
       trackEvent("gallery_open", { item: item?.id ?? null, index });
+      // PhotoSwipe JS + CSS are both loaded on demand (not on the initial
+      // bundle): keeps the lightbox styling out of the first-paint CSS.
       const PhotoSwipe = (await import("photoswipe")).default;
+      await import("photoswipe/style.css");
       const dataSource = GALLERY_ITEMS.map((item) => {
         const img = GALLERY_IMAGES.get(item.id)!;
         return {
