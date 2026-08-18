@@ -20,6 +20,13 @@ export default defineConfig({
       priority: 0.7,
     }),
   ],
+  build: {
+    // Inline all CSS into the HTML <head>. Removes the two render-blocking
+    // <link rel="stylesheet"> requests flagged in the Core Web Vitals audit
+    // (global base + page bundle). CSS is small enough (~50KB total) that
+    // inlining wins on slow mobile connections vs. extra blocking round-trips.
+    inlineStylesheets: "always",
+  },
   image: {
     // Use Astro's built-in image optimization
     remotePatterns: [],
