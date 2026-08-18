@@ -7,125 +7,148 @@
  *   2. Set document.documentElement.lang
  *   3. Apply all data-i18n translations to the DOM
  *
- * The translations object is inlined at build time via Astro's is:inline +
- * set:html. No external request, no flash.
+ * Only the DEFAULT locale table is inlined (keeps the HTML light for the
+ * content-to-code ratio). The other locales are served as static JSON
+ * (src/pages/i18n/[locale].json.ts) and fetched on demand when the visitor
+ * switches language, with a fallback to the default locale.
  */
 
 import { t, SUPPORTED_LOCALES, DEFAULT_LOCALE } from "./translations";
 
+/** Flatten one locale's strings into a plain { key: string } map. */
+function flatLocale(locale: string): Record<string, string> {
+  const out: Record<string, string> = {};
+  for (const key of Object.keys(t)) {
+    const entry = t[key];
+    if (!entry) continue;
+    const value = entry[locale as keyof typeof entry];
+    if (value !== undefined) out[key] = value;
+  }
+  return out;
+}
+
 /**
  * Returns the JS source to embed inline.
- * Called once at build time in BaseLayout.astro.
+ * `base` is the BASE_URL (used to locate the per-locale JSON files).
  */
-export function buildI18nScript(): string {
-  // Serialise the full translation table as a JS object literal.
-  // Only the values (not the TS types) end up in the bundle.
-  const translationsJSON = JSON.stringify(t);
+export function buildI18nScript(base: string): string {
+  const defaultTable = flatLocale(DEFAULT_LOCALE);
+  const defaultJSON = JSON.stringify(defaultTable);
   const localesJSON = JSON.stringify(SUPPORTED_LOCALES);
   const defaultLocale = DEFAULT_LOCALE;
+  const baseUrl = (base || "/").replace(/\/$/, "") + "/";
 
   return `
 (function () {
   var STORAGE_KEY = 'brisa-locale';
   var SUPPORTED = ${localesJSON};
   var DEFAULT = '${defaultLocale}';
-  var T = ${translationsJSON};
+  var BASE = ${JSON.stringify(baseUrl)};
+  // Only the default locale is embedded; others are fetched on demand.
+  var LOADED = { ${defaultLocale}: ${defaultJSON} };
 
   function detectLocale() {
     var saved = localStorage.getItem(STORAGE_KEY);
     if (saved && SUPPORTED.indexOf(saved) !== -1) return saved;
     var lang = (navigator.language || '').toLowerCase();
-    if (lang.startsWith('de')) return 'de';
-    if (lang.startsWith('en')) return 'en';
+    if (lang.indexOf('de') === 0) return 'de';
+    if (lang.indexOf('en') === 0) return 'en';
     return DEFAULT;
   }
 
-  function applyLocale(locale) {
-    // 1. Set lang attribute
-    document.documentElement.lang = locale;
-
-    function translatePage() {
-      // 2. Translate all [data-i18n] elements (text content)
-      document.querySelectorAll('[data-i18n]').forEach(function (el) {
-        var key = el.getAttribute('data-i18n');
-        if (T[key] && T[key][locale] !== undefined) {
-          el.textContent = T[key][locale];
-        }
+  function fetchLocale(locale) {
+    return fetch(BASE + 'i18n/' + locale + '.json')
+      .then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .catch(function () {
+        // Fallback: keep the default locale if the request fails.
+        return LOADED[DEFAULT];
       });
+  }
 
-      // 3. Translate all [data-i18n-html] elements (inner HTML — for rich text)
-      // Use a lightweight sanitizer to avoid unsafe script/style attributes
-      function sanitizeHTML(html) {
-        try {
-          var parser = new DOMParser();
-          var doc = parser.parseFromString(html || '', 'text/html');
-          var allowed = ['a','b','strong','i','em','br','p','ul','ol','li','span','div','sup','sub','small','mark','code'];
-          doc.body.querySelectorAll('*').forEach(function (node) {
-            var name = node.nodeName.toLowerCase();
-            if (allowed.indexOf(name) === -1) {
-              // replace disallowed element with its children (keeps text)
-              while (node.firstChild) node.parentNode.insertBefore(node.firstChild, node);
-              node.parentNode.removeChild(node);
+  function ensureLocale(locale) {
+    if (LOADED[locale]) return Promise.resolve(LOADED[locale]);
+    return fetchLocale(locale).then(function (table) {
+      LOADED[locale] = table;
+      return table;
+    });
+  }
+
+  function translatePage(table, locale) {
+    // 1. Text content
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n');
+      if (table[key] !== undefined) el.textContent = table[key];
+    });
+
+    // 2. Inner HTML — for rich text, with a lightweight sanitizer
+    function sanitizeHTML(html) {
+      try {
+        var parser = new DOMParser();
+        var doc = parser.parseFromString(html || '', 'text/html');
+        var allowed = ['a','b','strong','i','em','br','p','ul','ol','li','span','div','sup','sub','small','mark','code'];
+        doc.body.querySelectorAll('*').forEach(function (node) {
+          var name = node.nodeName.toLowerCase();
+          if (allowed.indexOf(name) === -1) {
+            while (node.firstChild) node.parentNode.insertBefore(node.firstChild, node);
+            node.parentNode.removeChild(node);
+            return;
+          }
+          Array.from(node.attributes).forEach(function (attr) {
+            var n = attr.name.toLowerCase();
+            var v = attr.value || '';
+            if (n.indexOf('on') === 0) {
+              node.removeAttribute(attr.name);
               return;
             }
-            // remove unsafe attributes
-            Array.from(node.attributes).forEach(function (attr) {
-              var n = attr.name.toLowerCase();
-              var v = attr.value || '';
-              if (n.indexOf('on') === 0) {
-                node.removeAttribute(attr.name);
-                return;
-              }
-              if (n === 'href') {
-                var lv = v.trim().toLowerCase();
-                if (lv.indexOf('javascript:') === 0) node.removeAttribute(attr.name);
-              } else if (['class','id','title','alt','rel','target','aria-label'].indexOf(n) === -1) {
-                // remove any other attributes to reduce risk
-                node.removeAttribute(attr.name);
-              }
-            });
+            if (n === 'href') {
+              var lv = v.trim().toLowerCase();
+              if (lv.indexOf('javascript:') === 0) node.removeAttribute(attr.name);
+            } else if (['class','id','title','alt','rel','target','aria-label'].indexOf(n) === -1) {
+              node.removeAttribute(attr.name);
+            }
           });
-          return doc.body.innerHTML;
-        } catch (e) {
-          return '';
-        }
+        });
+        return doc.body.innerHTML;
+      } catch (e) {
+        return '';
       }
-
-      document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
-        var key = el.getAttribute('data-i18n-html');
-        if (T[key] && T[key][locale] !== undefined) {
-          el.innerHTML = sanitizeHTML(T[key][locale]);
-        }
-      });
-
-      // 4. Translate placeholder attributes
-      document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
-        var key = el.getAttribute('data-i18n-placeholder');
-        if (T[key] && T[key][locale] !== undefined) {
-          el.setAttribute('placeholder', T[key][locale]);
-        }
-      });
-
-      // 5. Translate aria-label attributes
-      document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
-        var key = el.getAttribute('data-i18n-aria');
-        if (T[key] && T[key][locale] !== undefined) {
-          el.setAttribute('aria-label', T[key][locale]);
-        }
-      });
     }
 
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', translatePage, { once: true });
-    } else {
-      translatePage();
-    }
+    document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n-html');
+      if (table[key] !== undefined) el.innerHTML = sanitizeHTML(table[key]);
+    });
 
-    // 6. Mark active locale on <html> for CSS / switcher
+    // 3. Placeholder attributes
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n-placeholder');
+      if (table[key] !== undefined) el.setAttribute('placeholder', table[key]);
+    });
+
+    // 4. aria-label attributes
+    document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n-aria');
+      if (table[key] !== undefined) el.setAttribute('aria-label', table[key]);
+    });
+  }
+
+  function applyLocale(locale) {
+    document.documentElement.lang = locale;
     document.documentElement.setAttribute('data-locale', locale);
 
-    // 7. Dispatch event so React islands can react
-    window.dispatchEvent(new CustomEvent('brisa:locale-change', { detail: { locale: locale } }));
+    ensureLocale(locale).then(function (table) {
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function () {
+          translatePage(table, locale);
+        }, { once: true });
+      } else {
+        translatePage(table, locale);
+      }
+      window.dispatchEvent(new CustomEvent('brisa:locale-change', { detail: { locale: locale } }));
+    });
   }
 
   // Expose globally so LanguageSwitcher can call it
@@ -140,8 +163,7 @@ export function buildI18nScript(): string {
   };
 
   // Run on load
-  var locale = detectLocale();
-  applyLocale(locale);
+  applyLocale(detectLocale());
 })();
 `.trim();
 }

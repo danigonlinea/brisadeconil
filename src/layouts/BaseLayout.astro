@@ -235,7 +235,7 @@ const lodgingSchemaData = {
     </script>
 
     <!-- Inline i18n script — detects locale and translates data-i18n elements before first paint -->
-    <script is:inline set:html={buildI18nScript()} />
+    <script is:inline set:html={buildI18nScript(base)} />
   </head>
   <body>
     <!-- Skip navigation for keyboard users -->
