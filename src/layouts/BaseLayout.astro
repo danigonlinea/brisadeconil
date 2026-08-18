@@ -118,110 +118,9 @@ const lodgingSchemaData = {
     <link rel="alternate icon" href={`${base}favicon.ico`} />
     <link rel="apple-touch-icon" sizes="180x180" href={`${base}apple-touch-icon.png`} />
 
-    <!-- Cookie consent + Google Analytics (loaded only after explicit consent)
-         Non-intrusive: GA is NOT loaded until the visitor clicks "Accept".
-         Decision persisted in localStorage so the banner doesn't reappear. -->
-    <script is:inline>
-      (function () {
-        var GA_ID = 'G-27RGED8JEV';
-        var CONSENT_KEY = 'brisa-consent';
-
-        function readConsent() {
-          try { return localStorage.getItem(CONSENT_KEY); } catch (e) { return null; }
-        }
-        function writeConsent(value) {
-          try { localStorage.setItem(CONSENT_KEY, value); } catch (e) {}
-        }
-
-        function loadGtag() {
-          if (window.__brisaConsentLoaded) return;
-          var s1 = document.createElement('script');
-          s1.async = true;
-          s1.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
-          document.head.appendChild(s1);
-
-          var s2 = document.createElement('script');
-          s2.textContent =
-            "window.dataLayer = window.dataLayer || [];" +
-            "function gtag(){dataLayer.push(arguments);}" +
-            "gtag('js', new Date());" +
-            "gtag('config', '" + GA_ID + "', { anonymize_ip: true });";
-          document.head.appendChild(s2);
-          window.__brisaConsentLoaded = true;
-        }
-
-        function onReady(fn) {
-          if (document.readyState !== 'loading') { fn(); }
-          else { document.addEventListener('DOMContentLoaded', fn); }
-        }
-
-        // Already decided on a previous visit?
-        var decision = readConsent();
-        if (decision === 'accepted') { loadGtag(); return; }
-        if (decision === 'rejected') { return; }
-
-        // No decision yet → show the banner and let the user choose.
-        // Scrolling down also counts as acceptance ("scroll = consent").
-        onReady(function () {
-          var banner = document.getElementById('cookie-banner');
-          if (!banner) return;
-          banner.hidden = false;
-
-          var decided = false;
-          function decide(value, viaScroll) {
-            if (decided) return;
-            decided = true;
-            writeConsent(value);
-            if (value === 'accepted') {
-              loadGtag();
-              try {
-                window.gtag && window.gtag('event', 'cookie_consent', {
-                  decision: viaScroll ? 'accepted_scroll' : 'accepted',
-                });
-              } catch (e) {}
-            }
-            banner.hidden = true;
-            window.removeEventListener('scroll', onScroll);
-          }
-
-          var accept = banner.querySelector('[data-cookie-accept]');
-          var reject = banner.querySelector('[data-cookie-reject]');
-          if (accept) accept.addEventListener('click', function () { decide('accepted', false); });
-          if (reject) reject.addEventListener('click', function () { decide('rejected', false); });
-
-          // Implicit consent: a meaningful downward scroll counts as acceptance.
-          var threshold = Math.round(window.innerHeight * 0.4);
-          function onScroll() {
-            if (window.scrollY > threshold) decide('accepted', true);
-          }
-          window.addEventListener('scroll', onScroll, { passive: true });
-        });
-      })();
-    </script>
-
     <!-- Fonts preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <!-- Fonts (non-blocking): loaded via JS so they never block first paint.
-         display=swap renders the hero headline with a fallback font instantly. -->
-    <script is:inline>
-      (function () {
-        var url =
-          'https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:wght@300;400;500;600&display=swap';
-        var link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = url;
-        link.media = 'print';
-        link.onload = function () {
-          link.media = 'all';
-        };
-        document.head.appendChild(link);
-      })();
-    </script>
-    <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:wght@300;400;500;600&display=swap" />
-    </noscript>
 
     <!-- Inline dark theme script — must run before first paint to avoid flash -->
     <script is:inline>
@@ -240,18 +139,6 @@ const lodgingSchemaData = {
   <body>
     <!-- Skip navigation for keyboard users -->
     <a class="skip-link" href="#main-content" data-i18n="skip-link">Saltar al contenido</a>
-
-    <!--
-      DIRECTION CONTRACT — Brisa de Conil Landing Page
-      THESIS: Luz y sombra del Atlántico sur. Rechaza crema+coral+terracota (default de categoría).
-      OWN-WORLD: Navy-900 en hero, chalk-50 en superficies, teal-500 acento único.
-        Lora display, Source Sans 3 cuerpo. Sombras reales con offset.
-      STORY: Visitante entiende qué es, dónde está y cómo contactar. La calma persuade.
-      FIRST VIEWPORT: Hero full-bleed con overlay navy, titular serif grande, CTA teal.
-      FORM: Nueva superficie. Modo Persuade. Seed: manual — brief pinned world.
-      FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review,
-        the verdict, and DESIGN.md.
-    -->
 
     <!-- Cookie consent banner (non-intrusive bottom card) -->
     <aside
@@ -341,6 +228,106 @@ const lodgingSchemaData = {
     </style>
 
     <slot />
+
+    <!-- Fonts: loaded via JS so they never block first paint; display=swap
+         renders the hero headline with a fallback font instantly. -->
+    <script is:inline>
+      (function () {
+        var url =
+          'https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:wght@300;400;500;600&display=swap';
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = url;
+        link.media = 'print';
+        link.onload = function () {
+          link.media = 'all';
+        };
+        document.head.appendChild(link);
+      })();
+    </script>
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:wght@300;400;500;600&display=swap" />
+    </noscript>
+
+    <!-- Cookie consent + Google Analytics (loaded only after explicit consent).
+         Runs at the end of body so it never blocks the initial render. -->
+    <script is:inline>
+      (function () {
+        var GA_ID = 'G-27RGED8JEV';
+        var CONSENT_KEY = 'brisa-consent';
+
+        function readConsent() {
+          try { return localStorage.getItem(CONSENT_KEY); } catch (e) { return null; }
+        }
+        function writeConsent(value) {
+          try { localStorage.setItem(CONSENT_KEY, value); } catch (e) {}
+        }
+
+        function loadGtag() {
+          if (window.__brisaConsentLoaded) return;
+          var s1 = document.createElement('script');
+          s1.async = true;
+          s1.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+          document.head.appendChild(s1);
+
+          var s2 = document.createElement('script');
+          s2.textContent =
+            "window.dataLayer = window.dataLayer || [];" +
+            "function gtag(){dataLayer.push(arguments);}" +
+            "gtag('js', new Date());" +
+            "gtag('config', '" + GA_ID + "', { anonymize_ip: true });";
+          document.head.appendChild(s2);
+          window.__brisaConsentLoaded = true;
+        }
+
+        function onReady(fn) {
+          if (document.readyState !== 'loading') { fn(); }
+          else { document.addEventListener('DOMContentLoaded', fn); }
+        }
+
+        // Already decided on a previous visit?
+        var decision = readConsent();
+        if (decision === 'accepted') { loadGtag(); return; }
+        if (decision === 'rejected') { return; }
+
+        // No decision yet → show the banner and let the user choose.
+        // Scrolling down also counts as acceptance ("scroll = consent").
+        onReady(function () {
+          var banner = document.getElementById('cookie-banner');
+          if (!banner) return;
+          banner.hidden = false;
+
+          var decided = false;
+          function decide(value, viaScroll) {
+            if (decided) return;
+            decided = true;
+            writeConsent(value);
+            if (value === 'accepted') {
+              loadGtag();
+              try {
+                window.gtag && window.gtag('event', 'cookie_consent', {
+                  decision: viaScroll ? 'accepted_scroll' : 'accepted',
+                });
+              } catch (e) {}
+            }
+            banner.hidden = true;
+            window.removeEventListener('scroll', onScroll);
+          }
+
+          var accept = banner.querySelector('[data-cookie-accept]');
+          var reject = banner.querySelector('[data-cookie-reject]');
+          if (accept) accept.addEventListener('click', function () { decide('accepted', false); });
+          if (reject) reject.addEventListener('click', function () { decide('rejected', false); });
+
+          // Implicit consent: a meaningful downward scroll counts as acceptance.
+          var threshold = Math.round(window.innerHeight * 0.4);
+          function onScroll() {
+            if (window.scrollY > threshold) decide('accepted', true);
+          }
+          window.addEventListener('scroll', onScroll, { passive: true });
+        });
+      })();
+    </script>
 
     <!-- Scroll reveal — Intersection Observer -->
     <script is:inline>
