@@ -7,7 +7,7 @@
 export const meta = {
   title: "Brisa de Conil — Ferienwohnung in Conil de la Frontera",
   description:
-    "Miete eine gemütliche Wohnung im Herzen von Conil de la Frontera (Cádiz). Gleich neben dem Markt, für 3 Personen. Buche deine Daten.",
+    "Brisa de Conil: Ferienwohnung im Zentrum von Conil de la Frontera (Cádiz), direkt neben dem Markt. Für 3 Personen. Buche deine Daten.",
   ogImage: "/og-image.jpg",
   locale: "de_DE",
 };
@@ -28,7 +28,7 @@ export const nav = {
 export const hero = {
   tagline: "Dein Erlebnis in Conil beginnt hier",
   headline:
-    "Wohnung im Zentrum von\n Conil de la Frontera.\nGleich neben dem Markt, Minuten vom Meer.",
+    "Brisa de Conil — Wohnung im\n Zentrum von Conil de la Frontera",
   subline:
     "In der Calle Rosa de los Vientos: Gleich neben dem Markt, Minuten vom Meer.",
   cta: "Verfügbarkeit prüfen",
@@ -327,6 +327,21 @@ export const faq = {
     {
       q: "Muss ich Handtücher mitbringen?",
       a: "Nein. Handtücher und Bettwäsche sind inklusive. Du findest auch Waschmittel, Weichspüler, Haartrockner und Küchengrundausstattung.",
+      pending: false,
+    },
+    {
+      q: "Ist die Küche komplett zum Kochen ausgestattet?",
+      a: "Ja. Die Küche ist offen zum Wohnzimmer und mit Mikrowelle, Backofen, Mokkakanne, Wasserkocher und komplettem Kochgeschirr (Töpfe, Pfannen, Besteck und Geschirr) ausgestattet. Es gibt auch eine Spülmaschine und eine Waschmaschine.",
+      pending: false,
+    },
+    {
+      q: "Gibt es Klimaanlage und WLAN?",
+      a: "Ja. Im Schlafzimmer gibt es Klimaanlage und einen Deckenventilator, und Glasfaser-WLAN ist in der gesamten Wohnung verfügbar. Der Fernseher hat 60 Zoll.",
+      pending: false,
+    },
+    {
+      q: "Nehmt ihr lange Aufenthalte oder Buchungen für eine Nacht an?",
+      a: "Ja, wir akzeptieren sowohl lange Aufenthalte als auch Last-Minute-Buchungen, wenn Verfügbarkeit besteht — besonders außerhalb der Hochsaison. Schreib uns deine Daten und wir erstellen ein individuelles Angebot.",
       pending: false,
     },
   ],

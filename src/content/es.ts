@@ -6,7 +6,7 @@
 export const meta = {
   title: "Brisa de Conil — Apartamento vacacional en Conil de la Frontera",
   description:
-    "Alquila un acogedor apartamento en el corazón de Conil de la Frontera (Cádiz). A pasos del Mercado de Abastos, para 3 personas. Reserva tus fechas.",
+    "Brisa de Conil: apartamento vacacional en el centro de Conil de la Frontera (Cádiz), a pasos del Mercado de Abastos. Para 3 personas. Reserva tus fechas.",
   ogImage: "/og-image.jpg",
   locale: "es_ES",
 };
@@ -26,7 +26,8 @@ export const nav = {
 
 export const hero = {
   tagline: "Tu experiencia en Conil empieza aquí",
-  headline: "Apartamento en el centro de\n Conil de la Frontera",
+  headline:
+    "Brisa de Conil — Apartamento en el\n centro de Conil de la Frontera",
   subline:
     "En la Calle Rosa de los Vientos: A pasos del mercado, a minutos del mar.",
   cta: "Consulta disponibilidad",
@@ -331,6 +332,21 @@ export const faq = {
     {
       q: "¿Hay que llevar toallas y sábanas?",
       a: "No. Toallas y sábanas están incluidas y limpias. También encontrarás detergente, suavizante, secador de pelo y básicos de cocina (aceite, vinagre y servilletas).",
+      pending: false,
+    },
+    {
+      q: "¿La cocina está completa para cocinar?",
+      a: "Sí. La cocina abre al salón y está equipada con microondas, horno, cafetera italiana, hervidor y todo el menaje (ollas, sartenes, cubertería y vajilla). También hay lavavajillas y lavadora.",
+      pending: false,
+    },
+    {
+      q: "¿Tiene aire acondicionado y wifi?",
+      a: "Sí. Hay aire acondicionado y ventilador de techo en el dormitorio, y fibra óptica con wifi en todo el apartamento. La televisión es de 60 pulgadas.",
+      pending: false,
+    },
+    {
+      q: "¿Aceptáis estancias largas o reservas de una noche?",
+      a: "Sí, aceptamos tanto estancias largas como reservas de última hora si hay disponibilidad, especialmente fuera de temporada alta. Escríbenos tus fechas y te preparamos una oferta a medida.",
       pending: false,
     },
   ],

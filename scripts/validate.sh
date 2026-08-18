@@ -64,6 +64,9 @@ fi
 #   - .env.example          → plantilla de ejemplo
 #   - *.md                  → documentación
 echo "→ grep anti-secretos (WEB3FORMS_ACCESS_KEY en código cliente)"
+# Los comentarios pueden mencionar legítimamente el NOMBRE de la variable
+# (p. ej. la lógica de fallback de ContactForm.tsx, ver AGENTS.md §4). Solo
+# debe saltar si el nombre aparece FUERA de un comentario (posible valor real).
 MATCHES=$(grep -r \
   --exclude-dir=node_modules \
   --exclude-dir=.git \
@@ -76,7 +79,9 @@ MATCHES=$(grep -r \
   -n "WEB3FORMS_ACCESS_KEY" \
   src/ public/ \
   *.mjs *.js *.ts *.tsx *.astro \
-  2>/dev/null || true)
+  2>/dev/null \
+  | grep -vE ':[0-9]+:[[:space:]]*(//|/\*|\*|<!--|#)' \
+  || true)
 
 if [[ -n "$MATCHES" ]]; then
   echo -e "${RED}Se encontró WEB3FORMS_ACCESS_KEY en código cliente:${NC}"

@@ -7,7 +7,7 @@
 export const meta = {
   title: 'Brisa de Conil — Holiday apartment in Conil de la Frontera',
   description:
-    'Rent a cosy apartment in the heart of Conil de la Frontera (Cádiz). Steps from the Market, sleeps 3. Book your dates.',
+    'Brisa de Conil: holiday apartment in the centre of Conil de la Frontera (Cádiz), steps from the Market. Sleeps 3. Book your dates.',
   ogImage: '/og-image.jpg',
   locale: 'en_GB',
 };
@@ -27,7 +27,7 @@ export const nav = {
 
 export const hero = {
   tagline: 'Your experience in Conil starts here',
-  headline: 'Apartment in the centre of\n Conil de la Frontera.\nSteps from the market, minutes from the sea.',
+  headline: 'Brisa de Conil — Apartment in the\n centre of Conil de la Frontera',
   subline: 'On Calle Rosa de los Vientos: Steps from the market, minutes from the sea.',
   cta: 'Check availability',
   ctaHref: '#contacto',
@@ -219,6 +219,9 @@ export const faq = {
     { q: 'Do you accept last-minute bookings?', a: 'Yes, if availability allows. Check your dates and we\'ll respond as soon as possible. In high season it\'s recommended to book in advance.', pending: false },
     { q: 'How is the deposit handled?', a: 'The deposit is €150, returned within 24–48 hours of checkout once everything has been checked.', pending: false },
     { q: 'Do I need to bring towels and bed linen?', a: 'No. Towels and bed linen are included. You will also find detergent, softener, a hair dryer and basic kitchen supplies.', pending: false },
+    { q: 'Is the kitchen fully equipped for cooking?', a: "Yes. The kitchen opens onto the living room and includes a microwave, oven, moka pot, kettle and full cookware (pots, pans, cutlery and tableware). There is also a dishwasher and a washing machine.", pending: false },
+    { q: 'Is there air conditioning and WiFi?', a: "Yes. There is air conditioning and a ceiling fan in the bedroom, plus fibre broadband with WiFi throughout the apartment. The TV is 60 inches.", pending: false },
+    { q: 'Do you accept long stays or single-night bookings?', a: "Yes, we accept both long stays and last-minute bookings when availability allows, especially outside peak season. Send us your dates and we'll put together a tailored offer.", pending: false },
   ],
 };
 
