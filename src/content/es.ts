@@ -25,11 +25,11 @@ export const nav = {
 };
 
 export const hero = {
-  tagline: "Tu experiencia en Conil empieza aquí",
+  tagline: "Brisa de Conil: tu experiencia en Conil empieza aquí",
   headline:
     "Brisa de Conil — Apartamento en el\n centro de Conil de la Frontera",
   subline:
-    "En la Calle Rosa de los Vientos: A pasos del mercado, a minutos del mar.",
+    "El apartamento Brisa de Conil está en la Calle Rosa de los Vientos, a pasos del mercado y a minutos del mar.",
   cta: "Consulta disponibilidad",
   ctaHref: "#contacto",
   scrollLabel: "Descubre más",

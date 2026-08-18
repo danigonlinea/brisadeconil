@@ -66,9 +66,9 @@ export const t: Record<string, Record<Locale, string>> = {
 
   // ── Hero ──────────────────────────────────────────────────────────────────
   "hero.tagline": {
-    es: "Tu experiencia en Conil empieza aquí",
-    en: "Your experience in Conil starts here",
-    de: "Dein Erlebnis in Conil beginnt hier",
+    es: "Brisa de Conil: tu experiencia en Conil empieza aquí",
+    en: "Brisa de Conil: your experience in Conil starts here",
+    de: "Brisa de Conil: Dein Erlebnis in Conil beginnt hier",
   },
   "hero.headline-1": {
     es: "Brisa de Conil — Apartamento en el",
@@ -81,9 +81,9 @@ export const t: Record<string, Record<Locale, string>> = {
     de: " Zentrum von Conil de la Frontera",
   },
   "hero.subline": {
-    es: "En la Calle Rosa de los Vientos: A pasos del mercado, a minutos del mar.",
-    en: "On Calle Rosa de los Vientos: Steps from the market, minutes from the sea.",
-    de: "In der Calle Rosa de los Vientos: Schritte vom Markt, Minuten vom Meer.",
+    es: "El apartamento Brisa de Conil está en la Calle Rosa de los Vientos, a pasos del mercado y a minutos del mar.",
+    en: "The Brisa de Conil apartment is on Calle Rosa de los Vientos, steps from the market and minutes from the sea.",
+    de: "Das Apartamento Brisa de Conil liegt in der Calle Rosa de los Vientos, gleich neben dem Markt und nur Minuten vom Meer.",
   },
   "hero.cta": {
     es: "Consulta disponibilidad",

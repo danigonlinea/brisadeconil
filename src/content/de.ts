@@ -26,11 +26,11 @@ export const nav = {
 };
 
 export const hero = {
-  tagline: "Dein Erlebnis in Conil beginnt hier",
+  tagline: "Brisa de Conil: Dein Erlebnis in Conil beginnt hier",
   headline:
     "Brisa de Conil — Wohnung im\n Zentrum von Conil de la Frontera",
   subline:
-    "In der Calle Rosa de los Vientos: Gleich neben dem Markt, Minuten vom Meer.",
+    "Das Apartamento Brisa de Conil liegt in der Calle Rosa de los Vientos, gleich neben dem Markt und nur Minuten vom Meer.",
   cta: "Verfügbarkeit prüfen",
   ctaHref: "#contacto",
   scrollLabel: "Mehr entdecken",
