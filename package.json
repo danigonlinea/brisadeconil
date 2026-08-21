@@ -10,7 +10,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "lint": "eslint .",
+    "lint": "eslint . --max-warnings=0",
     "typecheck:react": "tsc --noEmit -p tsconfig.react.json",
     "optimize:gallery": "node scripts/optimize-gallery.mjs"
   },

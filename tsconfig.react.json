@@ -2,7 +2,7 @@
   "extends": "./tsconfig.json",
   "include": [
     "src/env.d.ts",
-    "src/components/*.tsx",
+    "src/components/**/*.tsx",
     "src/lib/**/*.ts"
   ],
   "exclude": ["dist"],
