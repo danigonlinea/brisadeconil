@@ -44,8 +44,33 @@ jobs:
       - name: Lint with ESLint
         run: npm run lint
 
+      # Fail if gallery-manifest.ts or public/gallery/optimized/ are stale
+      # relative to the originals in public/gallery/*.jpg.
+      - name: Check gallery is up to date
+        run: |
+          npm run optimize:gallery
+          if ! git diff --exit-code -- src/data/gallery-manifest.ts public/gallery/optimized/; then
+            echo "::error::Gallery manifest or optimized images are out of date."
+            echo "Run 'npm run optimize:gallery' locally and commit the changes."
+            exit 1
+          fi
+
+      # Informational only (non-blocking): known placeholders exist today
+      # (placeholder testimonials, missing og-image.jpg). Flip to blocking
+      # once real testimonials and the OG image land.
+      - name: Check for placeholders in content
+        run: |
+          if grep -rn '\[PENDIENTE\|\[PLACEHOLDER\|\[IMAGEN PLACEHOLDER' src/content/; then
+            echo "::warning::Placeholders found in content files (informational). Resolve them before launch."
+          fi
+
       - name: Audit dependencies
         run: npm audit --audit-level=moderate
+
+      - name: Detect secrets with Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   build:
     name: Build
