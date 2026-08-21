@@ -51,6 +51,8 @@ interface FormData {
   checkin: string;
   checkout: string;
   message: string;
+  /** Honeypot anti-bot: invis para humanos, los bots lo rellenan. */
+  website: string;
 }
 
 interface FieldError {
@@ -133,6 +135,7 @@ interface ContactPayload {
   checkin: string;
   checkout: string;
   message: string;
+  website: string;
 }
 
 function buildContactPayload(form: FormData): ContactPayload {
@@ -144,6 +147,7 @@ function buildContactPayload(form: FormData): ContactPayload {
     checkin: form.checkin || "No indicada",
     checkout: form.checkout || "No indicada",
     message: form.message || "(sin mensaje adicional)",
+    website: form.website,
   };
 }
 
@@ -160,6 +164,7 @@ function toWeb3FormsBody(
     "Fecha de entrada": payload.checkin,
     "Fecha de salida": payload.checkout,
     message: payload.message,
+    website: payload.website,
   };
 }
 
@@ -266,6 +271,7 @@ export default function ContactForm() {
     checkin: "",
     checkout: "",
     message: "",
+    website: "",
   });
   const [errors, setErrors] = useState<FieldError>({});
   const [state, setState] = useState<FormState>("idle");
@@ -310,6 +316,13 @@ export default function ContactForm() {
 
   async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
     e.preventDefault();
+    // Honeypot anti-bot: si el campo oculto "website" viene relleno es un bot.
+    // Fingimos éxito para que el bot no insista, pero NO enviamos nada (ni vía
+    // server-side ni al fallback de Web3Forms), evitando spam y coste.
+    if (form.website.trim() !== "") {
+      setState("success");
+      return;
+    }
     const fieldErrors = validateForm(form, contact);
     if (Object.keys(fieldErrors).length > 0) {
       setErrors(fieldErrors);
@@ -368,6 +381,7 @@ export default function ContactForm() {
               checkin: "",
               checkout: "",
               message: "",
+              website: "",
             });
           }}
           type="button"
@@ -386,6 +400,25 @@ export default function ContactForm() {
       aria-label={contact.formAriaLabel}
     >
       <div className="contact-form-grid">
+        {/* Campo invisible honeypot: los bots lo rellenan, los humanos no lo
+            ven. Si trae texto, handleSubmit finge éxito sin enviar nada. */}
+        <input
+          type="text"
+          name="website"
+          id={`${id}-website`}
+          value={form.website}
+          onChange={handleChange}
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            left: "-9999px",
+            width: "1px",
+            height: "1px",
+          }}
+        />
+
         {/* Name */}
         <div className="form-group">
           <label className="form-label" htmlFor={`${id}-name`}>
