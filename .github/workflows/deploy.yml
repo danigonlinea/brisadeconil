@@ -47,12 +47,20 @@ jobs:
       - name: Lint with ESLint
         run: npm run lint
 
-      # Fail if gallery-manifest.ts or public/gallery/optimized/ are stale
-      # relative to the originals in public/gallery/*.jpg.
+      # Fail if gallery-manifest.ts is stale relative to the originals in
+      # public/gallery/*.jpg.
+      #
+      # Manifest-only a propósito: los binarios de public/gallery/optimized/
+      # NO son byte-reproducibles entre plataformas (libvips re-encodifica
+      # distinto según SO/arquitectura), así que un diff binario daría falsos
+      # positivos en CI. El manifiesto (LQIP + aspectRatio + dimensiones) es
+      # la fuente semántica de la verdad y sí es estable: si alguien añade o
+      # quita fotos sin regenerar, el manifiesto diverge y este check lo
+      # detecta.
       - name: Check gallery is up to date
         run: |
           npm run optimize:gallery
-          if ! git diff --exit-code -- src/data/gallery-manifest.ts public/gallery/optimized/; then
+          if ! git diff --exit-code -- src/data/gallery-manifest.ts; then
             echo "::error::Gallery manifest or optimized images are out of date."
             echo "Run 'npm run optimize:gallery' locally and commit the changes."
             exit 1
