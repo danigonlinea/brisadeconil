@@ -38,6 +38,12 @@ jobs:
       - name: Type-check with Astro
         run: npx astro check
 
+      - name: Type-check React islands
+        run: npm run typecheck:react
+
+      - name: Lint with ESLint
+        run: npm run lint
+
       - name: Audit dependencies
         run: npm audit --audit-level=moderate
 
