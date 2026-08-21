@@ -54,11 +54,10 @@ async function isNewer(outPath, srcMtimeMs) {
 async function ensureVariant(srcPath, srcMtimeMs, id, width, format) {
   const outPath = path.join(OUT_DIR, `${id}-${width}.${format.ext}`);
   if (await isNewer(outPath, srcMtimeMs)) return;
-  await sharp(srcPath, { failOn: "none" })
+  const pipeline = sharp(srcPath, { failOn: "none" })
     .rotate()
-    .resize({ width, withoutEnlargement: true })
-    [format.method](format.opts)
-    .toFile(outPath);
+    .resize({ width, withoutEnlargement: true });
+  await pipeline[format.method](format.opts).toFile(outPath);
 }
 
 async function processSource(fileName) {

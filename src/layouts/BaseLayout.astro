@@ -233,9 +233,9 @@ const lodgingSchemaData = {
          renders the hero headline with a fallback font instantly. -->
     <script is:inline>
       (function () {
-        var url =
+        const url =
           'https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:wght@300;400;500;600&display=swap';
-        var link = document.createElement('link');
+        const link = document.createElement('link');
         link.rel = 'stylesheet';
         link.href = url;
         link.media = 'print';
@@ -253,24 +253,26 @@ const lodgingSchemaData = {
          Runs at the end of body so it never blocks the initial render. -->
     <script is:inline>
       (function () {
-        var GA_ID = 'G-27RGED8JEV';
-        var CONSENT_KEY = 'brisa-consent';
+        const GA_ID = 'G-27RGED8JEV';
+        const CONSENT_KEY = 'brisa-consent';
 
         function readConsent() {
-          try { return localStorage.getItem(CONSENT_KEY); } catch (e) { return null; }
+          try { return localStorage.getItem(CONSENT_KEY); } catch { return null; }
         }
         function writeConsent(value) {
-          try { localStorage.setItem(CONSENT_KEY, value); } catch (e) {}
+          // Silencioso a propósito: si localStorage no está disponible (p. ej. cookies bloqueadas),
+          // el banner simplemente volverá a mostrarse en la siguiente visita.
+          try { localStorage.setItem(CONSENT_KEY, value); } catch { /* noop */ }
         }
 
         function loadGtag() {
           if (window.__brisaConsentLoaded) return;
-          var s1 = document.createElement('script');
+          const s1 = document.createElement('script');
           s1.async = true;
           s1.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
           document.head.appendChild(s1);
 
-          var s2 = document.createElement('script');
+          const s2 = document.createElement('script');
           s2.textContent =
             "window.dataLayer = window.dataLayer || [];" +
             "function gtag(){dataLayer.push(arguments);}" +
@@ -286,18 +288,18 @@ const lodgingSchemaData = {
         }
 
         // Already decided on a previous visit?
-        var decision = readConsent();
+        const decision = readConsent();
         if (decision === 'accepted') { loadGtag(); return; }
         if (decision === 'rejected') { return; }
 
         // No decision yet → show the banner and let the user choose.
         // Scrolling down also counts as acceptance ("scroll = consent").
         onReady(function () {
-          var banner = document.getElementById('cookie-banner');
+          const banner = document.getElementById('cookie-banner');
           if (!banner) return;
           banner.hidden = false;
 
-          var decided = false;
+          let decided = false;
           function decide(value, viaScroll) {
             if (decided) return;
             decided = true;
@@ -305,22 +307,24 @@ const lodgingSchemaData = {
             if (value === 'accepted') {
               loadGtag();
               try {
-                window.gtag && window.gtag('event', 'cookie_consent', {
-                  decision: viaScroll ? 'accepted_scroll' : 'accepted',
-                });
-              } catch (e) {}
+                if (window.gtag) {
+                  window.gtag('event', 'cookie_consent', {
+                    decision: viaScroll ? 'accepted_scroll' : 'accepted',
+                  });
+                }
+              } catch { /* noop: gtag no disponible */ }
             }
             banner.hidden = true;
             window.removeEventListener('scroll', onScroll);
           }
 
-          var accept = banner.querySelector('[data-cookie-accept]');
-          var reject = banner.querySelector('[data-cookie-reject]');
+          const accept = banner.querySelector('[data-cookie-accept]');
+          const reject = banner.querySelector('[data-cookie-reject]');
           if (accept) accept.addEventListener('click', function () { decide('accepted', false); });
           if (reject) reject.addEventListener('click', function () { decide('rejected', false); });
 
           // Implicit consent: a meaningful downward scroll counts as acceptance.
-          var threshold = Math.round(window.innerHeight * 0.4);
+          const threshold = Math.round(window.innerHeight * 0.4);
           function onScroll() {
             if (window.scrollY > threshold) decide('accepted', true);
           }

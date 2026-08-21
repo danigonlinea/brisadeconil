@@ -205,7 +205,7 @@ async function classifyResponse(res: Response): Promise<"ok" | FailureReason> {
   if (!res.ok) return "server";
   try {
     const data = await res.json();
-    return !!data.success ? "ok" : "server";
+    return data.success ? "ok" : "server";
   } catch {
     return "network";
   }
