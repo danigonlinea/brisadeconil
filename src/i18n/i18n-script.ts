@@ -33,7 +33,12 @@ function flatLocale(locale: string): Record<string, string> {
  */
 export function buildI18nScript(base: string): string {
   const defaultTable = flatLocale(DEFAULT_LOCALE);
-  const defaultJSON = JSON.stringify(defaultTable);
+  // Escape characters that would let a translation value break out of the
+  // inline <script> context (JSON.stringify does NOT escape < > & or U+2028/2029).
+  const defaultJSON = JSON.stringify(defaultTable).replace(
+    /[<>&\u2028\u2029]/g,
+    (c) => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0'),
+  );
   const localesJSON = JSON.stringify(SUPPORTED_LOCALES);
   const defaultLocale = DEFAULT_LOCALE;
   const baseUrl = (base || "/").replace(/\/$/, "") + "/";
@@ -89,6 +94,22 @@ export function buildI18nScript(base: string): string {
         var parser = new DOMParser();
         var doc = parser.parseFromString(html || '', 'text/html');
         var allowed = ['a','b','strong','i','em','br','p','ul','ol','li','span','div','sup','sub','small','mark','code'];
+        // Normalize a URL for safety checks: drop whitespace + control chars
+        // (browsers ignore them while resolving schemes, so "java\\nscript:"
+        // would otherwise bypass a naive indexOf('javascript:') check).
+        function cleanUrl(value) {
+          return (String(value || '')).replace(/[\\u0000-\\u0020\\u007f]+/g, '').trim().toLowerCase();
+        }
+        function isSafeHref(value) {
+          var u = cleanUrl(value);
+          if (u.indexOf('javascript:') !== -1) return false; // defense in depth
+          if (u.charAt(0) === '#') return true;               // in-page anchor
+          if (u.indexOf('/') === 0) return u.charAt(1) !== '/'; // same-origin, no protocol-relative
+          if (u.indexOf('mailto:') === 0) return true;
+          if (u.indexOf('tel:') === 0) return true;
+          if (u.indexOf('http:') === 0 || u.indexOf('https:') === 0) return true;
+          return u.indexOf(':') === -1; // plain text / relative, no scheme
+        }
         doc.body.querySelectorAll('*').forEach(function (node) {
           var name = node.nodeName.toLowerCase();
           if (allowed.indexOf(name) === -1) {
@@ -104,12 +125,26 @@ export function buildI18nScript(base: string): string {
               return;
             }
             if (n === 'href') {
-              var lv = v.trim().toLowerCase();
-              if (lv.indexOf('javascript:') === 0) node.removeAttribute(attr.name);
-            } else if (['class','id','title','alt','rel','target','aria-label'].indexOf(n) === -1) {
+              if (!isSafeHref(v)) node.removeAttribute('href');
+            } else if (n === 'target') {
+              if (v.trim().toLowerCase() !== '_blank') node.removeAttribute('target');
+            } else if (['class','id','title','alt','rel','aria-label'].indexOf(n) === -1) {
               node.removeAttribute(attr.name);
             }
           });
+          // Links opening in a new tab must carry rel="noopener noreferrer"
+          // to prevent tabnabbing (attacker page tampering with this one).
+          var tgt = node.getAttribute('target');
+          if (tgt && tgt.trim().toLowerCase() === '_blank') {
+            var rel = (node.getAttribute('rel') || '').trim();
+            var toks = rel ? rel.split(/\\s+/) : [];
+            var kept = [];
+            for (var ti = 0; ti < toks.length; ti++) {
+              if (toks[ti] && toks[ti] !== 'noopener' && toks[ti] !== 'noreferrer') kept.push(toks[ti]);
+            }
+            kept.push('noopener', 'noreferrer');
+            node.setAttribute('rel', kept.join(' '));
+          }
         });
         return doc.body.innerHTML;
       } catch (e) {
