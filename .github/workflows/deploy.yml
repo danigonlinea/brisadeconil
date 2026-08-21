@@ -23,8 +23,11 @@ jobs:
     name: Quality Checks
     runs-on: ubuntu-latest
     steps:
+      # Full history so Gitleaks can scan every commit, not just the head.
       - name: Checkout repository
         uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v7
@@ -58,17 +61,26 @@ jobs:
       # Informational only (non-blocking): known placeholders exist today
       # (placeholder testimonials, missing og-image.jpg). Flip to blocking
       # once real testimonials and the OG image land.
+      # grep exit codes: 0 = matches found, 1 = no matches, >1 = real error.
       - name: Check for placeholders in content
+        shell: bash
         run: |
-          if grep -rn '\[PENDIENTE\|\[PLACEHOLDER\|\[IMAGEN PLACEHOLDER' src/content/; then
+          set +e
+          grep -rn '\[PENDIENTE\|\[PLACEHOLDER\|\[IMAGEN PLACEHOLDER' src/content/
+          status=$?
+          set -e
+          if [ $status -eq 0 ]; then
             echo "::warning::Placeholders found in content files (informational). Resolve them before launch."
+          elif [ $status -gt 1 ]; then
+            echo "::error::Placeholder check failed to run (grep exit $status)."
+            exit 1
           fi
 
       - name: Audit dependencies
         run: npm audit --audit-level=moderate
 
       - name: Detect secrets with Gitleaks
-        uses: gitleaks/gitleaks-action@v2
+        uses: gitleaks/gitleaks-action@v3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
