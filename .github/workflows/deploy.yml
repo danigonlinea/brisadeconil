@@ -67,8 +67,8 @@ jobs:
           fi
 
       # Informational only (non-blocking): known placeholders exist today
-      # (placeholder testimonials, missing og-image.jpg). Flip to blocking
-      # once real testimonials and the OG image land.
+      # (placeholder testimonials in content files). Flip to blocking once
+      # real testimonials land.
       # grep exit codes: 0 = matches found, 1 = no matches, >1 = real error.
       - name: Check for placeholders in content
         shell: bash
