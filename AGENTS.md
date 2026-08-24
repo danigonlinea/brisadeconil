@@ -123,7 +123,7 @@ Estas reglas son **obligatorias**; romperlas rompe el build o el flujo de conten
 3. Guarda — el dev server recarga solo.
 4. Si el texto debe reflejarse en el i18n client-side, actualiza también la clave equivalente en `src/i18n/translations.ts` (las claves siguen la notación `seccion.campo` y deben coincidir con los atributos `data-i18n` de los componentes).
 
-> Marcadores pendientes: busca `[PENDIENTE`, `[PLACEHOLDER` e `[IMAGEN PLACEHOLDER` en `src/content/*.ts` para ver qué falta completar (testimonios reales, fotos, OG image, etc.).
+> Marcadores pendientes: busca `[PENDIENTE`, `[PLACEHOLDER` e `[IMAGEN PLACEHOLDER` en `src/content/*.ts` para ver qué falta completar (a día de hoy solo quedan los marcadores `[PLACEHOLDER` de testimonios pendientes de reseñas reales, en `es.ts` y `en.ts`).
 
 ---
 

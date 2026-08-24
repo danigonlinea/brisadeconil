@@ -199,7 +199,7 @@ Los ficheros `en.ts` y `de.ts` están listos con traducción completa.
 
 ## ⚠ Checklist antes de publicar
 
-Busca `[PENDIENTE` en `src/content/es.ts` y completa estos datos:
+Busca `[PENDIENTE` y `[PLACEHOLDER` en `src/content/*.ts` y completa estos datos (a día de hoy solo hay `[PLACEHOLDER`, en `es.ts` y `en.ts`):
 
 - [x] Horarios de check-in y check-out
 - [x] Política de mascotas (¿se admiten? ¿bajo qué condiciones?)
@@ -305,7 +305,7 @@ He dejado aquí el plan de trabajo para continuar la auditoría de seguridad y l
    - Próximo paso: habilitar Dependabot o Renovate para actualizaciones automáticas.
 
 5. Integración continua y checks automáticos
-   - ~~Añadir en CI: `tsc --noEmit`, ESLint (con reglas para código muerto) y `npm audit` en la pipeline.~~ — **Hecho**: `astro check`, build y `npm audit --audit-level=moderate` en `.github/workflows/checks.yml` (pull_request + push a main); ESLint y type-check de React en el job quality de `.github/workflows/deploy.yml`.
+   - ~~Añadir en CI: `tsc --noEmit`, ESLint (con reglas para código muerto) y `npm audit` en la pipeline.~~ — **Hecho**: `astro check`, build y `npm audit --audit-level=moderate` en `.github/workflows/checks.yml` (pull_request + push a main); ESLint y type-check de React en el job quality de `.github/workflows/deploy.yml` (2026-08-24).
 
 6. Monitorización y observabilidad
    - Añadir logging básico y monitorización para `/api/contact` (Sentry/Logflare/u otro) y alertas por errores/500.
