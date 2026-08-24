@@ -1,0 +1,48 @@
+name: Quality Checks
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+# Read-only token: this workflow never deploys or uploads artifacts.
+permissions:
+  contents: read
+
+# One run per ref: a new push to the same branch cancels the superseded run.
+concurrency:
+  group: "${{ github.workflow }}-${{ github.ref }}"
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      # Same Node version as deploy.yml so both workflows validate the exact
+      # same toolchain.
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: "24.18.1"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type-check with Astro
+        run: npx astro check
+
+      - name: Build Astro site
+        run: npm run build
+
+      # Threshold rationale (2026-08-24): `npm audit` reports 0 vulnerabilities
+      # today, so `moderate` — the strictest offered level — starts green and
+      # only fails once a new moderate/high/critical advisory lands. Matches
+      # the threshold already enforced by deploy.yml's quality job.
+      - name: Audit dependencies
+        run: npm audit --audit-level=moderate
