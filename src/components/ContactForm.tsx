@@ -126,6 +126,11 @@ function buildContactText(locale: Locale): ContactText {
   };
 }
 
+// NOTE: the Web3Forms fallback below survives bundling only if
+// PUBLIC_WEB3FORMS_KEY exists at build time; in local builds without .env,
+// Rollup dead-code-eliminates the whole branch (WEB3FORMS_ENDPOINT included),
+// so auditing a LOCAL bundle wrongly suggests the fallback is missing — CI
+// production builds always have the key injected.
 const SERVER_ENDPOINT = "/api/contact";
 const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
 
