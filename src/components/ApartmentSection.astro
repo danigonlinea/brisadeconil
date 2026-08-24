@@ -3,12 +3,15 @@
  * ApartmentSection — capacity, layout, access note.
  * Impeccable: split layout (text left, specs right), no icon+heading+text card grid.
  */
-import * as content from '../content/index';
 import SvgIcon, { type IconName } from './SvgIcon.astro';
-const { apartment, amenities } = content;
+import type { SiteContent } from '../content/index';
 
-const AMENITY_KEYS = ['ac','fan','wifi','tv','hot-water','store','door','bed','coffee','kettle','fridge','freezer','washer','dishwasher','microwave','toaster','oven','iron'];
+interface Props {
+  apartment: SiteContent['apartment'];
+  amenities: SiteContent['amenities'];
+}
 
+const { apartment, amenities } = Astro.props;
 ---
 
 <section class="section" id="apartamento" aria-labelledby="apt-title">
@@ -17,17 +20,17 @@ const AMENITY_KEYS = ['ac','fan','wifi','tv','hot-water','store','door','bed','c
       <!-- Left: editorial text -->
       <div class="apt-intro reveal">
         <hr class="divider" aria-hidden="true" />
-        <p class="section-label" id="apt-title" data-i18n="apt.label">{apartment.sectionLabel}</p>
+        <p class="section-label" id="apt-title">{apartment.sectionLabel}</p>
       </div>
 
       <!-- Right: spec grid -->
       <div class="apt-specs">
-        {apartment.specs.map((spec: { icon: string; label: string; value: string }, i: number) => (
+        {apartment.specs.map((spec, i) => (
           <div class:list={['apt-spec', 'reveal', `reveal-delay-${i}`, i === 0 && 'apt-spec--highlight']}>
             <div class="apt-spec-icon"><SvgIcon name={spec.icon as IconName} /></div>
             <div class="apt-spec-text">
-              <div class="apt-spec-label" data-i18n={`apt.spec.${['capacity','bed','bath','layout','access','store','rooftop'][i]}.label`}>{spec.label}</div>
-              <div class="apt-spec-value" data-i18n={`apt.spec.${['capacity','bed','bath','layout','access','store','rooftop'][i]}.value`}>
+              <div class="apt-spec-label">{spec.label}</div>
+              <div class="apt-spec-value">
                 {spec.icon === 'users' ? (
                   <>
                     <span class="apt-spec-value--primary">{spec.value.split(' (')[0]}</span>
@@ -48,18 +51,18 @@ const AMENITY_KEYS = ['ac','fan','wifi','tv','hot-water','store','door','bed','c
     <div class="apt-amenities" id="equipamiento">
       <header class="section-header">
         <hr class="divider" aria-hidden="true" />
-        <p class="section-label" data-i18n="amenities.label">{amenities.sectionLabel}</p>
-        <p class="section-lead reveal" data-i18n="amenities.lead">{amenities.lead}</p>
+        <p class="section-label">{amenities.sectionLabel}</p>
+        <p class="section-lead reveal">{amenities.lead}</p>
       </header>
 
       <ul class="amenities-grid" role="list">
-        {amenities.items.map((item: { icon: string; label: string; detail: string }, i: number) => (
+        {amenities.items.map((item, i) => (
           <li class:list={['apt-spec', 'reveal', `reveal-delay-${(i % 4) + 1}`]}>
             <div class="apt-spec-icon"><SvgIcon name={item.icon as IconName} /></div>
             <div class="apt-spec-text">
-              <span class="apt-spec-label" data-i18n={`amenities.item.${AMENITY_KEYS[i]}`}>{item.label}</span>
+              <span class="apt-spec-label">{item.label}</span>
               {item.detail && (
-                <span class="apt-spec-value" data-i18n={`amenities.item.${AMENITY_KEYS[i]}.detail`}>{item.detail}</span>
+                <span class="apt-spec-value">{item.detail}</span>
               )}
             </div>
           </li>

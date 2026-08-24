@@ -3,8 +3,13 @@
  * FAQSection — wraps FAQAccordion React island.
  */
 import FAQAccordion from './FAQAccordion';
-import * as content from '../content/index';
-const { faq } = content;
+import type { SiteContent } from '../content/index';
+
+interface Props {
+  faq: SiteContent['faq'];
+}
+
+const { faq } = Astro.props;
 
 // FAQPage structured data for answer engines (generated from content).
 const faqSchema = {
@@ -24,8 +29,8 @@ const faqSchema = {
   <div class="container faq-container">
     <header class="faq-header reveal">
       <hr class="divider" aria-hidden="true" />
-      <p class="section-label" data-i18n="faq.label">{faq.sectionLabel}</p>
-      <h2 class="section-title" id="faq-title" data-i18n="faq.title">{faq.headline}</h2>
+      <p class="section-label">{faq.sectionLabel}</p>
+      <h2 class="section-title" id="faq-title">{faq.headline}</h2>
     </header>
 
     <div class="faq-body reveal reveal-delay-1">

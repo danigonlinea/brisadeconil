@@ -3,10 +3,14 @@
  * RulesSection — house rules & deposit.
  * Tone: warm, not legal fine print. No aggressive formatting.
  */
-import * as content from '../content/index';
 import SvgIcon, { type IconName } from './SvgIcon.astro';
-const { rules } = content;
+import type { SiteContent } from '../content/index';
 
+interface Props {
+  rules: SiteContent['rules'];
+}
+
+const { rules } = Astro.props;
 ---
 
 <section class="section section--alt" id="normas" aria-labelledby="rules-title">
@@ -21,11 +25,11 @@ const { rules } = content;
           </svg>
         </div>
         <div>
-          <p class="deposit-label" data-i18n="rules.deposit.label">{rules.deposit.label}</p>
+          <p class="deposit-label">{rules.deposit.label}</p>
           <p class="deposit-amount">{rules.deposit.amount}</p>
-          <p class="deposit-return" data-i18n="rules.deposit.return">{rules.deposit.return}</p>
+          <p class="deposit-return">{rules.deposit.return}</p>
           {rules.deposit.payment && (
-            <p class="deposit-payment" data-i18n="rules.deposit.payment">{rules.deposit.payment}</p>
+            <p class="deposit-payment">{rules.deposit.payment}</p>
           )}
         </div>
       </div>
@@ -33,18 +37,16 @@ const { rules } = content;
       <!-- Rules list -->
       <div class="rules-content">
         <hr class="divider" aria-hidden="true" />
-        <p class="section-label" id="rules-title" data-i18n="rules.label">{rules.sectionLabel}</p>
-        <p class="section-lead reveal" data-i18n="rules.lead">{rules.lead}</p>
+        <p class="section-label" id="rules-title">{rules.sectionLabel}</p>
+        <p class="section-lead reveal">{rules.lead}</p>
 
         <ul class="rules-list reveal reveal-delay-1" role="list">
-        {(() => {
-          const RULE_KEYS = ['trash','checkin','pets','smoking','noise'];
-          return rules.rules.map((rule: { icon: string; text: string }, ri: number) => {
+          {rules.rules.map((rule) => {
             const isPending = rule.text.includes('[PENDIENTE') || rule.text.includes('[PENDING') || rule.text.includes('[AUSSTEHEND');
             return (
               <li class:list={['rule-item', isPending && 'rule-item--pending']}>
                 <span class="rule-icon"><SvgIcon name={rule.icon as IconName} /></span>
-                <span class="rule-text" data-i18n={`rules.rule.${RULE_KEYS[ri]}`}>
+                <span class="rule-text">
                   {isPending ? (
                     <Fragment>
                       {rule.text.replace(/\[PENDIENTE[^\]]*\]\.?|\[PENDING[^\]]*\]\.?|\[AUSSTEHEND[^\]]*\]\.?/, '')}
@@ -56,8 +58,7 @@ const { rules } = content;
                 </span>
               </li>
             );
-          });
-        })()}
+          })}
         </ul>
       </div>
     </div>

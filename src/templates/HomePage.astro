@@ -1,0 +1,70 @@
+---
+/**
+ * HomePage — full landing-page composition for one locale.
+ *
+ * Single place that maps a route locale to its content module and wires
+ * every section with its copy slice. Pages under src/pages are thin
+ * wrappers around this template (/, /en/, /de/).
+ */
+import type { Locale } from '../i18n/locales';
+import { CONTENT } from '../content/index';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import GallerySection from '../components/GallerySection.astro';
+import ApartmentSection from '../components/ApartmentSection.astro';
+import WelcomeSection from '../components/WelcomeSection.astro';
+import LocationSection from '../components/LocationSection.astro';
+import ConilSection from '../components/ConilSection.astro';
+import RulesSection from '../components/RulesSection.astro';
+import ContactSection from '../components/ContactSection.astro';
+import FAQSection from '../components/FAQSection.astro';
+import TestimonialsSection from '../components/TestimonialsSection.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/gallery.css';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const content = CONTENT[locale];
+---
+
+<BaseLayout locale={locale} lodgingSchema alternates>
+  <Header nav={content.nav} locale={locale} />
+
+  <main id="main-content" tabindex="-1">
+    <!-- 1. Hero -->
+    <Hero hero={content.hero} />
+
+    <!-- 2. Gallery -->
+    <GallerySection gallery={content.gallery} locale={locale} />
+
+    <!-- 3. El apartamento + equipamiento -->
+    <ApartmentSection apartment={content.apartment} amenities={content.amenities} />
+
+    <!-- 4. Como en casa desde el primer día -->
+    <WelcomeSection welcome={content.welcome} />
+
+    <!-- 6. Ubicación y aparcamiento -->
+    <LocationSection location={content.location} />
+
+    <!-- 8. Normas de la casa y fianza -->
+    <RulesSection rules={content.rules} />
+
+    <!-- 9. Formulario de contacto -->
+    <ContactSection contact={content.contact} />
+
+    <!-- 10. FAQ -->
+    <FAQSection faq={content.faq} />
+
+    <!-- 11. Qué hacer en Conil (secondary / quieter) -->
+    <ConilSection conil={content.conil} />
+
+    <!-- 12. Testimonios (hidden until real reviews arrive) -->
+    <TestimonialsSection testimonials={content.testimonials} />
+  </main>
+
+  <Footer footer={content.footer} cta={content.nav.cta} />
+</BaseLayout>

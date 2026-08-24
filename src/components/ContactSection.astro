@@ -1,10 +1,17 @@
 ---
 /**
  * ContactSection — wraps the React ContactForm island.
+ * The whole `contact` slice travels to the island so labels, placeholders
+ * and error messages render in the route's language without runtime swaps.
  */
 import ContactForm from './ContactForm';
-import * as content from '../content/index';
-const { contact } = content;
+import type { SiteContent } from '../content/index';
+
+interface Props {
+  contact: SiteContent['contact'];
+}
+
+const { contact } = Astro.props;
 ---
 
 <section class="section contact-section" id="contacto" aria-labelledby="contact-title">
@@ -13,35 +20,37 @@ const { contact } = content;
       <!-- Left: heading + lead -->
       <div class="contact-intro reveal">
         <hr class="divider" aria-hidden="true" />
-        <p class="section-label" data-i18n="contact.label">{contact.sectionLabel}</p>
-        <h2 class="section-title contact-headline" id="contact-title" data-i18n="contact.title">{contact.headline}</h2>
-        <p class="section-lead" data-i18n="contact.lead">{contact.lead}</p>
+        <p class="section-label">{contact.sectionLabel}</p>
+        <h2 class="section-title contact-headline" id="contact-title">{contact.headline}</h2>
+        <p class="section-lead">{contact.lead}</p>
 
-        <div class="contact-reassurances" role="region" aria-label="Por qué contactarnos">
-          <div class="contact-reassurance">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="reassurance-icon">
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.6 3.27 2 2 0 0 1 3.57 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.66a16 16 0 0 0 6 6l.95-.93a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
-            </svg>
-            <span data-i18n="contact.reassurance.1">{contact.fields.name.label !== undefined ? 'Respuesta rápida — normalmente en el mismo día' : ''}</span>
-          </div>
-          <div class="contact-reassurance">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="reassurance-icon">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            </svg>
-            <span data-i18n="contact.reassurance.2">Sin compromiso — solo una consulta</span>
-          </div>
-          <div class="contact-reassurance">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="reassurance-icon">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-            </svg>
-            <span data-i18n="contact.reassurance.3">Atención directa del propietario</span>
-          </div>
+        <div class="contact-reassurances" role="region" aria-label={contact.headline}>
+          {contact.reassurances.map((text, i) => (
+            <div class="contact-reassurance">
+              {i === 0 && (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="reassurance-icon">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.6 3.27 2 2 0 0 1 3.57 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.66a16 16 0 0 0 6 6l.95-.93a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+              )}
+              {i === 1 && (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="reassurance-icon">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+              )}
+              {i === 2 && (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="reassurance-icon">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                </svg>
+              )}
+              <span>{text}</span>
+            </div>
+          ))}
         </div>
       </div>
 
       <!-- Right: form island -->
       <div class="contact-form-wrapper">
-        <ContactForm client:load />
+        <ContactForm client:load contact={contact} />
       </div>
     </div>
   </div>

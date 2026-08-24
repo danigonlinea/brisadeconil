@@ -1,6 +1,16 @@
 ---
-import * as content from '../content/index';
-const { hero } = content;
+/**
+ * Hero — full-viewport opening with headline copy from props.
+ */
+interface Props {
+  hero: {
+    tagline: string;
+    headline: string;
+    subline: string;
+  };
+}
+
+const { hero } = Astro.props;
 ---
 
 <section class="hero" id="hero" aria-label="Brisa de Conil">
@@ -37,11 +47,11 @@ const { hero } = content;
 
   <div class="hero-content container">
     <div class="hero-text">
-      <p class="hero-tagline" data-i18n="hero.tagline">{hero.tagline}</p>
+      <p class="hero-tagline">{hero.tagline}</p>
       <h1 class="hero-headline">
-        <span class="hero-headline-line reveal reveal-delay-1" data-i18n="hero.headline-1">{hero.headline.split('\n')[0]}</span><span class="hero-headline-line reveal reveal-delay-2" data-i18n="hero.headline-2">{hero.headline.split('\n')[1]}</span>
+        <span class="hero-headline-line reveal reveal-delay-1">{hero.headline.split('\n')[0]}</span><span class="hero-headline-line reveal reveal-delay-2">{hero.headline.split('\n')[1]}</span>
       </h1>
-      <p class="hero-subline reveal reveal-delay-3" data-i18n="hero.subline">{hero.subline}</p>
+      <p class="hero-subline reveal reveal-delay-3">{hero.subline}</p>
     </div>
     <div class="hero-scroll-indicator reveal reveal-delay-5" aria-hidden="true">
       <svg width="24" height="36" viewBox="0 0 24 36" fill="none">

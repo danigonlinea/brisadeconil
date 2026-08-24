@@ -2,17 +2,22 @@
 /**
  * LocationSection — address, Google Maps embed, parking options.
  */
-import * as content from '../content/index';
-const { location: loc } = content;
+import type { SiteContent } from '../content/index';
+
+interface Props {
+  location: SiteContent['location'];
+}
+
+const loc = Astro.props.location;
 ---
 
 <section class="section section--sky" id="ubicacion" aria-labelledby="location-title">
   <div class="container">
     <header class="location-header">
       <hr class="divider" aria-hidden="true" />
-      <p class="section-label" data-i18n="location.label">{loc.sectionLabel}</p>
-      <h2 class="section-title" id="location-title" data-i18n="location.title">{loc.headline}</h2>
-      <p class="section-lead reveal" data-i18n="location.lead">{loc.lead}</p>
+      <p class="section-label">{loc.sectionLabel}</p>
+      <h2 class="section-title" id="location-title">{loc.headline}</h2>
+      <p class="section-lead reveal">{loc.lead}</p>
     </header>
 
     <div class="location-grid">
@@ -26,8 +31,8 @@ const { location: loc } = content;
           allowfullscreen=""
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
-          title={`Mapa de ${loc.address}`}
-          aria-label={`Mapa de Google con la ubicación del apartamento: ${loc.address}`}
+          title={loc.mapTitle}
+          aria-label={`${loc.mapTitle}: ${loc.address}`}
         ></iframe>
       </div>
 
@@ -39,25 +44,21 @@ const { location: loc } = content;
               <rect x="3" y="3" width="18" height="18" rx="2"/>
               <path d="M9 17V7h4a3 3 0 0 1 0 6H9"/>
             </svg>
-            <span data-i18n="location.parking.title">{loc.parking.headline}</span>
+            <span>{loc.parking.headline}</span>
           </h3>
 
           <ul class="parking-options" role="list">
-            {(() => {
-              const PKG_KEYS = ['mercado','ora','ferial'];
-              return loc.parking.options.map((opt: { name: string; detail: string; type: string }, i: number) => (
-                <li class:list={['parking-option', `reveal`, `reveal-delay-${i + 2}`]}>
-                  <div class="parking-option-header">
-                    <span class="parking-option-name" data-i18n={`location.parking.${PKG_KEYS[i]}.name`}>{opt.name}</span>
-                    <span class:list={['parking-badge', opt.type === 'free' ? 'parking-badge--free' : 'parking-badge--paid']}
-                          data-i18n={opt.type === 'free' ? 'location.parking.free-badge' : 'location.parking.paid-badge'}>
-                      {opt.type === 'free' ? 'Gratuito' : 'De pago'}
-                    </span>
-                  </div>
-                  <p class="parking-option-detail" data-i18n={`location.parking.${PKG_KEYS[i]}.detail`}>{opt.detail}</p>
-                </li>
-              ));
-            })()}
+            {loc.parking.options.map((opt, i) => (
+              <li class:list={['parking-option', `reveal`, `reveal-delay-${i + 2}`]}>
+                <div class="parking-option-header">
+                  <span class="parking-option-name">{opt.name}</span>
+                  <span class:list={['parking-badge', opt.type === 'free' ? 'parking-badge--free' : 'parking-badge--paid']}>
+                    {opt.type === 'free' ? loc.parking.freeLabel : loc.parking.paidLabel}
+                  </span>
+                </div>
+                <p class="parking-option-detail">{opt.detail}</p>
+              </li>
+            ))}
           </ul>
 
           <div class="parking-season-note" role="note">
@@ -66,7 +67,7 @@ const { location: loc } = content;
               <line x1="12" y1="8" x2="12" y2="12"/>
               <line x1="12" y1="16" x2="12.01" y2="16"/>
             </svg>
-            <p data-i18n="location.parking.season-note">{loc.parking.seasonNote}</p>
+            <p>{loc.parking.seasonNote}</p>
           </div>
         </div>
       </div>

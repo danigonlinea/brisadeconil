@@ -1,58 +1,8 @@
 ---
 /**
- * index.astro — Main landing page.
- * All sections assembled in brief order (section 4 of the brief).
+ * / — Spanish homepage (canonical URL, default locale).
  */
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import GallerySection from '../components/GallerySection.astro';
-import ApartmentSection from '../components/ApartmentSection.astro';
-import WelcomeSection from '../components/WelcomeSection.astro';
-import LocationSection from '../components/LocationSection.astro';
-import ConilSection from '../components/ConilSection.astro';
-import RulesSection from '../components/RulesSection.astro';
-import ContactSection from '../components/ContactSection.astro';
-import FAQSection from '../components/FAQSection.astro';
-import TestimonialsSection from '../components/TestimonialsSection.astro';
-import Footer from '../components/Footer.astro';
-import '../styles/gallery.css';
+import HomePage from '../templates/HomePage.astro';
 ---
 
-<BaseLayout lodgingSchema>
-  <Header />
-
-  <main id="main-content" tabindex="-1">
-    <!-- 1. Hero -->
-    <Hero />
-
-    <!-- 2. Gallery -->
-    <GallerySection />
-
-    <!-- 3. El apartamento + equipamiento -->
-    <ApartmentSection />
-
-    <!-- 4. Como en casa desde el primer día -->
-    <WelcomeSection />
-
-    <!-- 6. Ubicación y aparcamiento -->
-    <LocationSection />
-
-    <!-- 8. Normas de la casa y fianza -->
-    <RulesSection />
-
-    <!-- 9. Formulario de contacto -->
-    <ContactSection />
-
-    <!-- 10. FAQ -->
-    <FAQSection />
-
-    <!-- 11. Qué hacer en Conil (secondary / quieter) -->
-    <ConilSection />
-
-    <!-- 12. Testimonios -->
-    <TestimonialsSection />
-  </main>
-
-  <Footer />
-</BaseLayout>
+<HomePage locale="es" />
