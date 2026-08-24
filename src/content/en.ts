@@ -21,6 +21,7 @@ export const nav = {
     { label: 'The apartment', href: '#apartamento' },
     { label: 'Amenities',     href: '#equipamiento' },
     { label: 'Photos',        href: '#galeria' },
+    { label: 'Blog',          href: '/blog/' },
     { label: 'Contact',       href: '#contacto' },
   ],
   cta: 'Book your dates',
@@ -260,6 +261,26 @@ export const testimonials = {
     { name: 'Thomas K.',origin: 'Germany', rating: 5, text: '[PLACEHOLDER — real review pending]' },
     { name: 'Sophie L.',origin: 'France',  rating: 5, text: '[PLACEHOLDER — real review pending]' },
   ],
+};
+
+export const blog = {
+  // Label used in the header nav and the footer link.
+  navLabel: 'Blog',
+  // Listing page (/blog/)
+  metaTitle: 'Blog — Brisa de Conil',
+  description:
+    'Notes, tips and news about the apartment, Conil de la Frontera and the Costa de la Luz.',
+  heading: 'Blog',
+  lead: "Stories, tips and news from the apartment and Conil, written by its hosts.",
+  backToHome: 'Back to home',
+  emptyTitle: 'First articles coming very soon',
+  emptyBody:
+    "We're writing our first articles about the apartment, Conil and the Costa de la Luz. Check back soon.",
+  // Post page (/blog/[slug]/)
+  backLink: 'All articles',
+  updatedLabel: 'Updated:',
+  ctaLine: 'Fancy a stay? The apartment is ready for your dates.',
+  ctaButton: 'Check availability',
 };
 
 export const footer = {

@@ -3,20 +3,31 @@
  * Footer — brand, address, nav links, legal.
  */
 import type { SiteContent } from '../content/index';
+import { DEFAULT_LOCALE, homePath, type Locale } from '../i18n/locales';
 
 interface Props {
   footer: SiteContent['footer'];
   cta: string;
+  /** Label for the Blog link shown next to the legal links (content.blog.navLabel). Omit to hide it. */
+  blogLabel?: string;
+  /** Locale whose homepage the section anchors (#apartamento…) point to. */
+  locale?: Locale;
 }
 
-const { footer, cta } = Astro.props;
+const { footer, cta, blogLabel, locale = DEFAULT_LOCALE } = Astro.props;
 const base = import.meta.env.BASE_URL ?? '/';
 function createLegalHref(path: string) {
   return `${base.replace(/\/$/, '')}/${path.replace(/^\//, '')}`;
 }
+/** Section anchors always target the locale homepage so they keep working off-home (e.g. /blog/). */
+function sectionHref(href: string) {
+  return href.startsWith('#') ? `${base.replace(/\/$/, '')}${homePath(locale)}${href}` : href;
+}
 const legalHref = createLegalHref('aviso-legal');
 const privacyHref = createLegalHref('politica-privacidad');
 const cookiesHref = createLegalHref('politica-cookies');
+// Trailing slash kept so it matches the header nav item ("/blog/") and the canonical URL.
+const blogHref = `${base.replace(/\/$/, '')}/blog/`;
 ---
 
 <footer class="site-footer" role="contentinfo">
@@ -99,7 +110,7 @@ const cookiesHref = createLegalHref('politica-cookies');
         <p class="footer-nav-title">Secciones</p>
         <ul role="list">
           {footer.links.map((link) => (
-            <li><a href={link.href} class="footer-nav-link">{link.label}</a></li>
+            <li><a href={sectionHref(link.href)} class="footer-nav-link">{link.label}</a></li>
           ))}
         </ul>
       </nav>
@@ -107,7 +118,7 @@ const cookiesHref = createLegalHref('politica-cookies');
       <!-- Contact column -->
       <div class="footer-contact-col">
         <p class="footer-nav-title">Contacto</p>
-        <a href="#contacto" class="btn btn--primary btn--sm footer-cta">
+        <a href={sectionHref('#contacto')} class="btn btn--primary btn--sm footer-cta">
           {cta}
         </a>
         <p class="footer-response-note">{footer.responseNote}</p>
@@ -118,6 +129,7 @@ const cookiesHref = createLegalHref('politica-cookies');
     <div class="footer-bottom">
       <p class="footer-legal">{footer.legalNote}</p>
       <div class="footer-legal-links">
+        {blogLabel && <a href={blogHref} class="footer-legal-link">{blogLabel}</a>}
         <a href={legalHref} class="footer-legal-link">{footer.legalLabel}</a>
         <a href={privacyHref} class="footer-legal-link">{footer.privacyLabel}</a>
         <a href={cookiesHref} class="footer-legal-link">{footer.cookiesLabel}</a>

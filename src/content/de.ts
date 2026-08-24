@@ -21,6 +21,7 @@ export const nav = {
     { label: "Die Wohnung", href: "#apartamento" },
     { label: "Ausstattung", href: "#equipamiento" },
     { label: "Fotos", href: "#galeria" },
+    { label: "Blog", href: "/blog/" },
     { label: "Kontakt", href: "#contacto" },
   ],
   cta: "Daten buchen",
@@ -398,6 +399,26 @@ export const testimonials = {
       text: "[PLATZHALTER — echte Bewertung ausstehend]",
     },
   ],
+};
+
+export const blog = {
+  // Label used in the header nav and the footer link.
+  navLabel: "Blog",
+  // Listing page (/blog/)
+  metaTitle: "Blog — Brisa de Conil",
+  description:
+    "Notizen, Tipps und Neuigkeiten über die Wohnung, Conil de la Frontera und die Costa de la Luz.",
+  heading: "Blog",
+  lead: "Geschichten, Tipps und Neuigkeiten aus der Wohnung und aus Conil – von den Gastgebern.",
+  backToHome: "Zurück zur Startseite",
+  emptyTitle: "Erste Artikel folgen in Kürze",
+  emptyBody:
+    "Wir schreiben gerade die ersten Artikel über die Wohnung, Conil und die Costa de la Luz. Schau bald wieder vorbei.",
+  // Post page (/blog/[slug]/)
+  backLink: "Alle Artikel",
+  updatedLabel: "Aktualisiert:",
+  ctaLine: "Lust auf einen Aufenthalt? Die Wohnung ist bereit für deine Daten.",
+  ctaButton: "Verfügbarkeit anfragen",
 };
 
 export const footer = {

@@ -21,6 +21,7 @@ export const nav = {
     { label: "El apartamento", href: "#apartamento" },
     { label: "Equipamiento", href: "#equipamiento" },
     { label: "Fotos", href: "#galeria" },
+    { label: "Blog", href: "/blog/" },
     { label: "Contacto", href: "#contacto" },
   ],
   cta: "Reservar fechas",
@@ -404,6 +405,26 @@ export const testimonials = {
       text: "[PLACEHOLDER — testimonio real pendiente de añadir]",
     },
   ],
+};
+
+export const blog = {
+  /** Label used in the header nav and the footer link. */
+  navLabel: "Blog",
+  /** Listing page (/blog/) */
+  metaTitle: "Blog — Brisa de Conil",
+  description:
+    "Notas, consejos y novedades sobre el apartamento, Conil de la Frontera y la Costa de la Luz.",
+  heading: "Blog",
+  lead: "Historias, consejos y noticias del apartamento y de Conil, escritas por sus anfitriones.",
+  backToHome: "Volver al inicio",
+  emptyTitle: "Primeros artículos muy pronto",
+  emptyBody:
+    "Estamos escribiendo los primeros artículos sobre el apartamento, Conil y la Costa de la Luz. Vuelve pronto.",
+  /** Post page (/blog/[slug]/) */
+  backLink: "Todos los artículos",
+  updatedLabel: "Actualizado:",
+  ctaLine: "¿Te apetece venir? El apartamento está listo para tus fechas.",
+  ctaButton: "Consultar disponibilidad",
 };
 
 export const footer = {
