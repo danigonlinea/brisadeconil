@@ -1,8 +1,11 @@
 /**
  * Content — English (EN)
  * Translate all string values. Keep keys identical to es.ts.
- * TODO: Complete translation before enabling EN locale.
  */
+
+export const common = {
+  skipToContent: "Skip to content",
+};
 
 export const meta = {
   title: 'Brisa de Conil — Holiday apartment in Conil de la Frontera',
@@ -32,6 +35,11 @@ export const hero = {
   cta: 'Check availability',
   ctaHref: '#contacto',
   scrollLabel: 'Discover more',
+};
+
+export const gallery = {
+  label: "Photo gallery",
+  lead: "A glimpse of every corner, with natural light and the apartment's authentic feel.",
 };
 
 export const apartment = {
@@ -93,10 +101,13 @@ export const location = {
   headline: 'In the heart of Conil',
   lead: 'Calle Rosa de los Vientos, opposite the Market Hall. Everything within walking distance.',
   address: 'C/ Rosa de los Vientos, Conil de la Frontera (Cádiz)',
+  mapTitle: "Google Maps showing the apartment's location",
   mapEmbedUrl:
     'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3196.0!2d-6.0897!3d36.2778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd0c4e0b0b0b0b0b%3A0x0!2sMercado+de+Abastos+Conil!5e0!3m2!1sen!2ses!4v1690000000000',
   parking: {
     headline: 'Parking',
+    freeLabel: 'Free',
+    paidLabel: 'Paid',
     options: [
       {
         name: 'Mercado de Abastos',
@@ -177,6 +188,11 @@ export const contact = {
   sectionLabel: 'Contact',
   headline: 'When are you coming?',
   lead: 'Tell us your dates and we will get back to you as soon as possible.',
+  reassurances: [
+    'Fast reply — usually the same day',
+    'No obligation — just an enquiry',
+    'Direct attention from the owner',
+  ],
   fields: {
     name:    { label: 'Your name',         placeholder: 'Anna Smith' },
     email:   { label: 'Contact email',     placeholder: 'anna@example.com' },
@@ -226,6 +242,14 @@ export const faq = {
   ],
 };
 
+export const cookies = {
+  ariaLabel: 'Cookie notice',
+  text: 'We use cookies to improve your experience and understand how the site is used.',
+  policy: 'More information',
+  reject: 'Essential only',
+  accept: 'Accept',
+};
+
 export const testimonials = {
   sectionLabel: 'Reviews',
   headline: 'What our guests say',
@@ -240,6 +264,7 @@ export const testimonials = {
 export const footer = {
   brand: 'Brisa de Conil',
   tagline: 'Your apartment on the Costa de la Luz.',
+  responseNote: 'We usually reply the same day.',
   address: 'C/ Rosa de los Vientos\nConil de la Frontera, Cádiz',
   legalNote: '© 2026 Brisa de Conil. All rights reserved.',
   legalLabel: 'Legal notice',
