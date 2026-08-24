@@ -1,30 +1,16 @@
+# Dependabot: automated dependency updates (npm + GitHub Actions).
+# NOTE: this config cannot be validated locally beyond YAML parsing;
+# GitHub validates it on the next push (malformed config surfaces as an
+# error under Insights → Dependency graph).
+# Update PRs run through .github/workflows/checks.yml automatically
+# (astro check + build + npm audit).
 version: 2
 updates:
-  # Dependencias npm
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "weekly"
-      day: "monday"
-    target-branch: "main"
-    open-pull-requests-limit: 5
-    labels:
-      - "dependencies"
-    commit-message:
-      prefix: "chore"
-      include: "scope"
-
-  # Acciones de GitHub
+      interval: "monthly" # monthly over weekly: small dep surface on a static landing page; less PR noise, security updates unaffected
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "weekly"
-      day: "monday"
-    target-branch: "main"
-    open-pull-requests-limit: 3
-    labels:
-      - "dependencies"
-      - "ci"
-    commit-message:
-      prefix: "chore"
-      include: "scope"
+      interval: "monthly"
