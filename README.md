@@ -276,9 +276,7 @@ Aquí tienes una descripción práctica de cada tarea pendiente, con prioridad, 
   - Objetivo: dejar claro qué secretos y pasos necesita el deploy (ej. `WEB3FORMS_ACCESS_KEY`, GitHub Secrets).
   - Estado: añadida sección de plan; pendiente detallar valores exactos en `README` y `.env.example`.
 
-- **Revisión manual de traducciones que contienen HTML** (Prioridad: Baja)
-  - Objetivo: revisar y sanear cualquier HTML legítimo en `src/i18n/translations.ts`.
-  - Pasos: listar claves `*-html` o revisar `t` por contenido que incluya etiquetas; validar que la sanitización aplicada cumple con requerimientos.
+- ~~**Revisión manual de traducciones que contienen HTML** (Prioridad: Baja)~~ — **Hecho**: sanitizer allowlist verificado (tags permitidos, sin `on*`, esquemas href validados); todo el HTML de traducciones es estático y seguro, DOMPurify no necesario (2026-08-24).
 
 Si quieres, puedo empezar con cualquiera de estas tareas ahora: diseñar la CSP y cabeceras del hosting, añadir monitorización y logging en `/api/contact`, o sustituir los testimonios placeholder por reseñas reales.
 
@@ -292,7 +290,7 @@ He dejado aquí el plan de trabajo para continuar la auditoría de seguridad y l
 
 2. Auditoría de XSS / sanitización
    - Se añadió una sanitización básica en el script i18n para `data-i18n-html`.
-   - Próximo paso: revisar manualmente las traducciones que contienen HTML y evaluar uso de DOMPurify si hace falta mantener HTML rico.
+   - ~~Próximo paso: revisar manualmente las traducciones que contienen HTML y evaluar uso de DOMPurify si hace falta mantener HTML rico.~~ — **Hecho**: sanitizer allowlist verificado (tags permitidos, sin `on*`, esquemas href validados); todo el HTML de traducciones es estático y seguro, DOMPurify no necesario (2026-08-24).
 
 3. Política de seguridad de contenido (CSP)
    - Diseñar una política CSP adecuada para el hosting (GitHub Pages o servidor objetivo).
