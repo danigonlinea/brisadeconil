@@ -4,6 +4,11 @@
  * Placeholders clearly marked for real photography.
  */
 import GalleryIsland from './GalleryIsland';
+// PhotoSwipe's stylesheet must be imported statically here: a dynamic
+// `import('photoswipe/style.css')` inside the island makes Vite emit the CSS
+// URL into the chunk while Astro's build never emits the file itself, so the
+// lightbox would render unstyled (404) in production.
+import 'photoswipe/dist/photoswipe.css';
 ---
 
 <section class="section section--alt" id="galeria" aria-labelledby="gallery-title">

@@ -396,10 +396,10 @@ export default function GalleryIsland() {
     async (index: number) => {
       const item = GALLERY_ITEMS[index];
       trackEvent("gallery_open", { item: item?.id ?? null, index });
-      // PhotoSwipe JS + CSS are both loaded on demand (not on the initial
-      // bundle): keeps the lightbox styling out of the first-paint CSS.
+      // PhotoSwipe JS is loaded on demand (not in the initial bundle). Its CSS
+      // is bundled statically by GallerySection.astro — a dynamic CSS import
+      // here produces a chunk reference to a file Astro never emits (404).
       const PhotoSwipe = (await import("photoswipe")).default;
-      await import("photoswipe/style.css");
       const dataSource = GALLERY_ITEMS.map((item) => {
         const img = GALLERY_IMAGES.get(item.id)!;
         return {
