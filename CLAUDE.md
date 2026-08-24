@@ -12,7 +12,7 @@ Landing page estática (Astro v7 SSG + islas React v19 + PhotoSwipe v5 + Web3For
 npm run dev                # http://localhost:4321/
 npm run build              # → dist/
 npm run optimize:gallery   # regenera imágenes + src/data/gallery-manifest.ts
-npx astro check            # type-check (no hay tests ni linter configurados)
+npx astro check            # type-check (lint: npm run lint; sin framework de tests)
 ```
 
 Node `>=22.12.0`. Package manager: `npm`.
@@ -35,4 +35,4 @@ Node `>=22.12.0`. Package manager: `npm`.
 
 ## Pendiente (no asumir resuelto)
 
-CSP, rate-limiting en `/api/contact`, auditoría XSS de `translations.ts`, `npm audit` + Dependabot, CI con `tsc --noEmit`/ESLint/`npm audit`, logging de `/api/contact`, testimonios reales y `public/og-image.jpg`. Ver §10 de `AGENTS.md`.
+CSP y cabeceras del hosting, auditoría XSS de `translations.ts`, `npm audit` + Dependabot/Renovate, logging/monitorización de `/api/contact` y testimonios reales (`public/og-image.jpg` ya existe). Ver §10 de `AGENTS.md`.

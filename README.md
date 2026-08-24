@@ -282,7 +282,7 @@ Aquí tienes una descripción práctica de cada tarea pendiente, con prioridad, 
   - Objetivo: revisar y sanear cualquier HTML legítimo en `src/i18n/translations.ts`.
   - Pasos: listar claves `*-html` o revisar `t` por contenido que incluya etiquetas; validar que la sanitización aplicada cumple con requerimientos.
 
-Si quieres, puedo empezar con cualquiera de estas tareas ahora: implementar rate-limiting en `/api/contact` (recomendado), añadir CI básico, o preparar PRs para dependencias.
+Si quieres, puedo empezar con cualquiera de estas tareas ahora: diseñar la CSP y cabeceras del hosting, añadir monitorización y logging en `/api/contact`, preparar PRs de dependencias (Dependabot/Renovate), o sustituir los testimonios placeholder por reseñas reales.
 
 ## Plan de auditoría y siguientes pasos
 
@@ -305,7 +305,7 @@ He dejado aquí el plan de trabajo para continuar la auditoría de seguridad y l
    - Próximo paso: habilitar Dependabot o Renovate para actualizaciones automáticas.
 
 5. Integración continua y checks automáticos
-   - Añadir en CI: `tsc --noEmit`, ESLint (con reglas para código muerto) y `npm audit` en la pipeline.
+   - ~~Añadir en CI: `tsc --noEmit`, ESLint (con reglas para código muerto) y `npm audit` en la pipeline.~~ — **Hecho**: `astro check`, build y `npm audit --audit-level=moderate` en `.github/workflows/checks.yml` (pull_request + push a main); ESLint y type-check de React en el job quality de `.github/workflows/deploy.yml`.
 
 6. Monitorización y observabilidad
    - Añadir logging básico y monitorización para `/api/contact` (Sentry/Logflare/u otro) y alertas por errores/500.

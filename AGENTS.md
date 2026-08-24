@@ -25,7 +25,7 @@ Landing page estática del apartamento vacacional **Brisa de Conil** (Conil de l
 
 - **Package manager:** `npm` (existe `package-lock.json`; en CI se usa `npm ci`).
 - **Node:** `>=22.12.0` (campo `engines`). El workflow de CI usa Node `24.18.1`.
-- **Sin framework de tests ni linter configurados actualmente.** Para type-checkear usa `npx astro check`.
+- **Linter:** ESLint (flat config) con `npm run lint`; también corre en CI. Para type-checkear usa `npx astro check` (local y CI). Sin framework de tests actualmente.
 
 ---
 
@@ -190,6 +190,7 @@ Está pendiente (no lo asumas resuelto):
 - ~~**Reemplazar `set:html`** de iconos SVG por componentes/imports SVG.~~ — **Hecho**: los iconos están centralizados en `src/components/SvgIcon.astro` (2026-08-14).
 - ~~**CI con checks** `tsc --noEmit`, ESLint y `npm audit`.~~ — **Hecho**: `astro check`, build y `npm audit --audit-level=moderate` en `.github/workflows/checks.yml`; ESLint y type-check de React en el job quality de `.github/workflows/deploy.yml` (2026-08-24).
 - **Logging/monitorización** de `/api/contact`.
-- Sustituir **testimonios placeholder** y crear **`public/og-image.jpg`** real (1200×630).
+- Sustituir **testimonios placeholder** por reseñas reales.
+- ~~Crear **`public/og-image.jpg`** real (1200×630).~~ — **Hecho**: existe `public/og-image.jpg` real 1200×630 (2026-08-24).
 
 Cuando completes un punto, márcalo en el TODO del repo y actualiza esta lista si procede.
