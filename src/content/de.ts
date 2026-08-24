@@ -7,7 +7,7 @@
 export const meta = {
   title: "Brisa de Conil — Ferienwohnung in Conil de la Frontera",
   description:
-    "Brisa de Conil: Ferienwohnung im Zentrum von Conil de la Frontera (Cádiz), direkt neben dem Markt. Für 3 Personen. Buche deine Daten.",
+    "Brisa de Conil: Ferienwohnung im Zentrum von Conil de la Frontera (Cádiz), gegenüber der Markthalle und nur Minuten vom Strand. Für 3 Personen. Buche deine Daten.",
   ogImage: "/og-image.jpg",
   locale: "de_DE",
 };

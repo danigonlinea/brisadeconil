@@ -7,7 +7,7 @@
 export const meta = {
   title: 'Brisa de Conil — Holiday apartment in Conil de la Frontera',
   description:
-    'Brisa de Conil: holiday apartment in the centre of Conil de la Frontera (Cádiz), steps from the Market. Sleeps 3. Book your dates.',
+    'Brisa de Conil: holiday apartment in the centre of Conil de la Frontera (Cádiz), opposite the Mercado de Abastos, minutes from the beach. Sleeps 3. Book your dates.',
   ogImage: '/og-image.jpg',
   locale: 'en_GB',
 };
