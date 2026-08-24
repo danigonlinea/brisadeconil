@@ -42,6 +42,7 @@ interface ContactText {
     emailRequired: string;
     emailInvalid: string;
     checkoutAfterCheckin: string;
+    tooManyRequests: string;
   };
 }
 
@@ -120,6 +121,7 @@ function buildContactText(locale: Locale): ContactText {
         "contact.errors.checkoutAfterCheckin",
         locale,
       ),
+      tooManyRequests: translate("contact.errors.tooManyRequests", locale),
     },
   };
 }
@@ -183,10 +185,13 @@ async function postJson(url: string, body: unknown): Promise<Response> {
  * Why a submission attempt failed.
  * - "server": an HTTP endpoint responded but with a non-OK status or a
  *   non-success body (e.g. /api/contact 404, or Web3Forms 4xx/5xx).
+ * - "rateLimited": OUR /api/contact endpoint answered 429 (sliding-window
+ *   limit reached). Scoped to the server leg only — a Web3Forms failure
+ *   stays generic even if it happened to be a 429.
  * - "network": the request itself threw (unreachable, DNS, CORS) or the body
  *   wasn't JSON (e.g. an HTML error page).
  */
-type FailureReason = "network" | "server";
+type FailureReason = "network" | "server" | "rateLimited";
 
 /** Reason attached to a submit result: the path that succeeded, or why it failed. */
 type SubmitReason = FailureReason | "fallback";
@@ -214,6 +219,10 @@ async function classifyResponse(res: Response): Promise<"ok" | FailureReason> {
 async function submitViaServer(payload: ContactPayload): Promise<SubmitResult> {
   const res = await postJson(SERVER_ENDPOINT, payload).catch(() => null);
   if (!res) return { ok: false, reason: "network" };
+  // 429 comes from our own rate limiter (see FailureReason): detect it here,
+  // on the server leg only, and let submitContact stop the chain so the
+  // Web3Forms fallback can't bypass the limit.
+  if (res.status === 429) return { ok: false, reason: "rateLimited" };
   const outcome = await classifyResponse(res);
   return outcome === "ok"
     ? { ok: true, reason: "server" }
@@ -239,6 +248,11 @@ async function submitContact(payload: ContactPayload): Promise<SubmitResult> {
   // 1) Server-side endpoint first (needs WEB3FORMS_ACCESS_KEY at runtime).
   const serverResult = await submitViaServer(payload);
   if (serverResult.ok) return serverResult;
+
+  // Rate-limited by our own endpoint: stop here and surface the dedicated
+  // message. Falling back to a direct Web3Forms POST would bypass the
+  // server-side limit entirely, defeating its purpose.
+  if (serverResult.reason === "rateLimited") return serverResult;
 
   // 2) Static-hosting fallback: direct Web3Forms POST with the client-safe key.
   //
@@ -275,6 +289,8 @@ export default function ContactForm() {
   });
   const [errors, setErrors] = useState<FieldError>({});
   const [state, setState] = useState<FormState>("idle");
+  /** True when the last failure was our endpoint's 429 (dedicated message). */
+  const [rateLimited, setRateLimited] = useState(false);
 
   useEffect(() => {
     const currentLocale = (window.__brisaGetLocale?.() ?? "es") as Locale;
@@ -343,6 +359,7 @@ export default function ContactForm() {
       trackEvent("generate_lead", { form: "contact", method: "Web3Forms" });
       setState("success");
     } else {
+      setRateLimited(result.reason === "rateLimited");
       trackEvent("form_submit_error", {
         form: "contact",
         reason: result.reason,
@@ -600,7 +617,9 @@ export default function ContactForm() {
             <line x1="12" y1="8" x2="12" y2="12" />
             <line x1="12" y1="16" x2="12.01" y2="16" />
           </svg>
-          {contact.errorMessage}
+          {rateLimited
+            ? contact.errors.tooManyRequests
+            : contact.errorMessage}
         </div>
       )}
 

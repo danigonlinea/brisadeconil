@@ -247,6 +247,8 @@ export const contact = {
     emailRequired: "Kontakt-E-Mail ist erforderlich.",
     emailInvalid: "Bitte gib eine gültige E-Mail-Adresse ein.",
     checkoutAfterCheckin: "Das Abreisedatum muss nach dem Anreisedatum liegen.",
+    tooManyRequests:
+      "Du hast mehrere Nachrichten hintereinander gesendet. Bitte warte ein paar Minuten und versuche es erneut.",
   },
 };
 

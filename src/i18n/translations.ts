@@ -650,6 +650,11 @@ export const t: Record<string, Record<Locale, string>> = {
     en: "Check-out must be after check-in.",
     de: "Das Abreisedatum muss nach dem Anreisedatum liegen.",
   },
+  "contact.errors.tooManyRequests": {
+    es: "Has enviado varios mensajes seguidos. Espera unos minutos e inténtalo de nuevo.",
+    en: "You've sent several messages in a row. Please wait a few minutes and try again.",
+    de: "Du hast mehrere Nachrichten hintereinander gesendet. Bitte warte ein paar Minuten und versuche es erneut.",
+  },
   "contact.reassurance.1": {
     es: "Respuesta rápida — normalmente en el mismo día",
     en: "Quick reply — usually the same day",

@@ -197,6 +197,7 @@ export const contact = {
     emailRequired: 'Contact email is required.',
     emailInvalid: 'Please enter a valid email address.',
     checkoutAfterCheckin: 'Check-out must be after check-in.',
+    tooManyRequests: 'You\'ve sent several messages in a row. Please wait a few minutes and try again.',
   },
 };
 

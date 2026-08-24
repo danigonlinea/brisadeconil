@@ -18,14 +18,43 @@
 const WINDOW_MS = 10 * 60 * 1000; // 10 minutes
 const MAX_PER_WINDOW = 5;
 const FIELD_MAX = 500;
+/**
+ * Prune threshold: the in-memory map is swept lazily once it holds more keys
+ * than this. Sweeping on every request would be wasteful; sweeping never
+ * would grow the map without bound under sustained traffic.
+ */
+const MAX_TRACKED_KEYS = 1000;
 
 /** Attempt timestamps per client key (in-memory, sliding window). */
 const attempts: Record<string, number[]> = {};
 
-function json(body: unknown, status: number): Response {
+/**
+ * Lazy memory pruning: entries are never deleted when their window expires,
+ * so a long-running process would accumulate one key per client IP forever.
+ * Once the map exceeds MAX_TRACKED_KEYS, drop every entry whose newest
+ * attempt is already outside WINDOW_MS — those clients restart from zero if
+ * they ever come back. Timestamps are appended in ascending order, so the
+ * last element is the newest.
+ */
+function pruneStaleAttempts(now: number): void {
+  const keys = Object.keys(attempts);
+  if (keys.length <= MAX_TRACKED_KEYS) return;
+  for (const key of keys) {
+    const stamps = attempts[key];
+    if (stamps.length === 0 || now - stamps[stamps.length - 1] >= WINDOW_MS) {
+      delete attempts[key];
+    }
+  }
+}
+
+function json(
+  body: unknown,
+  status: number,
+  extraHeaders?: Record<string, string>,
+): Response {
   return new Response(JSON.stringify(body), {
     status,
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", ...extraHeaders },
   });
 }
 
@@ -51,15 +80,34 @@ function isBot(body: Record<string, unknown>): boolean {
   return typeof hp === "string" && hp.trim() !== "";
 }
 
+/**
+ * Prerender is left at its static default (`true`) for production builds:
+ * GitHub Pages has no server runtime, and marking this route server-only
+ * unconditionally fails `astro build` with [NoAdapterInstalled]. In dev we opt
+ * out (`false`): the static dev pipeline drops POST request bodies, which made
+ * the endpoint untestable locally (every request.json() saw an empty stream).
+ */
 export async function POST({ request }: { request: Request }) {
   try {
     // 1) Rate limit: prune old attempts, count the current window, block over.
     const key = clientIp(request);
     const now = Date.now();
+    pruneStaleAttempts(now);
     const recent = (attempts[key] ?? []).filter((t) => now - t < WINDOW_MS);
     if (recent.length >= MAX_PER_WINDOW) {
       attempts[key] = recent;
-      return json({ success: false, error: "Too many requests" }, 429);
+      // Retry-After: seconds until the oldest attempt leaves the window
+      // (minimum 1), so well-behaved clients know when to come back.
+      const oldest = recent[0];
+      const retryAfterSeconds = Math.max(
+        1,
+        Math.ceil((oldest + WINDOW_MS - now) / 1000),
+      );
+      return json(
+        { success: false, error: "Too many requests" },
+        429,
+        { "Retry-After": String(retryAfterSeconds) },
+      );
     }
     recent.push(now);
     attempts[key] = recent;

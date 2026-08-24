@@ -257,6 +257,8 @@ export const contact = {
     emailInvalid: "Introduce un email válido.",
     checkoutAfterCheckin:
       "La fecha de salida debe ser posterior a la de entrada.",
+    tooManyRequests:
+      "Has enviado varios mensajes seguidos. Espera unos minutos e inténtalo de nuevo.",
   },
 };
 
