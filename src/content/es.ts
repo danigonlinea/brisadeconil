@@ -6,7 +6,7 @@
 export const meta = {
   title: "Brisa de Conil — Apartamento vacacional en Conil de la Frontera",
   description:
-    "Brisa de Conil: apartamento vacacional en el centro de Conil de la Frontera (Cádiz), a pasos del Mercado de Abastos. Para 3 personas. Reserva tus fechas.",
+    "Brisa de Conil: apartamento vacacional en Conil de la Frontera (Cádiz), a pasos del Mercado de Abastos y minutos de la playa. Para 3 personas. Reserva tus fechas.",
   ogImage: "/og-image.jpg",
   locale: "es_ES",
 };
