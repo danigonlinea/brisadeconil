@@ -35,4 +35,4 @@ Node `>=22.12.0`. Package manager: `npm`.
 
 ## Pendiente (no asumir resuelto)
 
-CSP y cabeceras del hosting, auditoría XSS de `translations.ts`, `npm audit` + Dependabot/Renovate, logging/monitorización de `/api/contact` y testimonios reales (`public/og-image.jpg` ya existe). Ver §10 de `AGENTS.md`.
+CSP y cabeceras del hosting, auditoría XSS de `translations.ts`, logging/monitorización de `/api/contact` y testimonios reales (`public/og-image.jpg` ya existe). ~~`npm audit` + Dependabot/Renovate~~ — **Hecho**: `.github/dependabot.yml` configurado (npm + github-actions, mensual) (2026-08-24). Ver §10 de `AGENTS.md`.

@@ -270,9 +270,7 @@ Aquí tienes una descripción práctica de cada tarea pendiente, con prioridad, 
   - Objetivo: cerrar CVEs y mantener dependencias seguras.
   - Pasos: ejecutar `npm audit`, aplicar `npm audit fix` y revisar cambios; abrir PRs para actualizaciones mayores.
 
-- **Habilitar Dependabot / Renovate para dependencias** (Prioridad: Media)
-  - Objetivo: automatizar actualizaciones y PRs de seguridad.
-  - Pasos: añadir `dependabot.yml` o configurar Renovate en repo; revisar PRs en staging antes de merge.
+- ~~**Habilitar Dependabot / Renovate para dependencias** (Prioridad: Media)~~ — **Hecho**: `.github/dependabot.yml` configurado (npm + github-actions, mensual) (2026-08-24).
 
 - **Documentar variables de entorno y pasos de despliegue en README** (Prioridad: Baja)
   - Objetivo: dejar claro qué secretos y pasos necesita el deploy (ej. `WEB3FORMS_ACCESS_KEY`, GitHub Secrets).
@@ -282,7 +280,7 @@ Aquí tienes una descripción práctica de cada tarea pendiente, con prioridad, 
   - Objetivo: revisar y sanear cualquier HTML legítimo en `src/i18n/translations.ts`.
   - Pasos: listar claves `*-html` o revisar `t` por contenido que incluya etiquetas; validar que la sanitización aplicada cumple con requerimientos.
 
-Si quieres, puedo empezar con cualquiera de estas tareas ahora: diseñar la CSP y cabeceras del hosting, añadir monitorización y logging en `/api/contact`, preparar PRs de dependencias (Dependabot/Renovate), o sustituir los testimonios placeholder por reseñas reales.
+Si quieres, puedo empezar con cualquiera de estas tareas ahora: diseñar la CSP y cabeceras del hosting, añadir monitorización y logging en `/api/contact`, o sustituir los testimonios placeholder por reseñas reales.
 
 ## Plan de auditoría y siguientes pasos
 
@@ -302,7 +300,7 @@ He dejado aquí el plan de trabajo para continuar la auditoría de seguridad y l
 
 4. Dependencias y vulnerabilidades
    - Ejecutar `npm audit` y arreglar vulnerabilidades críticas/alta prioridad.
-   - Próximo paso: habilitar Dependabot o Renovate para actualizaciones automáticas.
+   - ~~Próximo paso: habilitar Dependabot o Renovate para actualizaciones automáticas.~~ — **Hecho**: `.github/dependabot.yml` configurado (npm + github-actions, mensual) (2026-08-24).
 
 5. Integración continua y checks automáticos
    - ~~Añadir en CI: `tsc --noEmit`, ESLint (con reglas para código muerto) y `npm audit` en la pipeline.~~ — **Hecho**: `astro check`, build y `npm audit --audit-level=moderate` en `.github/workflows/checks.yml` (pull_request + push a main); ESLint y type-check de React en el job quality de `.github/workflows/deploy.yml` (2026-08-24).
