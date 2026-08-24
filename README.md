@@ -258,10 +258,7 @@ Aquí tienes una descripción práctica de cada tarea pendiente, con prioridad, 
     curl -I -H "Content-Security-Policy: default-src 'self'" http://localhost:4321
     ```
 
-- **Implementar rate-limiting/anti-bot en `/api/contact`** (Prioridad: Alta)
-  - Objetivo: evitar abuso del formulario (spambots, spam, solicitudes masivas).
-  - Pasos: añadir un simple contador en memoria o usar paquete ligero (express-rate-limit, but for serverless use a token bucket tied to IP), añadir honeypot field y/o reCAPTCHA v3/v2.
-  - Ejemplo rápido: limitar 5 envíos por IP en 1 hora; bloquear por 429.
+- ~~**Implementar rate-limiting/anti-bot en `/api/contact`** (Prioridad: Alta)~~ — **Hecho**: sliding-window 5 req/10 min por IP + honeypot + validación (2026-08-24).
 
 - **Añadir logging y monitorización de errores para la API** (Prioridad: Media)
   - Objetivo: detectar fallos de envío y problemas de integración con Web3Forms.
@@ -295,7 +292,7 @@ He dejado aquí el plan de trabajo para continuar la auditoría de seguridad y l
 
 1. Revisión y endurecimiento del endpoint de contacto
    - Migrado el envío del formulario al endpoint server-side `/api/contact`.
-   - Próximo paso: implementar rate-limiting (IP + user-agent), honeypot y/o reCAPTCHA en el endpoint.
+   - **Hecho**: sliding-window rate-limit (5 req/10 min por IP), honeypot y validación YA están implementados en el endpoint (server-side; inerte en GitHub Pages, activo con hosting con servidor). El formulario además muestra un mensaje dedicado al recibir el 429.
 
 2. Auditoría de XSS / sanitización
    - Se añadió una sanitización básica en el script i18n para `data-i18n-html`.

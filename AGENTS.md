@@ -184,7 +184,7 @@ Antes de marcar una tarea como hecha, verifica:
 Está pendiente (no lo asumas resuelto):
 
 - **CSP y cabeceras** de seguridad en el hosting.
-- **Rate-limiting / anti-bot** en `/api/contact` (honeypot, reCAPTCHA o contador por IP).
+- ~~**Rate-limiting / anti-bot** en `/api/contact` (honeypot, reCAPTCHA o contador por IP).~~ — **Hecho**: sliding-window rate-limit (5 req/10 min por IP) + honeypot + validación (2026-08-24).
 - **Auditoría de XSS / sanitización** del HTML legítimo en `src/i18n/translations.ts`.
 - **`npm audit`** + Dependabot/Renovate.
 - ~~**Reemplazar `set:html`** de iconos SVG por componentes/imports SVG.~~ — **Hecho**: los iconos están centralizados en `src/components/SvgIcon.astro` (2026-08-14).
