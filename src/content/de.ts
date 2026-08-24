@@ -1,8 +1,11 @@
 /**
  * Content — German (DE)
  * Übersetze alle String-Werte. Behalte die Schlüssel identisch zu es.ts.
- * TODO: Vollständige Übersetzung vor Aktivierung der DE-Sprache.
  */
+
+export const common = {
+  skipToContent: "Zum Inhalt springen",
+};
 
 export const meta = {
   title: "Brisa de Conil — Ferienwohnung in Conil de la Frontera",
@@ -34,6 +37,11 @@ export const hero = {
   cta: "Verfügbarkeit prüfen",
   ctaHref: "#contacto",
   scrollLabel: "Mehr entdecken",
+};
+
+export const gallery = {
+  label: "Fotogalerie",
+  lead: "Ein Blick in jeden Winkel — mit Tageslicht und dem authentischen Flair der Wohnung.",
 };
 
 export const apartment = {
@@ -127,10 +135,13 @@ export const location = {
   headline: "Im Herzen von Conil",
   lead: "Calle Rosa de los Vientos, gegenüber der Markthalle. Alles zu Fuß erreichbar.",
   address: "C/ Rosa de los Vientos, Conil de la Frontera (Cádiz)",
+  mapTitle: "Google-Maps-Karte mit der Lage der Wohnung",
   mapEmbedUrl:
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3196.0!2d-6.0897!3d36.2778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd0c4e0b0b0b0b0b%3A0x0!2sMercado+de+Abastos+Conil!5e0!3m2!1sde!2ses!4v1690000000000",
   parking: {
     headline: "Parken",
+    freeLabel: "Kostenlos",
+    paidLabel: "Kostenpflichtig",
     options: [
       {
         name: "Mercado de Abastos",
@@ -222,7 +233,12 @@ export const rules = {
 export const contact = {
   sectionLabel: "Kontakt",
   headline: "Wann kommst du?",
-  lead: "Nenn uns deine Daten und wir melden uns so schnell wie möglich.",
+  lead: "Nenn uns deine Reisedaten und wir melden uns so schnell wie möglich.",
+  reassurances: [
+    "Schnelle Antwort — meist noch am selben Tag",
+    "Unverbindlich — nur eine Anfrage",
+    "Direkter Kontakt zum Eigentümer",
+  ],
   fields: {
     name: { label: "Dein Name", placeholder: "Anna Müller" },
     email: { label: "Kontakt-E-Mail", placeholder: "anna@beispiel.de" },
@@ -255,6 +271,7 @@ export const contact = {
 export const faq = {
   sectionLabel: "Häufige Fragen",
   headline: "Was uns oft gefragt wird",
+  pendingBadge: "Ausstehend",
   items: [
     {
       q: "Wie sind die Check-in und Check-out Zeiten?",
@@ -349,6 +366,14 @@ export const faq = {
   ],
 };
 
+export const cookies = {
+  ariaLabel: "Cookie-Hinweis",
+  text: "Wir verwenden Cookies, um dein Erlebnis zu verbessern und zu verstehen, wie die Website genutzt wird.",
+  policy: "Mehr erfahren",
+  reject: "Nur das Nötigste",
+  accept: "Akzeptieren",
+};
+
 export const testimonials = {
   sectionLabel: "Bewertungen",
   headline: "Was unsere Gäste sagen",
@@ -378,6 +403,7 @@ export const testimonials = {
 export const footer = {
   brand: "Brisa de Conil",
   tagline: "Deine Wohnung an der Costa de la Luz.",
+  responseNote: "Wir antworten meist noch am selben Tag.",
   address: "C/ Rosa de los Vientos\nConil de la Frontera, Cádiz",
   legalNote: "© 2026 Brisa de Conil. Alle Rechte vorbehalten.",
   legalLabel: "Impressum",

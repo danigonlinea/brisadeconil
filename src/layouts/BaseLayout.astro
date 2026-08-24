@@ -1,44 +1,68 @@
 ---
 /**
  * BaseLayout — root layout for all pages.
- * Handles: meta/SEO, dark-theme script, global styles, skip link, i18n script.
+ * Handles: locale-aware meta/SEO (lang, canonical, hreflang, og:locale),
+ * dark-theme script, global styles, skip link and cookie consent.
  */
 import '../styles/global.css';
-import * as content from '../content/index';
-import { buildI18nScript } from '../i18n/i18n-script';
+import { CONTENT } from '../content/index';
+import { DEFAULT_LOCALE, homePath, SUPPORTED_LOCALES, type Locale } from '../i18n/locales';
 import galleryManifest from '../data/gallery-manifest';
 
 interface Props {
+  /** Route locale — drives <html lang>, meta defaults and chrome copy. */
+  locale?: Locale;
   title?: string;
   description?: string;
   ogImage?: string;
   canonicalUrl?: string;
   /** Inject the LodgingBusiness structured data (home only). */
   lodgingSchema?: boolean;
+  /**
+   * Emit the hreflang alternates trio + og:locale:alternate set.
+   * Only meaningful on pages that exist in every locale (homepage routes).
+   */
+  alternates?: boolean;
 }
 
 const {
-  title = content.meta.title,
-  description = content.meta.description,
-  ogImage = content.meta.ogImage,
+  locale = DEFAULT_LOCALE,
+  title = CONTENT[locale].meta.title,
+  description = CONTENT[locale].meta.description,
+  ogImage = CONTENT[locale].meta.ogImage,
   canonicalUrl,
   lodgingSchema = false,
+  alternates = false,
 } = Astro.props;
 
 const siteUrl = import.meta.env.SITE ?? 'https://www.brisadeconil.com';
 const base = import.meta.env.BASE_URL ?? '/';
-const canonical = canonicalUrl ?? siteUrl;
+const canonical = canonicalUrl ?? `${siteUrl}${homePath(locale)}`;
 const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
 const cookiesPage = `${base.replace(/\/$/, '')}/politica-cookies`;
+
+// Complete hreflang set per Google's guidance: every language version plus
+// x-default. The default locale always points at the site root ("/"),
+// which also serves as the x-default target.
+const alternateHrefs = [
+  ...SUPPORTED_LOCALES.map((l) => ({ lang: l, href: `${siteUrl}${homePath(l)}` })),
+  { lang: 'x-default', href: `${siteUrl}${homePath(DEFAULT_LOCALE)}` },
+];
+const ogLocaleAlternates = SUPPORTED_LOCALES
+  .filter((l) => l !== locale)
+  .map((l) => CONTENT[l].meta.locale);
 
 // Structured data — LodgingBusiness (home only). Enriched for answer engines.
 const galleryPhotos = Object.keys(galleryManifest).map(
   (id) => `${siteUrl}${base}gallery/optimized/${id}-1600.jpg`,
 );
+// Match the cancellation FAQ in any language: "cancelación", "cancellation",
+// "Stornierung"…
 const cancellationPolicy =
-  content.faq.items.find((item) => item.q.toLowerCase().includes('cancelaci'))?.a ??
-  'Cancelación gratuita hasta 7 días antes de la fecha de llegada.';
-const amenityFeatures = content.amenities.items.map((item) => ({
+  CONTENT[locale].faq.items.find((item) => /cancel|storn|annull/i.test(item.q))?.a ??
+  CONTENT[locale].faq.items.find((item) => /cancel|storn|annull/i.test(item.a))?.a ??
+  '';
+const amenityFeatures = CONTENT[locale].amenities.items.map((item) => ({
   '@type': 'LocationFeatureSpecification',
   name: item.label,
   value: true,
@@ -75,7 +99,8 @@ const lodgingSchemaData = {
   petsAllowed: false,
   smokingAllowed: false,
   amenityFeature: amenityFeatures,
-  cancellationPolicy,
+  // Omit rather than ship an empty policy if the FAQ lookup ever fails.
+  ...(cancellationPolicy ? { cancellationPolicy } : {}),
 };
 
 // Content-Security-Policy — ships as <meta http-equiv> because GitHub Pages
@@ -83,9 +108,9 @@ const lodgingSchemaData = {
 // policy is auditable next to the scripts it governs.
 //
 // Trade-off: script-src/style-src use 'unsafe-inline'. The page relies on
-// build-generated inline scripts (theme boot, i18n boot embedding the whole
-// default-locale table, fonts loader, GA consent loader, scroll reveal, React
-// island hydration) plus Astro-inlined component styles; their contents change
+// build-generated inline scripts (theme boot, fonts loader, GA consent
+// loader, scroll reveal, React island hydration) plus Astro-inlined
+// component styles; their contents change
 // on every build, so hash-based allowlisting would break each deploy.
 // 'unsafe-inline' still blocks every cross-origin script except
 // googletagmanager.com, all plugin/object vectors, non-Google frames,
@@ -111,7 +136,7 @@ const cspPolicy = [
 ---
 
 <!doctype html>
-<html lang="es" data-theme="light">
+<html lang={locale} data-theme="light">
   <head>
     <meta charset="UTF-8" />
 
@@ -129,13 +154,21 @@ const cspPolicy = [
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
 
+    <!-- hreflang alternates (homepage routes) -->
+    {alternates && alternateHrefs.map((alt) => (
+      <link rel="alternate" hreflang={alt.lang} href={alt.href} />
+    ))}
+
     <!-- Open Graph -->
     <meta property="og:type"        content="website" />
     <meta property="og:url"         content={canonical} />
     <meta property="og:title"       content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image"       content={ogImageUrl} />
-    <meta property="og:locale"      content={content.meta.locale} />
+    <meta property="og:locale"      content={CONTENT[locale].meta.locale} />
+    {alternates && ogLocaleAlternates.map((l) => (
+      <meta property="og:locale:alternate" content={l} />
+    ))}
     <meta property="og:site_name"   content="Brisa de Conil" />
 
     <!-- Twitter Card -->
@@ -170,30 +203,27 @@ const cspPolicy = [
         document.documentElement.setAttribute('data-theme', theme);
       })();
     </script>
-
-    <!-- Inline i18n script — detects locale and translates data-i18n elements before first paint -->
-    <script is:inline set:html={buildI18nScript(base)} />
   </head>
   <body>
     <!-- Skip navigation for keyboard users -->
-    <a class="skip-link" href="#main-content" data-i18n="skip-link">Saltar al contenido</a>
+    <a class="skip-link" href="#main-content">{CONTENT[locale].common.skipToContent}</a>
 
     <!-- Cookie consent banner (non-intrusive bottom card) -->
     <aside
       id="cookie-banner"
       class="cookie-banner"
       role="region"
-      aria-label="Aviso de cookies"
+      aria-label={CONTENT[locale].cookies.ariaLabel}
       hidden
     >
       <div class="cookie-banner-inner">
-        <p class="cookie-banner-text" data-i18n="cookies.text">
-          Usamos cookies para mejorar tu experiencia y entender cómo se usa la web.
+        <p class="cookie-banner-text">
+          {CONTENT[locale].cookies.text}
         </p>
         <div class="cookie-banner-actions">
-          <a class="cookie-banner-link" href={cookiesPage} data-i18n="cookies.policy">Más información</a>
-          <button type="button" class="cookie-banner-btn cookie-banner-btn--ghost" data-cookie-reject data-i18n="cookies.reject">Solo lo esencial</button>
-          <button type="button" class="cookie-banner-btn cookie-banner-btn--primary" data-cookie-accept data-i18n="cookies.accept">Aceptar</button>
+          <a class="cookie-banner-link" href={cookiesPage}>{CONTENT[locale].cookies.policy}</a>
+          <button type="button" class="cookie-banner-btn cookie-banner-btn--ghost" data-cookie-reject>{CONTENT[locale].cookies.reject}</button>
+          <button type="button" class="cookie-banner-btn cookie-banner-btn--primary" data-cookie-accept>{CONTENT[locale].cookies.accept}</button>
         </div>
       </div>
     </aside>

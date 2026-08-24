@@ -13,7 +13,7 @@
  *  - On load the real image fades in over the LQIP (blur-up).
  */
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { Locale } from "../i18n/translations";
+import { DEFAULT_LOCALE, type Locale } from "../i18n/locales";
 import galleryManifest from "../data/gallery-manifest";
 import { trackEvent } from "../lib/analytics";
 
@@ -36,7 +36,6 @@ interface ResponsiveImage {
   fullHeight: number;
 }
 
-const DEFAULT_LOCALE: Locale = "es";
 const publicBase = import.meta.env.BASE_URL || "/";
 const asset = (path: string) =>
   `${publicBase.replace(/\/$/, "")}/${path.replace(/^\//, "")}`;
@@ -373,25 +372,12 @@ function GalleryCard({
   );
 }
 
-export default function GalleryIsland() {
-  const [locale, setLocale] = useState<Locale>(DEFAULT_LOCALE);
+interface GalleryIslandProps {
+  /** Route locale — captions, alts and lightbox text render in this language. */
+  locale: Locale;
+}
 
-  useEffect(() => {
-    const currentLocale = window.__brisaGetLocale?.() ?? DEFAULT_LOCALE;
-    setLocale(currentLocale);
-
-    const handleLocaleChange = (event: Event) => {
-      const detail = (event as CustomEvent).detail;
-      if (detail?.locale) {
-        setLocale(detail.locale);
-      }
-    };
-
-    window.addEventListener("brisa:locale-change", handleLocaleChange);
-    return () =>
-      window.removeEventListener("brisa:locale-change", handleLocaleChange);
-  }, []);
-
+export default function GalleryIsland({ locale }: GalleryIslandProps) {
   const openLightbox = useCallback(
     async (index: number) => {
       const item = GALLERY_ITEMS[index];

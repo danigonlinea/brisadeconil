@@ -1,28 +1,34 @@
 ---
 /**
  * GallerySection — PhotoSwipe lightbox as a React island.
- * Placeholders clearly marked for real photography.
+ * Header copy comes from the per-locale `gallery` slice.
  */
+import type { Locale } from '../i18n/locales';
 import GalleryIsland from './GalleryIsland';
 // PhotoSwipe's stylesheet must be imported statically here: a dynamic
 // `import('photoswipe/style.css')` inside the island makes Vite emit the CSS
 // URL into the chunk while Astro's build never emits the file itself, so the
 // lightbox would render unstyled (404) in production.
 import 'photoswipe/dist/photoswipe.css';
+
+interface Props {
+  gallery: { label: string; lead: string };
+  locale: Locale;
+}
+
+const { gallery, locale } = Astro.props;
 ---
 
 <section class="section section--alt" id="galeria" aria-labelledby="gallery-title">
   <div class="container">
     <header class="gallery-header">
       <hr class="divider" aria-hidden="true" />
-      <p class="section-label" id="gallery-title" data-i18n="gallery.label">Galería de fotos</p>
-      <p class="section-lead reveal" data-i18n="gallery.lead">
-        Un vistazo a cada rincón con luz natural y el ambiente auténtico del apartamento.
-      </p>
+      <p class="section-label" id="gallery-title">{gallery.label}</p>
+      <p class="section-lead reveal">{gallery.lead}</p>
     </header>
 
     <!-- React island — PhotoSwipe loads client-side only -->
-    <GalleryIsland client:visible />
+    <GalleryIsland client:visible locale={locale} />
   </div>
 </section>
 

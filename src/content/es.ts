@@ -11,6 +11,10 @@ export const meta = {
   locale: "es_ES",
 };
 
+export const common = {
+  skipToContent: "Saltar al contenido",
+};
+
 export const nav = {
   brand: "Brisa de Conil",
   links: [
@@ -33,6 +37,11 @@ export const hero = {
   cta: "Consulta disponibilidad",
   ctaHref: "#contacto",
   scrollLabel: "Descubre más",
+};
+
+export const gallery = {
+  label: "Galería de fotos",
+  lead: "Un vistazo a cada rincón con luz natural y el ambiente auténtico del apartamento.",
 };
 
 export const apartment = {
@@ -131,10 +140,13 @@ export const location = {
   headline: "En el corazón de Conil",
   lead: "Calle Rosa de los Vientos, frente al Mercado de Abastos. Todo a pie.",
   address: "C/ Rosa de los Vientos, Conil de la Frontera (Cádiz)",
+  mapTitle: "Mapa de Google con la ubicación del apartamento",
   mapEmbedUrl:
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3196.0!2d-6.0897!3d36.2778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd0c4e0b0b0b0b0b%3A0x0!2sMercado+de+Abastos+Conil!5e0!3m2!1ses!2ses!4v1690000000000",
   parking: {
     headline: "Aparcamiento",
+    freeLabel: "Gratuito",
+    paidLabel: "De pago",
     options: [
       {
         name: "Mercado de Abastos",
@@ -231,6 +243,11 @@ export const contact = {
   sectionLabel: "Contacto",
   headline: "¿Cuándo te vienes?",
   lead: "Cuéntanos tus fechas y te respondemos a la mayor brevedad posible.",
+  reassurances: [
+    "Respuesta rápida — normalmente en el mismo día",
+    "Sin compromiso — solo una consulta",
+    "Atención directa del propietario",
+  ],
   fields: {
     name: { label: "Tu nombre", placeholder: "Ana García" },
     email: { label: "Email de contacto", placeholder: "ana@ejemplo.com" },
@@ -265,6 +282,7 @@ export const contact = {
 export const faq = {
   sectionLabel: "Preguntas frecuentes",
   headline: "Lo que nos suelen preguntar",
+  pendingBadge: "Pendiente",
   items: [
     {
       q: "¿Cuáles son los horarios de check-in y check-out?",
@@ -354,6 +372,14 @@ export const faq = {
   ],
 };
 
+export const cookies = {
+  ariaLabel: "Aviso de cookies",
+  text: "Usamos cookies para mejorar tu experiencia y entender cómo se usa la web.",
+  policy: "Más información",
+  reject: "Solo lo esencial",
+  accept: "Aceptar",
+};
+
 export const testimonials = {
   sectionLabel: "Opiniones",
   headline: "Lo que dicen nuestros huéspedes",
@@ -383,6 +409,7 @@ export const testimonials = {
 export const footer = {
   brand: "Brisa de Conil",
   tagline: "Tu apartamento en la Costa de la Luz.",
+  responseNote: "Respondemos normalmente en el mismo día.",
   address: "C/ Rosa de los Vientos\nConil de la Frontera, Cádiz",
   legalNote: "© 2026 Brisa de Conil. Todos los derechos reservados.",
   legalLabel: "Aviso legal",

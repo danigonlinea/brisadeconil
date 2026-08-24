@@ -1,8 +1,9 @@
 /**
  * FAQAccordion — React island with accessible accordion.
  * Uses aria-expanded + aria-controls pattern.
+ * Questions/answers come from the per-locale content slice via props.
  */
-import { useEffect, useState, useId } from "react";
+import { useState, useId } from "react";
 import { trackEvent } from "../lib/analytics";
 
 interface FAQItem {
@@ -13,20 +14,22 @@ interface FAQItem {
 
 interface FAQAccordionProps {
   items: FAQItem[];
+  /** Localized label for the placeholder badge on pending answers. */
+  pendingBadge: string;
 }
 
 function FAQItem({
   item,
   id,
-  index,
   isOpen,
   onToggle,
+  pendingBadge,
 }: {
   item: FAQItem;
   id: string;
-  index: number;
   isOpen: boolean;
   onToggle: () => void;
+  pendingBadge: string;
 }) {
   return (
     <div className={`faq-item ${isOpen ? "faq-item--open" : ""}`}>
@@ -38,9 +41,7 @@ function FAQItem({
         onClick={onToggle}
         type="button"
       >
-        <span className="faq-question" data-i18n={`faq.item.${index}.q`}>
-          {item.q}
-        </span>
+        <span className="faq-question">{item.q}</span>
         <span className="faq-chevron" aria-hidden="true">
           <svg
             width="18"
@@ -70,15 +71,11 @@ function FAQItem({
         <div className="faq-answer">
           {item.pending ? (
             <span className="faq-pending">
-              <span data-i18n={`faq.item.${index}.a`}>
-                {item.a.replace(/\[PENDIENTE[^\]]*\]\.\?/, "").trim()}
-              </span>{" "}
-              <span className="placeholder-badge" data-i18n="faq.pending-badge">
-                Pendiente
-              </span>
+              <span>{item.a.replace(/\[PENDIENTE[^\]]*\]\.\?/, "").trim()}</span>{" "}
+              <span className="placeholder-badge">{pendingBadge}</span>
             </span>
           ) : (
-            <span data-i18n={`faq.item.${index}.a`}>{item.a}</span>
+            <span>{item.a}</span>
           )}
         </div>
       </div>
@@ -86,18 +83,11 @@ function FAQItem({
   );
 }
 
-export default function FAQAccordion({ items }: FAQAccordionProps) {
+export default function FAQAccordion({ items, pendingBadge }: FAQAccordionProps) {
   const baseId = useId();
   const [openIndices, setOpenIndices] = useState<Set<number>>(
     () => new Set(items.map((_, i) => i)),
   );
-
-  useEffect(() => {
-    const locale = window.__brisaGetLocale?.();
-    if (locale && window.__brisaSetLocale) {
-      window.__brisaSetLocale(locale);
-    }
-  }, []);
 
   function toggle(i: number) {
     const willOpen = !openIndices.has(i);
@@ -122,10 +112,10 @@ export default function FAQAccordion({ items }: FAQAccordionProps) {
         <FAQItem
           key={i}
           item={item}
-          index={i}
           id={`${baseId}-faq-${i}`}
           isOpen={openIndices.has(i)}
           onToggle={() => toggle(i)}
+          pendingBadge={pendingBadge}
         />
       ))}
     </div>

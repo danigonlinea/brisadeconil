@@ -8,10 +8,13 @@
  * 2. If that fails (e.g. GitHub Pages static hosting where the endpoint does
  *    not exist at runtime), fall back to a direct POST to api.web3forms.com
  *    using the client-safe PUBLIC_WEB3FORMS_KEY (it only routes emails).
+ *
+ * All UI strings arrive via the `contact` prop (the per-locale content
+ * slice), so each pre-rendered route shows its own language with no
+ * runtime swapping.
  */
-import { useEffect, useMemo, useState, useId } from "react";
-import type { Locale } from "../i18n/translations";
-import { t as translations } from "../i18n/translations";
+import { useState, useId } from "react";
+import type { SiteContent } from "../content/index";
 import { trackEvent } from "../lib/analytics";
 
 type FormState = "idle" | "sending" | "success" | "error";
@@ -75,55 +78,6 @@ function validateForm(data: FormData, contact: ContactText): FieldError {
     errors.checkout = contact.errors.checkoutAfterCheckin;
   }
   return errors;
-}
-
-function translate(key: string, locale: Locale): string {
-  return translations[key]?.[locale] ?? translations[key]?.["es"] ?? "";
-}
-
-function buildContactText(locale: Locale): ContactText {
-  return {
-    formAriaLabel: translate("contact.formAriaLabel", locale),
-    fields: {
-      name: {
-        label: translate("contact.fields.name.label", locale),
-        placeholder: translate("contact.fields.name.placeholder", locale),
-      },
-      email: {
-        label: translate("contact.fields.email.label", locale),
-        placeholder: translate("contact.fields.email.placeholder", locale),
-      },
-      checkin: {
-        label: translate("contact.fields.checkin.label", locale),
-        placeholder: translate("contact.fields.checkin.placeholder", locale),
-      },
-      checkout: {
-        label: translate("contact.fields.checkout.label", locale),
-        placeholder: translate("contact.fields.checkout.placeholder", locale),
-      },
-      message: {
-        label: translate("contact.fields.message.label", locale),
-        placeholder: translate("contact.fields.message.placeholder", locale),
-      },
-    },
-    submit: translate("contact.submit", locale),
-    sending: translate("contact.sending", locale),
-    successHeadline: translate("contact.successHeadline", locale),
-    successButton: translate("contact.successButton", locale),
-    successMessage: translate("contact.successMessage", locale),
-    errorMessage: translate("contact.errorMessage", locale),
-    privacy: translate("contact.privacy", locale),
-    errors: {
-      nameRequired: translate("contact.errors.nameRequired", locale),
-      emailRequired: translate("contact.errors.emailRequired", locale),
-      emailInvalid: translate("contact.errors.emailInvalid", locale),
-      checkoutAfterCheckin: translate(
-        "contact.errors.checkoutAfterCheckin",
-        locale,
-      ),
-      tooManyRequests: translate("contact.errors.tooManyRequests", locale),
-    },
-  };
 }
 
 // NOTE: the Web3Forms fallback below survives bundling only if
@@ -280,10 +234,13 @@ function addDaysToDate(value: string, days: number) {
   return `${nextYear}-${nextMonth}-${nextDay}`;
 }
 
-export default function ContactForm() {
+interface ContactFormProps {
+  /** Per-locale contact copy (labels, placeholders, messages, errors). */
+  contact: SiteContent["contact"];
+}
+
+export default function ContactForm({ contact }: ContactFormProps) {
   const id = useId();
-  const [locale, setLocale] = useState<Locale>("es");
-  const contact = useMemo(() => buildContactText(locale), [locale]);
   const [form, setForm] = useState<FormData>({
     name: "",
     email: "",
@@ -296,22 +253,6 @@ export default function ContactForm() {
   const [state, setState] = useState<FormState>("idle");
   /** True when the last failure was our endpoint's 429 (dedicated message). */
   const [rateLimited, setRateLimited] = useState(false);
-
-  useEffect(() => {
-    const currentLocale = (window.__brisaGetLocale?.() ?? "es") as Locale;
-    setLocale(currentLocale);
-
-    const handleLocaleChange = (event: Event) => {
-      const detail = (event as CustomEvent).detail;
-      if (detail?.locale) {
-        setLocale(detail.locale);
-      }
-    };
-
-    window.addEventListener("brisa:locale-change", handleLocaleChange);
-    return () =>
-      window.removeEventListener("brisa:locale-change", handleLocaleChange);
-  }, []);
 
   function handleChange(
     e: React.ChangeEvent<

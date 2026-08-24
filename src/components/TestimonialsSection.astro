@@ -3,16 +3,21 @@
  * TestimonialsSection — placeholders clearly marked.
  * Replace placeholder text with real reviews before publishing.
  */
-import * as content from '../content/index';
-const { testimonials } = content;
+import type { SiteContent } from '../content/index';
+
+interface Props {
+  testimonials: SiteContent['testimonials'];
+}
+
+const { testimonials } = Astro.props;
 ---
 
 <section class="section section--alt testimonials-hidden" id="opiniones" aria-labelledby="testimonials-title">
   <div class="container">
     <header class="testimonials-header reveal">
       <hr class="divider" aria-hidden="true" />
-      <p class="section-label" data-i18n="testimonials.label">{testimonials.sectionLabel}</p>
-      <h2 class="section-title" id="testimonials-title" data-i18n="testimonials.title">
+      <p class="section-label">{testimonials.sectionLabel}</p>
+      <h2 class="section-title" id="testimonials-title">
         {testimonials.headline}
         {testimonials.placeholder && (
           <span class="placeholder-badge" style="margin-left: 0.5rem; vertical-align: middle; font-size: var(--text-xs);">
@@ -23,7 +28,7 @@ const { testimonials } = content;
     </header>
 
     <ul class="testimonials-grid" role="list">
-      {testimonials.items.map((t: { name: string; origin: string; rating: number; text: string }, i: number) => (
+      {testimonials.items.map((t, i) => (
         <li class:list={['testimonial-card', 'reveal', `reveal-delay-${i + 1}`]}>
           <!-- Stars -->
           <div class="testimonial-stars" aria-label={`${t.rating} de 5 estrellas`}>
@@ -68,7 +73,7 @@ const { testimonials } = content;
     </ul>
 
     {testimonials.placeholder && (
-      <p class="testimonials-note reveal" data-i18n="testimonials.note">
+      <p class="testimonials-note reveal">
         <span class="placeholder-badge">⚠ Testimonios placeholder</span>
         {' '}Sustituir por reseñas reales antes de publicar. No publicar estos textos como si fueran reales.
       </p>

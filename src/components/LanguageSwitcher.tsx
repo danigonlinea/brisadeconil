@@ -1,18 +1,15 @@
 /**
- * LanguageSwitcher — compact dropdown to switch between ES, EN and DE.
+ * LanguageSwitcher — compact dropdown that navigates between the
+ * pre-rendered per-locale routes (/, /en/ and /de/).
  *
- * Mounts into #language-switcher-mount via client:only="react".
- * Uses the window.__brisaSetLocale / __brisaGetLocale API injected by the
- * inline i18n script in BaseLayout.
- *
- * Listens to the 'brisa:locale-change' event to stay in sync when locale
- * changes from another source.
+ * Mounts into .header-controls via client:only="react". The current locale
+ * arrives as a build-time prop from Header, so the control renders correctly
+ * on every route without reading any runtime state.
  */
 
 import { useEffect, useRef, useState } from 'react';
 import { trackEvent } from '../lib/analytics';
-
-type Locale = 'es' | 'en' | 'de';
+import { localeSwitchPath, type Locale } from '../i18n/locales';
 
 interface LocaleOption {
   code: Locale;
@@ -30,31 +27,13 @@ const LOCALES: LocaleOption[] = [
   { code: 'de', label: 'DE', name: 'Deutsch',  flag: '🇩🇪' },
 ];
 
-declare global {
-  interface Window {
-    __brisaSetLocale?: (locale: Locale) => void;
-    __brisaGetLocale?: () => Locale;
-  }
+interface LanguageSwitcherProps {
+  locale: Locale;
 }
 
-export default function LanguageSwitcher() {
-  const [current, setCurrent] = useState<Locale>('es');
+export default function LanguageSwitcher({ locale }: LanguageSwitcherProps) {
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-
-  // Read initial locale from the i18n runtime
-  useEffect(() => {
-    const locale = (window.__brisaGetLocale?.() ?? 'es') as Locale;
-    setCurrent(locale);
-
-    // Stay in sync when locale is changed by another component
-    const handler = (e: Event) => {
-      const detail = (e as CustomEvent<{ locale: Locale }>).detail;
-      setCurrent(detail.locale);
-    };
-    window.addEventListener('brisa:locale-change', handler);
-    return () => window.removeEventListener('brisa:locale-change', handler);
-  }, []);
 
   // Close on outside click
   useEffect(() => {
@@ -78,14 +57,17 @@ export default function LanguageSwitcher() {
     return () => document.removeEventListener('keydown', handleKey);
   }, [open]);
 
-  const select = (locale: Locale) => {
-    trackEvent('language_switch', { language: locale });
-    window.__brisaSetLocale?.(locale);
-    setCurrent(locale);
+  const select = (target: Locale) => {
     setOpen(false);
+    // Same-language selection is a no-op: stay on the page, don't log it.
+    if (target === locale) return;
+    trackEvent('language_switch', { language: target });
+    // Defer navigation briefly so the analytics hit is sent before the
+    // page unload cancels the in-flight request.
+    window.setTimeout(() => window.location.assign(localeSwitchPath(target)), 250);
   };
 
-  const currentOption = LOCALES.find((l) => l.code === current) ?? LOCALES[0];
+  const currentOption = LOCALES.find((l) => l.code === locale) ?? LOCALES[0]!;
 
   return (
     <div
@@ -127,23 +109,23 @@ export default function LanguageSwitcher() {
           aria-label="Seleccionar idioma"
           className="lang-switcher__dropdown"
         >
-          {LOCALES.map((locale) => (
+          {LOCALES.map((option) => (
             <li
-              key={locale.code}
+              key={option.code}
               role="option"
-              aria-selected={locale.code === current}
-              className={`lang-switcher__option${locale.code === current ? ' lang-switcher__option--active' : ''}`}
-              onClick={() => select(locale.code)}
+              aria-selected={option.code === locale}
+              className={`lang-switcher__option${option.code === locale ? ' lang-switcher__option--active' : ''}`}
+              onClick={() => select(option.code)}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault();
-                  select(locale.code);
+                  select(option.code);
                 }
               }}
               tabIndex={0}
             >
-              <span aria-hidden="true">{locale.flag}</span>
-              <span>{locale.name}</span>
+              <span aria-hidden="true">{option.flag}</span>
+              <span>{option.name}</span>
             </li>
           ))}
         </ul>
