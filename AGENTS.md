@@ -188,7 +188,7 @@ Está pendiente (no lo asumas resuelto):
 - **Auditoría de XSS / sanitización** del HTML legítimo en `src/i18n/translations.ts`.
 - **`npm audit`** + Dependabot/Renovate.
 - ~~**Reemplazar `set:html`** de iconos SVG por componentes/imports SVG.~~ — **Hecho**: los iconos están centralizados en `src/components/SvgIcon.astro` (2026-08-14).
-- **CI con checks** `tsc --noEmit`, ESLint y `npm audit`.
+- ~~**CI con checks** `tsc --noEmit`, ESLint y `npm audit`.~~ — **Hecho**: `astro check`, build y `npm audit --audit-level=moderate` en `.github/workflows/checks.yml`; ESLint y type-check de React en el job quality de `.github/workflows/deploy.yml` (2026-08-24).
 - **Logging/monitorización** de `/api/contact`.
 - Sustituir **testimonios placeholder** y crear **`public/og-image.jpg`** real (1200×630).
 

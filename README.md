@@ -214,7 +214,7 @@ Busca `[IMAGEN PLACEHOLDER` en el código — sustituir por fotografías reales:
 - [ ] Foto del baño
 - [ ] Foto de la cocina
 - [ ] Foto del exterior / entrada
-- [ ] Imagen OG (`public/og-image.jpg`) para compartir en redes
+- [x] Imagen OG (`public/og-image.jpg`) para compartir en redes
 
 Reseñas:
 
@@ -228,7 +228,7 @@ Web3Forms:
 SEO:
 
 - [x] Revisar meta title y description en `src/content/es.ts` → `meta`
-- [ ] Crear imagen OG real (`public/og-image.jpg`, 1200×630px)
+- [x] Crear imagen OG real (`public/og-image.jpg`, 1200×630px)
 
 ---
 
@@ -264,9 +264,7 @@ Aquí tienes una descripción práctica de cada tarea pendiente, con prioridad, 
   - Objetivo: detectar fallos de envío y problemas de integración con Web3Forms.
   - Pasos: integrar Sentry/Logflare/Locale-friendly logger; capturar errores 5xx y métricas de latencia.
 
-- **Configurar CI: `tsc --noEmit`, ESLint y `npm audit`** (Prioridad: Media)
-  - Objetivo: garantizar calidad y detectar regresiones automáticamente.
-  - Pasos: añadir job en GitHub Actions que corra `npm ci`, `npx tsc --noEmit`, `npx eslint src`, `npm audit --audit-level=moderate`.
+- ~~**Configurar CI: `tsc --noEmit`, ESLint y `npm audit`** (Prioridad: Media)~~ — **Hecho**: `astro check`, build y `npm audit --audit-level=moderate` en `.github/workflows/checks.yml` (pull_request + push a main); ESLint y type-check de React ya corren en el job quality de `.github/workflows/deploy.yml` (2026-08-24).
 
 - **Ejecutar `npm audit` y actualizar dependencias críticas** (Prioridad: Media)
   - Objetivo: cerrar CVEs y mantener dependencias seguras.
