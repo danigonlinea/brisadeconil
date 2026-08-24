@@ -77,12 +77,50 @@ const lodgingSchemaData = {
   amenityFeature: amenityFeatures,
   cancellationPolicy,
 };
+
+// Content-Security-Policy — ships as <meta http-equiv> because GitHub Pages
+// cannot set HTTP headers. Kept as a single source of truth here so the
+// policy is auditable next to the scripts it governs.
+//
+// Trade-off: script-src/style-src use 'unsafe-inline'. The page relies on
+// build-generated inline scripts (theme boot, i18n boot embedding the whole
+// default-locale table, fonts loader, GA consent loader, scroll reveal, React
+// island hydration) plus Astro-inlined component styles; their contents change
+// on every build, so hash-based allowlisting would break each deploy.
+// 'unsafe-inline' still blocks every cross-origin script except
+// googletagmanager.com, all plugin/object vectors, non-Google frames,
+// cross-origin form posts and unlisted fetch/beacon channels.
+// GA's ad-side-channel endpoints (stats.g.doubleclick.net, www.google.es/ads/
+// ga-audiences) are deliberately NOT allowlisted: they serve no purpose without
+// Google Ads and blocking them shrinks the tracking surface (they log harmless
+// console errors for consented users).
+// frame-ancestors / sandbox / report-uri are intentionally absent: they are
+// ignored inside meta policies.
+const cspPolicy = [
+  "default-src 'self'",
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "frame-src https://www.google.com",
+  "img-src 'self' data: https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com",
+  "connect-src 'self' https://api.web3forms.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com",
+  "font-src https://fonts.gstatic.com",
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com",
+].join('; ');
 ---
 
 <!doctype html>
 <html lang="es" data-theme="light">
   <head>
     <meta charset="UTF-8" />
+
+    <!--
+      CSP via meta, not HTTP header: GitHub Pages cannot emit custom headers.
+      Must stay before any stylesheet/script/link that loads resources.
+    -->
+    <meta http-equiv="Content-Security-Policy" content={cspPolicy} />
+
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
 
