@@ -271,6 +271,7 @@ export const contact = {
 export const faq = {
   sectionLabel: "Häufige Fragen",
   headline: "Was uns oft gefragt wird",
+  pendingBadge: "Ausstehend",
   items: [
     {
       q: "Wie sind die Check-in und Check-out Zeiten?",

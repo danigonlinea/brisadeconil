@@ -220,6 +220,7 @@ export const contact = {
 export const faq = {
   sectionLabel: 'FAQ',
   headline: 'Questions we get asked',
+  pendingBadge: 'Pending',
   items: [
     { q: 'What are the check-in and check-out times?', a: 'Check-in is from 16:00 and check-out is between 11:30 and 12:00.', pending: false },
     { q: 'Are pets allowed?',                          a: 'Pets are not allowed in the apartment.', pending: false },

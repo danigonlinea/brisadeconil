@@ -14,6 +14,8 @@ interface FAQItem {
 
 interface FAQAccordionProps {
   items: FAQItem[];
+  /** Localized label for the placeholder badge on pending answers. */
+  pendingBadge: string;
 }
 
 function FAQItem({
@@ -21,11 +23,13 @@ function FAQItem({
   id,
   isOpen,
   onToggle,
+  pendingBadge,
 }: {
   item: FAQItem;
   id: string;
   isOpen: boolean;
   onToggle: () => void;
+  pendingBadge: string;
 }) {
   return (
     <div className={`faq-item ${isOpen ? "faq-item--open" : ""}`}>
@@ -68,7 +72,7 @@ function FAQItem({
           {item.pending ? (
             <span className="faq-pending">
               <span>{item.a.replace(/\[PENDIENTE[^\]]*\]\.\?/, "").trim()}</span>{" "}
-              <span className="placeholder-badge">Pendiente</span>
+              <span className="placeholder-badge">{pendingBadge}</span>
             </span>
           ) : (
             <span>{item.a}</span>
@@ -79,7 +83,7 @@ function FAQItem({
   );
 }
 
-export default function FAQAccordion({ items }: FAQAccordionProps) {
+export default function FAQAccordion({ items, pendingBadge }: FAQAccordionProps) {
   const baseId = useId();
   const [openIndices, setOpenIndices] = useState<Set<number>>(
     () => new Set(items.map((_, i) => i)),
@@ -111,6 +115,7 @@ export default function FAQAccordion({ items }: FAQAccordionProps) {
           id={`${baseId}-faq-${i}`}
           isOpen={openIndices.has(i)}
           onToggle={() => toggle(i)}
+          pendingBadge={pendingBadge}
         />
       ))}
     </div>

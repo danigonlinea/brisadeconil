@@ -34,7 +34,7 @@ const faqSchema = {
     </header>
 
     <div class="faq-body reveal reveal-delay-1">
-      <FAQAccordion items={faq.items} client:visible />
+      <FAQAccordion items={faq.items} pendingBadge={faq.pendingBadge} client:visible />
     </div>
   </div>
 

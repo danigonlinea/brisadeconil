@@ -62,7 +62,9 @@ export default function LanguageSwitcher({ locale }: LanguageSwitcherProps) {
     // Same-language selection is a no-op: stay on the page, don't log it.
     if (target === locale) return;
     trackEvent('language_switch', { language: target });
-    window.location.assign(localeSwitchPath(target));
+    // Defer navigation briefly so the analytics hit is sent before the
+    // page unload cancels the in-flight request.
+    window.setTimeout(() => window.location.assign(localeSwitchPath(target)), 250);
   };
 
   const currentOption = LOCALES.find((l) => l.code === locale) ?? LOCALES[0]!;

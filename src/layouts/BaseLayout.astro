@@ -41,11 +41,13 @@ const canonical = canonicalUrl ?? `${siteUrl}${homePath(locale)}`;
 const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
 const cookiesPage = `${base.replace(/\/$/, '')}/politica-cookies`;
 
-// Per-locale SEO identifiers from each content module's meta block.
-const alternateHrefs = SUPPORTED_LOCALES.map((l) => ({
-  lang: l === DEFAULT_LOCALE ? 'x-default' : l,
-  href: `${siteUrl}${homePath(l)}`,
-}));
+// Complete hreflang set per Google's guidance: every language version plus
+// x-default. The default locale always points at the site root ("/"),
+// which also serves as the x-default target.
+const alternateHrefs = [
+  ...SUPPORTED_LOCALES.map((l) => ({ lang: l, href: `${siteUrl}${homePath(l)}` })),
+  { lang: 'x-default', href: `${siteUrl}${homePath(DEFAULT_LOCALE)}` },
+];
 const ogLocaleAlternates = SUPPORTED_LOCALES
   .filter((l) => l !== locale)
   .map((l) => CONTENT[l].meta.locale);
