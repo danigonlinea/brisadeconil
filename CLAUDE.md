@@ -35,4 +35,4 @@ Node `>=22.12.0`. Package manager: `npm`.
 
 ## Pendiente (no asumir resuelto)
 
-CSP y cabeceras del hosting, logging/monitorización de `/api/contact` y testimonios reales (`public/og-image.jpg` ya existe). ~~Auditoría XSS de `translations.ts`~~ — **Hecho**: sanitizer allowlist verificado (tags permitidos, sin `on*`, esquemas href validados); todo el HTML de traducciones es estático y seguro, DOMPurify no necesario (2026-08-24). ~~`npm audit` + Dependabot/Renovate~~ — **Hecho**: `.github/dependabot.yml` configurado (npm + github-actions, mensual) (2026-08-24). Ver §10 de `AGENTS.md`.
+CSP y cabeceras del hosting, logging/monitorización de `/api/contact` y testimonios reales (`public/og-image.jpg` ya existe). ~~Auditoría XSS de `translations.ts`~~ — **Hecho**: sanitizer allowlist verificado (tags permitidos, sin `on*`, esquemas href validados); el sanitizador es defensivo: hoy no hay valores HTML en las traducciones (0 usos de `data-i18n-html` fuera del sink), DOMPurify no necesario (2026-08-24). ~~`npm audit` + Dependabot/Renovate~~ — **Hecho**: `.github/dependabot.yml` configurado (npm + github-actions, mensual) (2026-08-24). Ver §10 de `AGENTS.md`.
