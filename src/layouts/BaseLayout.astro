@@ -23,6 +23,15 @@ interface Props {
    * Only meaningful on pages that exist in every locale (homepage routes).
    */
   alternates?: boolean;
+  /**
+   * Article metadata for og:type=article pages (blog posts): publish date,
+   * modification date and tags. When set, og:type switches to "article".
+   */
+  article?: {
+    publishedTime: Date;
+    modifiedTime?: Date;
+    tags?: string[];
+  };
 }
 
 const {
@@ -33,6 +42,7 @@ const {
   canonicalUrl,
   lodgingSchema = false,
   alternates = false,
+  article,
 } = Astro.props;
 
 const siteUrl = import.meta.env.SITE ?? 'https://www.brisadeconil.com';
@@ -160,7 +170,7 @@ const cspPolicy = [
     ))}
 
     <!-- Open Graph -->
-    <meta property="og:type"        content="website" />
+    <meta property="og:type"        content={article ? 'article' : 'website'} />
     <meta property="og:url"         content={canonical} />
     <meta property="og:title"       content={title} />
     <meta property="og:description" content={description} />
@@ -170,6 +180,19 @@ const cspPolicy = [
       <meta property="og:locale:alternate" content={l} />
     ))}
     <meta property="og:site_name"   content="Brisa de Conil" />
+
+    <!-- Article metadata (blog posts) -->
+    {article && (
+      <>
+        <meta property="article:published_time" content={article.publishedTime.toISOString()} />
+        {article.modifiedTime && (
+          <meta property="article:modified_time" content={article.modifiedTime.toISOString()} />
+        )}
+        {article.tags?.map((tag) => (
+          <meta property="article:tag" content={tag} />
+        ))}
+      </>
+    )}
 
     <!-- Twitter Card -->
     <meta name="twitter:card"        content="summary_large_image" />
