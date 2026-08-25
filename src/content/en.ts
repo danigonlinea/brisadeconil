@@ -274,6 +274,7 @@ export const blog = {
   lead: "Stories, tips and news from the apartment and Conil, written by its hosts.",
   backToHome: 'Back to home',
   relatedLabel: 'You may also like',
+  breadcrumbHome: 'Home',
   emptyTitle: 'First articles coming very soon',
   emptyBody:
     "We're writing our first articles about the apartment, Conil and the Costa de la Luz. Check back soon.",

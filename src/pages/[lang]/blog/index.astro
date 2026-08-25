@@ -1,0 +1,22 @@
+---
+/**
+ * /en/blog/ and /de/blog/ — pre-rendered blog listings for the alternate
+ * locales. Spanish lives at /blog/ and is intentionally absent here.
+ */
+import { ALTERNATE_LOCALES, type Locale } from '../../../i18n/locales';
+import BlogIndexPage from '../../../templates/BlogIndexPage.astro';
+
+export function getStaticPaths() {
+  return ALTERNATE_LOCALES.map((locale) => ({
+    params: { lang: locale satisfies Locale as string },
+  }));
+}
+
+const { lang } = Astro.params;
+// Fail fast at build time if the route ever receives an unregistered locale.
+if (lang !== 'en' && lang !== 'de') {
+  throw new Error(`[lang]/blog route received an unsupported locale: "${lang}"`);
+}
+---
+
+<BlogIndexPage locale={lang} />
