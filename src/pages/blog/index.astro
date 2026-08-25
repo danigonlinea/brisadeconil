@@ -90,6 +90,16 @@ const breadcrumbSchema = {
             ))}
           </ul>
         )}
+
+        <!-- Internal links to the keyword landings, so they are reachable
+             from navigable content and not only from the sitemap. -->
+        <nav class="blog-related" aria-label={blog.relatedLabel}>
+          <h2>{blog.relatedLabel}</h2>
+          <ul role="list">
+            <li><a href={`${base.replace(/\/$/, '')}/apartamento-vacacional-conil/`}>Apartamento vacacional en Conil de la Frontera</a></li>
+            <li><a href={`${base.replace(/\/$/, '')}/alojamiento-cerca-playa-conil/`}>Alojamiento a 3 minutos de la playa en Conil</a></li>
+          </ul>
+        </nav>
       </div>
     </section>
   </main>
@@ -100,6 +110,30 @@ const breadcrumbSchema = {
 <style>
   .blog-listing {
     padding-block: var(--sp-12) var(--sp-20);
+  }
+
+  /* ── Related landings ────────────────────────────────────────────────────── */
+  .blog-related {
+    margin-top: var(--sp-12);
+    padding-top: var(--sp-8);
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .blog-related h2 {
+    font-size: var(--text-lg);
+    margin-bottom: var(--sp-4);
+  }
+
+  .blog-related ul {
+    display: grid;
+    gap: var(--sp-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .blog-related a {
+    color: var(--accent-strong);
   }
 
   @media (min-width: 768px) {

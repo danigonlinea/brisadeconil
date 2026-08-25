@@ -416,6 +416,7 @@ export const blog = {
   heading: "Blog",
   lead: "Historias, consejos y noticias del apartamento y de Conil, escritas por sus anfitriones.",
   backToHome: "Volver al inicio",
+  relatedLabel: "También te puede interesar",
   emptyTitle: "Primeros artículos muy pronto",
   emptyBody:
     "Estamos escribiendo los primeros artículos sobre el apartamento, Conil y la Costa de la Luz. Vuelve pronto.",
