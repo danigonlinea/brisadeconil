@@ -79,7 +79,7 @@ export const amenities = {
   headline: "Alles was du brauchst",
   lead: "Haushaltsgeräte, Klimatisierung und Konnektivität — damit du nur ans Genießen denkst.",
   items: [
-    { icon: "thermometer", label: "Klimaanlage", detail: "Im Schlafzimmer" },
+    { icon: "thermometer", label: "Klimaanlage" },
     { icon: "wind", label: "Deckenventilator", detail: "Im Schlafzimmer" },
     {
       icon: "wifi",
@@ -97,7 +97,7 @@ export const amenities = {
     { icon: "bed", label: "Kommode", detail: "Im Schlafzimmer" },
     { icon: "coffee", label: "Mokkakanne", detail: "" },
     { icon: "kettle", label: "Wasserkocher", detail: "" },
-    { icon: "refrigerator", label: "Kühlschrank", detail: "Vollständig" },
+    { icon: "refrigerator", label: "Kühlschrank", detail: "" },
     { icon: "refrigerator", label: "Gefrierschrank", detail: "" },
     { icon: "washer", label: "Waschmaschine", detail: "" },
     { icon: "dishwasher", label: "Geschirrspüler", detail: "" },

@@ -65,7 +65,7 @@ export const amenities = {
   headline: 'Everything you need',
   lead: 'Appliances, climate control and connectivity — so the only thing on your mind is enjoying yourself.',
   items: [
-    { icon: 'thermometer', label: 'Air conditioning',  detail: 'In the bedroom' },
+    { icon: 'thermometer', label: 'Air conditioning' },
     { icon: 'wind',        label: 'Ceiling fan',       detail: 'In the bedroom' },
     { icon: 'wifi',        label: 'Fibre broadband',   detail: 'Throughout the apartment' },
     { icon: 'tv',          label: 'Television',        detail: '60 inches' },
@@ -75,7 +75,7 @@ export const amenities = {
     { icon: 'bed',         label: 'Chest of drawers',  detail: 'In the bedroom' },
     { icon: 'coffee',      label: 'Moka pot',          detail: '' },
     { icon: 'kettle',      label: 'Kettle',            detail: '' },
-    { icon: 'refrigerator',label: 'Fridge',            detail: 'Full-size' },
+    { icon: 'refrigerator',label: 'Fridge',            detail: '' },
     { icon: 'refrigerator',label: 'Freezer',           detail: '' },
     { icon: 'washer',      label: 'Washing machine',   detail: '' },
     { icon: 'dishwasher',  label: 'Dishwasher',        detail: '' },
