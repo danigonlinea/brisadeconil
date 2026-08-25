@@ -1,0 +1,30 @@
+---
+/**
+ * /alojamiento-cerca-playa-conil/ — SEO landing for the
+ * "alojamiento cerca de la playa Conil" intent cluster.
+ */
+import SeoLandingPage from '../../templates/SeoLandingPage.astro';
+
+const copy = {
+  slug: 'alojamiento-cerca-playa-conil',
+  metaTitle: 'Alojamiento cerca de la playa en Conil — a 3 minutos de Los Bateles',
+  metaDescription:
+    'Alojamiento en Conil de la Frontera a 3 minutos andando de la playa de Los Bateles: apartamento en el casco histórico, sin coche para el día a día. Consulta fechas.',
+  eyebrow: 'Cerca de la playa, en el centro de Conil',
+  headline: 'Alojamiento a 3 minutos de la playa en Conil',
+  lead: 'Sales del portal, cruzas el casco y ya tienes la arena de Los Bateles delante. Nuestro apartamento está donde de verdad quieres estar en Conil: entre la playa y el Mercado de Abastos, sin necesidad de coger el coche en toda la semana.',
+  bullets: [
+    'Playa de Los Bateles a 3 minutos a pie; La Fontanilla, a un paseo',
+    'Mercado de Abastos a 5 minutos y supermercado, farmacia y bancos al lado',
+    'Sin coche en el día a día: olvídate del parking de agosto',
+    'Azotea comunitaria para estar al fresco al caer la tarde',
+  ],
+  blogNote: {
+    text: '¿Qué playa te toca según el plan del día?',
+    href: '/blog/guia-playas-de-conil-por-perfil/',
+    linkLabel: 'Consulta nuestra guía de playas por perfil',
+  },
+};
+---
+
+<SeoLandingPage locale="es" copy={copy} />

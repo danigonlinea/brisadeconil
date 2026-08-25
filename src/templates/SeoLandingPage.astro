@@ -1,0 +1,168 @@
+---
+/**
+ * SeoLandingPage — keyword-targeted landing template.
+ *
+ * Reuses the homepage sections (gallery, apartment, location, contact, FAQ)
+ * but replaces the generic hero with an SEO intro block written for one
+ * search intent. Content comes from a per-landing object so each page is
+ * fully self-contained: the pages under src/pages are thin wrappers
+ * around it.
+ */
+import type { Locale } from '../i18n/locales';
+import { CONTENT } from '../content/index';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import GallerySection from '../components/GallerySection.astro';
+import ApartmentSection from '../components/ApartmentSection.astro';
+import LocationSection from '../components/LocationSection.astro';
+import ContactSection from '../components/ContactSection.astro';
+import FAQSection from '../components/FAQSection.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/gallery.css';
+
+export interface SeoLandingCopy {
+  /** Slug of the landing, e.g. "apartamento-vacacional-conil" → /apartamento-vacacional-conil/ */
+  slug: string;
+  metaTitle: string;
+  metaDescription: string;
+  eyebrow: string;
+  headline: string;
+  lead: string;
+  bullets: string[];
+  blogNote?: { text: string; href: string; linkLabel: string };
+}
+
+interface Props {
+  locale: Locale;
+  copy: SeoLandingCopy;
+}
+
+const { locale, copy } = Astro.props;
+const content = CONTENT[locale];
+const siteUrl = import.meta.env.SITE ?? 'https://www.brisadeconil.com';
+const canonical = `${siteUrl}/${copy.slug}/`;
+
+// Structured data — WebPage pointing at the LodgingBusiness as about item.
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: copy.metaTitle,
+  description: copy.metaDescription,
+  url: canonical,
+};
+---
+
+<BaseLayout locale={locale} title={copy.metaTitle} description={copy.metaDescription} canonicalUrl={canonical}>
+  <Header nav={content.nav} locale={locale} />
+
+  <main id="main-content" tabindex="-1">
+    <!-- SEO hero -->
+    <section class="landing-hero">
+      <div class="container">
+        <div class="landing-hero-inner">
+          <p class="section-label">{copy.eyebrow}</p>
+          <h1>{copy.headline}</h1>
+          <p class="landing-lead">{copy.lead}</p>
+          <ul class="landing-bullets" role="list">
+            {copy.bullets.map((bullet) => (
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+                <span>{bullet}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    {copy.blogNote && (
+      <aside class="landing-blog-note">
+        <div class="container">
+          <p>
+            {copy.blogNote.text}
+            {' '}
+            <a href={copy.blogNote.href}>{copy.blogNote.linkLabel}</a>
+          </p>
+        </div>
+      </aside>
+    )}
+
+    <GallerySection gallery={content.gallery} locale={locale} />
+    <ApartmentSection apartment={content.apartment} amenities={content.amenities} />
+    <LocationSection location={content.location} />
+    <ContactSection contact={content.contact} />
+    <FAQSection faq={content.faq} />
+  </main>
+
+  <Footer footer={content.footer} cta={content.nav.cta} blogLabel={content.blog.navLabel} locale={locale} />
+
+  {/* Schema.org — WebPage */}
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(webPageSchema)} />
+</BaseLayout>
+
+<style>
+  .landing-hero {
+    padding-block: var(--sp-12) var(--sp-10);
+    background-color: var(--bg-surface-alt);
+  }
+
+  .landing-hero-inner {
+    max-width: 52rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .landing-hero h1 {
+    font-size: clamp(var(--text-3xl), 4.5vw, var(--text-5xl));
+    margin-block: var(--sp-4) var(--sp-5);
+  }
+
+  .landing-lead {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    max-width: 42rem;
+    margin-inline: auto;
+  }
+
+  .landing-bullets {
+    display: grid;
+    gap: var(--sp-3);
+    max-width: 34rem;
+    margin: var(--sp-7) auto 0;
+    padding: 0;
+    text-align: left;
+    list-style: none;
+  }
+
+  .landing-bullets li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--sp-3);
+    color: var(--text-base);
+  }
+
+  .landing-bullets svg {
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+    color: var(--accent-strong);
+  }
+
+  .landing-blog-note {
+    padding-block: var(--sp-5);
+    background-color: var(--bg-dark);
+    color: var(--text-on-dark-muted);
+    font-size: var(--text-sm);
+  }
+
+  .landing-blog-note p {
+    margin: 0;
+    text-align: center;
+  }
+
+  .landing-blog-note a {
+    color: var(--color-teal-400);
+    text-decoration: underline;
+  }
+</style>
