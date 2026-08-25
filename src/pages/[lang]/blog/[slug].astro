@@ -1,0 +1,29 @@
+---
+/**
+ * /en/blog/[slug]/ and /de/blog/[slug]/ — post pages for the alternate
+ * locales. Each locale's posts come from its own collection, so slugs are
+ * localised and never collide across languages.
+ */
+import { getCollection } from 'astro:content';
+import { ALTERNATE_LOCALES, type Locale } from '../../../i18n/locales';
+import { blogCollectionFor } from '../../../i18n/blog';
+import BlogPostPage from '../../../templates/BlogPostPage.astro';
+
+export async function getStaticPaths() {
+  const paths = [];
+  for (const locale of ALTERNATE_LOCALES) {
+    const posts = await getCollection(blogCollectionFor(locale));
+    for (const post of posts) {
+      paths.push({
+        params: { lang: locale satisfies Locale as string, slug: post.id },
+        props: { post, locale },
+      });
+    }
+  }
+  return paths;
+}
+
+const { post, locale } = Astro.props;
+---
+
+<BlogPostPage post={post} locale={locale} />

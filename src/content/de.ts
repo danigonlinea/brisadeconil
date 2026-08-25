@@ -412,6 +412,7 @@ export const blog = {
   lead: "Geschichten, Tipps und Neuigkeiten aus der Wohnung und aus Conil – von den Gastgebern.",
   backToHome: "Zurück zur Startseite",
   relatedLabel: "Das könnte dich auch interessieren",
+  breadcrumbHome: "Startseite",
   emptyTitle: "Erste Artikel folgen in Kürze",
   emptyBody:
     "Wir schreiben gerade die ersten Artikel über die Wohnung, Conil und die Costa de la Luz. Schau bald wieder vorbei.",

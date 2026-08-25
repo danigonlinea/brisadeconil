@@ -1,32 +1,45 @@
 /**
  * Content collections config — Astro content layer (glob loader).
  *
- * The blog is Spanish-only for now and ships markdown posts under
- * src/content/blog/. Each file's name (without extension) becomes the entry
- * id and therefore the public slug:
- *   src/content/blog/guia-playas.md → /blog/guia-playas/
+ * One collection per locale so each language ships its own markdown files and
+ * therefore its own localised slugs:
+ *   src/content/blog/guia-playas.md       → /blog/guia-playas/
+ *   src/content/blog-en/beaches-guide.md  → /en/blog/beaches-guide/
+ *   src/content/blog-de/straende.md       → /de/blog/straende/
  */
 import { defineCollection } from 'astro:content';
 import { z } from 'astro/zod';
 import { glob } from 'astro/loaders';
 
+const postSchema = z
+  .object({
+    title: z.string(),
+    description: z.string(),
+    pubDate: z.coerce.date(),
+    updatedDate: z.coerce.date().optional(),
+    tags: z.array(z.string()).optional(),
+    image: z.string().optional(),
+    imageAlt: z.string().optional(),
+  })
+  // Fail fast at load time when an image is declared without its alt text.
+  .refine((data) => data.image === undefined || data.imageAlt !== undefined, {
+    message: 'imageAlt es obligatorio cuando se define image',
+    path: ['imageAlt'],
+  });
+
 const blog = defineCollection({
   loader: glob({ base: './src/content/blog', pattern: '*.md' }),
-  schema: z
-    .object({
-      title: z.string(),
-      description: z.string(),
-      pubDate: z.coerce.date(),
-      updatedDate: z.coerce.date().optional(),
-      tags: z.array(z.string()).optional(),
-      image: z.string().optional(),
-      imageAlt: z.string().optional(),
-    })
-    // Fail fast at load time when an image is declared without its alt text.
-    .refine((data) => data.image === undefined || data.imageAlt !== undefined, {
-      message: 'imageAlt es obligatorio cuando se define image',
-      path: ['imageAlt'],
-    }),
+  schema: postSchema,
 });
 
-export const collections = { blog };
+const blogEn = defineCollection({
+  loader: glob({ base: './src/content/blog-en', pattern: '*.md' }),
+  schema: postSchema,
+});
+
+const blogDe = defineCollection({
+  loader: glob({ base: './src/content/blog-de', pattern: '*.md' }),
+  schema: postSchema,
+});
+
+export const collections = { blog, blogEn, blogDe };

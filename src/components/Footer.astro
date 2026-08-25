@@ -3,7 +3,7 @@
  * Footer — brand, address, nav links, legal.
  */
 import type { SiteContent } from '../content/index';
-import { DEFAULT_LOCALE, homePath, type Locale } from '../i18n/locales';
+import { DEFAULT_LOCALE, homePath, routePrefix, type Locale } from '../i18n/locales';
 
 interface Props {
   footer: SiteContent['footer'];
@@ -26,8 +26,9 @@ function sectionHref(href: string) {
 const legalHref = createLegalHref('aviso-legal');
 const privacyHref = createLegalHref('politica-privacidad');
 const cookiesHref = createLegalHref('politica-cookies');
-// Trailing slash kept so it matches the header nav item ("/blog/") and the canonical URL.
-const blogHref = `${base.replace(/\/$/, '')}/blog/`;
+// Trailing slash kept so it matches the header nav item and the canonical URL.
+// Locale-prefixed so /en/ and /de/ link to their own blog, not the Spanish one.
+const blogHref = `${base.replace(/\/$/, '')}${routePrefix(locale)}/blog/`;
 ---
 
 <footer class="site-footer" role="contentinfo">
