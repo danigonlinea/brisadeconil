@@ -87,7 +87,6 @@ export const amenities = {
     {
       icon: "thermometer",
       label: "Aire acondicionado",
-      detail: "En el dormitorio",
     },
     { icon: "wind", label: "Ventilador de techo", detail: "En el dormitorio" },
     { icon: "wifi", label: "Fibra óptica", detail: "En todo el apartamento" },
@@ -102,7 +101,7 @@ export const amenities = {
     { icon: "bed", label: "Sinfonier", detail: "En el dormitorio" },
     { icon: "coffee", label: "Cafetera italiana", detail: "" },
     { icon: "kettle", label: "Hervidor", detail: "" },
-    { icon: "refrigerator", label: "Frigorífico", detail: "Completo" },
+    { icon: "refrigerator", label: "Frigorífico", detail: "" },
     { icon: "refrigerator", label: "Congelador", detail: "" },
     { icon: "washer", label: "Lavadora", detail: "" },
     { icon: "dishwasher", label: "Lavavajillas", detail: "" },
