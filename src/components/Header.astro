@@ -17,6 +17,12 @@ interface Props {
 }
 
 const { nav, locale } = Astro.props;
+
+const base = import.meta.env.BASE_URL ?? '/';
+/** Prefix site-absolute hrefs ("/blog/") with the configured base; anchors and external URLs stay untouched. */
+function withBase(href: string): string {
+  return href.startsWith('/') && !href.startsWith('//') ? `${base.replace(/\/$/, '')}${href}` : href;
+}
 ---
 
 <header class="site-header" id="site-header" role="banner">
@@ -36,7 +42,7 @@ const { nav, locale } = Astro.props;
       <ul role="list">
         {nav.links.map((link) => (
           <li>
-            <a href={link.href} class="header-nav-link">
+            <a href={withBase(link.href)} class="header-nav-link">
               {link.label}
             </a>
           </li>
@@ -86,7 +92,7 @@ const { nav, locale } = Astro.props;
       <ul role="list">
         {nav.links.map((link) => (
           <li>
-            <a href={link.href} class="mobile-nav-link">
+            <a href={withBase(link.href)} class="mobile-nav-link">
               {link.label}
             </a>
           </li>

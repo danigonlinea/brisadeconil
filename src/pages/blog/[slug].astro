@@ -1,0 +1,235 @@
+---
+/**
+ * /blog/[slug]/ — statically generated post pages (Spanish-only for now).
+ * Slugs come from the markdown filename: guia-playas.md → /blog/guia-playas/.
+ */
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Footer from '../../components/Footer.astro';
+import { CONTENT } from '../../content/index';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+type Props = { post: CollectionEntry<'blog'> };
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const blog = CONTENT.es.blog;
+const brand = CONTENT.es.footer.brand;
+
+const siteUrl = import.meta.env.SITE ?? 'https://www.brisadeconil.com';
+const base = import.meta.env.BASE_URL ?? '/';
+const rootHref = base.replace(/\/$/, '') || '/';
+const blogHref = `${base.replace(/\/$/, '')}/blog/`;
+const contactHref = `${base.replace(/\/$/, '')}/#contacto`;
+const canonical = `${siteUrl}/blog/${post.id}/`;
+
+const dateFormatter = new Intl.DateTimeFormat('es-ES', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+const tags = post.data.tags;
+
+// Structured data — BlogPosting, following the set:html JSON-LD pattern used
+// by BaseLayout (LodgingBusiness) and FAQSection (FAQPage).
+const blogPostingSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.pubDate.toISOString(),
+  dateModified: (post.data.updatedDate ?? post.data.pubDate).toISOString(),
+  author: { '@type': 'Organization', name: brand },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+  // Only shipped when declared; the schema guarantees imageAlt exists alongside.
+  ...(post.data.image ? { image: new URL(post.data.image, siteUrl).toString() } : {}),
+};
+---
+
+<BaseLayout
+  title={`${post.data.title} — ${brand}`}
+  description={post.data.description}
+  canonicalUrl={canonical}
+>
+  <header class="blog-topbar">
+    <div class="container blog-topbar-inner">
+      <a href={rootHref} class="blog-brand">{brand}</a>
+      <a href={blogHref} class="blog-backlink">← {blog.backLink}</a>
+    </div>
+  </header>
+
+  <main id="main-content" tabindex="-1">
+    <article class="blog-post">
+      <div class="container">
+        <div class="blog-post-column">
+          <header class="blog-post-header">
+            <time class="blog-post-date" datetime={post.data.pubDate.toISOString()}>
+              {dateFormatter.format(post.data.pubDate)}
+            </time>
+            <h1>{post.data.title}</h1>
+            {post.data.updatedDate && (
+              <p class="blog-updated">
+                {blog.updatedLabel}
+                {' '}
+                <time datetime={post.data.updatedDate.toISOString()}>
+                  {dateFormatter.format(post.data.updatedDate)}
+                </time>
+              </p>
+            )}
+            {tags && tags.length > 0 && (
+              <ul class="tag-list" role="list">
+                {tags.map((tag) => <li class="tag-chip">{tag}</li>)}
+              </ul>
+            )}
+          </header>
+
+          {post.data.image && post.data.imageAlt !== undefined && (
+            <figure class="blog-post-figure">
+              <img src={post.data.image} alt={post.data.imageAlt} loading="eager" decoding="async" />
+            </figure>
+          )}
+
+          <div class="prose">
+            <Content />
+          </div>
+
+          <!-- End-of-post booking CTA -->
+          <aside class="blog-cta">
+            <p>{blog.ctaLine}</p>
+            <a href={contactHref} class="btn btn--primary btn--lg">{blog.ctaButton}</a>
+          </aside>
+        </div>
+      </div>
+
+      {/* Schema.org — BlogPosting */}
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(blogPostingSchema)} />
+    </article>
+  </main>
+
+  <Footer footer={CONTENT.es.footer} cta={CONTENT.es.nav.cta} blogLabel={blog.navLabel} />
+</BaseLayout>
+
+<style>
+  .blog-post {
+    padding-block: var(--sp-10) var(--sp-20);
+  }
+
+  @media (min-width: 768px) {
+    .blog-post {
+      padding-block: var(--sp-12) var(--sp-24);
+    }
+  }
+
+  /* ── Top bar ─────────────────────────────────────────────────────────────── */
+  .blog-topbar {
+    background-color: var(--bg-dark);
+  }
+
+  .blog-topbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-4);
+    height: 64px;
+  }
+
+  .blog-brand {
+    font-family: var(--font-serif);
+    font-size: var(--text-lg);
+    font-weight: var(--fw-semibold);
+    letter-spacing: var(--tracking-tight);
+    color: var(--text-on-dark);
+    text-decoration: none;
+    transition: color var(--t-fast);
+  }
+
+  .blog-brand:hover {
+    color: var(--color-teal-400);
+    text-decoration: none;
+  }
+
+  .blog-backlink {
+    font-size: var(--text-sm);
+    color: var(--text-on-dark-muted);
+    text-decoration: none;
+    transition: color var(--t-fast);
+  }
+
+  .blog-backlink:hover {
+    color: var(--text-on-dark);
+    text-decoration: underline;
+  }
+
+  /* ── Reading column ──────────────────────────────────────────────────────── */
+  .blog-post-column {
+    max-width: 65ch;
+    margin-inline: auto;
+  }
+
+  /* ── Post header ─────────────────────────────────────────────────────────── */
+  .blog-post-header {
+    margin-bottom: var(--sp-8);
+  }
+
+  .blog-post-date {
+    display: block;
+    font-size: var(--text-xs);
+    font-weight: var(--fw-semibold);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--accent-strong);
+    margin-bottom: var(--sp-3);
+  }
+
+  .blog-post-header h1 {
+    font-size: clamp(var(--text-3xl), 4vw, var(--text-5xl));
+    margin-bottom: var(--sp-4);
+  }
+
+  .blog-updated {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+  }
+
+  .blog-post-header .tag-list {
+    margin-top: var(--sp-5);
+  }
+
+  /* ── Featured image ──────────────────────────────────────────────────────── */
+  .blog-post-figure {
+    margin: 0 0 var(--sp-8);
+  }
+
+  .blog-post-figure img {
+    width: 100%;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+  }
+
+  /* ── End-of-post CTA ─────────────────────────────────────────────────────── */
+  .blog-cta {
+    margin-top: var(--sp-12);
+    padding: var(--sp-8);
+    background-color: var(--bg-surface-alt);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    display: grid;
+    gap: var(--sp-5);
+    justify-items: center;
+  }
+
+  .blog-cta p {
+    max-width: none;
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: var(--text-lg);
+  }
+</style>
