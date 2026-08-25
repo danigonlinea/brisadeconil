@@ -52,6 +52,31 @@ const blogPostingSchema = {
   // Only shipped when declared; the schema guarantees imageAlt exists alongside.
   ...(post.data.image ? { image: new URL(post.data.image, siteUrl).toString() } : {}),
 };
+
+// Structured data — BreadcrumbList (Inicio → Blog → Post).
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Inicio',
+      item: new URL(rootHref, siteUrl).toString(),
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: blog.navLabel,
+      item: new URL(blogHref, siteUrl).toString(),
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: post.data.title,
+    },
+  ],
+};
 ---
 
 <BaseLayout
@@ -116,6 +141,8 @@ const blogPostingSchema = {
 
       {/* Schema.org — BlogPosting */}
       <script is:inline type="application/ld+json" set:html={JSON.stringify(blogPostingSchema)} />
+      {/* Schema.org — BreadcrumbList */}
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
     </article>
   </main>
 
