@@ -26,9 +26,31 @@ const dateFormatter = new Intl.DateTimeFormat('es-ES', {
   month: 'long',
   year: 'numeric',
 });
+
+// Structured data — BreadcrumbList (Inicio → Blog). The last crumb is the
+// page itself, so it omits "item" per schema.org guidance.
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Inicio',
+      item: new URL(rootHref, siteUrl).toString(),
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: blog.navLabel ?? blog.heading,
+    },
+  ],
+};
 ---
 
 <BaseLayout title={blog.metaTitle} description={blog.description} canonicalUrl={canonical}>
+  {/* Schema.org — BreadcrumbList */}
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <header class="blog-topbar">
     <div class="container blog-topbar-inner">
       <a href={rootHref} class="blog-brand">{brand}</a>
