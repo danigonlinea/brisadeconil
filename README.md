@@ -18,7 +18,7 @@ cp .env.example .env
 
 # 3. Arranca el servidor de desarrollo
 npm run dev
-# → http://localhost:4321/brisadeconil/
+# → http://localhost:4321/
 
 # 4. Build de producción
 npm run build
@@ -133,14 +133,16 @@ Los emails llegarán directamente a la dirección que registraste en Web3Forms.
 
 El workflow de GitHub Actions (`.github/workflows/deploy.yml`) hace build + deploy automático en cada push a `main`.
 
-### Activar GitHub Pages por primera vez:
+El sitio ya está desplegado y sirve desde el dominio propio: **https://www.brisadeconil.com** (`astro.config.mjs` usa `site: "https://www.brisadeconil.com"` + `base: "/"`, y `public/CNAME` apunta al dominio).
+
+### Historia / migración (ya completada, queda como referencia):
 
 1. Push a `main` en GitHub
-2. Ve a tu repositorio → **Settings → Pages**
+2. Repositorio → Settings → Pages
 3. En "Source", selecciona **GitHub Actions**
-4. El siguiente push desplegará automáticamente
+4. El siguiente push desplegó automáticamente
 
-La web quedará en: `https://danigonlinea.github.io/brisadeconil/`
+5. Dominio propio configurado según la sección "Migrar a dominio propio" (CNAME + DNS + Enforce HTTPS)
 
 ---
 
@@ -207,18 +209,13 @@ Busca `[PENDIENTE` y `[PLACEHOLDER` en `src/content/*.ts` y completa estos datos
 - [x] Política de cancelación
 - [x] Procedimiento para llegadas tardías
 
-Busca `[IMAGEN PLACEHOLDER` en el código — sustituir por fotografías reales:
+Fotos: la galería ya cuenta con fotografías reales del salón, dormitorio, cocina, aseo, recibidor, entrada y azotea (`public/gallery/`). Solo queda pendiente la imagen OG, ya resuelta:
 
-- [ ] Fotos del salón (x2)
-- [ ] Foto del dormitorio
-- [ ] Foto del baño
-- [ ] Foto de la cocina
-- [ ] Foto del exterior / entrada
 - [x] Imagen OG (`public/og-image.jpg`) para compartir en redes
 
 Reseñas:
 
-- [ ] Sustituir los 3 testimonios placeholder en `src/content/es.ts` → `testimonials.items`
+- [ ] Sustituir los 3 testimonios placeholder en `src/content/es.ts` → `testimonials.items` (la sección sigue oculta hasta tenerlos)
 
 Web3Forms:
 
