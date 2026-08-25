@@ -58,6 +58,11 @@ const blogPostingSchema = {
   title={`${post.data.title} — ${brand}`}
   description={post.data.description}
   canonicalUrl={canonical}
+  article={{
+    publishedTime: post.data.pubDate,
+    modifiedTime: post.data.updatedDate,
+    tags: post.data.tags,
+  }}
 >
   <header class="blog-topbar">
     <div class="container blog-topbar-inner">
