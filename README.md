@@ -1,4 +1,4 @@
-# Brisa de Conil — Landing Page
+# Brisa de Conil
 
 Landing page para el alquiler vacacional del apartamento **Brisa de Conil**, en Conil de la Frontera (Cádiz).
 
@@ -9,22 +9,12 @@ Landing page para el alquiler vacacional del apartamento **Brisa de Conil**, en 
 ## Desarrollo local
 
 ```bash
-# 1. Instala dependencias
-npm install
-
-# 2. Copia el fichero de variables de entorno
-cp .env.example .env
-# Edita .env y añade tu Web3Forms key (ver sección "Formulario de contacto")
-
-# 3. Arranca el servidor de desarrollo
-npm run dev
-# → http://localhost:4321/
-
-# 4. Build de producción
-npm run build
-
-# 5. Preview del build
-npm run preview
+npm install          # instalar dependencias
+npm run dev          # servidor de desarrollo → http://localhost:4321/
+npm run build        # build de producción → dist/
+npm run preview      # previsualizar el build
+npm run lint         # ESLint (flat config)
+npx astro check      # type-check del proyecto
 ```
 
 ---
@@ -33,199 +23,53 @@ npm run preview
 
 ```
 src/
-├── components/          # Componentes Astro y React (islas)
-│   ├── Header.astro
-│   ├── Hero.astro
-│   ├── GallerySection.astro
-│   ├── GalleryIsland.tsx     ← React + PhotoSwipe
-│   ├── ApartmentSection.astro
-│   ├── WelcomeSection.astro
-│   ├── LocationSection.astro
-│   ├── ConilSection.astro
-│   ├── RulesSection.astro
-│   ├── ContactSection.astro
-│   ├── ContactForm.tsx        ← React + Web3Forms
-│   ├── FAQSection.astro
-│   ├── FAQAccordion.tsx       ← React (acordeón accesible)
-│   ├── TestimonialsSection.astro
-│   └── Footer.astro
-├── content/             # Todo el copy — EDITALO AQUÍ, no toques componentes
-│   ├── es.ts            ← Español (activo)
-│   ├── en.ts            ← Inglés (listo para activar)
-│   ├── de.ts            ← Alemán (listo para activar)
-│   └── index.ts         ← Importa el locale activo
-├── layouts/
-│   └── BaseLayout.astro  # Meta, dark theme, SEO, schema.org
-├── pages/
-│   └── index.astro       # Página principal — ensambla secciones
+├── components/          # Componentes Astro (secciones) + islas React
+│   ├── *.astro          # Header, Hero, GallerySection, ApartmentSection, ...
+│   └── *.tsx            # GalleryIsland, ContactForm, FAQAccordion, LanguageSwitcher
+├── content/
+│   ├── es.ts / en.ts / de.ts   # copy del sitio por locale (ES es la referencia tipada)
+│   ├── index.ts         # registro CONTENT: Record<Locale, SiteContent>
+│   ├── blog/            # posts ES (markdown) → /blog/{slug}/
+│   ├── blog-en/         # posts EN → /en/blog/{slug}/ (slugs propios por idioma)
+│   └── blog-de/         # posts DE → /de/blog/{slug}/
+├── content.config.ts    # content layer: colecciones blog/blogEn/blogDe (glob loader + Zod)
+├── i18n/
+│   ├── locales.ts       # registro de locales, prefijos de URL, helpers de rutas
+│   └── blog.ts          # strings i18n del blog
 ├── data/
-│   └── gallery-manifest.ts  # AUTO-GENERADO — LQIP + dimensiones (ver `npm run optimize:gallery`)
+│   └── gallery-manifest.ts  # AUTO-GENERADO — no editar a mano
+├── lib/
+│   └── analytics.ts     # helpers de Google Analytics (trackEvent)
+├── layouts/
+│   └── BaseLayout.astro # meta/SEO, schema.org, dark theme, estilos globales
+├── pages/
+│   ├── index.astro              # home ES (/)
+│   ├── [lang]/                  # home + blog para EN/DE (/en/, /de/)
+│   ├── blog/                    # índice + [slug] del blog ES
+│   ├── alojamiento-cerca-playa-conil/   # landing SEO
+│   ├── apartamento-vacacional-conil/    # landing SEO
+│   ├── aviso-legal.astro
+│   ├── politica-cookies.astro
+│   ├── politica-privacidad.astro
+│   └── api/contact.ts           # endpoint POST del formulario → Web3Forms
+├── templates/           # plantillas compartidas de páginas
+│   ├── HomePage.astro
+│   ├── BlogIndexPage.astro
+│   ├── BlogPostPage.astro
+│   └── SeoLandingPage.astro
 └── styles/
-    ├── global.css         # Design system completo (tokens, componentes)
-    └── gallery.css        # Estilos de galería PhotoSwipe
+    ├── global.css        # design system completo (tokens, light/dark, componentes)
+    └── gallery.css       # estilos de PhotoSwipe
 scripts/
-└── optimize-gallery.mjs  # Genera variantes AVIF/WebP/JPEG + manifest (sharp)
+├── optimize-gallery.mjs  # genera variantes AVIF/WebP/JPEG + manifest (sharp)
+└── validate.sh           # validación local (type-check, build, anti-secretos)
 public/
-├── favicon.svg
-├── robots.txt
-├── CNAME               # Ver sección "Dominio propio"
-└── gallery/
-    ├── *.jpg            # Fotos originales (resolución completa — no editar a mano)
-    └── optimized/      # AUTO-GENERADO — variantes 640/1600/2000px (avif/webp/jpg)
+├── gallery/*.jpg         # originales a resolución completa (no editar a mano)
+├── gallery/optimized/    # AUTO-GENERADO (640/1600/2000px · avif/webp/jpg)
+└── logos/                # logos del sitio (también espejados en src/logos/)
+docs/
+└── research-conil.md     # investigación de mercado versionada
 ```
-
----
-
-## Actualizaciones recientes
-
-Estas son las mejoras más recientes aplicadas a la web:
-
-- Añadidas páginas legales: `Aviso legal`, `Política de privacidad` y `Política de cookies`.
-- Añadido enlace de `Política de cookies` en el footer.
-- Corregidos los enlaces de footer y el favicon para despliegues en subcarpeta (`/brisadeconil`).
-- Añadida lógica de sincronización de fechas en el formulario de contacto:
-  - si `Fecha de salida` no está seteada, se copia automáticamente la `Fecha de entrada`.
-  - si se selecciona una `Fecha de entrada` posterior a la `Fecha de salida`, `Fecha de salida` se actualiza también.
-- Optimización de carga de la galería de fotos:
-  - Generación automática de variantes AVIF/WebP/JPEG (640/1600px para la cuadrícula, 2000px para el lightbox) con `npm run optimize:gallery` (sharp).
-  - LQIP (placeholder difuminado) inline para feedback instantáneo y carga diferida con `IntersectionObserver` (solo se descarga la imagen al entrar en el viewport).
-  - Corregido el `srcSet` que incluía las fotos a resolución completa (hasta 6.8 MB) — ahora la cuadrícula solo sirve hasta 1600px.
-- Ocultada temporalmente la sección de testimonios hasta tener reseñas reales.
-
----
-
-## Editar contenido sin tocar código
-
-Todo el texto, datos y copy está centralizado en `src/content/es.ts`.
-
-Para actualizar textos, fotos, amenities, FAQ, etc.:
-
-1. Abre `src/content/es.ts`
-2. Edita los valores de los objetos (no cambies las claves)
-3. Guarda — el servidor de dev se recarga automáticamente
-
----
-
-## Formulario de contacto (Web3Forms)
-
-El formulario usa **Web3Forms** — gratuito, sin límite de envíos, sin backend propio.
-
-El envío usa una estrategia de dos pasos: primero intenta `POST /api/contact` (endpoint server-side que reenvía a Web3Forms con la access key) y, si falla, hace un `POST` directo a `api.web3forms.com` desde el navegador con la key pública `PUBLIC_WEB3FORMS_KEY`. El segundo camino es el que funciona en la práctica: GitHub Pages es un hosting estático, así que el endpoint no puede ejecutarse en tiempo de ejecución.
-
-### Configuración (5 minutos):
-
-1. Ve a [https://web3forms.com](https://web3forms.com)
-2. Introduce tu email y obtendrás una **access key** gratuita
-3. Copia la key en tu `.env`:
-   ```
-   PUBLIC_WEB3FORMS_KEY=tu_access_key_aqui
-   ```
-4. Para el deploy en GitHub Pages, añade la key como **GitHub Secret**:
-   - Repositorio → Settings → Secrets and variables → Actions
-   - Nombre del secret: `WEB3FORMS_KEY`
-   - Valor: tu access key
-
-Los emails llegarán directamente a la dirección que registraste en Web3Forms.
-
----
-
-## Despliegue en GitHub Pages
-
-El workflow de GitHub Actions (`.github/workflows/deploy.yml`) hace build + deploy automático en cada push a `main`.
-
-El sitio ya está desplegado y sirve desde el dominio propio: **https://www.brisadeconil.com** (`astro.config.mjs` usa `site: "https://www.brisadeconil.com"` + `base: "/"`, y `public/CNAME` apunta al dominio).
-
-### Historia / migración (ya completada, queda como referencia):
-
-1. Push a `main` en GitHub
-2. Repositorio → Settings → Pages
-3. En "Source", selecciona **GitHub Actions**
-4. El siguiente push desplegó automáticamente
-
-5. Dominio propio configurado según la sección "Migrar a dominio propio" (CNAME + DNS + Enforce HTTPS)
-
----
-
-## Migrar a dominio propio
-
-Cuando compres el dominio (ej. `brisadeconil.com`):
-
-1. **`astro.config.mjs`** — cambia:
-
-   ```js
-   site: 'https://brisadeconil.com',  // tu dominio
-   base: '/',                          // sin subpath
-   ```
-
-2. **`public/CNAME`** — descomenta y pon tu dominio:
-
-   ```
-   brisadeconil.com
-   ```
-
-3. **DNS de tu dominio** — añade estos registros A:
-
-   ```
-   185.199.108.153
-   185.199.109.153
-   185.199.110.153
-   185.199.111.153
-   ```
-
-   Y un CNAME `www` → `danigonlinea.github.io`
-
-4. **`public/robots.txt`** — actualiza la URL del sitemap
-
-5. En GitHub: Settings → Pages → activa "Enforce HTTPS"
-
----
-
-## Activar otro idioma (EN o DE)
-
-En `src/content/index.ts`, cambia la importación:
-
-```ts
-// Español (actual)
-export * from "./es";
-
-// Inglés
-export * from "./en";
-
-// Alemán
-export * from "./de";
-```
-
-Los ficheros `en.ts` y `de.ts` están listos con traducción completa.
-
----
-
-## ⚠ Checklist antes de publicar
-
-Busca `[PENDIENTE` y `[PLACEHOLDER` en `src/content/*.ts` y completa estos datos (a día de hoy solo hay `[PLACEHOLDER`, en `es.ts` y `en.ts`):
-
-- [x] Horarios de check-in y check-out
-- [x] Política de mascotas (¿se admiten? ¿bajo qué condiciones?)
-- [x] Política de fumadores (¿se puede fumar? ¿dónde?)
-- [x] Política de cancelación
-- [x] Procedimiento para llegadas tardías
-
-Fotos: la galería ya cuenta con fotografías reales del salón, dormitorio, cocina, aseo, recibidor, entrada y azotea (`public/gallery/`). Solo queda pendiente la imagen OG, ya resuelta:
-
-- [x] Imagen OG (`public/og-image.jpg`) para compartir en redes
-
-Reseñas:
-
-- [ ] Sustituir los 3 testimonios placeholder en `src/content/es.ts` → `testimonials.items` (la sección sigue oculta hasta tenerlos)
-
-Web3Forms:
-
-- [ ] Configurar la access key (`.env` + GitHub Secret `WEB3FORMS_KEY`)
-- [ ] Hacer un envío de prueba y verificar que el email llega
-
-SEO:
-
-- [x] Revisar meta title y description en `src/content/es.ts` → `meta`
-- [x] Crear imagen OG real (`public/og-image.jpg`, 1200×630px)
 
 ---
 
@@ -241,72 +85,3 @@ SEO:
 | Tipografía  | Lora + Source Sans 3             | Cálida, boutique, sin ser cliché                            |
 | Animaciones | CSS + Intersection Observer      | Sin dependencias, bundle ligero                             |
 | i18n        | Ficheros de contenido (ES/EN/DE) | Sin librería extra, fácil de mantener                       |
-
-## Tareas pendientes (detalladas)
-
-Aquí tienes una descripción práctica de cada tarea pendiente, con prioridad, pasos recomendados y comandos útiles para empezarlas.
-
-- **Añadir CSP y configurar cabeceras en hosting** (Prioridad: Alta)
-  - Objetivo: reducir riesgo XSS y control de orígenes de recursos.
-  - Pasos: diseñar política CSP, probar en staging con `Content-Security-Policy-Report-Only`, ajustar reglas (fonts, scripts, styles, img, connect).
-  - Comandos / recursos:
-    ```bash
-    # Validar CSP rápida
-    curl -I -H "Content-Security-Policy: default-src 'self'" http://localhost:4321
-    ```
-
-- ~~**Implementar rate-limiting/anti-bot en `/api/contact`** (Prioridad: Alta)~~ — **Hecho**: sliding-window 5 req/10 min por IP + honeypot + validación (2026-08-24).
-
-- **Añadir logging y monitorización de errores para la API** (Prioridad: Media)
-  - Objetivo: detectar fallos de envío y problemas de integración con Web3Forms.
-  - Pasos: integrar Sentry/Logflare/Locale-friendly logger; capturar errores 5xx y métricas de latencia.
-
-- ~~**Configurar CI: `tsc --noEmit`, ESLint y `npm audit`** (Prioridad: Media)~~ — **Hecho**: `astro check`, build y `npm audit --audit-level=moderate` en `.github/workflows/checks.yml` (pull_request + push a main); ESLint y type-check de React ya corren en el job quality de `.github/workflows/deploy.yml` (2026-08-24).
-
-- **Ejecutar `npm audit` y actualizar dependencias críticas** (Prioridad: Media)
-  - Objetivo: cerrar CVEs y mantener dependencias seguras.
-  - Pasos: ejecutar `npm audit`, aplicar `npm audit fix` y revisar cambios; abrir PRs para actualizaciones mayores.
-
-- ~~**Habilitar Dependabot / Renovate para dependencias** (Prioridad: Media)~~ — **Hecho**: `.github/dependabot.yml` configurado (npm + github-actions, mensual) (2026-08-24).
-
-- **Documentar variables de entorno y pasos de despliegue en README** (Prioridad: Baja)
-  - Objetivo: dejar claro qué secretos y pasos necesita el deploy (ej. `WEB3FORMS_ACCESS_KEY`, GitHub Secrets).
-  - Estado: añadida sección de plan; pendiente detallar valores exactos en `README` y `.env.example`.
-
-- ~~**Revisión manual de traducciones que contienen HTML** (Prioridad: Baja)~~ — **Hecho**: sanitizer allowlist verificado (tags permitidos, sin `on*`, esquemas href validados); el sanitizador es defensivo: hoy no hay valores HTML en las traducciones (0 usos de `data-i18n-html` fuera del sink), DOMPurify no necesario (2026-08-24).
-
-Si quieres, puedo empezar con cualquiera de estas tareas ahora: diseñar la CSP y cabeceras del hosting, añadir monitorización y logging en `/api/contact`, o sustituir los testimonios placeholder por reseñas reales.
-
-## Plan de auditoría y siguientes pasos
-
-He dejado aquí el plan de trabajo para continuar la auditoría de seguridad y la limpieza de código. Lo puedes continuar mañana siguiendo los pasos numerados.
-
-1. Revisión y endurecimiento del endpoint de contacto
-   - Migrado el envío del formulario al endpoint server-side `/api/contact`.
-   - **Hecho**: sliding-window rate-limit (5 req/10 min por IP), honeypot y validación YA están implementados en el endpoint (server-side; inerte en GitHub Pages, activo con hosting con servidor). El formulario además muestra un mensaje dedicado al recibir el 429.
-
-2. Auditoría de XSS / sanitización
-   - Se añadió una sanitización básica en el script i18n para `data-i18n-html`.
-   - ~~Próximo paso: revisar manualmente las traducciones que contienen HTML y evaluar uso de DOMPurify si hace falta mantener HTML rico.~~ — **Hecho**: sanitizer allowlist verificado (tags permitidos, sin `on*`, esquemas href validados); el sanitizador es defensivo: hoy no hay valores HTML en las traducciones (0 usos de `data-i18n-html` fuera del sink), DOMPurify no necesario (2026-08-24).
-
-3. Política de seguridad de contenido (CSP)
-   - Diseñar una política CSP adecuada para el hosting (GitHub Pages o servidor objetivo).
-   - Próximo paso: probar la CSP en un entorno staging antes de forzarla en producción.
-
-4. Dependencias y vulnerabilidades
-   - Ejecutar `npm audit` y arreglar vulnerabilidades críticas/alta prioridad.
-   - ~~Próximo paso: habilitar Dependabot o Renovate para actualizaciones automáticas.~~ — **Hecho**: `.github/dependabot.yml` configurado (npm + github-actions, mensual) (2026-08-24).
-
-5. Integración continua y checks automáticos
-   - ~~Añadir en CI: `tsc --noEmit`, ESLint (con reglas para código muerto) y `npm audit` en la pipeline.~~ — **Hecho**: `astro check`, build y `npm audit --audit-level=moderate` en `.github/workflows/checks.yml` (pull_request + push a main); ESLint y type-check de React en el job quality de `.github/workflows/deploy.yml` (2026-08-24).
-
-6. Monitorización y observabilidad
-   - Añadir logging básico y monitorización para `/api/contact` (Sentry/Logflare/u otro) y alertas por errores/500.
-
-7. Documentación operativa
-   - Documentar variables de entorno necesarias: `WEB3FORMS_ACCESS_KEY`, y pasos para despliegue en GitHub Actions.
-
-8. Tareas menores / seguimiento
-   - Revisar TODOs en `src/content/en.ts` y `src/content/de.ts`.
-
-Marca los pasos completados en el TODO list del repositorio cuando los vayas completando.
