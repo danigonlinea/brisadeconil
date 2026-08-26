@@ -3,6 +3,9 @@ title: "Die Strände von Conil: welcher passt zu dir — Familie, Hund, Surf ode
 description: "Für jeden Plan der richtige Strand in Conil: familienfreundlich, versteckte Buchten, Surf und die Sache mit den Hunden. Die ehrliche Übersicht deines Gastgebers."
 pubDate: "2026-08-25"
 tags: ["straende", "guides"]
+translations:
+  es: "guia-playas-de-conil-por-perfil"
+  en: "conil-beaches-guide"
 ---
 
 Diese Frage stellen mir alle Gäste bei der Ankunft, das Handtuch schon halb gefaltet: *«sag mal, welcher ist der beste Strand?»*.

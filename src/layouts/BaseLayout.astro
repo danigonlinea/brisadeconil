@@ -9,6 +9,9 @@ import { CONTENT } from '../content/index';
 import { DEFAULT_LOCALE, homePath, SUPPORTED_LOCALES, type Locale } from '../i18n/locales';
 import galleryManifest from '../data/gallery-manifest';
 
+/** One hreflang alternate entry for pages with localised sibling URLs. */
+type HreflangEntry = { lang: Locale | 'x-default'; href: string };
+
 interface Props {
   /** Route locale — drives <html lang>, meta defaults and chrome copy. */
   locale?: Locale;
@@ -23,6 +26,12 @@ interface Props {
    * Only meaningful on pages that exist in every locale (homepage routes).
    */
   alternates?: boolean;
+  /**
+   * Explicit hreflang alternates for pages whose translated siblings live at
+   * different URLs (localised slugs). Each entry must include the page's own
+   * locale; x-default is appended automatically when an "es" entry exists.
+   */
+  hreflangs?: HreflangEntry[];
   /**
    * Article metadata for og:type=article pages (blog posts): publish date,
    * modification date and tags. When set, og:type switches to "article".
@@ -42,6 +51,7 @@ const {
   canonicalUrl,
   lodgingSchema = false,
   alternates = false,
+  hreflangs,
   article,
 } = Astro.props;
 
@@ -164,8 +174,10 @@ const cspPolicy = [
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
 
-    <!-- hreflang alternates (homepage routes) -->
     {alternates && alternateHrefs.map((alt) => (
+      <link rel="alternate" hreflang={alt.lang} href={alt.href} />
+    ))}
+    {hreflangs && hreflangs.map((alt) => (
       <link rel="alternate" hreflang={alt.lang} href={alt.href} />
     ))}
 

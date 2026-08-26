@@ -20,6 +20,15 @@ const postSchema = z
     tags: z.array(z.string()).optional(),
     image: z.string().optional(),
     imageAlt: z.string().optional(),
+    /**
+     * Slug of this post's sibling in another language, used to emit hreflang
+     * alternates. Only declare languages the post actually exists in; slugs
+     * are localised per collection so they usually differ across locales.
+     */
+    translations: z
+      .object({ es: z.string(), en: z.string(), de: z.string() })
+      .partial()
+      .optional(),
   })
   // Fail fast at load time when an image is declared without its alt text.
   .refine((data) => data.image === undefined || data.imageAlt !== undefined, {
