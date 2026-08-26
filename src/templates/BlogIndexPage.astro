@@ -10,7 +10,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Footer from '../components/Footer.astro';
 import { CONTENT } from '../content/index';
-import { DEFAULT_LOCALE, homePath, routePrefix, type Locale } from '../i18n/locales';
+import { DEFAULT_LOCALE, homePath, routePrefix, SUPPORTED_LOCALES, type Locale } from '../i18n/locales';
 import { blogCollectionFor, blogLocaleTag } from '../i18n/blog';
 
 interface Props {
@@ -32,6 +32,14 @@ const prefix = `${base.replace(/\/$/, '')}${routePrefix(locale)}`;
 const rootHref = `${base.replace(/\/$/, '')}${homePath(locale)}`;
 const blogHref = `${prefix}/blog/`;
 const canonical = `${siteUrl}${routePrefix(locale)}/blog/`;
+// The listing exists in every locale at the same relative path.
+const hreflangs = [
+  ...SUPPORTED_LOCALES.map((l) => ({
+    lang: l,
+    href: `${siteUrl}${routePrefix(l)}/blog/`,
+  })),
+  { lang: 'x-default' as const, href: `${siteUrl}/blog/` },
+];
 
 const dateFormatter = new Intl.DateTimeFormat(blogLocaleTag(locale), {
   day: 'numeric',
@@ -60,7 +68,7 @@ const breadcrumbSchema = {
 };
 ---
 
-<BaseLayout locale={locale} title={blog.metaTitle} description={blog.description} canonicalUrl={canonical}>
+<BaseLayout locale={locale} title={blog.metaTitle} description={blog.description} canonicalUrl={canonical} hreflangs={hreflangs}>
   {/* Schema.org — BreadcrumbList */}
   <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <header class="blog-topbar">

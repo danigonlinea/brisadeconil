@@ -3,6 +3,9 @@ title: "Kostenlos parken in Conil im August: Zonen, Zeiten und meine Tipps"
 description: "Im August wird Conil siebenmal größer. Wo man wirklich parken kann, welche Zeiten funktionieren und welche Fehler ein Bußgeld kosten — von einem Gastgeber vor Ort."
 pubDate: "2026-08-25"
 tags: ["parken", "sommer", "tipps"]
+translations:
+  es: "parking-gratis-en-conil-en-agosto"
+  en: "free-parking-conil-august"
 ---
 
 Reden wir über das heikelste Thema des Sommers in Conil: **das Parken**.

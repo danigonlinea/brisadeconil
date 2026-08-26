@@ -3,6 +3,9 @@ title: "Conil beaches guide: which one suits you — family, dog, surf or quiet"
 description: "A beach for every plan in Conil: family-friendly, hidden coves, surf and the truth about dogs. Your host's honest guide, parking tips included."
 pubDate: "2026-08-25"
 tags: ["beaches", "guides"]
+translations:
+  es: "guia-playas-de-conil-por-perfil"
+  de: "straende-von-conil"
 ---
 
 Every guest asks me this on arrival, towel already half folded: *«so, which is the best beach?»*.
