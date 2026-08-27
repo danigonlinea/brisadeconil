@@ -227,3 +227,33 @@ Completado (para constancia):
 - ~~`public/og-image.jpg` real (1200×630)~~ (2026-08-24).
 
 Cuando completes un punto, márcalo en el TODO del repo y actualiza esta lista si procede.
+
+---
+
+## 11. Agent skills
+
+Las siguientes skills de ingeniería están disponibles para este repo. Para usarlas, el agente debe tener acceso a `hermes-agent` skills.
+
+### Issue tracker
+
+Las issues y specs viven como GitHub Issues en este repo (usa el CLI `gh`). Ver `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Labels canónicos de triage: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`. Ver `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Layout single-context: un `CONTEXT.md` en la raíz + ADRs en `docs/adr/`. Los skills de dominio crean estos archivos lazy cuando se necesitan. Ver `docs/agents/domain.md`.
+
+### Flujo de trabajo (SDD + TDD)
+
+1. **Especificar** (`to-spec`) — convierte una conversación/idea en spec, la publica en GitHub Issues.
+2. **Partir** (`to-tickets`) — rompe el spec en vertical slices con blocking edges, publica tickets.
+3. **Priorizar** (`triage`) — mueve tickets por la state machine, marca `ready-for-agent`.
+4. **Implementar** — subagentes independientes por ticket, cada uno aplicando TDD (`test-driven-development`).
+5. **Verificar** — antes de commit: `requesting-code-review` (seguridad + quality gates + reviewer independiente).
+6. **Diagnosticar** — si hay bugs, `systematic-debugging` (4 fases, root cause antes de fix).
+7. **Revisar cambios** — `code-review` (dos ejes: Standards + Spec) antes del merge.
+
+El orquestador (sesión principal) usa `delegate_task` para coordinar subagentes. Cada subagente recibe solo su ticket — no comparte contexto con el implementador.

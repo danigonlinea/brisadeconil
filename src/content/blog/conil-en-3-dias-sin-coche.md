@@ -11,7 +11,7 @@ Mi respuesta es siempre la misma: **nada de coche**. Conil se hace a pie. El apa
 
 ## Día 1 — El pueblo: mercado, casco y primera playa
 
-**Mañana (9:00–13:00).** Empieza donde empieza el día real de Conil: el **Mercado de Abastos**, a dos calles del apartamento. Fruta, pescado que desembarcó esa mañana, y en una de las barras interiores, el desayuno sagrado: tortillita de camarones. Pide dos y una caña; estás desayunando como un conileño.
+**Mañana (9:00–13:00).** Empieza donde empieza el día real de Conil: el **Mercado de Abastos**, a dos calles del apartamento — [te cuento qué compro y cómo lo cocino](/blog/mercado-de-abastos-de-conil/) si quieres repetir en casa. Fruta, pescado que desembarcó esa mañana, y en una de las barras interiores, el desayuno sagrado: tortillita de camarones. Pide dos y una caña; estás desayunando como un conileño.
 
 Desde ahí, casco histórico sin mapa: **callejuelas encaladas, geranios, patios**. Sube a la **Torre Guzmán** cuando esté abierta —la vista del techo blanco llegando al mar es la foto de viaje— y pasa por la iglesia de Santa Catalina y la plaza de España, que a media mañana tiene ese vaivén tranquilo de pueblo.
 
@@ -23,7 +23,7 @@ Desde ahí, casco histórico sin mapa: **callejuelas encaladas, geranios, patios
 
 ## Día 2 — Playa seria: calas de Roche
 
-**Mañana.** Hoy toca la excursión corta: las **calas de Roche**, hacia el norte (en coche, quince minutos; hay bus en temporada). Lleva agua, sombrero y zapatillas para la bajada: son senderos entre acantilados, con su pendiente, pero el premio es arena fina, agua transparente y silencio.
+**Mañana.** Hoy toca la excursión corta: las **calas de Roche** — y si quieres saber más de la ruta, [aquí va el detalle del senderismo](/blog/senderismo-acantilados-de-roche/)., hacia el norte (en coche, quince minutos; hay bus en temporada). Lleva agua, sombrero y zapatillas para la bajada: son senderos entre acantilados, con su pendiente, pero el premio es arena fina, agua transparente y silencio.
 
 Mis favoritas: **Camarón y Puntalejos** por accesibles, **Cala Lee** si quieres la sensación de descubrimiento. Baja con marea bajando: al subir la marea pierden buena parte de arena.
 

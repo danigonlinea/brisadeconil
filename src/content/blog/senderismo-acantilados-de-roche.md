@@ -5,7 +5,7 @@ pubDate: "2026-09-30"
 tags: ["senderismo", "naturaleza", "consejos"]
 ---
 
-Si solo vas a hacer una caminata en tu semana en Conil, que sea esta: **el acantilado de Roche**.
+Si solo vas a hacer una caminata en tu semana en Conil, que sea esta: **el acantilado de Roche**. Y después de la caminada, nada mejor que un baño en [las calas que descubrirás desde arriba](/blog/guia-playas-de-conil-por-perfil/).
 
 Es la cara que casi nadie fotografía del pueblo. Todos vienen por la arena y se quedan en Los Bateles; pocos suben al norte y descubren que aquí la costa se levanta en paredes ocres sobre calas de agua transparente. Es otro Conil.
 

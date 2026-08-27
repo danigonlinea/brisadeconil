@@ -2,7 +2,7 @@
 title: "Parking gratis en Conil en agosto: zonas, horarios y cómo lo hago yo"
 description: "Agosto multiplica Conil por siete. Zonas reales para aparcar, horarios que funcionan y errores que acaban en multa, contados por un anfitrión local."
 pubDate: "2026-08-25"
-tags: ["parking", "verano", "consejos"]
+tags: ["aparcamiento", "verano", "consejos"]
 translations:
   en: "free-parking-conil-august"
   de: "kostenlos-parken-conil-august"

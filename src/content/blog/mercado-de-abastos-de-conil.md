@@ -1,13 +1,13 @@
 ---
 title: "Mercado de Abastos de Conil: qué compro yo cada semana (y cómo lo cocino)"
-description: "El Mercado de Abastos de Conil, contado por un vecino: horarios, qué pedir en cada puesto, qué hay de temporada y dos recetas fáciles para hacer en el apartamento."
+description: "El Mercado de Abastos de Conil contado por un vecino: horarios, qué pedir en cada puesto, productos de temporada y recetas para hacer en el apartamento."
 pubDate: "2026-09-23"
 tags: ["gastronomia", "mercado", "consejos"]
 ---
 
 Hay huéspedes que me preguntan por restaurantes. Y hay huéspedes que me preguntan por el mercado. A los segundos les digo la verdad: **acaban comiendo mejor y más barato que nadie**.
 
-El **Mercado de Abastos** está a cinco minutos andando del apartamento y es, sin exagerar, mi lugar favorito del pueblo. No es una atracción turística: es donde compra la gente de aquí, con las mismas voces de siempre y el pescado que desembarcó esa madrugada.
+El **Mercado de Abastos** está a cinco minutos andando del apartamento — y si quieres saber qué hacer con el atún que compres aquí, [te cuento cómo lo cocino yo](/blog/atun-rojo-de-almadraba-en-conil/). y es, sin exagerar, mi lugar favorito del pueblo. No es una atracción turística: es donde compra la gente de aquí, con las mismas voces de siempre y el pescado que desembarcó esa madrugada.
 
 ## Lo primero: cuándo ir
 
