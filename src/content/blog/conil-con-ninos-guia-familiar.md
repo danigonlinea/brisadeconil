@@ -1,6 +1,6 @@
 ---
 title: "Conil con niños: playas seguras, planes y trucos para familias"
-description: "Guía familiar de Conil de la Frontera: qué playas van bien con niños según la edad, rutinas que funcionan y lo que conviene saber antes de venir."
+description: "Guía familiar de Conil: qué playas van bien con niños según su edad, rutinas que funcionan y lo que conviene saber antes de venir."
 pubDate: "2026-09-16"
 tags: ["familias", "playas", "consejos"]
 ---
