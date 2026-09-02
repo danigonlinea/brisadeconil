@@ -11,6 +11,7 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   site: "https://www.brisadeconil.com",
   base: "/",
+  trailingSlash: "always",
   integrations: [
     react(),
     // Sitemap options: freshness + priority signals for crawlers and answer engines.
