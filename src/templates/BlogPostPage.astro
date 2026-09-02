@@ -105,7 +105,7 @@ const breadcrumbSchema = {
   </header>
 
   <main id="main-content" tabindex="-1">
-    <article class="blog-post">
+    <article class="blog-post" data-blog-post data-post-slug={post.id} data-post-title={post.data.title} data-post-locale={locale} data-post-date={post.data.pubDate.toISOString()}>
       <div class="container">
         <div class="blog-post-column">
           <header class="blog-post-header">
@@ -142,7 +142,7 @@ const breadcrumbSchema = {
           <!-- End-of-post booking CTA -->
           <aside class="blog-cta">
             <p>{blog.ctaLine}</p>
-            <a href={contactHref} class="btn btn--primary btn--lg">{blog.ctaButton}</a>
+            <a href={contactHref} class="btn btn--primary btn--lg" data-blog-cta>{blog.ctaButton}</a>
           </aside>
         </div>
       </div>
@@ -155,6 +155,92 @@ const breadcrumbSchema = {
   </main>
 
   <Footer footer={CONTENT[locale].footer} cta={CONTENT[locale].nav.cta} blogLabel={blog.navLabel} locale={locale} />
+
+  {/* Blog analytics: post view, scroll depth, heartbeat, CTA click */}
+  <script is:inline>
+    (function () {
+      const article = document.querySelector('[data-blog-post]');
+      if (!article) return;
+
+      const slug = article.dataset.postSlug;
+      const title = article.dataset.postTitle;
+      const postLocale = article.dataset.postLocale;
+      const pubDate = article.dataset.postDate;
+
+      // 1. Blog post view
+      if (window.gtag) {
+        window.gtag('event', 'blog_post_view', {
+          slug: slug,
+          title: title,
+          locale: postLocale,
+          pub_date: pubDate,
+        });
+      }
+
+      // 2. Scroll depth milestones
+      const firedDepths = {};
+      const depthMilestones = [25, 50, 75, 100];
+      function trackScrollDepth() {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        if (docHeight <= 0) return;
+        const pct = Math.round((scrollTop / docHeight) * 100);
+        for (let i = 0; i < depthMilestones.length; i++) {
+          const m = depthMilestones[i];
+          if (pct >= m && !firedDepths[m]) {
+            firedDepths[m] = true;
+            if (window.gtag) {
+              window.gtag('event', 'scroll_depth', { percent: m });
+            }
+          }
+        }
+      }
+      let ticking = false;
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(function () {
+            trackScrollDepth();
+            ticking = false;
+          });
+        }
+      }, { passive: true });
+
+      // 3. Heartbeat every 15s
+      let elapsed = 0;
+      let heartbeatInterval = setInterval(function () {
+        if (document.hidden) return;
+        elapsed += 15;
+        if (window.gtag) {
+          window.gtag('event', 'heartbeat', { elapsed_seconds: elapsed });
+        }
+      }, 15000);
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+          clearInterval(heartbeatInterval);
+          heartbeatInterval = null;
+        } else if (!heartbeatInterval) {
+          heartbeatInterval = setInterval(function () {
+            if (document.hidden) return;
+            elapsed += 15;
+            if (window.gtag) {
+              window.gtag('event', 'heartbeat', { elapsed_seconds: elapsed });
+            }
+          }, 15000);
+        }
+      });
+
+      // 4. CTA click
+      const cta = article.querySelector('[data-blog-cta]');
+      if (cta) {
+        cta.addEventListener('click', function () {
+          if (window.gtag) {
+            window.gtag('event', 'blog_cta_click', { slug: slug });
+          }
+        });
+      }
+    })();
+  </script>
 </BaseLayout>
 
 <style>

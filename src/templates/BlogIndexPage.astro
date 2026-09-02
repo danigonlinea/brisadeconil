@@ -91,10 +91,17 @@ const breadcrumbSchema = {
             <p>{blog.emptyBody}</p>
           </div>
         ) : (
-          <ul class="blog-grid" role="list">
-            {posts.map((post) => (
+          <ul class="blog-grid" role="list" data-blog-index>
+            {posts.map((post, index) => (
               <li class="blog-card">
-                <a href={`${blogHref}${post.id}/`} class="blog-card-link">
+                <a
+                  href={`${blogHref}${post.id}/`}
+                  class="blog-card-link"
+                  data-blog-card
+                  data-post-slug={post.id}
+                  data-post-title={post.data.title}
+                  data-post-position={index + 1}
+                >
                   <time class="blog-card-date" datetime={post.data.pubDate.toISOString()}>
                     {dateFormatter.format(post.data.pubDate)}
                   </time>
@@ -128,6 +135,25 @@ const breadcrumbSchema = {
   </main>
 
   <Footer footer={CONTENT[locale].footer} cta={CONTENT[locale].nav.cta} blogLabel={blog.navLabel} locale={locale} />
+
+  {/* Blog index analytics: card clicks */}
+  <script is:inline>
+    (function () {
+      const grid = document.querySelector('[data-blog-index]');
+      if (!grid) return;
+      grid.addEventListener('click', function (e) {
+        const card = e.target.closest('[data-blog-card]');
+        if (!card) return;
+        if (window.gtag) {
+          window.gtag('event', 'blog_card_click', {
+            slug: card.dataset.postSlug,
+            title: card.dataset.postTitle,
+            position: parseInt(card.dataset.postPosition, 10),
+          });
+        }
+      });
+    })();
+  </script>
 </BaseLayout>
 
 <style>
