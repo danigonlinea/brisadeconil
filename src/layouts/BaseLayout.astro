@@ -57,9 +57,13 @@ const {
 
 const siteUrl = import.meta.env.SITE ?? 'https://www.brisadeconil.com';
 const base = import.meta.env.BASE_URL ?? '/';
-const canonical = canonicalUrl ?? `${siteUrl}${homePath(locale)}`;
+const _rawCanonical = canonicalUrl ?? `${siteUrl}${homePath(locale)}`;
+const _absCanonical = _rawCanonical.startsWith('http')
+  ? _rawCanonical
+  : `${siteUrl}${_rawCanonical.startsWith('/') ? _rawCanonical : `/${_rawCanonical}`}`;
+const canonical = _absCanonical.endsWith('/') ? _absCanonical : `${_absCanonical}/`;
 const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
-const cookiesPage = `${base.replace(/\/$/, '')}/politica-cookies`;
+const cookiesPage = `${base.replace(/\/$/, '')}/politica-cookies/`;
 
 // Complete hreflang set per Google's guidance: every language version plus
 // x-default. The default locale always points at the site root ("/"),
