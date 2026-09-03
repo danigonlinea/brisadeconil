@@ -41,7 +41,7 @@ No te voy a dar una lista top-10 genérica; te doy mi mapa personal, por situaci
 
 - **Para el tapeo de mediodía:** cualquiera de los bares de la plaza del Mercado de Abastos. Pides una tapa de atún encebollado con una caña y estás tocando el corazón gastronómico del pueblo.
 - **Para sentarse y disfrutar:** los restaurantes del casco histórico tienen cartas de atún serias todo el año; en temporada de Ruta del Atún añaden propuestas especiales. Reserva en agosto, siempre.
-- **Para comprar y cocinarlo tú:** el Mercado de Abastos. El pescadero te corta el trozo que necesites y te explica cómo hacerlo. Si nuestro apartamento es tuyo esos días, tienes la cocina equipada y a cinco minutos el mejor pescado de la Costa de la Luz.
+- **Para comprar y cocinarlo tú:** el Mercado de Abastos. El pescadero te corta el trozo que necesites y te explica cómo hacerlo. Si nuestro apartamento es tuyo esos días, tienes la cocina equipada y justo enfrente el mejor pescado de la Costa de la Luz.
 
 ## Cómo lo cocino yo en casa
 

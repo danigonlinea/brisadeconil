@@ -7,7 +7,7 @@ tags: ["gastronomia", "mercado", "consejos"]
 
 Hay huéspedes que me preguntan por restaurantes. Y hay huéspedes que me preguntan por el mercado. A los segundos les digo la verdad: **acaban comiendo mejor y más barato que nadie**.
 
-El **Mercado de Abastos** está a cinco minutos andando del apartamento — y si quieres saber qué hacer con el atún que compres aquí, [te cuento cómo lo cocino yo](/blog/atun-rojo-de-almadraba-en-conil/). y es, sin exagerar, mi lugar favorito del pueblo. No es una atracción turística: es donde compra la gente de aquí, con las mismas voces de siempre y el pescado que desembarcó esa madrugada.
+El **Mercado de Abastos** está justo enfrente del apartamento, cruzando la carretera por el paso de peatones — y si quieres saber qué hacer con el atún que compres aquí, [te cuento cómo lo cocino yo](/blog/atun-rojo-de-almadraba-en-conil/). y es, sin exagerar, mi lugar favorito del pueblo. No es una atracción turística: es donde compra la gente de aquí, con las mismas voces de siempre y el pescado que desembarcó esa madrugada.
 
 ## Lo primero: cuándo ir
 
@@ -55,4 +55,4 @@ Y sí, también es más barato. Muchas familias que se alojan con nosotros hacen
 
 ¿Quieres el mapa de mis puestos favoritos cuando vengas? Nos lo pides al llegar. Y si aún estás decidiendo qué hacer en tu estancia, [nuestro itinerario de 3 días sin coche](/blog/conil-en-3-dias-sin-coche/) empieza justo aquí, en el mercado.
 
-**¿Te vienes a vivir Conil una semana?** El mercado está a cinco minutos del apartamento, y tener la cocina ahí convierte cualquier cena en un plan. [Consulta disponibilidad para tus fechas](/#contacto) — y te paso el mapa de mis puestos favoritos.
+**¿Te vienes a vivir Conil una semana?** El mercado está justo enfrente del apartamento, cruzando la carretera por el paso de peatones. Tenerlo ahí convierte cualquier cena en un plan. [Consulta disponibilidad para tus fechas](/#contacto) — y te paso el mapa de mis puestos favoritos.
