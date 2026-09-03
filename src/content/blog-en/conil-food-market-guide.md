@@ -56,4 +56,4 @@ Because the market is the difference between visiting Conil and **living Conil f
 
 And yes, it's also cheaper. Many families staying with us shop at the market twice a week and eat out for dinner two nights. It works out cheaper and you eat better.
 
-Want the map of my favorite stalls when you come? Just ask for it on arrival. [Check dates here](/#contacto) — and if you're still deciding what to do during your stay, [our 3-day car-free itinerary](/en/blog/conil-3-days-no-car/) starts right here, at the market. And if you want to know what to do with the bluefin tuna you buy: [I've written the full guide](/en/blog/bluefin-tuna-almadraba-conil/) — season, where to eat it, and how I cook it at home.
+[Check dates here](/#contacto) — and if you're still deciding what to do during your stay, [our 3-day car-free itinerary](/en/blog/conil-3-days-no-car/) starts right here, at the market. And if you want to know what to do with the bluefin tuna you buy: [I've written the full guide](/en/blog/bluefin-tuna-almadraba-conil/) — season, where to eat it, and how I cook it at home.

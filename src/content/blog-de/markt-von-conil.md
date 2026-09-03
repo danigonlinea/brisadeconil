@@ -62,6 +62,6 @@ Thunfisch in 2 cm dicke Stücke schneiden. Pfanne sehr heiß, Öl, jede Seite 90
 
 ## Ein Nachbarschaftstipp
 
-Wenn du im Apartment kochst und etwas übrig hast, **stell es in den Gemeinschaftskühlschrank im Markt** — nein, Scherz. Aber frag mich, wo du die besten Reste verkaufen kannst, wenn du zu viel gekauft hast. [Schreib uns](/de/#contacto) und wir sagen dir, wo du die besten Zutaten für deine Daten findest.
+Wenn du im Apartment kochst und etwas übrig hast, **stell es in den Gemeinschaftskühlschrank im Markt** — nein, Scherz. Aber frag mich, wo du die besten Reste verkaufen kannst, wenn du zu viel gekauft hast.
 
 Und wenn du erst mal wissen willst, wo du mit dem Essen hin sollst, [hast du hier den Strand-Führer](/de/blog/straende-von-conil/) — manche Strände haben die besten Strandbars zum Essen mit Meerblick.

@@ -15,7 +15,7 @@ Während der **Badesaison** (etwa Mai bis Oktober) verbieten die Regelungen der 
 
 **Außerhalb der Saison** (November bis April) ändert sich das: viele Strände erlauben Hunde mit weniger Einschränkungen, und einige haben sogar dafür vorgesehene Bereiche.
 
-Mein Rat: **schreib mir vor der Buchung** mit deinen genauen Daten. Ich sage dir was an diesen Tagen möglich ist und was nicht, ohne Überraschungen.
+Mein Rate: **konsultiere die aktuelle Gemeindeordnung** bevor du reist, weil die Details sich von Jahr zu Jahr ändern.
 
 ## Strände wo Hunde erlaubt sind (außerhalb der Saison)
 

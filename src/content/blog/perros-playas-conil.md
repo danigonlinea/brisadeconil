@@ -18,7 +18,7 @@ Durante la **temporada de baño** (aproximadamente de mayo a octubre), la normat
 
 **Fuera de temporada** (noviembre a abril), la cosa cambia: muchas playas permiten perros con menos restricciones, y algunas incluso tienen zonas habilitadas para ellos.
 
-Mi consejo: **escribe antes de reservar** con tus fechas exactas. Te digo qué se puede y qué no en esos días, sin sorpresas.
+Mi consejo: consulta la ordenanza municipal vigente antes de venir, porque los detalles cambian año a año.
 
 ## Playas donde sí se puede (fuera de temporada)
 
@@ -32,7 +32,7 @@ Si viajas en temporada alta con tu perro, no todo está perdido:
 
 1. **Paseos temprano por el litoral**: antes de las 10 de la mañana, muchas zonas del paseo marítimo y accesos a playa son transitables.
 2. **Rutas de senderismo cerca del mar**: los acantilados de Roche y la ruta hacia Fuente del Gallo admiten perros y dan vistas espectaculares.
-3. **Playas de pueblos vecinos**: algunos municipios cercanos tienen normativa más laxa. Pregúntame y te paso opciones.
+3. **Playas de pueblos vecinos**: algunos municipios cercanos tienen normativa más laxa. Consulta la ordenanza municipal de cada localidad.
 
 ## Lo que debes saber si visitas Conil con tu perro
 

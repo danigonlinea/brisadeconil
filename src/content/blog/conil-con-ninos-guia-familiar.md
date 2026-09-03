@@ -31,7 +31,7 @@ Es la edad perfecta para **clases de surf o paddle** en Bateles o en El Palmar �
 ## Más cosas con niños en el pueblo
 
 - **Paseo marítimo al atardecer**: carril llano, ambiente, heladerías. El plan universal.
-- **Parques infantiles** repartidos por el casco y la zona del paseo; preguntadme cuál está en cada dirección según la edad.
+- **Parques infantiles** repartidos por el casco y la zona del paseo; según la edad, los más céntricos son los de la plaza de España y el paseo marítimo.
 - **Mercado de Abastos**: los críos suelen disfrutarlo más de lo que esperáis — puestos de fruta, pescado aún moviéndose, y tortillita de camarones en la barra.
 - **Días de viento fuerte (Levante)**: plan de interior — cine en temporada, museo de La Chanca, o escapada a Vejer (20 min) que encanta incluso a los que dicen que los pueblos blancos les aburren.
 
@@ -39,6 +39,6 @@ Es la edad perfecta para **clases de surf o paddle** en Bateles o en El Palmar �
 
 Nuestro apartamento está pensado para familias pequeñas (hasta 3 personas): dormitorio con cama de matrimonio y sofá cama en el salón, cocina completa para cocinarle a los peques lo que comen en casa, lavavajillas — que en vacaciones con niños vale oro — y lavadora para volver con la maleta medio vacía. Todo en primera planta en pleno casco, a tres minutos de la playa y cinco del mercado: cero coche en el día a día.
 
-Si tu duda es *«¿mi hijo de X años lo pasaría bien?»*, escríbenos contándonos edades y fechas y te contestamos con sinceridad — incluido el consejo de venir otra semana si creemos que iréis más a gusto. [Consulta disponibilidad](/#contacto).
+Si tu duda es sobre fechas, [consulta disponibilidad](/#contacto).
 
 Y si todavía estás eligiendo playa para el primer día, [tengo la guía por perfiles](/blog/guia-playas-de-conil-por-perfil/) — familia, surf, cala escondida o perro incluido.

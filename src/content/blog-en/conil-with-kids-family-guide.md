@@ -34,7 +34,7 @@ This is the perfect age for **surf or paddle lessons** at Bateles or El Palmar �
 ## More things to do with kids in town
 
 - **Evening promenade:** flat path, atmosphere, ice cream shops. The universal plan.
-- **Playgrounds** scattered around the old town and the promenade area; ask me which one suits which age group.
+- **Playgrounds** scattered around the old town and the promenade area; the most central ones are at Plaza de España and the seafront promenade.
 - **Mercado de Abastos:** kids usually enjoy it more than you'd expect — fruit stalls, fish still moving around, and a small shrimp omelette at the bar.
 - **Strong wind days (Levante):** indoor plan — cinema in season, La Chanca museum, or a trip to Vejer (20 min) which even delights those who say white villages bore them.
 
@@ -42,6 +42,6 @@ This is the perfect age for **surf or paddle lessons** at Bateles or El Palmar �
 
 Our apartment is designed for small families (up to 3 people): bedroom with double bed and sofa bed in the living room, full kitchen to cook for little ones what they eat at home, dishwasher — worth its weight in gold during vacation with kids — and washing machine to come back with a half-empty suitcase. All on the first floor in the heart of the old town, three minutes from the beach and five from the market: zero car on a daily basis.
 
-If your question is *"would my child aged X have a good time?"*, write us with ages and dates and we'll answer honestly — including advice to come another week if we think you'd be more comfortable. [Check availability](/#contacto).
+If your question is about dates, [check availability](/#contacto).
 
 And if you're still choosing a beach for the first day, [I have the guide by profile](/blog/guia-playas-de-conil-por-perfil/) — family, surf, hidden cove or dog included.

@@ -46,7 +46,7 @@ Un truco local: **el Levante trae olas; el Poniente, atardeceres**. Si tu día e
 
 Te lo cuento con honestidad, porque es pregunta frecuente y hay mucha información confusa por ahí: en Andalucía la norma general durante la **temporada de baño** (aproximadamente de mayo a octubre, según municipio) es que los perros **no** puedan acceder a las playas principales. No es capricho de Conil, es normativa costera habitual en toda la provincia.
 
-Fuera de temporada la cosa se relaja bastante, y siempre conviene mirar la **ordenanza municipal vigente** antes de venir, porque los detalles cambian año a año. Si viajas en verano con tu perro, planea paseos tempranos por el litoral urbano permitidos y deja el baño de playa para fechas fuera de la temporada oficial. Y si quieres, escríbeme antes de reservar: te digo exactamente qué se puede y qué no en las fechas de tu viaje.
+Fuera de temporada la cosa se relaja bastante, y siempre conviene mirar la **ordenanza municipal vigente** antes de venir, porque los detalles cambian año a año. Si viajas en verano con tu perro, planea paseos tempranos por el litoral urbano permitidos y deja el baño de playa para fechas fuera de la temporada oficial.
 
 ## Mi consejo final: madruga (y lee esto antes de aparcar)
 
@@ -54,6 +54,6 @@ Cualquier playa de esta guía se disfruta el doble a las diez de la mañana: luz
 
 Por eso te dejé escrita [mi guía honesta de parking en agosto](/blog/parking-gratis-en-conil-en-agosto/): zonas que funcionan, horarios y los errores que veo acabar en multa cada semana. Léela antes de venir y ahórrate el drama.
 
-Y si después de tanta playa te queda hambre — literal — pregúntame por el atún rojo de almadraba. Pero eso merece otro artículo entero.
+Y si después de tanta playa te queda hambre — literal — [aquí está el artículo del atún rojo de almadraba](/blog/atun-rojo-de-almadraba-en-conil/). Eso merece otro artículo entero.
 
 Nos vemos en la orilla.

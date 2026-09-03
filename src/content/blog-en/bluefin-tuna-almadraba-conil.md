@@ -62,4 +62,4 @@ With bread and a tomato salad from the market, that's a ten-out-of-ten dinner. A
 
 If you leave wanting to do it all again, in the old town there are shops that sell **almadraba bluefin tuna preserves** — ventresca in oil, mojama, roe. It's the souvenir you actually enjoy: in September, you open the jar, toast some slices… and you're back in Conil for ten minutes.
 
-Coming during tuna season? [Write us your dates](/#contacto) and we'll confirm availability — and as a bonus, our updated list of my favorite spots. And if you want to know where to buy the best tuna: [the Mercado de Abastos, right across the street](/en/blog/conil-food-market-guide/).
+Coming during tuna season? [Write us your dates](/#contacto) and we'll confirm availability.

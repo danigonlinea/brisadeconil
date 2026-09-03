@@ -37,7 +37,7 @@ Das ist das perfekte Alter für **Surf- oder Paddle-Kurse** in Bateles oder El P
 ## Mehr mit Kindern im Dorf
 
 - **Promenade bei Sonnenuntergang**: ebener Weg, Ambiente, Eisdielen. Der universelle Plan.
-- **Spielplätze** verteilt im Ort und am Promenadenbereich; frag mich, welcher in welche Richtung je nach Alter liegt.
+- **Spielplätze** verteilt im Ort und am Promenadenbereich; je nach Alter, die zentralsten sind auf der Plaza de España und am Strandpromenade.
 - **Mercado de Abastos**: Die Kleinen genießen es mehr, als ihr erwartet — Obststände, Fisch der sich noch bewegt, und Tortillitas an der Bar.
 - **Tage mit starkem Wind (Levante)**: Indoor-Plan — Kino in Saison, Museum von La Chanca, oder Ausflug nach Vejer (20 Min), der selbst denen gefällt, die sagen, weiße Dörfer langweilen sie.
 
@@ -45,6 +45,6 @@ Das ist das perfekte Alter für **Surf- oder Paddle-Kurse** in Bateles oder El P
 
 Unsere Wohnung ist für kleine Familien konzipiert (bis 3 Personen): Schlafzimmer mit Doppelbett und Schlafsofa im Wohnzimmer, vollständige Küche um den Kleinen das zu kochen, was sie zu Hause essen, Geschirrspüler — der im Urlaub mit Kindern Gold wert ist — und Waschmaschine um mit halbleerem Koffer zurückzukehren. Alles im ersten Stock mitten in der Altstadt, drei Minuten vom Strand und fünf vom Markt entfernt: null Auto im Alltag.
 
-Wenn deine Frage ist *"Würde mein Kind mit X Jahren sich hier wohl fühlen?"*, schreib uns mit Altern und Daten und wir antworten ehrlich — inklusive der Empfehlung, anderswo hinzufahren, wenn wir glauben, dass ihr wohler fahren würdert. [Verfügbarkeit fragen](/de/#contacto).
+Wenn deine Frage zu Daten ist, [Verfügbarkeit fragen](/de/#contacto).
 
 Und wenn du erst mal den Strand für den ersten Tag wählst, [hast du hier den Führer nach Profilen](/de/blog/straende-von-conil/) — Familie, Surfer, versteckte Buchte oder Hund inkludiert.

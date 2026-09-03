@@ -37,7 +37,7 @@ Y una cosa que aprendí de pequeño: **no le eches sal ni limón sin probar ante
 
 ## Dónde lo como yo
 
-No te voy a dar una lista top-10 genérica; te doy mi mapa personal, por situaciones:
+No te voy a dar una lista top-10 genérica; te doy mi selección personal, por situaciones:
 
 - **Para el tapeo de mediodía:** cualquiera de los bares de la plaza del Mercado de Abastos. Pides una tapa de atún encebollado con una caña y estás tocando el corazón gastronómico del pueblo.
 - **Para sentarse y disfrutar:** los restaurantes del casco histórico tienen cartas de atún serias todo el año; en temporada de Ruta del Atún añaden propuestas especiales. Reserva en agosto, siempre.
@@ -59,4 +59,4 @@ Con pan y una ensalada de tomate del mercado, cena de diez. Y si vienes en mayo,
 
 Si te vas con ganas de repetir, en el casco hay tiendas que venden **conservas de atún rojo de almadraba** — ventresca en aceite, mojama, huevas. Es el recuerdo que sí se disfruta: en septiembre, abres el tarro, tostas unas rebanadas… y vuelves a estar en Conil durante diez minutos.
 
-¿Vienes en época de atún? [Escríbenos tus fechas](/#contacto) y te confirmamos disponibilidad — y de regalo, la lista actualizada de mis sitios favoritos.
+¿Vienes en época de atún? [Escríbenos tus fechas](/#contacto) y te confirmamos disponibilidad.
