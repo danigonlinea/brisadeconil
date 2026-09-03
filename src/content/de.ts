@@ -311,7 +311,7 @@ export const faq = {
     },
     {
       q: "Welcher Strand ist am nächsten zu Fuß erreichbar?",
-      a: "Die Playa de los Bateles ist die nächste, etwa 5 Minuten zu Fuß entlang der Strandpromenade. Es ist der Hauptstrand im Zentrum mit Blauer Flagge und allen Einrichtungen.",
+      a: "Die Playa de los Bateles ist die nächste, etwa acht bis zehn Minuten zu Fuß (entlang der Strandpromenade). Es ist der Hauptstrand im Zentrum mit Blauer Flagge und allen Einrichtungen.",
       pending: false,
     },
     {

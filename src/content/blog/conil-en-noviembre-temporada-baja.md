@@ -46,7 +46,7 @@ Aquí va lo importante que nadie te cuenta antes de reservar en temporada baja:
 
 ## Para quien trabaja en remoto
 
-Esta es la parte que mucha gente no considera. En temporada baja, Conil funciona muy bien como **base para trabajar unas semanas**: alojamiento a precio razonable, fibra óptica, todo a pie, comida buena y barata, y una playa vacía a tres minutos para el descanso de media tarde.
+Esta es la parte que mucha gente no considera. En temporada baja, Conil funciona muy bien como **base para trabajar unas semanas**: alojamiento a precio razonable, fibra óptica, todo a pie, comida buena y barata, y una playa vacía a ocho-diez minutos para el descanso de media tarde.
 
 Nuestro apartamento tiene fibra en todo el piso, mesa para trabajar, cocina completa para no depender de restaurantes cada día y lavadora para estancias largas. Para estancias de varias semanas fuera de temporada, escríbenos: hacemos precio distinto.
 

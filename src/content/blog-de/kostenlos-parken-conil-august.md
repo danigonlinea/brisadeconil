@@ -39,7 +39,7 @@ Ich beschreibe Bereiche, keine exakten Adressen, weil sich die Regelungen einzel
 
 Und jetzt der Tipp, der den Urlaub wirklich verändert: **Conil genießt man am besten zu Fuß**.
 
-Vom Zentrum aus — und von unserer Ferienwohnung, die in der Altstadt liegt — hast du den Strand in drei Minuten, den Markt in fünf und den Leuchtturm in einer Viertelstunde. Für Ausflüge nach El Palmar oder Vejer gibt es Taxi und Bus, und im Alltag musst du den Autoschlüssel kein einziges Mal anfassen.
+Vom Zentrum aus — und von unserer Ferienwohnung, die in der Altstadt liegt — hast du den Strand in acht bis zehn Minuten, den Markt in fünf und den Leuchtturm in einer Viertelstunde. Für Ausflüge nach El Palmar oder Vejer gibt es Taxi und Bus, und im Alltag musst du den Autoschlüssel kein einziges Mal anfassen.
 
 Viele Gäste kamen mit der Parkplatz-Sorge an und haben das Auto am Ende nur am An- und Abreisetag benutzt. Das ist der Meisterzug: **einmal parken, weit weg vom Getümmel, und es vergessen**.
 

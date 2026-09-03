@@ -43,7 +43,7 @@ Das ist das perfekte Alter für **Surf- oder Paddle-Kurse** in Bateles oder El P
 
 ## Die Wohnung mit Kindern
 
-Unsere Wohnung ist für kleine Familien konzipiert (bis 3 Personen): Schlafzimmer mit Doppelbett und Schlafsofa im Wohnzimmer, vollständige Küche um den Kleinen das zu kochen, was sie zu Hause essen, Geschirrspüler — der im Urlaub mit Kindern Gold wert ist — und Waschmaschine um mit halbleerem Koffer zurückzukehren. Alles im ersten Stock mitten in der Altstadt, drei Minuten vom Strand und fünf vom Markt entfernt: null Auto im Alltag.
+Unsere Wohnung ist für kleine Familien konzipiert (bis 3 Personen): Schlafzimmer mit Doppelbett und Schlafsofa im Wohnzimmer, vollständige Küche um den Kleinen das zu kochen, was sie zu Hause essen, Geschirrspüler — der im Urlaub mit Kindern Gold wert ist — und Waschmaschine um mit halbleerem Koffer zurückzukehren. Alles im ersten Stock mitten in der Altstadt, acht bis zehn Minuten vom Strand und fünf vom Markt entfernt: null Auto im Alltag.
 
 Wenn deine Frage zu Daten ist, [Verfügbarkeit fragen](/de/#contacto).
 

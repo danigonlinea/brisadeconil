@@ -20,7 +20,7 @@ From there, old quarter without a map: **whitewashed alleys, geraniums, courtyar
 
 **Lunch (14:00).** In Conil they eat late and well. Choose any bar in the old quarter with a short menu: that usually means fresh cooking. Try ortiguillas or tuna with onions.
 
-**Afternoon (17:00–20:00).** First trip down to **Los Bateles**, our town beach. Three minutes from home. At sunset, walk north along the promenade and you'll see why this is called the Costa de la Luz: the seven o'clock light can't be bought with money.
+**Afternoon (17:00–20:00).** First trip down to **Los Bateles**, our town beach. Eight to ten minutes from home. At sunset, walk north along the promenade and you'll see why this is called the Costa de la Luz: the seven o'clock light can't be bought with money.
 
 **Night.** Tapas in the centre. And remember dinner here is at ten; if you eat at eight you'll be dining alone.
 

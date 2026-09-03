@@ -20,7 +20,7 @@ Von dort aus Altstadt ohne Kasse: **geweißte Gassen, Geranien, Innenhöfe**. Be
 
 **Mittagessen (14:00).** In Conil isst man spät und gut. Wähl irgendeine Bar in der Altstadt mit kurzer Karte: das bedeutet meist frische Küche. Probier Ortiguillas oder Thunfisch mit Zwiebeln.
 
-**Nachmittag (17:00–20:00).** Erster Abstieg zu **Los Bateles**, unserem Stadtstrand. Drei Minuten von zu Hause. Bei Sonnenuntergang geh den Weg entlang nach Norden und siehst, warum das hier Costa de la Luz heißt: das Licht um sieben Uhr abends kann man nicht mit Geld kaufen.
+**Nachmittag (17:00–20:00).** Erster Abstieg zu **Los Bateles**, unserem Stadtstrand. Acht bis zehn Minuten von zu Hause. Bei Sonnenuntergang geh den Weg entlang nach Norden und siehst, warum das hier Costa de la Luz heißt: das Licht um sieben Uhr abends kann man nicht mit Geld kaufen.
 
 **Nacht.** Tapas durchs Zentrum. Und denk daran: hier gibt es Abendessen um zehn; wenn du um acht isst, isst du allein.
 

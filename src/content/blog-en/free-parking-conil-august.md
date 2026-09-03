@@ -39,7 +39,7 @@ I'll describe areas rather than exact addresses, because specific streets change
 
 Now, the advice that genuinely changes your holiday: **Conil is best enjoyed on foot**.
 
-From the centre — and from our apartment, which is in the old quarter — the beach is three minutes away, the market five and the lighthouse a quarter-hour stroll. For trips to El Palmar or Vejer there are taxis and buses, and day to day you won't touch your keys once.
+From the centre — and from our apartment, which is in the old quarter — the beach is eight to ten minutes away, the market five and the lighthouse a quarter-hour stroll. For trips to El Palmar or Vejer there are taxis and buses, and day to day you won't touch your keys once.
 
 Plenty of guests arrived this year obsessed with parking and ended up using the car only on arrival and departure day. That's the master move: **park once, well away from the bustle, and forget about it**.
 

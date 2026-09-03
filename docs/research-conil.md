@@ -56,7 +56,7 @@
 ### Frases de Posicionamiento (para copy blog)
 - *"Conil no es un resort: es un pueblo de pescadores que te acoge en su casa."*
 - *"Aquí el atún no es plato de carta, es forma de vida desde los fenicios."*
-- *"La playa a 3 min andando; el mercado a 5; el faro a 15. Todo sin coche."*
+- *"La playa a 8-10 min andando; el mercado a 5; el faro a 15. Todo sin coche."*
 - *"El Levante trae olas; el Poniente, atardeceres. Tú eliges ritmo."*
 
 ---

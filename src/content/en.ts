@@ -230,7 +230,7 @@ export const faq = {
     { q: 'How many guests can stay?', a: 'The apartment sleeps 3: 2 in the double bed and 1 on the chaise-longue sofa bed in the living room.', pending: false },
     { q: 'How do you access the apartment?', a: 'The apartment is on the first floor, accessed by stairs from the street. Arrive, carry your bags up and you\'re already on holiday.', pending: false },
     { q: 'Is there parking nearby?', a: 'Yes. The Mercado de Abastos, right opposite, has municipal parking. There are also several private parking areas nearby. In high season we recommend the Recinto Ferial, which is free and has plenty of space.', pending: false },
-    { q: 'What is the closest beach walking distance?', a: 'Playa de los Bateles is the closest, about a 5-minute walk along the seafront promenade. It\'s the main beach in the centre, with a Blue Flag and all amenities.', pending: false },
+    { q: 'What is the closest beach walking distance?', a: "Playa de los Bateles is the closest, about an 8-10 minute walk (along the seafront promenade). It's the main Blue-Flag beach in the centre with all amenities.", pending: false },
     { q: 'Is smoking allowed in the apartment or terrace?', a: 'Smoking is not allowed in the apartment, including the terrace. This is a house rule to ensure comfort for all guests.', pending: false },
     { q: 'Are there supermarkets nearby?', a: 'Yes. The Mercado de Abastos is right opposite the apartment with fresh food stalls. There are also supermarkets a short walk from the town centre.', pending: false },
     { q: 'Do you accept last-minute bookings?', a: 'Yes, if availability allows. Check your dates and we\'ll respond as soon as possible. In high season it\'s recommended to book in advance.', pending: false },

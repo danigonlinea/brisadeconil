@@ -321,7 +321,7 @@ export const faq = {
     },
     {
       q: "¿Cuál es la playa más cercana caminando?",
-      a: "La Playa de los Bateles es la más cercana, a unos 5 minutos caminando por el paseo marítimo. Es la playa principal del centro, con bandera azul y todos los servicios.",
+      a: "La Playa de los Bateles es la más cercana, a unos 8-10 minutos caminando. Por el paseo marítimo llegas en ese tiempo; es la playa principal del centro, con bandera azul y todos los servicios.",
       pending: false,
     },
     {
