@@ -33,8 +33,6 @@ Y algo que la gente de fuera no sabe: **pide que te lo limpien**. Te lo hacen si
 
 **Carnicería.** Aquí la palabra mágica es **retinto**: la raza de vacuno autóctona de la zona. Un solomillo o un entrecot de retinto a la plancha, con sal gorda y nada más, es una de esas comidas simples que recuerdas.
 
-**Las barras.** Dentro del mercado hay barras donde desayunar. Un café, una tostada con manteca colorá o, si es tu día de suerte, una **tortillita de camarones** recién hecha. Desayunar ahí de pie, rodeado de carros de la compra, es lo más parecido a ser de Conil que puedes hacer en una semana.
-
 ## Dos recetas para hacer en el apartamento
 
 Nuestra cocina tiene de todo —horno, vitro, microondas, lavavajillas— así que aprovecha.
