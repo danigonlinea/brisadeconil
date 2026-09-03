@@ -1,6 +1,6 @@
 ---
 title: "Guía de playas de Conil por perfil: familia, perro, surf o tranquilidad"
-description: "Las mejores playas de Conil de la frontera para cada plan: familiar, calas escondidas, surf y qué pasa con los perros. La guía honesta de tu anfitrión en Conil, con trucos de aparcamiento."
+description: "Playas de Conil para cada plan: familiar, calas escondidas, surf y perros. La guía de tu anfitrión en Conil con trucos de aparcamiento."
 pubDate: "2026-08-13"
 tags: ["playas", "guias", "familias"]
 translations:
