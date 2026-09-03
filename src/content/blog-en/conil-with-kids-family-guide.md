@@ -15,7 +15,7 @@ This is the guide I wish they'd given me when I started seeing nieces, nephews a
 ## The right beach by age
 
 **Ages 0–3: early morning or last hour, and shade is sacred.**
-At this age the plan is simple: sand to touch, calm water to dip feet in, and a proper nap. **Los Bateles**, our urban beach, works very well because you have the promenade with beach bars, showers, a lifeguard, and everything three minutes from the apartment — if you forget something, you go up and down in ten minutes, which is impossible at many beaches in the area. Avoid the central hours (11:00–16:00 in July–August): early morning, breakfast at the beach bar, beach, lunch and nap. That rhythm works for everyone.
+At this age the plan is simple: sand to touch, calm water to dip feet in, and a proper nap. **Los Bateles**, our urban beach, works very well because you have the promenade with beach bars, showers, a lifeguard, and everything eight-ten minutes from the apartment — if you forget something, you go up and down in fifteen-twenty minutes, which is impossible at many beaches in the area. Avoid the central hours (11:00–16:00 in July–August): early morning, breakfast at the beach bar, beach, lunch and nap. That rhythm works for everyone.
 
 **Ages 4–8: Bateles or Fontanilla, and pools in the coves.**
 Now there's swimming and a desire for small waves. **La Fontanilla**, a walk north, is somewhat calmer than Bateles in August but with the same services. And here's my favorite trick: in the **calas de Roche**, as the tide goes out, **pools** form where little ones spend hours — literally hours — without anyone losing sight of them. Bring buckets; the prize is worth it.

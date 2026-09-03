@@ -12,7 +12,7 @@ Esta es la guía que me gustaría que me dieran a mí cuando empecé a ver llega
 ## La playa correcta según la edad
 
 **De 0 a 3 años: madrugada o última hora, y sombra sagrada.**
-A esas edades el plan es simple: arena para tocar, agua mansa para mojar pies y una siesta digna. **Los Bateles**, nuestra playa urbana, funciona muy bien porque tienes el paseo con chiringuitos, duchas, socorrista y todo a tres minutos del apartamento — si se te olvida algo, subes y bajas en diez minutos, cosa imposible en muchas playas de la zona. Evita las horas centrales (11:00–16:00 en julio-agosto): madrugada, desayuno en el chiringuito, playa, comida y siesta. Ese ritmo lo aguanta todo el mundo.
+A esas edades el plan es simple: arena para tocar, agua mansa para mojar pies y una siesta digna. **Los Bateles**, nuestra playa urbana, funciona muy bien porque tienes el paseo con chiringuitos, duchas, socorrista y todo a ocho-diez minutos del apartamento — si se te olvida algo, subes y bajas en quince-veinte minutos, cosa imposible en muchas playas de la zona. Evita las horas centrales (11:00–16:00 en julio-agosto): madrugada, desayuno en el chiringuito, playa, comida y siesta. Ese ritmo lo aguanta todo el mundo.
 
 **De 4 a 8 años: Bateles o Fontanilla, y charcos en las calas.**
 Ya hay nado y ganas de olas pequeñas. **La Fontanilla**, un paseo hacia el norte, es algo más tranquila que Bateles en agosto pero con los mismos servicios. Y aquí va mi truco favorito: en las **calas de Roche**, con marea bajando, se forman **charcos** donde los peques pasan horas — literalmente horas — sin que nadie les pierda de vista. Lleva cubos; el premio lo justifica.

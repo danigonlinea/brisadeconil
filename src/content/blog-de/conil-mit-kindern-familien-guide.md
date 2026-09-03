@@ -16,7 +16,7 @@ Das ist der Führer, den ich mir gewünscht hätte, als ich angefangen habe, Nef
 
 **Von 0 bis 3 Jahren: Frühmorgens oder am späten Nachmittag, und Schatten ist heilig.**
 
-In diesem Alter ist der Plan einfach: Sand zum Anfassen, ruhiges Wasser zum Füßenassen und eine verdiente Siesta. **Los Bateles**, unser Stadtstrand, funktioniert sehr gut, weil du die Promenade mit Strandbars, Duschen, Rettungsschwimmer und alles in drei Minuten vom Apartment entfernt hast — wenn du etwas vergisst, bist du in zehn Minuten oben und wieder runter, was an vielen Stränden der Region unmöglich ist. Vermeide die Stunden zwischen elf und sechzehn Uhr im Juli-August: Frühmorgens, Frühstück an der Strandbar, Strand, Mittagessen und Siesta. Diesen Rhythmus hält jeder aus.
+In diesem Alter ist der Plan einfach: Sand zum Anfassen, ruhiges Wasser zum Füßenassen und eine verdiente Siesta. **Los Bateles**, unser Stadtstrand, funktioniert sehr gut, weil du die Promenade mit Strandbars, Duschen, Rettungsschwimmer und alles in acht-zehn Minuten vom Apartment entfernt hast — wenn du etwas vergisst, bist du in fünfzehn-zwanzig Minuten oben und wieder runter, was an vielen Stränden der Region unmöglich ist. Vermeide die Stunden zwischen elf und sechzehn Uhr im Juli-August: Frühmorgens, Frühstück an der Strandbar, Strand, Mittagessen und Siesta. Diesen Rhythmus hält jeder aus.
 
 **Von 4 bis 8 Jahren: Bateles oder Fontanilla, und Tümpeln in den Buchten.**
 
