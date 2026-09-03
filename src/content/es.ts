@@ -464,7 +464,7 @@ export const blog = {
   /** Post page (/blog/[slug]/) */
   backLink: "Todos los artículos",
   updatedLabel: "Actualizado:",
-  ctaLine: "¿Te apetece venir? El apartamento está listo para tus fechas.",
+  ctaLine: "¿Te apetece venir?",
   ctaButton: "Consultar disponibilidad",
 };
 

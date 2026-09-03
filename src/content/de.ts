@@ -449,7 +449,7 @@ export const blog = {
   // Post page (/blog/[slug]/)
   backLink: "Alle Artikel",
   updatedLabel: "Aktualisiert:",
-  ctaLine: "Lust auf einen Aufenthalt? Die Wohnung ist bereit für deine Daten.",
+  ctaLine: "Lust auf einen Aufenthalt?",
   ctaButton: "Verfügbarkeit anfragen",
 };
 

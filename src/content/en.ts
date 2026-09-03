@@ -287,7 +287,7 @@ export const blog = {
   // Post page (/blog/[slug]/)
   backLink: 'All articles',
   updatedLabel: 'Updated:',
-  ctaLine: 'Fancy a stay? The apartment is ready for your dates.',
+  ctaLine: 'Fancy a stay?',
   ctaButton: 'Check availability',
 };
 
