@@ -389,6 +389,11 @@ export const faq = {
       a: "Es gibt eine in die Küche integrierte Waschmaschine. Keinen Trockner, aber auf der Terrasse gibt es eine Wäscheleine und Conils Klima trocknet die Wäsche in wenigen Stunden.",
       pending: false,
     },
+    {
+      q: "Wie kommt man zum Strand von Roche?",
+      a: "Zu Fuß vom Apartment aus, nordwärts entlang der Strandpromenade, dauert es etwa 20 Minuten. Du kannst auch mit dem Auto fahren (5 Minuten) und in der Roche-Gegegend parken.",
+      pending: false,
+    },
   ],
 };
 

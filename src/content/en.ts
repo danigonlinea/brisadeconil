@@ -246,6 +246,7 @@ export const faq = {
     { q: 'Do I have to pay a tourist tax?', a: 'No. Conil de la Frontera does not charge guests a tourist tax.', pending: false },
     { q: 'Can I pay by card?', a: 'Yes. We accept credit card payment and bank transfer.', pending: false },
     { q: 'Does it have a washing machine and dryer?', a: "There is a washing machine built into the kitchen. There is no dryer, but the terrace has a clothes line and Conil's climate dries laundry in a few hours.", pending: false },
+    { q: 'How do I get to Roche beach?', a: "On foot from the apartment, walking north along the seafront promenade, it takes about 20 minutes. You can also drive (5 minutes) and park in the Roche area.", pending: false },
   ],
 };
 

@@ -1,8 +1,8 @@
 ---
-title: "Wanderung an den Klippen von Roche: Route, beste Zeit und was du mitbringen solltest"
-description: "Die Küstenroute an den Klippen von Roche ab Conil: was du sehen wann, wie lange es dauert, die beste Tageszeit und die Warnungen die du kennen solltest."
+title: "Wanderung an den Klippen von Roche: Route, Aussichtspunkt und beste Zeit"
+description: "Die Küstenroute an den Klippen von Roche ab Conil: der Aussichtspunkt mit der besten Aussicht, was du sehen wann, wie lange es dauert und die beste Tageszeit."
 pubDate: "2026-09-30"
-tags: ["wandern", "natur", "tipps"]
+tags: ["wandern", "natur", "tipps", "aussichtspunkt"]
 translations:
   es: "senderismo-acantilados-de-roche"
   en: "hiking-roche-cliffs"
@@ -11,6 +11,12 @@ translations:
 Wenn du nur eine Wanderung in deiner Woche in Conil machst, dann diese: **die Klippe von Roche**.
 
 Es ist das Gesicht des Dorfes, das fast niemand fotografiert. Alle kommen wegen des Sandes und bleiben in Los Bateles; wenige gehen nach Norden und entdecken, dass sich hier die Küste in okerfarbenen Wänden über Buchten mit klarem Wasser erhebt. Es ist ein anderes Conil.
+
+## Der Aussichtspunkt: beste Aussicht auf die Küste von Roche
+
+Das hohe Stück der Klippe ist ein **natürlicher Aussichtspunkt** der sich über Kilometer erstreckt. Von oben siehst du die Buchten eine nach der anderen hinabfallen — Roqueo, Camarón, Puntalejos, Cala Lee — und in der Ferne an klaren Tagen das **Kap Trafalgar** mit seinem Leuchtturm.
+
+Der fotogenste Punkt ist eine halbe Stunde von der Altstadt entfernt: eine Kurve auf dem Pfad wo die Klippe senkrecht ins Meer fällt. Dort setze ich mich zum Frühstück mit Kaffee aus der Thermoskanne wenn jemand zu uns kommt. Das ist der Plan.
 
 ## Die Route, kurzversion
 

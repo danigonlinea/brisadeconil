@@ -1,6 +1,6 @@
 ---
 title: "Conil beaches guide: which one suits you — family, dog, surf or quiet"
-description: "A beach for every plan in Conil: family-friendly, hidden coves, surf and the truth about dogs. Your host's honest guide, parking tips included."
+description: "The best beaches in Conil de la frontera for every plan: family-friendly, hidden coves, surf and the truth about dogs. Your host's honest guide, parking tips included."
 pubDate: "2026-08-25"
 tags: ["beaches", "guides", "families"]
 translations:
@@ -11,6 +11,10 @@ translations:
 Every guest asks me this on arrival, towel already half folded: *«so, which is the best beach?»*.
 
 And my answer is always the same: **it depends who you are today**. A family with two little ones and a pushchair doesn't want the same beach as a couple after silence, or a surfer with the Levante wind promising waves. Conil has fourteen kilometres of coast — the problem isn't finding a beach, it's choosing well.
+
+## The best beaches in Conil de la frontera
+
+If you're looking for a quick list of **beaches in Conil de la frontera**, here are all the ones I recommend, sorted by style:
 
 ## With family: Los Bateles and La Fontanilla
 

@@ -1,13 +1,19 @@
 ---
-title: "Senderismo por los acantilados de Roche: ruta, mejor hora y qué llevar"
-description: "La ruta costera por los acantilados de Roche desde Conil: qué verás, cuánto se tarda, la mejor hora del día y los avisos que conviene tener en cuenta."
+title: "Senderismo por los acantilados de Roche: ruta, mirador y mejor hora"
+description: "La ruta costera por los acantilados de Roche desde Conil: el mirador con las mejores vistas, qué verás, cuánto se tarda y la mejor hora del día."
 pubDate: "2026-09-30"
-tags: ["senderismo", "naturaleza", "consejos"]
+tags: ["senderismo", "naturaleza", "consejos", "mirador"]
 ---
 
 Si solo vas a hacer una caminata en tu semana en Conil, que sea esta: **el acantilado de Roche**. Y después de la caminada, nada mejor que un baño en [las calas que descubrirás desde arriba](/blog/guia-playas-de-conil-por-perfil/).
 
 Es la cara que casi nadie fotografía del pueblo. Todos vienen por la arena y se quedan en Los Bateles; pocos suben al norte y descubren que aquí la costa se levanta en paredes ocres sobre calas de agua transparente. Es otro Conil.
+
+## El mirador: las mejores vistas de la costa de Conil
+
+El tramo alto del acantilado es un **mirador natural** que se extiende kilómetros. Desde arriba ves las calas cayendo una tras otra — Roqueo, Camarón, Puntalejos, Cala Lee — y al fondo, en los días claros, el **cabo de Trafalgar** con su faro.
+
+El punto más fotogénico está a media hora del casco: una curva del sendero donde el acantilado cae vertical sobre el mar. Ahí me siento a desayunar con café del termo cuando viene alguien a alojarse. Es el plan.
 
 ## La ruta, en corto
 

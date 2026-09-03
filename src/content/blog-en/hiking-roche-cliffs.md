@@ -1,8 +1,8 @@
 ---
-title: "Hiking the Roche cliffs: route, best time and what to bring"
-description: "The coastal route along the Roche cliffs from Conil: what you'll see, how long it takes, the best time of day and the warnings worth knowing."
+title: "Hiking the Roche cliffs: route, viewpoint and best time"
+description: "The coastal route along the Roche cliffs from Conil: the viewpoint with the best views, what you'll see, how long it takes and the best time of day."
 pubDate: "2026-09-30"
-tags: ["hiking", "nature", "tips"]
+tags: ["hiking", "nature", "tips", "viewpoint"]
 translations:
   es: "senderismo-acantilados-de-roche"
   de: "wanderung-klippen-roche"
@@ -11,6 +11,12 @@ translations:
 If you're only going to do one walk in your week in Conil, make it this: **the Roche cliff**.
 
 It's the face of the town that almost nobody photographs. Everyone comes for the sand and stays at Los Bateles; few head north and discover that here the coast rises in ochre walls above coves of transparent water. It's a different Conil.
+
+## The viewpoint: best views of the Conil coast
+
+The high stretch of the cliff is a **natural viewpoint** that extends for kilometers. From above you see the coves dropping one after another — Roqueo, Camarón, Puntalejos, Cala Lee — and in the distance, on clear days, **Cape Trafalgar** with its lighthouse.
+
+The most photogenic spot is half an hour from the old quarter: a curve in the path where the cliff falls vertically to the sea. That's where I sit to have breakfast with a thermos of coffee when someone comes to stay. It's the plan.
 
 ## The route, short version
 

@@ -399,6 +399,16 @@ export const faq = {
       a: "Hay lavadora integrada en la cocina. No hay secadora, pero en la terraza hay tendedero y el clima de Conil seca la ropa en pocas horas.",
       pending: false,
     },
+    {
+      q: "¿Hay parking cerca del Mercado de Abastos?",
+      a: "Sí. El Mercado de Abastos tiene zona de aparcamiento municipal justo enfrente del apartamento. También hay parkings privados en los alrededores y el Recinto Ferial (gratuito y amplio) en temporada alta.",
+      pending: false,
+    },
+    {
+      q: "¿Cómo llegar a la playa de Roche?",
+      a: "A pie desde el apartamento, caminando hacia el norte por el paseo marítimo, tardas unos 20 minutos. También puedes ir en coche (5 minutos) y aparcar en la zona de Roche.",
+      pending: false,
+    },
   ],
 };
 

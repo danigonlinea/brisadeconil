@@ -1,6 +1,6 @@
 ---
 title: "Guía de playas de Conil por perfil: familia, perro, surf o tranquilidad"
-description: "Playa para cada plan: familiar, calas escondidas, surf y qué pasa con los perros. La guía honesta de tu anfitrión en Conil, con trucos de aparcamiento."
+description: "Las mejores playas de Conil de la frontera para cada plan: familiar, calas escondidas, surf y qué pasa con los perros. La guía honesta de tu anfitrión en Conil, con trucos de aparcamiento."
 pubDate: "2026-08-25"
 tags: ["playas", "guias", "familias"]
 translations:
@@ -13,6 +13,10 @@ Me lo preguntan todos los huéspedes al llegar, con la toalla ya a medio plegar:
 Y mi respuesta siempre es la misma: **depende de quién seas hoy**. No es la misma playa la que le va a una familia con dos peques y carrito que a una pareja buscando silencio o a un surfer con el Levante anunciando olas. Conil tiene catorce kilómetros de litoral para elegir — el problema no es encontrar playa, es elegir bien.
 
 Así que aquí va la guía que me habría gustado tener cuando yo vine por primera vez. Por perfiles, como quien reparte cartas.
+
+## Las mejores playas de Conil de la frontera
+
+Si lo que buscas es una lista rápida de **playas en Conil de la frontera**, aquí van todas las que recomiendo, ordenadas por estilo:
 
 ## Si vienes en familia: Los Bateles y La Fontanilla
 

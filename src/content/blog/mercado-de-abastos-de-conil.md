@@ -53,4 +53,6 @@ Porque el mercado es la diferencia entre visitar Conil y **vivir Conil una seman
 
 Y sí, también es más barato. Muchas familias que se alojan con nosotros hacen mercado dos veces por semana y salen a cenar fuera dos noches. Sale mejor de precio y se come mejor.
 
-¿Quieres el mapa de mis puestos favoritos cuando vengas? Nos lo pides al llegar. [Consulta fechas aquí](/#contacto) — y si aún estás decidiendo qué hacer en tu estancia, [nuestro itinerario de 3 días sin coche](/blog/conil-en-3-dias-sin-coche/) empieza justo aquí, en el mercado.
+¿Quieres el mapa de mis puestos favoritos cuando vengas? Nos lo pides al llegar. Y si aún estás decidiendo qué hacer en tu estancia, [nuestro itinerario de 3 días sin coche](/blog/conil-en-3-dias-sin-coche/) empieza justo aquí, en el mercado.
+
+**¿Te vienes a vivir Conil una semana?** El mercado está a cinco minutos del apartamento, y tener la cocina ahí convierte cualquier cena en un plan. [Consulta disponibilidad para tus fechas](/#contacto) — y te paso el mapa de mis puestos favoritos.
