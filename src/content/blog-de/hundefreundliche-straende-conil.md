@@ -33,8 +33,4 @@ Wenn du in der Hauptsaison mit deinem Hund reist, ist nicht alles verloren:
 
 ## Was du wissen solltest wenn du mit Hund nach Conil reist
 
-Obwohl die Wohnung keine Haustiere akzeptiert, ist Conil ein Ort wo Hunde an vielen Orten willkommen sind: Terrassen, Promenaden und außerhalb der Saison auch an den Stränden. Wenn du mit deinem Hund reist, kann ich dir sagen welche Strände und Routen für deine Reisedaten am besten sind.
-
-## Reist du mit deinem Hund?
-
-In Conil gibt es mehrere Optionen um mit deinem Haustier außerhalb der Wohnung zu genießen. Hier sind die besten Strände und Routen damit du deinen Urlaub planen kannst ohne fragen zu müssen.
+Obwohl die Wohnung keine Haustiere akzeptiert, ist Conil ein Ort wo Hunde an vielen Orten willkommen sind: Terrassen, Promenaden und außerhalb der Saison auch an den Stränden. Hier sind die besten Strände und Routen damit du deinen Urlaub planen kannst ohne fragen zu müssen.

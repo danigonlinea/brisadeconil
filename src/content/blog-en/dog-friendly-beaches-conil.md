@@ -33,8 +33,4 @@ If you're traveling in peak season with your dog, all is not lost:
 
 ## What you should know if you visit Conil with your dog
 
-Although the apartment doesn't accept pets, Conil is a town where dogs are welcome in many places: terraces, promenades and off-season, also on the beaches. If you're traveling with your dog, I can guide you on which beaches and routes are best for your travel dates.
-
-## Traveling with your dog?
-
-In Conil there are several options to enjoy with your pet outside the apartment. Here are the best beaches and routes so you can plan your trip without having to ask.
+Although the apartment doesn't accept pets, Conil is a town where dogs are welcome in many places: terraces, promenades and off-season, also on the beaches. Here are the best beaches and routes so you can plan your trip without having to ask.

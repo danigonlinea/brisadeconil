@@ -36,8 +36,4 @@ Si viajas en temporada alta con tu perro, no todo está perdido:
 
 ## Lo que debes saber si visitas Conil con tu perro
 
-Aunque el apartamento no admite mascotas, Conil es un pueblo donde los perros son bienvenidos en muchos sitios: terrazas, paseos marítimos y fuera de temporada, también en las playas. Si viajas con tu perro, puedo orientarte sobre qué playas y rutas son las mejores para las fechas de tu viaje.
-
-## ¿Viajas con tu perro?
-
-En Conil hay varias opciones para disfrutar con tu mascota fuera del apartamento. Aquí te dejo las mejores playas y rutas para que puedas planificar tu viaje sin necesidad de preguntar.
+Aunque el apartamento no admite mascotas, Conil es un pueblo donde los perros son bienvenidos en muchos sitios: terrazas, paseos marítimos y fuera de temporada, también en las playas. Aquí te dejo las mejores playas y rutas para que puedas planificar tu viaje sin necesidad de preguntar.
