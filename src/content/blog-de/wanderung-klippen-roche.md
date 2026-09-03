@@ -1,7 +1,7 @@
 ---
 title: "Wanderung an den Klippen von Roche: Route, Aussichtspunkt und beste Zeit"
 description: "Die Küstenroute an den Klippen von Roche ab Conil: der Aussichtspunkt mit der besten Aussicht, was du sehen wann, wie lange es dauert und die beste Tageszeit."
-pubDate: "2026-09-30"
+pubDate: "2026-08-06"
 tags: ["wandern", "natur", "tipps", "aussichtspunkt"]
 translations:
   es: "senderismo-acantilados-de-roche"

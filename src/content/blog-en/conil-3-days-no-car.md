@@ -1,7 +1,7 @@
 ---
 title: "Conil in 3 days without a car: my walking route from the old town"
 description: "Three-day Conil de la Frontera itinerary on foot: market, old quarter, beaches, coves and sunsets. No parking, no rush and a Plan B for rain."
-pubDate: "2026-09-09"
+pubDate: "2026-08-27"
 tags: ["itineraries", "tips"]
 translations:
   es: "conil-en-3-dias-sin-coche"

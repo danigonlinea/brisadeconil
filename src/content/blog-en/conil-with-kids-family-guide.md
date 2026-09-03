@@ -1,7 +1,7 @@
 ---
 title: "Conil with Kids: Safe Beaches, Plans and Tricks for Families"
 description: "Family guide to Conil de la Frontera: which beaches work well for kids by age, routines that work, and what's worth knowing before you come."
-pubDate: "2026-09-16"
+pubDate: "2026-07-30"
 tags: ["families", "beaches", "tips"]
 translations:
   es: "conil-con-ninos-guia-familiar"

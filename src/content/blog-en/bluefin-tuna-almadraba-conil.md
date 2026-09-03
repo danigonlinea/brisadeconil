@@ -1,7 +1,7 @@
 ---
 title: "Bluefin Tuna Almadraba in Conil: Season, Where to Try It and How I Cook It"
 description: "The almadraba is 3,000 years old and still alive in Conil. When the season is, what to order in each dish, and the places where I eat it — from your host."
-pubDate: "2026-09-02"
+pubDate: "2026-07-16"
 tags: ["gastronomy", "tuna", "tips"]
 translations:
   es: "atun-rojo-de-almadraba-en-conil"

@@ -1,7 +1,7 @@
 ---
 title: "Conil im November: warum es mein Lieblingsmonat ist"
 description: "Conil außerhalb der Saison: echte Preise, was offen und was geschlossen ist, echtes Novemberwetter und warum die Nebensaison die beste Zeit ist, das Dorf kennenzulernen."
-pubDate: "2026-10-07"
+pubDate: "2026-07-09"
 tags: ["nebensaison", "slow-living", "tipps"]
 translations:
   es: "conil-en-noviembre-temporada-baja"

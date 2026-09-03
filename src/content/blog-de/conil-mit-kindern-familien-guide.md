@@ -1,7 +1,7 @@
 ---
 title: "Conil mit Kindern: sichere Strände, Pläne und Tricks für Familien"
 description: "Familienführer für Conil de la Frontera: welche Strände je nach Alter gut passen, Routinen die funktionieren und was du vor der Ankunft wissen solltest."
-pubDate: "2026-09-16"
+pubDate: "2026-07-30"
 tags: ["familien", "straende", "tipps"]
 translations:
   es: "conil-con-ninos-guia-familiar"

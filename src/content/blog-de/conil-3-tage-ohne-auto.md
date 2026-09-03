@@ -1,7 +1,7 @@
 ---
 title: "Conil in 3 Tagen ohne Auto: meine Wanderroute ab der Altstadt"
 description: "Drei-Tage-Programm in Conil de la Frontera komplett zu Fuß: Markt, Altstadt, Strände, Buchten und Sonnenuntergänge. Ohne Parkstress, ohne Hektik und mit Plan B bei Regen."
-pubDate: "2026-09-09"
+pubDate: "2026-08-27"
 tags: ["routen", "tipps"]
 translations:
   es: "conil-en-3-dias-sin-coche"

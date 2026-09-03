@@ -1,7 +1,7 @@
 ---
 title: "Die Strände von Conil: welcher passt zu dir — Familie, Hund, Surf oder Ruhe"
 description: "Die besten Strände in Conil de la frontera für jeden Plan: familienfreundlich, versteckte Buchten, Surf und die Sache mit den Hunden. Die ehrliche Übersicht deines Gastgebers."
-pubDate: "2026-08-25"
+pubDate: "2026-08-13"
 tags: ["straende", "ratgeber", "familien"]
 translations:
   es: "guia-playas-de-conil-por-perfil"

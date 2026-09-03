@@ -1,7 +1,7 @@
 ---
 title: "Mercado de Abastos de Conil: Was ich joche Woche einkaufe (und wie ich es zubereite)"
 description: "Der Mercado de Abastos de Conil, erzählt von einem Nachbarn: Öffnungszeiten, was ich an jedem Stand kaufe, was saisonal gibt und zwei einfache Rezepte für die Wohnung."
-pubDate: "2026-09-23"
+pubDate: "2026-08-20"
 tags: ["gastronomie", "markt", "tipps"]
 translations:
   es: "mercado-de-abastos-de-conil"

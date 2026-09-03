@@ -1,7 +1,7 @@
 ---
 title: "Thunfisch aus der Almadraba in Conil: Saison, wo ich ihn probiere und wie ich ihn zubereite"
 description: "Die Almadraba ist über 3.000 Jahre alt und noch immer in Conil lebendig. Wann die Saison ist, welches Teil man bestellen sollte und wo ich es selbst esse, von deinem Gastgeber."
-pubDate: "2026-09-02"
+pubDate: "2026-07-16"
 tags: ["gastronomie", "thunfisch", "tipps"]
 translations:
   es: "atun-rojo-de-almadraba-en-conil"

@@ -1,7 +1,7 @@
 ---
 title: "Conil in November: why it's my favorite month of the year"
 description: "Conil out of season: real prices, what's open and what's closed, actual November weather and why low season is the best time to know the real town."
-pubDate: "2026-10-07"
+pubDate: "2026-07-09"
 tags: ["low-season", "slow-living", "tips"]
 translations:
   es: "conil-en-noviembre-temporada-baja"

@@ -1,7 +1,7 @@
 ---
 title: "Senderismo por los acantilados de Roche: ruta, mirador y mejor hora"
 description: "La ruta costera por los acantilados de Roche desde Conil: el mirador con las mejores vistas, qué verás, cuánto se tarda y la mejor hora del día."
-pubDate: "2026-09-30"
+pubDate: "2026-08-06"
 tags: ["senderismo", "naturaleza", "consejos", "mirador"]
 ---
 

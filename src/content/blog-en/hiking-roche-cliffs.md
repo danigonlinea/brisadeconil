@@ -1,7 +1,7 @@
 ---
 title: "Hiking the Roche cliffs: route, viewpoint and best time"
 description: "The coastal route along the Roche cliffs from Conil: the viewpoint with the best views, what you'll see, how long it takes and the best time of day."
-pubDate: "2026-09-30"
+pubDate: "2026-08-06"
 tags: ["hiking", "nature", "tips", "viewpoint"]
 translations:
   es: "senderismo-acantilados-de-roche"

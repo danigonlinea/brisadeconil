@@ -1,7 +1,7 @@
 ---
 title: "Mercado de Abastos de Conil: qué compro yo cada semana (y cómo lo cocino)"
 description: "El Mercado de Abastos de Conil contado por un vecino: horarios, qué pedir en cada puesto, productos de temporada y recetas para hacer en el apartamento."
-pubDate: "2026-09-23"
+pubDate: "2026-08-20"
 tags: ["gastronomia", "mercado", "consejos"]
 ---
 

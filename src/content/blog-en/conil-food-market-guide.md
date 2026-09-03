@@ -1,7 +1,7 @@
 ---
 title: "Conil Food Market: What I Buy Every Week (and How I Cook It)"
 description: "Conil's Mercado de Abastos, told by a local: opening hours, what to order at each stall, what's in season, and two easy recipes to make in the apartment."
-pubDate: "2026-09-23"
+pubDate: "2026-08-20"
 tags: ["gastronomy", "market", "tips"]
 translations:
   es: "mercado-de-abastos-de-conil"

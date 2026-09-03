@@ -1,7 +1,7 @@
 ---
 title: "Atún rojo de almadraba en Conil: temporada, dónde probarlo y cómo lo cocino yo"
 description: "La almadraba tiene 3.000 años y sigue viva en Conil. Cuándo es la temporada, qué pedir en cada plato y los sitios donde lo como yo, por tu anfitrión."
-pubDate: "2026-09-02"
+pubDate: "2026-07-16"
 tags: ["gastronomia", "atun", "consejos"]
 ---
 
