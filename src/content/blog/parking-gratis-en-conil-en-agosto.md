@@ -12,7 +12,7 @@ Vamos a hablar del tema tabú de los grupos de WhatsApp de agosto: **el parking*
 
 Primero, contexto sin adornos. Conil tiene unos 24.000 vecinos censados. En agosto llegamos a rondar las **160.000 personas** entre pueblo y playa. Haces la cuenta rápida y entiendes dos cosas: por qué aquí se respira tanta vida… y por qué encontrar hueco a las dos de la tarde es el deporte nacional.
 
-Esta guía es la que le mando por mensaje a cada huésped antes de que baje del coche. Ahora te la dejo aquí, ordenada.
+Esta guía te llega antes de que baje del coche. Ahora te la dejo aquí, ordenada.
 
 ## La regla de oro: gana quien llega antes de las 11:00
 
@@ -43,7 +43,7 @@ Ninguna de estas es ciencia rocket. Pero en agosto, con el calor y las prisas, s
 
 Ahora, el consejo que de verdad cambia tu vacaciones: **Conil se disfruta mejor a pie**.
 
-Desde el centro — y desde nuestro apartamento, que está en el casco — tienes la playa a tres minutos, el Mercado de Abastos a cinco y el faro a un paseo de cuarto de hora. Para escapadas a El Palmar o Vejer hay taxi y bus, y para el día a día no necesitas tocar las llaves ni una sola vez.
+Desde el centro — y desde nuestro apartamento, que está en el casco — tienes la playa a ocho-diez minutos, el Mercado de Abastos enfrente y el faro a un paseo de cuarto de hora. Para escapadas a El Palmar o Vejer hay taxi y bus, y para el día a día no necesitas tocar las llaves ni una sola vez.
 
 Muchos huéspedes llegaron este año con la obsesión del parking y acabaron usándolo solo el día de llegada y el de salida. Esa es la jugada maestra: **aparcar una vez, bien lejos del bullicio, y olvidarte**.
 

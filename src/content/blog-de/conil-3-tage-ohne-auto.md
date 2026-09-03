@@ -14,7 +14,7 @@ Meine Antwort ist immer dieselbe: **Das Auto stehen lassen**. Conil ist zum Spaz
 
 ## Tag 1 — Das Dorf: Markt, Altstadt und erster Strand
 
-**Vormittag (9:00–13:00).** Fang dort an, wo der echte Conil-Tag beginnt: der **Mercado de Abastos**, zwei Straßen von der Wohnung entfernt. Obst, Fisch der am Morgen gelandet wurde, und an einer der inneren Bars das heilige Frühstück: eine kleine Garnelen-Ommellte. Bestell zwei und ein Bier — du frühstückst wie ein Einheimischer.
+**Vormittag (9:00–13:00).** Fang dort an, wo der echte Conil-Tag beginnt: der **Mercado de Abastos**, direkt gegenüber der Wohnung. Obst, Fisch der am Morgen gelandet wurde.
 
 Von dort aus Altstadt ohne Kasse: **geweißte Gassen, Geranien, Innenhöfe**. Besteige den **Torre Guzmán** wenn er offen ist — die Aussicht auf die weißen Dächer die zum Meer reisen ist das Reisefoto — und geh an der Kirche Santa Catalina und der Plaza de España vorbei, die am Vormittag dieses ruhige Dorf-Leben hat.
 

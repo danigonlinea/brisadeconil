@@ -37,7 +37,7 @@ Es la edad perfecta para **clases de surf o paddle** en Bateles o en El Palmar �
 
 ## El apartamento con niños
 
-Nuestro apartamento está pensado para familias pequeñas (hasta 3 personas): dormitorio con cama de matrimonio y sofá cama en el salón, cocina completa para cocinarle a los peques lo que comen en casa, lavavajillas — que en vacaciones con niños vale oro — y lavadora para volver con la maleta medio vacía. Todo en primera planta en pleno casco, a tres minutos de la playa y cinco del mercado: cero coche en el día a día.
+Nuestro apartamento está pensado para familias pequeñas (hasta 3 personas): dormitorio con cama de matrimonio y sofá cama en el salón, cocina completa para cocinarle a los peques lo que comen en casa, lavavajillas — que en vacaciones con niños vale oro — y lavadora para volver con la maleta medio vacía. Todo en primera planta en pleno casco, a ocho-diez minutos de la playa y enfrente del mercado: cero coche en el día a día.
 
 Si tu duda es sobre fechas, [consulta disponibilidad](/#contacto).
 

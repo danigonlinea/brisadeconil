@@ -40,7 +40,7 @@ This is the perfect age for **surf or paddle lessons** at Bateles or El Palmar �
 
 ## The apartment with kids
 
-Our apartment is designed for small families (up to 3 people): bedroom with double bed and sofa bed in the living room, full kitchen to cook for little ones what they eat at home, dishwasher — worth its weight in gold during vacation with kids — and washing machine to come back with a half-empty suitcase. All on the first floor in the heart of the old town, three minutes from the beach and five from the market: zero car on a daily basis.
+Our apartment is designed for small families (up to 3 people): bedroom with double bed and sofa bed in the living room, full kitchen to cook for little ones what they eat at home, dishwasher — worth its weight in gold during vacation with kids — and washing machine to come back with a half-empty suitcase. All on the first floor in the heart of the old town, eight-ten minutes from the beach and right across from the market: zero car on a daily basis.
 
 If your question is about dates, [check availability](/#contacto).
 

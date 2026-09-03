@@ -7,17 +7,17 @@ tags: ["itinerarios", "consejos"]
 
 Me lo dicen casi todos los huéspedes al llegar, con la llave aún caliente en la mano: *«¿y qué hago yo aquí tres días?»*.
 
-Mi respuesta es siempre la misma: **nada de coche**. Conil se hace a pie. El apartamento está en el casco, así que desde la puerta tienes mercado, playa, torre y tapeo a menos de diez minutos. Lo que sigue es el itinerario exacto que les doy, ordenado como lo viviría yo un fin de semana largo cualquiera.
+Mi respuesta es siempre la misma: **nada de coche**. Conil se hace a pie. El apartamento está en el casco, así que desde la puerta tienes mercado, playa, torre y tapeo a menos de diez minutos. Lo que sigue es un itinerario sugerido, ordenado como lo viviría yo un fin de semana largo cualquiera.
 
 ## Día 1 — El pueblo: mercado, casco y primera playa
 
-**Mañana (9:00–13:00).** Empieza donde empieza el día real de Conil: el **Mercado de Abastos**, a dos calles del apartamento — [te cuento qué compro y cómo lo cocino](/blog/mercado-de-abastos-de-conil/) si quieres repetir en casa. Fruta, pescado que desembarcó esa mañana, y en una de las barras interiores, el desayuno sagrado: tortillita de camarones. Pide dos y una caña; estás desayunando como un conileño.
+**Mañana (9:00–13:00).** Empieza donde empieza el día real de Conil: el **Mercado de Abastos**, enfrente del apartamento — [te cuento qué compro y cómo lo cocino](/blog/mercado-de-abastos-de-conil/) si quieres repetir en casa. Fruta, pescado que desembarcó esa mañana.
 
 Desde ahí, casco histórico sin mapa: **callejuelas encaladas, geranios, patios**. Sube a la **Torre Guzmán** cuando esté abierta —la vista del techo blanco llegando al mar es la foto de viaje— y pasa por la iglesia de Santa Catalina y la plaza de España, que a media mañana tiene ese vaivén tranquilo de pueblo.
 
 **Comida (14:00).** En Conil se come tarde y bien. Elige cualquier bar del casco con carta corta: eso suele significar cocina fresca. Prueba las ortiguillas o el atún encebollado.
 
-**Tarde (17:00–20:00).** Primera bajada a **Los Bateles**, nuestra playa urbana. Tres minutos desde casa. Al atardecer, camina hacia el norte hasta el paseo y verás por qué esto se llama la Costa de la Luz: la luz de las siete de la tarde no se paga con dinero.
+**Tarde (17:00–20:00).** Primera bajada a **Los Bateles**, nuestra playa urbana. Ocho-diez minutos desde casa. Al atardecer, camina hacia el norte hasta el paseo y verás por qué esto se llama la Costa de la Luz: la luz de las siete de la tarde no se paga con dinero.
 
 **Noche.** Tapeo por el centro. Y recuerda que aquí la cena es a las diez; si cenas a las ocho estarás comiendo solo.
 
@@ -52,7 +52,7 @@ Que llueva en Conil es raro, pero pasa — sobre todo entre noviembre y febrero.
 
 - **Zapatos cómodos**: el casco es de adoquín y las bajadas a calas no perdonan chanclas.
 - **Horario español**: comida 14:00-16:30, cena desde 21:00. Las tiendas cierran a mediodía; el pueblo respira a su ritmo.
-- **Dinero**: casi todo con tarjeta, pero lleva algo de efectivo para barras de mercado.
+- **Dinero**: casi todo con tarjeta, pero lleva algo de efectivo porque siempre es necesario.
 - **Reservas**: en agosto, reserva mesa para cenar; fuera de agosto, improvisar funciona.
 
 Tres días así —sin coche, sin prisa y con el mar siempre de camino— es la mejor presentación posible de Conil. Y si te sobra un cuarto día, ya sabes: [el Palmar y su surf te esperan](/blog/guia-playas-de-conil-por-perfil/).

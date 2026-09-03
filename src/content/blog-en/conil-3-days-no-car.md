@@ -10,11 +10,11 @@ translations:
 
 Almost every guest tells me, key still warm in their hand: *"so what do I do here for three days?"*
 
-My answer is always the same: **leave the car**. Conil is made for walking. The apartment is in the old quarter, so from your door the market, beach, tower and tapas bars are less than ten minutes away. What follows is the exact itinerary I give them, ordered as I'd live it myself on any long weekend.
+My answer is always the same: **leave the car**. Conil is made for walking. The apartment is in the old quarter, so from your door the market, beach, tower and tapas bars are less than ten minutes away. What follows is a suggested itinerary, ordered as I'd live it myself on any long weekend.
 
 ## Day 1 — The town: market, old quarter and first beach
 
-**Morning (9:00–13:00).** Start where the real Conil day begins: the **Mercado de Abastos**, two streets from the apartment. Fruit, fish that came in that morning, and at one of the inner bars, the sacred breakfast: a small shrimp omelette. Order two and a beer; you're breakfasting like a local.
+**Morning (9:00–13:00).** Start where the real Conil day begins: the **Mercado de Abastos**, right across from the apartment. Fruit, fish that came in that morning.
 
 From there, old quarter without a map: **whitewashed alleys, geraniums, courtyards**. Climb **Torre Guzmán** when it's open — the view of the white rooftops reaching for the sea is the trip photo — and pass by Santa Catalina church and Plaza de España, which at mid-morning has that quiet village bustle.
 
