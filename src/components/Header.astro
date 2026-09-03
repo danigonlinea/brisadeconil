@@ -5,7 +5,6 @@
  */
 import type { Locale } from '../i18n/locales';
 import { routePrefix } from '../i18n/locales';
-import LanguageSwitcher from './LanguageSwitcher';
 
 interface Props {
   nav: {
@@ -58,8 +57,37 @@ function withBase(href: string): string {
 
     <!-- Right controls -->
     <div class="header-controls">
-      <!-- Language switcher island — real navigation between /, /en/ and /de/ -->
-      <LanguageSwitcher client:only="react" locale={locale} />
+      <!-- Language switcher — pure HTML <details>/<summary>, zero JS -->
+      <details class="lang-switcher">
+        <summary class="lang-switcher__trigger" aria-haspopup="listbox" aria-label="Idioma: cambiar idioma">
+          <span class="lang-switcher__label" aria-hidden="true">
+            {locale.toUpperCase()}
+          </span>
+          <svg class="lang-switcher__chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </summary>
+        <ul class="lang-switcher__dropdown" role="listbox" aria-label="Seleccionar idioma">
+          <li>
+            <a href="/" class={`lang-switcher__option${locale === 'es' ? ' lang-switcher__option--active' : ''}`} aria-current={locale === 'es' ? 'true' : undefined}>
+              <span aria-hidden="true">🇪🇸</span>
+              <span>Español</span>
+            </a>
+          </li>
+          <li>
+            <a href="/en/" class={`lang-switcher__option${locale === 'en' ? ' lang-switcher__option--active' : ''}`} aria-current={locale === 'en' ? 'true' : undefined}>
+              <span aria-hidden="true">🇬🇧</span>
+              <span>English</span>
+            </a>
+          </li>
+          <li>
+            <a href="/de/" class={`lang-switcher__option${locale === 'de' ? ' lang-switcher__option--active' : ''}`} aria-current={locale === 'de' ? 'true' : undefined}>
+              <span aria-hidden="true">🇩🇪</span>
+              <span>Deutsch</span>
+            </a>
+          </li>
+        </ul>
+      </details>
 
       <!-- Dark mode toggle. Labels travel in data attributes so the click
            handler can swap the aria-label without hardcoding a language. -->
@@ -170,6 +198,87 @@ function withBase(href: string): string {
 
   /* Controls */
   .header-controls { display: flex; align-items: center; gap: var(--sp-2); }
+
+  /* Language switcher (details/summary — zero JS) */
+  .lang-switcher {
+    position: relative;
+  }
+  .lang-switcher__trigger {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.85);
+    padding: 6px 8px;
+    border-radius: 6px;
+    transition: background-color 150ms ease, color 150ms ease;
+    white-space: nowrap;
+    list-style: none;
+  }
+  .lang-switcher__trigger::-webkit-details-marker {
+    display: none;
+  }
+  .lang-switcher__trigger:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+  }
+  .scrolled .lang-switcher__trigger {
+    color: var(--text-secondary, #555);
+  }
+  .scrolled .lang-switcher__trigger:hover {
+    background-color: var(--bg-surface-alt, #f5f5f5);
+    color: var(--text-base, #111);
+  }
+  .lang-switcher__label {
+    font-family: var(--font-sans, system-ui);
+    letter-spacing: 0.04em;
+  }
+  .lang-switcher__chevron {
+    opacity: 0.7;
+    transition: transform 200ms ease;
+  }
+  .lang-switcher[open] .lang-switcher__chevron {
+    transform: rotate(180deg);
+  }
+  .lang-switcher__dropdown {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    background-color: var(--bg-surface, white);
+    border: 1px solid var(--border-default, #e5e7eb);
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    list-style: none;
+    margin: 0;
+    padding: 4px;
+    min-width: 130px;
+    z-index: 200;
+  }
+  .lang-switcher__option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: var(--font-sans, system-ui);
+    color: var(--text-base, #111);
+    text-decoration: none;
+    transition: background-color 120ms ease;
+  }
+  .lang-switcher__option:hover,
+  .lang-switcher__option:focus-visible {
+    background-color: var(--bg-surface-alt, #f5f5f5);
+    outline: none;
+  }
+  .lang-switcher__option--active {
+    font-weight: 600;
+    color: var(--accent, #0d9488);
+  }
 
   /* Theme toggle */
   .theme-toggle {
