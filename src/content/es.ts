@@ -316,12 +316,7 @@ export const faq = {
     },
     {
       q: "¿Hay aparcamiento cerca?",
-      a: "Sí. El Mercado de Abastos, justo frente al apartamento, tiene zona de aparcamiento municipal. En temporada alta también recomendamos el Recinto Ferial, gratuito y con mucha capacidad.",
-      pending: false,
-    },
-    {
-      q: "¿Hay parking cerca?",
-      a: "Sí. Además del aparcamiento municipal del Mercado de Abastos frente al apartamento, hay varias zonas de parking en los alrededores. En temporada alta recomendamos el Recinto Ferial, gratuito y con amplia capacidad.",
+      a: "Sí. El Mercado de Abastos, justo frente al apartamento, tiene zona de aparcamiento municipal. Además hay varias zonas de parking privadas en los alrededores. En temporada alta recomendamos el Recinto Ferial, gratuito y con amplia capacidad.",
       pending: false,
     },
     {
@@ -330,7 +325,7 @@ export const faq = {
       pending: false,
     },
     {
-      q: "¿Se puede fumar en la terraza?",
+      q: "¿Se puede fumar en el apartamento o terraza?",
       a: "No se permite fumar en el apartamento, incluida la terraza. Es una norma de la casa para garantizar la comodidad de todos los huéspedes.",
       pending: false,
     },
@@ -367,6 +362,41 @@ export const faq = {
     {
       q: "¿Aceptáis estancias largas o reservas de una noche?",
       a: "Sí, aceptamos tanto estancias largas como reservas de última hora si hay disponibilidad, especialmente fuera de temporada alta. Escríbenos tus fechas y te preparamos una oferta a medida.",
+      pending: false,
+    },
+    {
+      q: "¿Cómo funciona el check-in autónomo?",
+      a: "Si llegas fuera de horario o prefieres no coordinar, puedes hacer el check-in de forma autónoma con la caja de llaves. Te enviaremos el código antes de tu llegada.",
+      pending: false,
+    },
+    {
+      q: "¿Hay calefacción para invierno?",
+      a: "Sí. El apartamento tiene calefacción independiente para que estés cómodo también en los meses fríos.",
+      pending: false,
+    },
+    {
+      q: "¿Hay cuna disponible?",
+      a: "Sí, bajo petición. Avísanos antes de tu llegada para tenerla lista.",
+      pending: false,
+    },
+    {
+      q: "¿El apartamento es accesible para personas con movilidad reducida?",
+      a: "El apartamento está en primera planta y se accede solo por escaleras (sin ascensor). No es apto para sillas de ruedas.",
+      pending: false,
+    },
+    {
+      q: "¿Hay que pagar impuesto turístico?",
+      a: "No. En Conil de la Frontera no se cobra tasa turística a los huéspedes.",
+      pending: false,
+    },
+    {
+      q: "¿Se puede pagar con tarjeta?",
+      a: "Sí. Aceptamos pago con tarjeta de crédito y transferencia bancaria.",
+      pending: false,
+    },
+    {
+      q: "¿Tiene lavadora y secadora?",
+      a: "Hay lavadora integrada en la cocina. No hay secadora, pero en la terraza hay tendedero y el clima de Conil seca la ropa en pocas horas.",
       pending: false,
     },
   ],

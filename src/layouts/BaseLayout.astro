@@ -462,5 +462,105 @@ const cspPolicy = [
         });
       })();
     </script>
+
+    <!-- Analytics: view transitions, section views, outbound links, UTM -->
+    <script is:inline>
+      (function () {
+        // ── 1. View transition page_view ─────────────────────────────────────
+        // GA4 only fires the initial page_view. Astro view transitions
+        // need an explicit re-fire.
+        let initialLoad = true;
+        document.addEventListener('astro:page-load', function () {
+          if (initialLoad) {
+            initialLoad = false;
+            // First load: GA already fired page_view, just capture UTM.
+            captureUtm();
+            return;
+          }
+          if (window.gtag) {
+            window.gtag('event', 'page_view', {
+              page_location: window.location.href,
+              page_title: document.title,
+            });
+          }
+          setupSectionTracking();
+        });
+
+        // ── 2. Section view tracking ─────────────────────────────────────────
+        let sectionObserver = null;
+        function setupSectionTracking() {
+          if (sectionObserver) sectionObserver.disconnect();
+          const sections = document.querySelectorAll('[data-track-section]');
+          if (!sections.length) return;
+          sectionObserver = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                  const el = entry.target;
+                  const id = el.id || el.getAttribute('data-track-section');
+                  const name = el.getAttribute('data-track-section-name') || id;
+                  if (window.gtag) {
+                    window.gtag('event', 'section_view', {
+                      section_id: id,
+                      section_name: name,
+                    });
+                  }
+                  sectionObserver.unobserve(el);
+                }
+              });
+            },
+            { threshold: 0.25 }
+          );
+          sections.forEach(function (s) { sectionObserver.observe(s); });
+        }
+        // Also run on first load (after GA is ready)
+        if (document.readyState === 'complete') {
+          setupSectionTracking();
+        } else {
+          window.addEventListener('load', setupSectionTracking);
+        }
+
+        // ── 3. Outbound link tracking ────────────────────────────────────────
+        document.addEventListener('click', function (e) {
+          const link = e.target.closest('a[href]');
+          if (!link) return;
+          const href = link.getAttribute('href') || '';
+          // Skip anchors, javascript:, mailto:, tel:
+          if (href.startsWith('#') || href.startsWith('javascript:') ||
+              href.startsWith('mailto:') || href.startsWith('tel:')) return;
+          // Check if external
+          const isExternal =
+            link.hostname &&
+            link.hostname !== window.location.hostname &&
+            !link.hostname.endsWith('.brisadeconil.com');
+          if (isExternal && window.gtag) {
+            window.gtag('event', 'outbound_link', {
+              link_url: link.href,
+              link_text: link.textContent.trim().slice(0, 100),
+            });
+          }
+        });
+
+        // ── 4. UTM capture ───────────────────────────────────────────────────
+        function captureUtm() {
+          if (!window.gtag) return;
+          const params = new URLSearchParams(window.location.search);
+          const utmSource = params.get('utm_source');
+          const utmMedium = params.get('utm_medium');
+          const utmCampaign = params.get('utm_campaign');
+          const utmTerm = params.get('utm_term');
+          const utmContent = params.get('utm_content');
+          if (utmSource || utmMedium || utmCampaign || utmTerm || utmContent) {
+            window.gtag('event', 'utm_capture', {
+              utm_source: utmSource || '(direct)',
+              utm_medium: utmMedium || '(none)',
+              utm_campaign: utmCampaign || '(none)',
+              utm_term: utmTerm || '(none)',
+              utm_content: utmContent || '(none)',
+            });
+          }
+        }
+      })();
+    </script>
   </body>
 </html>

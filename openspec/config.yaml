@@ -1,0 +1,42 @@
+schema: spec-driven
+
+# Project context for brisadeconil
+context: |
+  Tech stack: Astro v7, React 19, TypeScript strict, CSS Custom Properties (no Tailwind)
+  Hosting: GitHub Pages (static only, no server-side rendering)
+  Domain: vacation rental apartment in Conil de la Frontera, Spain
+  Locales: es (canonical, served at /), en (/en/), de (/de/)
+  
+  Architecture:
+  - Content lives in src/content/{es,en,de}.ts — single source of truth for copy
+  - Components consume content via props from templates in src/templates/
+  - Blog uses content collections (markdown) with Zod validation
+  - Gallery uses PhotoSwipe lightbox with sharp-optimized images
+  - API endpoint at /api/contact.ts (Web3Forms for form submission)
+  
+  Conventions:
+  - No secrets in client code (only PUBLIC_WEB3FORMS_KEY)
+  - CSS custom properties for design system (navy/chalk/teal palette)
+  - No framework CSS (no Tailwind, no Bootstrap)
+  - TypeScript strict mode, no `any` without justification
+  - Commits in English, conventional prefixes (feat:, fix:, chore:, perf:)
+  
+  Key files:
+  - src/content/{es,en,de}.ts — all visible copy
+  - src/i18n/locales.ts — locale registry and URL prefixes
+  - src/templates/ — page templates (HomePage, BlogIndexPage, BlogPostPage, SeoLandingPage)
+  - src/components/ — Astro sections + React islands
+  - scripts/optimize-gallery.mjs — image pipeline (sharp)
+
+# Per-artifact rules
+rules:
+  proposal:
+    - Keep proposals under 400 words
+    - Always include "Non-goals" section
+    - Consider GitHub Pages static hosting limitations
+  tasks:
+    - Break tasks into chunks of max 2 hours
+    - Mark tasks that touch content files vs code files
+  specs:
+    - Use SHALL for requirements (not MUST or SHOULD)
+    - Include concrete scenarios with given/when/then

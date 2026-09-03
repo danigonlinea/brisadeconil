@@ -285,11 +285,6 @@ export const faq = {
       pending: false,
     },
     {
-      q: "Ist Rauchen erlaubt?",
-      a: "Rauchen ist in der Wohnung nicht erlaubt.",
-      pending: false,
-    },
-    {
       q: "Wie sind die Stornierungsbedingungen?",
       a: "Du kannst bis 7 Tage vor Anreise kostenlos stornieren. Danach ist der Betrag nicht erstattbar.",
       pending: false,
@@ -311,12 +306,7 @@ export const faq = {
     },
     {
       q: "Gibt es Parkmöglichkeiten in der Nähe?",
-      a: "Ja. Der Mercado de Abastos direkt gegenüber hat städtisches Parken. In der Hochsaison empfehlen wir das Recinto Ferial, das kostenlos ist und viel Platz bietet.",
-      pending: false,
-    },
-    {
-      q: "Gibt es private Parkzonen in der Nähe?",
-      a: "Ja. Zusätzlich zum städtischen Parkplatz am Mercado de Abastos gegenüber gibt es mehrere Parkzonen in der Nähe. In der Hochsaison empfehlen wir das Recinto Ferial, das kostenlos und geräumig ist.",
+      a: "Ja. Der Mercado de Abastos direkt gegenüber hat städtisches Parken. Zusätzlich gibt es mehrere private Parkzonen in der Nähe. In der Hochsaison empfehlen wir das Recinto Ferial, das kostenlos und geräumig ist.",
       pending: false,
     },
     {
@@ -325,7 +315,7 @@ export const faq = {
       pending: false,
     },
     {
-      q: "Ist Rauchen auf der Terrasse erlaubt?",
+      q: "Ist Rauchen in der Wohnung oder auf der Terrasse erlaubt?",
       a: "Rauchen ist in der Wohnung nicht erlaubt, einschließlich der Terrasse. Dies ist eine Hausregel, um den Komfort aller Gäste zu gewährleisten.",
       pending: false,
     },
@@ -362,6 +352,41 @@ export const faq = {
     {
       q: "Nehmt ihr lange Aufenthalte oder Buchungen für eine Nacht an?",
       a: "Ja, wir akzeptieren sowohl lange Aufenthalte als auch Last-Minute-Buchungen, wenn Verfügbarkeit besteht — besonders außerhalb der Hochsaison. Schreib uns deine Daten und wir erstellen ein individuelles Angebot.",
+      pending: false,
+    },
+    {
+      q: "Wie funktioniert der Self-Check-in?",
+      a: "Wenn du außerhalb der Zeiten ankommst oder dich nicht abstimmen möchtest, kannst du den Self-Check-in über die Schlüsselbox nutzen. Den Code schicken wir dir vor deiner Ankunft.",
+      pending: false,
+    },
+    {
+      q: "Gibt es Heizung für den Winter?",
+      a: "Ja. Die Wohnung hat eine eigene Heizung, damit es auch in den kalten Monaten gemütlich ist.",
+      pending: false,
+    },
+    {
+      q: "Ist ein Kinderbett verfügbar?",
+      a: "Ja, auf Anfrage. Sag uns vor deiner Ankunft Bescheid, damit wir es vorbereiten können.",
+      pending: false,
+    },
+    {
+      q: "Ist die Wohnung für Menschen mit eingeschränkter Mobilität geeignet?",
+      a: "Die Wohnung liegt im ersten Stock und ist nur über eine Treppe erreichbar (ohne Aufzug). Sie eignet sich nicht für Rollstühle.",
+      pending: false,
+    },
+    {
+      q: "Muss ich eine Tourismussteuer zahlen?",
+      a: "Nein. In Conil de la Frontera wird von Gästen keine Tourismussteuer erhoben.",
+      pending: false,
+    },
+    {
+      q: "Kann ich mit Karte zahlen?",
+      a: "Ja. Wir akzeptieren Kreditkartenzahlung und Banküberweisung.",
+      pending: false,
+    },
+    {
+      q: "Gibt es Waschmaschine und Trockner?",
+      a: "Es gibt eine in die Küche integrierte Waschmaschine. Keinen Trockner, aber auf der Terrasse gibt es eine Wäscheleine und Conils Klima trocknet die Wäsche in wenigen Stunden.",
       pending: false,
     },
   ],
