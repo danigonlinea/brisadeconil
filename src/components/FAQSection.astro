@@ -2,7 +2,6 @@
 /**
  * FAQSection — wraps FAQAccordion React island.
  */
-import FAQAccordion from './FAQAccordion';
 import type { SiteContent } from '../content/index';
 
 interface Props {
@@ -34,7 +33,41 @@ const faqSchema = {
     </header>
 
     <div class="faq-body reveal reveal-delay-1">
-      <FAQAccordion items={faq.items} pendingBadge={faq.pendingBadge} client:visible />
+      <div class="faq-list">
+        {faq.items.map((item) => (
+          <details class="faq-item">
+            <summary class="faq-trigger">
+              <span class="faq-question">{item.q}</span>
+              <span class="faq-chevron" aria-hidden="true">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </span>
+            </summary>
+            <div class="faq-panel">
+              <div class="faq-answer">
+                {item.pending ? (
+                  <span class="faq-pending">
+                    <span>{item.a.replace(/\[PENDIENTE[^\]]*\]\.?/, '').trim()}</span>{' '}
+                    <span class="placeholder-badge">{faq.pendingBadge}</span>
+                  </span>
+                ) : (
+                  <span>{item.a}</span>
+                )}
+              </div>
+            </div>
+          </details>
+        ))}
+      </div>
     </div>
   </div>
 
@@ -61,14 +94,14 @@ const faqSchema = {
     margin-bottom: var(--sp-10);
   }
 
-  /* FAQ list styles (global — React island) */
-  :global(.faq-list) {
+  /* FAQ list styles (pure HTML details/summary) */
+  .faq-list {
     display: flex;
     flex-direction: column;
     gap: var(--sp-3);
   }
 
-  :global(.faq-item) {
+  .faq-item {
     background-color: var(--card-bg);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
@@ -76,11 +109,11 @@ const faqSchema = {
     transition: box-shadow var(--t-base);
   }
 
-  :global(.faq-item--open) {
+  .faq-item[open] {
     box-shadow: var(--shadow-md);
   }
 
-  :global(.faq-trigger) {
+  .faq-trigger {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -92,19 +125,24 @@ const faqSchema = {
     cursor: pointer;
     text-align: left;
     transition: background-color var(--t-fast);
+    list-style: none;
   }
 
-  :global(.faq-trigger:hover) {
+  .faq-trigger::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-trigger:hover {
     background-color: var(--bg-surface-alt);
   }
 
-  :global(.faq-trigger:focus-visible) {
+  .faq-trigger:focus-visible {
     outline: 3px solid var(--accent);
     outline-offset: -3px;
     border-radius: var(--radius-lg);
   }
 
-  :global(.faq-question) {
+  .faq-question {
     font-family: var(--font-serif);
     font-size: var(--text-base);
     font-weight: var(--fw-semibold);
@@ -113,17 +151,22 @@ const faqSchema = {
     line-height: var(--leading-snug);
   }
 
-  :global(.faq-chevron) {
+  .faq-chevron {
     color: var(--accent);
     flex-shrink: 0;
     display: flex;
+    transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  :global(.faq-panel) {
+  .faq-item[open] .faq-chevron {
+    transform: rotate(180deg);
+  }
+
+  .faq-panel {
     padding: 0 var(--sp-6) var(--sp-5);
   }
 
-  :global(.faq-answer) {
+  .faq-answer {
     font-size: var(--text-sm);
     color: var(--text-secondary);
     line-height: var(--leading-relaxed);
@@ -134,7 +177,7 @@ const faqSchema = {
     gap: var(--sp-2);
   }
 
-  :global(.faq-pending) {
+  .faq-pending {
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
