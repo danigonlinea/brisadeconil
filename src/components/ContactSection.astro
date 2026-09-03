@@ -50,7 +50,7 @@ const { contact } = Astro.props;
 
       <!-- Right: form island -->
       <div class="contact-form-wrapper">
-        <ContactForm client:idle contact={contact} />
+        <ContactForm client:load contact={contact} />
       </div>
     </div>
   </div>
