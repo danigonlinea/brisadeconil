@@ -85,7 +85,7 @@ function validateForm(data: FormData, contact: ContactText): FieldError {
 // Rollup dead-code-eliminates the whole branch (WEB3FORMS_ENDPOINT included),
 // so auditing a LOCAL bundle wrongly suggests the fallback is missing — CI
 // production builds always have the key injected.
-const SERVER_ENDPOINT = "/api/contact";
+const SERVER_ENDPOINT = "/api/contact/";
 const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
 
 interface ContactPayload {
