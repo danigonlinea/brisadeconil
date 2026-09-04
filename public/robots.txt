@@ -14,4 +14,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://www.brisadeconil.com/sitemap.xml
+Sitemap: https://www.brisadeconil.com/sitemap-index.xml
