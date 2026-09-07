@@ -125,6 +125,9 @@ jobs:
           # Pages; se mantiene por si se migra a hosting con servidor.
           WEB3FORMS_ACCESS_KEY: ${{ secrets.WEB3FORMS_KEY }}
 
+      - name: Audit built pages for SEO regressions
+        run: python3 scripts/audit-build-seo.py dist
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v5
         with:
