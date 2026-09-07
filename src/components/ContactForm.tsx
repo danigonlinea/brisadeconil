@@ -1,13 +1,13 @@
 /**
  * ContactForm — React island.
  * Service: Web3Forms (https://web3forms.com)
- * Form submits to the server-side `/api/contact` endpoint.
  *
- * Submission strategy:
- * 1. POST to /api/contact (server-side endpoint; requires WEB3FORMS_ACCESS_KEY).
- * 2. If that fails (e.g. GitHub Pages static hosting where the endpoint does
- *    not exist at runtime), fall back to a direct POST to api.web3forms.com
- *    using the client-safe PUBLIC_WEB3FORMS_KEY (it only routes emails).
+ * Submission: direct POST to api.web3forms.com using the client-safe
+ * PUBLIC_WEB3FORMS_KEY. GitHub Pages is static-only, so there is no
+ * server-side endpoint to hit first.
+ *
+ * Anti-spam: client-side honeypot (hidden "website" field). Bots fill it;
+ * the handler pretends success without sending anything.
  *
  * All UI strings arrive via the `contact` prop (the per-locale content
  * slice), so each pre-rendered route shows its own language with no
@@ -80,150 +80,6 @@ function validateForm(data: FormData, contact: ContactText): FieldError {
   return errors;
 }
 
-// NOTE: the Web3Forms fallback below survives bundling only if
-// PUBLIC_WEB3FORMS_KEY exists at build time; in local builds without .env,
-// Rollup dead-code-eliminates the whole branch (WEB3FORMS_ENDPOINT included),
-// so auditing a LOCAL bundle wrongly suggests the fallback is missing — CI
-// production builds always have the key injected.
-const SERVER_ENDPOINT = "/api/contact/";
-const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
-
-interface ContactPayload {
-  subject: string;
-  from_name: string;
-  name: string;
-  email: string;
-  checkin: string;
-  checkout: string;
-  message: string;
-  website: string;
-}
-
-function buildContactPayload(form: FormData): ContactPayload {
-  return {
-    subject: `Nueva consulta de ${form.name} — Brisa de Conil`,
-    from_name: "Brisa de Conil Web",
-    name: form.name,
-    email: form.email,
-    checkin: form.checkin || "No indicada",
-    checkout: form.checkout || "No indicada",
-    message: form.message || "(sin mensaje adicional)",
-    website: form.website,
-  };
-}
-
-function toWeb3FormsBody(
-  payload: ContactPayload,
-  accessKey: string,
-): Record<string, string> {
-  return {
-    access_key: accessKey,
-    subject: payload.subject,
-    from_name: payload.from_name,
-    name: payload.name,
-    email: payload.email,
-    "Fecha de entrada": payload.checkin,
-    "Fecha de salida": payload.checkout,
-    message: payload.message,
-    website: payload.website,
-  };
-}
-
-async function postJson(url: string, body: unknown): Promise<Response> {
-  return fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    body: JSON.stringify(body),
-  });
-}
-
-/**
- * Why a submission attempt failed.
- * - "server": an HTTP endpoint responded but with a non-OK status or a
- *   non-success body (e.g. /api/contact 404, or Web3Forms 4xx/5xx).
- * - "rateLimited": OUR /api/contact endpoint answered 429 (sliding-window
- *   limit reached). Scoped to the server leg only — a Web3Forms failure
- *   stays generic even if it happened to be a 429.
- * - "network": the request itself threw (unreachable, DNS, CORS) or the body
- *   wasn't JSON (e.g. an HTML error page).
- */
-type FailureReason = "network" | "server" | "rateLimited";
-
-/** Reason attached to a submit result: the path that succeeded, or why it failed. */
-type SubmitReason = FailureReason | "fallback";
-
-interface SubmitResult {
-  ok: boolean;
-  /** "server"/"fallback" when ok (which path delivered it); failure cause when !ok. */
-  reason: SubmitReason;
-}
-
-/**
- * Classify a submission response: "ok" on HTTP 2xx + { success: true },
- * otherwise the granular failure reason.
- */
-async function classifyResponse(res: Response): Promise<"ok" | FailureReason> {
-  if (!res.ok) return "server";
-  try {
-    const data = await res.json();
-    return data.success ? "ok" : "server";
-  } catch {
-    return "network";
-  }
-}
-
-async function submitViaServer(payload: ContactPayload): Promise<SubmitResult> {
-  const res = await postJson(SERVER_ENDPOINT, payload).catch(() => null);
-  if (!res) return { ok: false, reason: "network" };
-  // 429 comes from our own rate limiter (see FailureReason): detect it here,
-  // on the server leg only, and let submitContact stop the chain so the
-  // Web3Forms fallback can't bypass the limit.
-  if (res.status === 429) return { ok: false, reason: "rateLimited" };
-  const outcome = await classifyResponse(res);
-  return outcome === "ok"
-    ? { ok: true, reason: "server" }
-    : { ok: false, reason: outcome };
-}
-
-async function submitViaWeb3Forms(
-  payload: ContactPayload,
-  accessKey: string,
-): Promise<SubmitResult> {
-  const res = await postJson(
-    WEB3FORMS_ENDPOINT,
-    toWeb3FormsBody(payload, accessKey),
-  ).catch(() => null);
-  if (!res) return { ok: false, reason: "network" };
-  const outcome = await classifyResponse(res);
-  return outcome === "ok"
-    ? { ok: true, reason: "fallback" }
-    : { ok: false, reason: outcome };
-}
-
-async function submitContact(payload: ContactPayload): Promise<SubmitResult> {
-  // 1) Server-side endpoint first (needs WEB3FORMS_ACCESS_KEY at runtime).
-  const serverResult = await submitViaServer(payload);
-  if (serverResult.ok) return serverResult;
-
-  // Rate-limited by our own endpoint: stop here and surface the dedicated
-  // message. Falling back to a direct Web3Forms POST would bypass the
-  // server-side limit entirely, defeating its purpose.
-  if (serverResult.reason === "rateLimited") return serverResult;
-
-  // 2) Static-hosting fallback: direct Web3Forms POST with the client-safe key.
-  //
-  // Tradeoff: on a future server host, if /api/contact forwards the lead but
-  // responds non-OK/non-JSON, the fallback re-sends the same lead (duplicate
-  // email risk). Accepted for the two-step design; dormant on GitHub Pages,
-  // where the endpoint never runs.
-  const publicKey = import.meta.env.PUBLIC_WEB3FORMS_KEY;
-  if (!publicKey) return serverResult;
-  return submitViaWeb3Forms(payload, publicKey);
-}
-
 function addDaysToDate(value: string, days: number) {
   const [year, month, day] = value.split("-").map(Number);
   const date = new Date(year, month - 1, day);
@@ -251,8 +107,6 @@ export default function ContactForm({ contact }: ContactFormProps) {
   });
   const [errors, setErrors] = useState<FieldError>({});
   const [state, setState] = useState<FormState>("idle");
-  /** True when the last failure was our endpoint's 429 (dedicated message). */
-  const [rateLimited, setRateLimited] = useState(false);
 
   function handleChange(
     e: React.ChangeEvent<
@@ -279,8 +133,8 @@ export default function ContactForm({ contact }: ContactFormProps) {
   async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
     e.preventDefault();
     // Honeypot anti-bot: si el campo oculto "website" viene relleno es un bot.
-    // Fingimos éxito para que el bot no insista, pero NO enviamos nada (ni vía
-    // server-side ni al fallback de Web3Forms), evitando spam y coste.
+    // Fingimos éxito para que el bot no insista, pero NO enviamos nada a
+    // Web3Forms, evitando spam y coste.
     if (form.website.trim() !== "") {
       setState("success");
       return;
@@ -300,15 +154,52 @@ export default function ContactForm({ contact }: ContactFormProps) {
 
     trackEvent("form_submit", { form: "contact" });
     setState("sending");
-    const result = await submitContact(buildContactPayload(form));
-    if (result.ok) {
-      trackEvent("generate_lead", { form: "contact", method: "Web3Forms" });
-      setState("success");
-    } else {
-      setRateLimited(result.reason === "rateLimited");
+
+    const publicKey = import.meta.env.PUBLIC_WEB3FORMS_KEY;
+    if (!publicKey) {
       trackEvent("form_submit_error", {
         form: "contact",
-        reason: result.reason,
+        reason: "missing_key",
+      });
+      setState("error");
+      return;
+    }
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: publicKey,
+          subject: `Nueva consulta de ${form.name} — Brisa de Conil`,
+          from_name: "Brisa de Conil Web",
+          name: form.name,
+          email: form.email,
+          "Fecha de entrada": form.checkin || "No indicada",
+          "Fecha de salida": form.checkout || "No indicada",
+          message: form.message || "(sin mensaje adicional)",
+          website: form.website,
+        }),
+      });
+
+      const data = await res.json();
+      if (res.ok && data.success) {
+        trackEvent("generate_lead", { form: "contact", method: "Web3Forms" });
+        setState("success");
+      } else {
+        trackEvent("form_submit_error", {
+          form: "contact",
+          reason: "server",
+        });
+        setState("error");
+      }
+    } catch {
+      trackEvent("form_submit_error", {
+        form: "contact",
+        reason: "network",
       });
       setState("error");
     }
@@ -563,9 +454,7 @@ export default function ContactForm({ contact }: ContactFormProps) {
             <line x1="12" y1="8" x2="12" y2="12" />
             <line x1="12" y1="16" x2="12.01" y2="16" />
           </svg>
-          {rateLimited
-            ? contact.errors.tooManyRequests
-            : contact.errorMessage}
+          {contact.errorMessage}
         </div>
       )}
 

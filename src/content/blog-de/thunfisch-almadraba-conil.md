@@ -47,6 +47,6 @@ Und ein Tipp, den viele Gäste nicht kennen: **frag nach dem *morcilla de atún*
 
 Und wenn du ihn frisch kaufen willst: [im Mercado de Abastos gibt es den besten](/de/blog/markt-von-conil/) — dort kaufe ich meine Stücke für zu Hause.
 
-Wenn du ankommst und Hunger auf Thunfisch hast, schreib uns — wir geben dir die aktuellsten Adressen für deine Daten. [Verfügbarkeit fragen](/de/#contacto).
+Wer zu Thunfisch-Saison anreist, findet auf der [Kontaktseite](/de/#contacto) Informationen zur Verfügbarkeit.
 
 Und wenn du erst mal wissen willst, welchen Strand du am ersten Tag besuchen sollst, [hast du hier die Profile](/de/blog/straende-von-conil/) — Familie, Surfer, Hund oder Ruhe vor der Tür.

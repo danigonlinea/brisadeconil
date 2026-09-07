@@ -400,14 +400,14 @@ const cspPolicy = [
         if (decision === 'rejected') { return; }
 
         // No decision yet → show the banner and let the user choose.
-        // Scrolling down also counts as acceptance ("scroll = consent").
+        // Only explicit button clicks count as consent — scrolling does not.
         onReady(function () {
           const banner = document.getElementById('cookie-banner');
           if (!banner) return;
           banner.hidden = false;
 
           let decided = false;
-          function decide(value, viaScroll) {
+          function decide(value) {
             if (decided) return;
             decided = true;
             writeConsent(value);
@@ -416,26 +416,18 @@ const cspPolicy = [
               try {
                 if (window.gtag) {
                   window.gtag('event', 'cookie_consent', {
-                    decision: viaScroll ? 'accepted_scroll' : 'accepted',
+                    decision: 'accepted',
                   });
                 }
               } catch { /* noop: gtag no disponible */ }
             }
             banner.hidden = true;
-            window.removeEventListener('scroll', onScroll);
           }
 
           const accept = banner.querySelector('[data-cookie-accept]');
           const reject = banner.querySelector('[data-cookie-reject]');
-          if (accept) accept.addEventListener('click', function () { decide('accepted', false); });
-          if (reject) reject.addEventListener('click', function () { decide('rejected', false); });
-
-          // Implicit consent: a meaningful downward scroll counts as acceptance.
-          const threshold = Math.round(window.innerHeight * 0.4);
-          function onScroll() {
-            if (window.scrollY > threshold) decide('accepted', true);
-          }
-          window.addEventListener('scroll', onScroll, { passive: true });
+          if (accept) accept.addEventListener('click', function () { decide('accepted'); });
+          if (reject) reject.addEventListener('click', function () { decide('rejected'); });
         });
       })();
     </script>

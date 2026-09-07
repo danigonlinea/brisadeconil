@@ -7,7 +7,7 @@ tags: ["dogs", "beaches", "pets", "guide"]
 
 One of the questions guests ask me most before booking is: *"and dogs? Can we go to the beach with them?"*.
 
-The short answer: **it depends on the season and the beach**. The long one I'll tell you here, with the real rules and tricks I've learned from living in Conil year-round.
+The short answer: **it depends on the season and the beach**. The long answer is here, with the real rules and tricks from living in Conil year-round.
 
 ## The regulations: in-season vs. off-season
 
@@ -15,7 +15,7 @@ During the **bathing season** (approximately May to October), regulations from t
 
 **Off-season** (November to April), things change: many beaches allow dogs with fewer restrictions, and some even have designated areas for them.
 
-My advice: **write before booking** with your exact dates. I'll tell you what's possible and what's not on those days, no surprises.
+My advice: **check the rules for your exact dates before booking**. Regulations change by season and section, so it's worth confirming what's possible on those days.
 
 ## Beaches where dogs are allowed (off-season)
 
@@ -29,7 +29,7 @@ If you're traveling in peak season with your dog, all is not lost:
 
 1. **Early morning walks along the coast**: before 10 AM, many promenade areas and beach accesses are fine.
 2. **Hiking trails near the sea**: the Roche cliffs and the route to Fuente del Gallo allow dogs and offer spectacular views.
-3. **Beaches in neighboring towns**: some nearby municipalities have more relaxed rules. Ask me and I'll share options.
+3. **Beaches in neighboring towns**: some nearby municipalities have more relaxed rules worth researching.
 
 ## What you should know if you visit Conil with your dog
 

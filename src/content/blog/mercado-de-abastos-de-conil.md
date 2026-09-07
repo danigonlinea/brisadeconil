@@ -7,7 +7,7 @@ tags: ["gastronomia", "mercado", "consejos"]
 
 Hay huéspedes que me preguntan por restaurantes. Y hay huéspedes que me preguntan por el mercado. A los segundos les digo la verdad: **acaban comiendo mejor y más barato que nadie**.
 
-El **Mercado de Abastos** está justo enfrente del apartamento, cruzando la carretera por el paso de peatones — y si quieres saber qué hacer con el atún que compres aquí, [te cuento cómo lo cocino yo](/blog/atun-rojo-de-almadraba-en-conil/). y es, sin exagerar, mi lugar favorito del pueblo. No es una atracción turística: es donde compra la gente de aquí, con las mismas voces de siempre y el pescado que desembarcó esa madrugada.
+El **Mercado de Abastos** está justo enfrente del apartamento, cruzando la carretera por el paso de peatones — y si quieres saber qué hacer con el atún que compres aquí, [aquí va cómo lo cocino yo](/blog/atun-rojo-de-almadraba-en-conil/). y es, sin exagerar, mi lugar favorito del pueblo. No es una atracción turística: es donde compra la gente de aquí, con las mismas voces de siempre y el pescado que desembarcó esa madrugada.
 
 ## Lo primero: cuándo ir
 

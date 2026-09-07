@@ -5,7 +5,7 @@ pubDate: "2026-08-20"
 tags: ["gastronomie", "markt", "tipps"]
 translations:
   es: "mercado-de-abastos-de-conil"
-  en: "conil-market-abastos"
+  en: "conil-food-market-guide"
 ---
 
 Es gibt Gäste, die mich nach Restaurants fragen. Und es gibt Gäste, die mich nach dem Markt fragen. Den zweiten sage ich die Wahrheit: **Sie enden besser und günstiger als alle anderen**.
@@ -62,6 +62,6 @@ Thunfisch in 2 cm dicke Stücke schneiden. Pfanne sehr heiß, Öl, jede Seite 90
 
 ## Ein Nachbarschaftstipp
 
-Wenn du im Apartment kochst und etwas übrig hast, **stell es in den Gemeinschaftskühlschrank im Markt** — nein, Scherz. Aber frag mich, wo du die besten Reste verkaufen kannst, wenn du zu viel gekauft hast.
+Wenn du im Apartment kochst und etwas übrig hast, **stell es in den Gemeinschaftskühlschrank im Markt** — nein, Scherz. Frag am Markt, wo du die besten Reste kaufen kannst, wenn du zu viel gekauft hast.
 
 Und wenn du erst mal wissen willst, wo du mit dem Essen hin sollst, [hast du hier den Strand-Führer](/de/blog/straende-von-conil/) — manche Strände haben die besten Strandbars zum Essen mit Meerblick.

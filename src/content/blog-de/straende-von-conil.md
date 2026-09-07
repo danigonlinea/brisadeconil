@@ -40,7 +40,7 @@ Kurz zum Wind, denn hier bestimmt er alles: **Levante** (aus Osten) bringt Welle
 
 ## Mit Hund
 
-Das ist die häufigste Frage im Frühling und Herbst. Die Regelung ändert sich je nach Saison und Abschnitt, deshalb die ehrliche Antwort: **außerhalb der Hauptsaison ist es viel einfacher**, und in den Sommermonaten gelten an den Stadtstränden Einschränkungen. Wenn du mit Hund kommst, schreib uns vorher — wir sagen dir, wie die Lage in deinen Daten tatsächlich ist, statt dich mit einer veralteten Information reinlaufen zu lassen.
+Das ist die häufigste Frage im Frühling und Herbst. Die Regelung ändert sich je nach Saison und Abschnitt, deshalb die ehrliche Antwort: **außerhalb der Hauptsaison ist es viel einfacher**, und in den Sommermonaten gelten an den Stadtstränden Einschränkungen. Wer mit Hund reist, sollte die Regeln für den genauen Reisezeitraum prüfen — die Regelungen ändern sich je nach Saison und Abschnitt.
 
 ## Kurzfassung
 

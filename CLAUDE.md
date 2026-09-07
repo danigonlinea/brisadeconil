@@ -21,7 +21,7 @@ Node `>=22.12.0`. Package manager: `npm`.
 
 1. **Contenido en `src/content/{locale}.ts`.** Los componentes `.astro`/`.tsx` van **libres de copy**. Cambia valores, **nunca las claves**. Locale activo: `es` (cambiar en `src/content/index.ts`).
 2. **Ficheros auto-generados — no editar a mano:** `src/data/gallery-manifest.ts` y todo `public/gallery/optimized/`. Se generan con `npm run optimize:gallery`. Tampoco edites los originales `public/gallery/*.jpg`.
-3. **Secretos fuera del cliente.** El formulario postea a `/api/contact`, que usa `process.env.WEB3FORMS_ACCESS_KEY` (server-only). `PUBLIC_WEB3FORMS_KEY` es la única key permitida en cliente. Nunca commitees `.env`.
+3. **Secretos fuera del cliente.** El formulario envía directo a `api.web3forms.com` con `PUBLIC_WEB3FORMS_KEY`. El endpoint `/api/contact` existe pero es dormant en GitHub Pages. Nunca commitees `.env`.
 4. **Sin Tailwind ni framework CSS.** Usa los CSS Custom Properties de `src/styles/global.css` (tokens semánticos como `--bg-surface`, `--text-base`, `--accent`).
 5. **TypeScript strict** activado. Evita `any`.
 6. **Commits** en inglés con prefijo de tipo (`feat:`, `fix:`, `chore:`, `perf:`, `docs:`). Rama de deploy: `main`.
@@ -35,4 +35,4 @@ Node `>=22.12.0`. Package manager: `npm`.
 
 ## Pendiente (no asumir resuelto)
 
-CSP y cabeceras del hosting, logging/monitorización de `/api/contact` y testimonios reales (`public/og-image.jpg` ya existe). ~~Auditoría XSS de `translations.ts`~~ — **Hecho**: sanitizer allowlist verificado (tags permitidos, sin `on*`, esquemas href validados); el sanitizador es defensivo: hoy no hay valores HTML en las traducciones (0 usos de `data-i18n-html` fuera del sink), DOMPurify no necesario (2026-08-24). ~~`npm audit` + Dependabot/Renovate~~ — **Hecho**: `.github/dependabot.yml` configurado (npm + github-actions, mensual) (2026-08-24). Ver §10 de `AGENTS.md`.
+CSP y cabeceras HTTP adicionales del hosting (GitHub Pages no permite configurarlas; ya existe CSP via `<meta>`), testimonios reales. Ver §10 de `AGENTS.md` para el historial completo.
