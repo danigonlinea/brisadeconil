@@ -116,13 +116,17 @@ jobs:
         run: npm run build
         env:
           # GitHub secret: WEB3FORMS_KEY (Settings > Secrets and variables > Actions)
-          # WEB3FORMS_ACCESS_KEY: server-side; la consume el endpoint /api/contact
-          # (src/pages/api/contact.ts) para reenviar el formulario a Web3Forms.
-          WEB3FORMS_ACCESS_KEY: ${{ secrets.WEB3FORMS_KEY }}
-          # PUBLIC_WEB3FORMS_KEY: key pública (client-safe) que el build inyecta en
-          # el cliente; ContactForm la usa como fallback cuando el endpoint
-          # server-side no está disponible (p. ej. GitHub Pages, hosting estático).
+          # PUBLIC_WEB3FORMS_KEY: key pública (client-safe) que el build inyecta
+          # en el cliente; ContactForm la envía directamente a api.web3forms.com.
+          # Es el único camino de envío en producción (GitHub Pages es estático).
           PUBLIC_WEB3FORMS_KEY: ${{ secrets.WEB3FORMS_KEY }}
+          # WEB3FORMS_ACCESS_KEY: server-only, la consume el endpoint dormant
+          # /api/contact (src/pages/api/contact.ts). No se ejecuta en GitHub
+          # Pages; se mantiene por si se migra a hosting con servidor.
+          WEB3FORMS_ACCESS_KEY: ${{ secrets.WEB3FORMS_KEY }}
+
+      - name: Audit built pages for SEO regressions
+        run: python3 scripts/audit-build-seo.py dist
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v5

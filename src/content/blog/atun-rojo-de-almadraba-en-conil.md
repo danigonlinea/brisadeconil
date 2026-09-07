@@ -59,4 +59,4 @@ Con pan y una ensalada de tomate del mercado, cena de diez. Y si vienes en mayo,
 
 Si te vas con ganas de repetir, en el casco hay tiendas que venden **conservas de atún rojo de almadraba** — ventresca en aceite, mojama, huevas. Es el recuerdo que sí se disfruta: en septiembre, abres el tarro, tostas unas rebanadas… y vuelves a estar en Conil durante diez minutos.
 
-¿Vienes en época de atún? [Escríbenos tus fechas](/#contacto) y te confirmamos disponibilidad.
+¿Vienes en época de atún? [Consulta disponibilidad para tus fechas](/#contacto).

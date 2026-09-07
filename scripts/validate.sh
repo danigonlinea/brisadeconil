@@ -50,6 +50,15 @@ if [[ "$FAST_MODE" == false ]]; then
     fail "Build falló"
   fi
   echo ""
+
+  # 3) SEO audit del build (enlaces, canonical, JSON-LD, h1)
+  echo "→ python3 scripts/audit-build-seo.py dist"
+  if python3 scripts/audit-build-seo.py dist; then
+    pass "SEO audit OK"
+  else
+    fail "SEO audit falló — revisar enlaces rotos, canonical, JSON-LD o h1"
+  fi
+  echo ""
 else
   warn "Build omitido en modo rápido"
   echo ""

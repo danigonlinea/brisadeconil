@@ -124,10 +124,10 @@ Estas reglas son **obligatorias**; romperlas rompe el build o el flujo de conten
 - La cuadrícula solo sirve hasta 1600px; el lightbox hasta 2000px. No sirvas los multi-MB originales al navegador.
 
 ### Seguridad
-- **Nunca pongas secretos en código cliente.** El formulario intenta primero `POST /api/contact` (server-side, usa `process.env.WEB3FORMS_ACCESS_KEY`) y, si falla, cae a un `POST` directo a `api.web3forms.com` con la key pública `PUBLIC_WEB3FORMS_KEY` — ese fallback es el camino que funciona en GitHub Pages (hosting estático). `PUBLIC_WEB3FORMS_KEY` es la única key que puede ir al cliente.
+- **Nunca pongas secretos en código cliente.** El formulario envía directamente a `api.web3forms.com` con la key pública `PUBLIC_WEB3FORMS_KEY`. El endpoint `/api/contact` existe en el código pero NO se ejecuta en GitHub Pages (hosting estático); se mantiene por si se migra a hosting con servidor. `PUBLIC_WEB3FORMS_KEY` es la única key que puede ir al cliente.
 - **Nunca commitees `.env`** ni claves reales. `.env` está en `.gitignore`. Existe además un grep anti-secretos en `scripts/validate.sh` y en el pre-commit.
 - Cuidado con `set:html`: su uso queda reservado a markup legítimo generado por el build (JSON-LD en `FAQSection`/`BaseLayout` e `i18n-script`). Los iconos SVG se renderizan vía el componente compartido `src/components/SvgIcon.astro` (tipado, sin inyección). Si tocas iconos, usa `SvgIcon` y añade el `name` correspondiente a su set.
-- `/api/contact` tiene sliding-window rate-limit (5 req/10 min por IP), honeypot y validación de campos.
+- `/api/contact` tiene sliding-window rate-limit (5 req/10 min por IP), honeypot y validación de campos, pero es **dormant** en GitHub Pages (el formulario lo ignora y va directo a Web3Forms).
 
 ### Estilos
 - **Sin Tailwind, sin framework CSS.** Se usan CSS Custom Properties definidos en `src/styles/global.css` (paleta navy/chalk/teal, tipografías Lora + Source Sans 3, dark mode nativo).
@@ -174,9 +174,9 @@ Para **quitar** una foto: elimina el original, quita la entrada de `GALLERY_ITEM
 
 | Variable                | Ámbito  | Dónde se usa                        | Notas                                                          |
 | ----------------------- | ------- | ----------------------------------- | -------------------------------------------------------------- |
-| `PUBLIC_WEB3FORMS_KEY`  | cliente | `src/components/ContactForm.tsx`    | Key pública; fallback del formulario con POST directo a Web3Forms. Es el camino principal en la práctica (GitHub Pages es estático; el endpoint server no corre allí). Pública-segura |
-| `WEB3FORMS_ACCESS_KEY`  | server  | `src/pages/api/contact.ts`          | Server-only. **NUNCA** en código cliente. Se mantiene para futuro hosting con servidor; hoy no es funcional en GitHub Pages |
-| `WEB3FORMS_KEY`         | CI      | `.github/workflows/deploy.yml`      | GitHub Secret inyectado en el build como `PUBLIC_WEB3FORMS_KEY` (cliente) y `WEB3FORMS_ACCESS_KEY` (server, para `/api/contact`) |
+| `PUBLIC_WEB3FORMS_KEY`  | cliente | `src/components/ContactForm.tsx`    | Key pública; el formulario envía directo a Web3Forms. Es el camino principal. Pública-segura |
+| `WEB3FORMS_ACCESS_KEY`  | server  | `src/pages/api/contact.ts`          | Server-only. **NUNCA** en código cliente. Endpoint dormant en GitHub Pages; se mantiene para futuro hosting con servidor |
+| `WEB3FORMS_KEY`         | CI      | `.github/workflows/deploy.yml`      | GitHub Secret inyectado en el build como `PUBLIC_WEB3FORMS_KEY` (cliente) y `WEB3FORMS_ACCESS_KEY` (server, dormant) |
 
 Para desarrollo local: copia `.env.example` → `.env` y rellena la key. Para CI/despliegue, define el GitHub Secret `WEB3FORMS_KEY` (Settings → Secrets and variables → Actions).
 
@@ -213,17 +213,20 @@ Atajo local: `./scripts/validate.sh` (o `--fast` para saltar el build). Ojo en m
 
 Está pendiente (no lo asumas resuelto):
 
-- **CSP y cabeceras** de seguridad en el hosting.
-- **Logging/monitorización** de `/api/contact`.
+- **CSP y cabeceras HTTP** adicionales de seguridad en el hosting (GitHub Pages no permite configurarlas; ya existe CSP via `<meta>` en `BaseLayout.astro`).
 - Sustituir **testimonios placeholder** por reseñas reales.
 
 Completado (para constancia):
 
+- ~~Consentimiento de cookies explícito~~ — eliminado scroll=consentimiento; solo aceptación/rechazo por botón. Política reescrita para describir solo lo implementado (2026-09-07).
+- ~~Simplificación del formulario~~ — envío directo a Web3Forms sin intento previo contra `/api/contact`. Endpoint server-side mantenido como dormant (2026-09-07).
+- ~~Integridad multilingüe~~ — enlaces rotos corregidos, translations cruzadas corregidas, invitaciones editoriales prohibidas eliminadas de ES/EN/DE (2026-09-07).
 - ~~Rate-limiting / anti-bot en `/api/contact`~~ — sliding-window rate-limit (5 req/10 min por IP) + honeypot + validación (2026-08-24).
 - ~~Auditoría XSS de `src/i18n/translations.ts`~~ — sanitizer allowlist verificado; el sanitizador es defensivo (2026-08-24).
 - ~~`npm audit` + Dependabot~~ — `.github/dependabot.yml` (npm + github-actions, mensual) y `npm audit` en CI (2026-08-24).
 - ~~Iconos SVG vía `set:html`~~ — centralizados en `src/components/SvgIcon.astro` (2026-08-14).
 - ~~CI con checks~~ — `astro check`, build, ESLint y `npm audit` en workflows (2026-08-24).
 - ~~`public/og-image.jpg` real (1200×630)~~ (2026-08-24).
+- ~~Logging/monitorización de `/api/contact`~~ — ya no aplica: el formulario envía directo a Web3Forms; el endpoint server-side es dormant (2026-09-07).
 
 Cuando completes un punto, márcalo en el TODO del repo y actualiza esta lista si procede.

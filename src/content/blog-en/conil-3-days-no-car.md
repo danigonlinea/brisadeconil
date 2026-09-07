@@ -38,10 +38,10 @@ My favorites: **Camarón and Puntalejos** for being accessible, **Cala Lee** if 
 
 Allow around an hour and a half to the coves area from the old quarter, and the same back. It's mostly flat: what tires you isn't the gradient, it's the sun. Go early in the morning or in the last two hours before sunset — there's no shade, no fountains, and in July-August midday is a bad idea.
 
-**Lunch.** Back in the old quarter. If you followed my advice, you already have provisions from the market — [I told you what I buy and how I cook it](/en/blog/conil-market-abastos/).
+**Lunch.** Back in the old quarter. If you followed my advice, you already have provisions from the market — [here's my guide to what I buy and how I cook it](/en/blog/conil-food-market-guide/).
 
 **Farewell evening.** Last tapas crawl through the old town. Sit somewhere with a view of the square, order a nice wine and don't rush. Tomorrow you go home, but Conil stays.
 
 Three days is enough to scratch the surface. If you want more: yes, [parking in August is a thing](/en/blog/free-parking-conil-august/) — and [here's the beach guide](/en/blog/conil-beaches-guide/) so you don't lose time on day one.
 
-Write us your dates and we'll confirm availability. [Check here](/en/#contacto).
+Check availability for your dates [here](/en/#contacto).

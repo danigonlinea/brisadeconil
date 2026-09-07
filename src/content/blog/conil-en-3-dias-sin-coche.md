@@ -11,7 +11,7 @@ Mi respuesta es siempre la misma: **nada de coche**. Conil se hace a pie. El apa
 
 ## Día 1 — El pueblo: mercado, casco y primera playa
 
-**Mañana (9:00–13:00).** Empieza donde empieza el día real de Conil: el **Mercado de Abastos**, enfrente del apartamento — [te cuento qué compro y cómo lo cocino](/blog/mercado-de-abastos-de-conil/) si quieres repetir en casa. Fruta, pescado que desembarcó esa mañana.
+**Mañana (9:00–13:00).** Empieza donde empieza el día real de Conil: el **Mercado de Abastos**, enfrente del apartamento — [aquí va mi guía de qué compro y cómo lo cocino](/blog/mercado-de-abastos-de-conil/) si quieres repetir en casa. Fruta, pescado que desembarcó esa mañana.
 
 Desde ahí, casco histórico sin mapa: **callejuelas encaladas, geranios, patios**. Sube a la **Torre Guzmán** cuando esté abierta —la vista del techo blanco llegando al mar es la foto de viaje— y pasa por la iglesia de Santa Catalina y la plaza de España, que a media mañana tiene ese vaivén tranquilo de pueblo.
 

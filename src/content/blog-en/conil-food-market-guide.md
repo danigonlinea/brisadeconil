@@ -5,7 +5,7 @@ pubDate: "2026-08-20"
 tags: ["gastronomy", "market", "tips"]
 translations:
   es: "mercado-de-abastos-de-conil"
-  de: "conil-market-abastos"
+  de: "markt-von-conil"
 ---
 
 Some guests ask me about restaurants. And some guests ask me about the market. To the second group I tell the truth: **they end up eating better and cheaper than anyone**.

@@ -40,6 +40,9 @@ jobs:
       - name: Build Astro site
         run: npm run build
 
+      - name: Audit built pages for SEO regressions
+        run: python3 scripts/audit-build-seo.py dist
+
       # Threshold rationale (2026-08-24): `npm audit` reports 0 vulnerabilities
       # today, so `moderate` — the strictest offered level — starts green and
       # only fails once a new moderate/high/critical advisory lands. Matches

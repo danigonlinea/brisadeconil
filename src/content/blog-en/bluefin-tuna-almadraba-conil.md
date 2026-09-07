@@ -40,7 +40,7 @@ And one thing I learned as a kid: **don't add salt or lemon without tasting firs
 
 ## Where I eat it
 
-I'm not going to give you a generic top-10 list; I'll give you my personal map, by situation:
+Not a generic top-10 list — my personal map, by situation:
 
 - **For midday tapas:** any of the bars in the Mercado de Abastos square. Order a tapa of tuna with onions, a beer, and you're touching the gastronomic heart of the town.
 - **To sit down and enjoy:** the old town restaurants have serious tuna menus all year round; during Tuna Route season they add special proposals. Book in August, always.
@@ -62,4 +62,4 @@ With bread and a tomato salad from the market, that's a ten-out-of-ten dinner. A
 
 If you leave wanting to do it all again, in the old town there are shops that sell **almadraba bluefin tuna preserves** — ventresca in oil, mojama, roe. It's the souvenir you actually enjoy: in September, you open the jar, toast some slices… and you're back in Conil for ten minutes.
 
-Coming during tuna season? [Write us your dates](/#contacto) and we'll confirm availability.
+Coming during tuna season? [Check availability for your dates](/#contacto).
