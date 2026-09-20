@@ -69,5 +69,6 @@ Und wenn ihr euch für Daten entscheidet, [prüft die Verfügbarkeit](/#contacto
 
 Wenn ihr um diese Zeit kommt, gibt es im Ort noch mehr zu erleben:
 
-- **10. Oktober — Espacios** (Musik): Casa de la Cultura - Teatro Municipal, 20:30 Uhr.
-- **23. Oktober — Ruta del Retinto** (Gastronomie): verschiedene Bars und Restaurants im Ort. Traditionelle und innovative Küche mit Rindfleisch der Retinta-Rasse als Starzutat.
+- **10. Oktober — Espacios** (Musik): Nacho Loring präsentiert sein Album *Espacios* vollständig in der Casa de la Cultura - Teatro Municipal (Calle Laguna s/n), 20:30 Uhr. Eine 1h 15min lange Show, organisiert von der Andalusischen Agentur für Kulturelle Institutionen und dem Stadtrat von Conil.
+
+- **23. Oktober — Ruta del Retinto** (Gastronomie): 13. Ausgabe dieser Route, die das Rindfleisch der Retinta-Rasse, eine einheimische Rasse mit geschützter Ursprungsbezeichnung, feiert. Vom 23. Oktober bis 2. November bieten Bars und Restaurants im Ort traditionelle und innovative Gerichte mit diesem Produkt. Am Wochenende des 24. und 25. Oktober finden die gastronomische Ausstellung und der Kochwettbewerb im municipalen Zelt auf den Plätzen von Torre de Guzmán und Santa Catalina statt. Organisiert vom Stadtrat von Conil und dem Verband Junger Restaurateure.

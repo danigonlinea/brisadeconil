@@ -69,5 +69,6 @@ Y si os animáis con fechas, [consulta disponibilidad](/#contacto): os espero en
 
 Si venís por esos días, hay más cosas que hacer en el pueblo:
 
-- **10 de octubre — Espacios** (música): Casa de la Cultura - Teatro Municipal, 20:30.
-- **23 de octubre — Ruta del Retinto** (gastronomía): varios bares y restaurantes del pueblo. Cocina tradicional e innovadora con la carne retinta como protagonista.
+- **10 de octubre — Espacios** (música): Nacho Loring presenta su álbum *Espacios* al completo en la Casa de la Cultura - Teatro Municipal (Calle Laguna s/n), 20:30. Espectáculo de 1h 15min organizado por la Agencia Andaluza de Instituciones Culturales y el Ayuntamiento de Conil.
+
+- **23 de octubre — Ruta del Retinto** (gastronomía): XIII edición de esta ruta que celebra la carne de retinto, raza autóctona con certificación de origen. Del 23 de octubre al 2 de noviembre, bares y restaurantes del pueblo ofrecen platos tradicionales e innovadores con este producto. El fin de semana del 24 y 25 de octubre se celebra la muestra gastronómica y el concurso culinario en la carpa municipal de las plazas de Torre de Guzmán y Santa Catalina. Organizan el Ayuntamiento de Conil y la Asociación Jóvenes Restauradores.

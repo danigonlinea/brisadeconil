@@ -69,5 +69,6 @@ And if you're up for some dates, [check availability](/#contacto): I'll be waiti
 
 If you're coming around those dates, there's more to do in town:
 
-- **10 October — Espacios** (music): Casa de la Cultura - Teatro Municipal, 8:30 PM.
-- **23 October — Ruta del Retinto** (gastronomy): various bars and restaurants around town. Traditional and innovative cuisine featuring retinta beef as the star ingredient.
+- **10 October — Espacios** (music): Nacho Loring performs his album *Espacios* in full at the Casa de la Cultura - Teatro Municipal (Calle Laguna s/n), 8:30 PM. A 1h 15min show organised by the Andalusian Agency for Cultural Institutions and Conil Town Council.
+
+- **23 October — Ruta del Retinto** (gastronomy): 13th edition of this route celebrating retinta beef, a native breed with protected designation of origin. From 23 October to 2 November, bars and restaurants around town offer traditional and innovative dishes featuring this product. On the weekend of 24-25 October, the gastronomic showcase and cooking competition take place at the municipal tent in the plazas of Torre de Guzmán and Santa Catalina. Organised by Conil Town Council and the Young Restaurateurs Association.
