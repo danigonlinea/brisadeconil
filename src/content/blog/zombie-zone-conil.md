@@ -7,7 +7,9 @@ tags: ["eventos", "ocio", "familias", "consejos"]
 
 Si me leéis desde hace tiempo, sabréis que por aquí suelo anunciar dos cosas: la llegada del buen tiempo y la de la almadraba. Esta vez toca una noticia muy distinta, y me ha hecho gracia porque no la veía venir: **el Ayuntamiento de Conil ha organizado una Zombie Zone**. Sí, has leído bien. El sábado 3 de octubre de 2026, varias calles del pueblo se convierten durante cuatro horas en el escenario de un juego de terror en vivo.
 
-Y no es un bulo de grupo de WhatsApp: lo ha publicado la propia Delegación de Fiestas y se ha hecho eco la prensa provincial (Diario de Cádiz, Portal de Cádiz…). Como varios huéspedes ya me han preguntado por ello, os lo cuento bien: qué es, cómo funciona, cómo apuntarse y, de propina, por qué octubre es un gran mes para venir.
+No es la primera vez: el Ayuntamiento lleva varios años trayendo este evento a Conil, y cada edición vuelve con más fuerza. Si el año pasado os lo perdisteis, esta es la oportunidad de verlo en directo.
+
+Y no es un bulo de grupo de WhatsApp: lo ha publicado la propia Delegación de Fiestas y se ha hecho eco la prensa provincial (Diario de Cádiz, Portal de Cádiz…). Como vecino del pueblo, os lo cuento bien: qué es, cómo funciona, cómo apuntarse y, de propina, por qué octubre es un gran mes para venir.
 
 ## Qué es Zombie Zone y quién lo organiza
 
