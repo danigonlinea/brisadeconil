@@ -64,3 +64,10 @@ Wenn ihr darüber nachdenkt, euch von außerhalb Conil anzumelden, zögert nicht
 Wenn ihr den Oktober-Feiertag oder einen Kurzurlaub Ende des Monats plant, könnte euch mein Beitrag über [Conil im November und die Nebensaison](/de/blog/conil-im-november/) interessieren: Viele dieser Logik (Preise, Ruhe, ein echter Ort) gilt bereits im Oktober.
 
 Und wenn ihr euch für Daten entscheidet, [prüft die Verfügbarkeit](/#contacto): Ich erwarte euch in der Wohnung, acht Minuten vom Zombie-Epicenter entfernt. Und ich verspreche, nicht zu viel zu schreien, wenn ich der Horde über den Weg laufe.
+
+## Weitere Veranstaltungen in Conil im Oktober
+
+Wenn ihr um diese Zeit kommt, gibt es im Ort noch mehr zu erleben:
+
+- **10. Oktober — Espacios** (Musik): Casa de la Cultura - Teatro Municipal, 20:30 Uhr.
+- **23. Oktober — Ruta del Retinto** (Gastronomie): verschiedene Bars und Restaurants im Ort. Traditionelle und innovative Küche mit Rindfleisch der Retinta-Rasse als Starzutat.

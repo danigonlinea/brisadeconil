@@ -64,3 +64,10 @@ Si estás pensando en apuntarte desde fuera de Conil, no lo dudas tanto: octubre
 De hecho, si os cogéis el puente de octubre o una escapada a final de mes, os puede interesar mi post sobre [Conil en noviembre y la temporada baja](/blog/conil-en-noviembre-temporada-baja/): mucha de esa lógica (precios, tranquilidad, pueblo de verdad) ya aplica en octubre.
 
 Y si os animáis con fechas, [consulta disponibilidad](/#contacto): os espero en el apartamento, a ocho minutos del epicentro zombie. Y prometo no gritar mucho si me cruzo con la horda por el camino.
+
+## Más eventos en Conil este octubre
+
+Si venís por esos días, hay más cosas que hacer en el pueblo:
+
+- **10 de octubre — Espacios** (música): Casa de la Cultura - Teatro Municipal, 20:30.
+- **23 de octubre — Ruta del Retinto** (gastronomía): varios bares y restaurantes del pueblo. Cocina tradicional e innovadora con la carne retinta como protagonista.

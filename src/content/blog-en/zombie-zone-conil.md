@@ -64,3 +64,10 @@ If you're thinking of signing up from outside Conil, don't hesitate too much: Oc
 In fact, if you're taking the October bank holiday or a getaway at the end of the month, you might be interested in my post about [Conil in November and the low season](/en/blog/conil-in-november/): much of that logic (prices, tranquillity, a real town) already applies in October.
 
 And if you're up for some dates, [check availability](/#contacto): I'll be waiting for you at the apartment, eight minutes from the zombie epicentre. And I promise not to scream too much if I cross paths with the horde on the way.
+
+## More events in Conil this October
+
+If you're coming around those dates, there's more to do in town:
+
+- **10 October — Espacios** (music): Casa de la Cultura - Teatro Municipal, 8:30 PM.
+- **23 October — Ruta del Retinto** (gastronomy): various bars and restaurants around town. Traditional and innovative cuisine featuring retinta beef as the star ingredient.
