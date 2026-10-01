@@ -5,7 +5,7 @@ pubDate: "2026-10-01"
 tags: ["gastronomy", "events", "routes", "autumn"]
 ---
 
-If Conil is known for one thing in the food world, it's its routes. I'm not talking about hiking trails — though those are great too, and I recommend my [Roche cliffs hiking guide](/blog-en/hiking-roche-cliffs/) if you like walking by the sea — but those events where the whole village becomes one giant tapa crawl. And October is the star month: the **Retinto Route** and the **Tapa Route** share the spotlight of Conil's autumn food scene.
+If Conil is known for one thing in the food world, it's its routes. I'm not talking about hiking trails — though those are great too, and I recommend my [Roche cliffs hiking guide](/en/blog/hiking-roche-cliffs/) if you like walking by the sea — but those events where the whole village becomes one giant tapa crawl. And October is the star month: the **Retinto Route** and the **Tapa Route** share the spotlight of Conil's autumn food scene.
 
 As a local and host, here's everything: what they are, when they are, how to take part, and why it's worth planning a getaway around them.
 
@@ -89,9 +89,9 @@ If you want to make the most of Conil's autumn food season, here's my advice:
 
 If you come for the food, there's more to enjoy:
 
-- **Zombie Zone** (3 October): the village becomes a live-action horror game. I cover it in my [Zombie Zone post](/blog-en/zombie-zone-conil/).
+- **Zombie Zone** (3 October): the village becomes a live-action horror game. I cover it in my [Zombie Zone post](/en/blog/zombie-zone-conil/).
 - **Espacios** (10 October): Nacho Loring presents his album at the Casa de la Cultura - Teatro Municipal, 8:30 PM.
 - **Halloween** (31 October): workshops, storytelling and themed gastronomy at Camping Taiga.
-- **Hiking**: the [Pinar de Roche](/blog-en/hiking-roche-cliffs/) and the cliffs are at their autumn best, with mild temperatures and fewer people.
+- **Hiking**: the [Pinar de Roche](/en/blog/hiking-roche-cliffs/) and the cliffs are at their autumn best, with mild temperatures and fewer people.
 
 October is, without a doubt, one of the best months to visit Conil: the sea is still warm enough for a swim, the village is peaceful, and food is the main attraction. See you on the route.

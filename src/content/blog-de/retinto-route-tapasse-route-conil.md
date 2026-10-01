@@ -5,7 +5,7 @@ pubDate: "2026-10-01"
 tags: ["gastronomie", "events", "routen", "herbst"]
 ---
 
-Wenn Conil in der Gastronomiewelt für etwas bekannt ist, dann für seine Routen. Ich meine nicht die Wanderwege — die sind auch toll, und ich empfehle meine [Wanderungsführung zu den Roche-Klippen](/blog-de/wanderung-klippen-roche/), wenn Sie gerne am Meer wandern —, sondern jene Veranstaltungen, bei denen das ganze Dorf zu einem riesigen Tapas-Crawl wird. Und der Oktober ist der Sternmonat: die **Retinto-Route** und die **Tapas-Route** teilen sich die Herbstsaison in Conil.
+Wenn Conil in der Gastronomiewelt für etwas bekannt ist, dann für seine Routen. Ich meine nicht die Wanderwege — die sind auch toll, und ich empfehle meine [Wanderungsführung zu den Roche-Klippen](/de/blog/wanderung-klippen-roche/), wenn Sie gerne am Meer wandern —, sondern jene Veranstaltungen, bei denen das ganze Dorf zu einem riesigen Tapas-Crawl wird. Und der Oktober ist der Sternmonat: die **Retinto-Route** und die **Tapas-Route** teilen sich die Herbstsaison in Conil.
 
 Als Einheimischer und Gastgeber erähle ich Ihnen alles: was sie sind, wann sie stattfinden, wie Sie teilnehmen und warum es sich lohnt, einen Ausflug um sie herum zu planen.
 
@@ -89,9 +89,9 @@ Wenn Sie die Herbstsaison in Conil optimal nutzen möchten, hier mein Rat:
 
 Wenn Sie wegen der Gastronomie kommen, gibt es noch mehr zu erleben:
 
-- **Zombie Zone** (3. Oktober): Das Dorf wird zu einem Live-Action-Horrorspiel. Ich berichte in meinem [Zombie-Zone-Beitrag](/blog-de/zombie-zone-conil/).
+- **Zombie Zone** (3. Oktober): Das Dorf wird zu einem Live-Action-Horrorspiel. Ich berichte in meinem [Zombie-Zone-Beitrag](/de/blog/zombie-zone-conil/).
 - **Espacios** (10. Oktober): Nacho Loring präsentiert sein Album im Casa de la Cultura - Teatro Municipal, 20:30 Uhr.
 - **Halloween** (31. Oktober): Workshops, Geschichten und thematische Gastronomie im Camping Taiga.
-- **Wandern**: Der [Pinar de Roche](/blog-de/wanderung-klippen-roche/) und die Klippen sind in ihrer Herbstpracht, mit milden Temperaturen und weniger Menschen.
+- **Wandern**: Der [Pinar de Roche](/de/blog/wanderung-klippen-roche/) und die Klippen sind in ihrer Herbstpracht, mit milden Temperaturen und weniger Menschen.
 
 Der Oktober ist zweifellos einer der besten Monate, um Conil zu besuchen: das Meer ist noch warm genug zum Baden, das Dorf ist ruhig und das Essen ist der Hauptattraktionspunkt. Wir sehen uns auf der Route.
