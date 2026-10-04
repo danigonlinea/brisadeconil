@@ -268,9 +268,15 @@ export const contact = {
   successButton: "Neue Anfrage senden",
   successMessage:
     "Danke für deine Anfrage. Wir melden uns so schnell wie möglich.",
-  errorMessage: "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
+  successFallback:
+    "Wenn du in ein paar Tagen nichts von uns hörst, schreib uns an",
+  errorMessage: "Etwas ist schiefgelaufen. Bitte versuche es erneut oder schreib uns direkt an",
   privacy: "Deine Daten werden nur zur Beantwortung deiner Anfrage verwendet.",
   formAriaLabel: "Kontaktformular für Buchungsanfragen",
+  email: "brisadeconil@gmail.com",
+  directLabel: "Schreibst du uns lieber direkt?",
+  noscriptFallback:
+    "Aktiviere JavaScript, um das Formular zu nutzen, oder schreib uns an",
   errors: {
     nameRequired: "Dein Name ist erforderlich.",
     emailRequired: "Kontakt-E-Mail ist erforderlich.",

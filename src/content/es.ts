@@ -255,8 +255,7 @@ export const contact = {
   sectionLabel: "Contacto",
   headline: "¿Cuándo te vienes?",
   lead: "Cuéntanos tus fechas y te respondemos a la mayor brevedad posible.",
-  reassurances: [
-    "Respuesta rápida — normalmente en el mismo día",
+  reassurances: [    "Respuesta rápida — normalmente en el mismo día",
     "Sin compromiso — solo una consulta",
     "Atención directa del propietario",
   ],
@@ -276,10 +275,16 @@ export const contact = {
   successButton: "Enviar otra consulta",
   successMessage:
     "Gracias por contactarnos. Te respondemos a la mayor brevedad posible.",
+  successFallback:
+    "Si en unos días no tienes noticias nuestras, escríbenos a",
   errorMessage:
-    "Ha ocurrido un error al enviar. Por favor, inténtalo de nuevo o escríbenos directamente.",
+    "Ha ocurrido un error al enviar. Por favor, inténtalo de nuevo o escríbenos directamente a",
   privacy: "Tus datos solo se usarán para responder a tu consulta.",
   formAriaLabel: "Formulario de contacto para reservas",
+  email: "brisadeconil@gmail.com",
+  directLabel: "¿Prefieres escribirnos directamente?",
+  noscriptFallback:
+    "Activa JavaScript para usar el formulario o escríbenos a",
   errors: {
     nameRequired: "El nombre es obligatorio.",
     emailRequired: "El email es obligatorio.",
