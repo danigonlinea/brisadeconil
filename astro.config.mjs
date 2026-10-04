@@ -19,6 +19,8 @@ export default defineConfig({
       lastmod: new Date(),
       changefreq: "monthly",
       priority: 0.7,
+      // The 404 page must never be indexed: keep it out of the sitemap.
+      filter: (page) => !/\/404\/?$/.test(page),
     }),
   ],
   build: {
