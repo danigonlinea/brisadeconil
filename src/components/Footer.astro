@@ -36,7 +36,7 @@ const blogHref = `${base.replace(/\/$/, '')}${routePrefix(locale)}/blog/`;
     <div class="footer-grid">
       <!-- Brand column -->
       <div class="footer-brand-col">
-        <a href="#" class="footer-brand" aria-label="Brisa de Conil — volver al inicio">
+        <a href="#" class="footer-brand" aria-label={footer.backToStartAria}>
           <svg width="24" height="24" viewBox="0 0 28 28" fill="none" aria-hidden="true" class="footer-brand-icon">
             <path d="M4 18 C8 14, 12 10, 14 14 C16 18, 20 22, 24 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/>
             <path d="M4 22 C8 18, 12 16, 16 18 C19 19.5, 22 22, 24 22" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none" opacity="0.55"/>
@@ -107,8 +107,8 @@ const blogHref = `${base.replace(/\/$/, '')}${routePrefix(locale)}/blog/`;
       </div>
 
       <!-- Nav column -->
-      <nav class="footer-nav" aria-label="Navegación pie de página">
-        <p class="footer-nav-title">Secciones</p>
+      <nav class="footer-nav" aria-label={footer.footerNavAria}>
+        <p class="footer-nav-title">{footer.navTitle}</p>
         <ul role="list">
           {footer.links.map((link) => (
             <li><a href={sectionHref(link.href)} class="footer-nav-link">{link.label}</a></li>
@@ -118,7 +118,7 @@ const blogHref = `${base.replace(/\/$/, '')}${routePrefix(locale)}/blog/`;
 
       <!-- Contact column -->
       <div class="footer-contact-col">
-        <p class="footer-nav-title">Contacto</p>
+        <p class="footer-nav-title">{footer.contactTitle}</p>
         <a href={sectionHref('#contacto')} class="btn btn--primary btn--sm footer-cta">
           {cta}
         </a>
