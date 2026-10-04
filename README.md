@@ -1,89 +1,85 @@
 # Brisa de Conil
 
-Landing page para el alquiler vacacional del apartamento **Brisa de Conil**, en Conil de la Frontera (Cádiz).
+Static site for the Brisa de Conil holiday apartment in Conil de la Frontera, Cádiz. It publishes to GitHub Pages as a desktop and mobile web app in Spanish, English, and German.
 
-**Stack:** Astro v7 · React v19 · CSS Custom Properties · PhotoSwipe v5 · Web3Forms
+## Stack
 
----
+Astro v7.2.9 (SSG) - React v19.2.8 islands - PhotoSwipe v5.4.4 - sharp v0.35.5 - Web3Forms contact API - CSS custom properties - Lora + Source Sans 3 fonts.
 
-## Desarrollo local
+## Requirements
+
+- node 24.18.1 (see `.nvmrc`; engines require >=22.12.0)
+- npm (package-lock.json is tracked)
+- No test framework. No other SDK needed.
+
+## Getting started
 
 ```bash
-npm install          # instalar dependencias
-npm run dev          # servidor de desarrollo → http://localhost:4321/
-npm run build        # build de producción → dist/
-npm run preview      # previsualizar el build
-npm run lint         # ESLint (flat config)
-npx astro check      # type-check del proyecto
+npm install
+npm run dev
 ```
 
----
+Open http://localhost:4321/ for the Spanish home page. The dev server reloads on file change.
 
-## Estructura del proyecto
+- Spanish content lives at `/`. English and German content live at `/en/` and `/de/`.
+- Blog posts are markdown in `src/content/blog/`, `blog-en/`, and `blog-de/`; each locale has its own slugs.
+- No emulator or native device. Verify in a desktop browser and a mobile viewport (browser DevTools width 380 px).
+- `npm run preview` serves the built `dist/` before you push. The production flow is fully static.
 
-```
-src/
-├── components/          # Componentes Astro (secciones) + islas React
-│   ├── *.astro          # Header, Hero, GallerySection, ApartmentSection, ... (FAQSection usa details/summary, sin isla React)
-│   └── *.tsx            # GalleryIsland, ContactForm (únicas islas React)
-├── content/
-│   ├── es.ts / en.ts / de.ts   # copy del sitio por locale (ES es la referencia tipada)
-│   ├── index.ts         # registro CONTENT: Record<Locale, SiteContent>
-│   ├── blog/            # posts ES (markdown) → /blog/{slug}/
-│   ├── blog-en/         # posts EN → /en/blog/{slug}/ (slugs propios por idioma)
-│   └── blog-de/         # posts DE → /de/blog/{slug}/
-├── content.config.ts    # content layer: colecciones blog/blogEn/blogDe (glob loader + Zod)
-├── i18n/
-│   ├── locales.ts       # registro de locales, prefijos de URL, helpers de rutas
-│   └── blog.ts          # strings i18n del blog
-├── data/
-│   └── gallery-manifest.ts  # AUTO-GENERADO — no editar a mano
-├── lib/
-│   └── analytics.ts     # helpers de Google Analytics (trackEvent)
-├── layouts/
-│   └── BaseLayout.astro # meta/SEO, schema.org, dark theme, estilos globales
-├── pages/
-│   ├── index.astro              # home ES (/)
-│   ├── [lang]/                  # home + blog para EN/DE (/en/, /de/)
-│   ├── blog/                    # índice + [slug] del blog ES
-│   ├── alojamiento-cerca-playa-conil/   # landing SEO
-│   ├── apartamento-vacacional-conil/    # landing SEO
-│   ├── aviso-legal.astro
-│   ├── politica-cookies.astro
-│   ├── politica-privacidad.astro
-│   └── api/contact.ts           # endpoint POST del formulario → Web3Forms
-├── templates/           # plantillas compartidas de páginas
-│   ├── HomePage.astro
-│   ├── BlogIndexPage.astro
-│   ├── BlogPostPage.astro
-│   └── SeoLandingPage.astro
-└── styles/
-    ├── global.css        # design system completo (tokens, light/dark, componentes)
-    └── gallery.css       # estilos de PhotoSwipe
-scripts/
-├── optimize-gallery.mjs  # genera variantes AVIF/WebP/JPEG + manifest (sharp)
-├── post-build.mjs        # copia sitemap-index.xml → sitemap.xml (lo ejecuta `npm run build`)
-├── audit-build-seo.py    # audita el build (h1, canonical, JSON-LD, enlaces, hreflang, translations); lo ejecuta CI
-└── validate.sh           # validación local (type-check, build, anti-secretos)
-public/
-├── gallery/*.jpg         # originales a resolución completa (no editar a mano)
-├── gallery/optimized/    # AUTO-GENERADO (640/1600/2000px · avif/webp/jpg)
-└── logos/                # logos del sitio (también espejados en src/logos/)
-docs/
-└── research-conil.md     # investigación de mercado versionada
+## Verification
+
+```bash
+npx astro check
+npm run typecheck:react
+npm run lint
+npm run build
+python3 scripts/audit-build-seo.py dist
 ```
 
----
+This repo has no test suite. The verification policy permits only typecheck, lint, static analysis, build, smoke tests, and acceptance criteria. See AGENTS.md.
 
-## Decisiones técnicas
+## Structure
 
-| Decisión    | Elección                         | Motivo                                                      |
-| ----------- | -------------------------------- | ----------------------------------------------------------- |
-| Framework   | Astro v7 (SSG)                   | Estático para GitHub Pages, islas React para interactividad |
-| Estilos     | CSS Custom Properties            | Sin dependencias, design system propio, dark mode nativo    |
-| Galería     | PhotoSwipe v5                    | Responsive, accesible, swipe en móvil                       |
-| Formulario  | Web3Forms                        | Gratuito, sin límites, sin backend                          |
-| Mapa        | Google Maps embed                | Sin API key, universalmente reconocido                      |
-| Tipografía  | Lora + Source Sans 3             | Cálida, boutique, sin ser cliché                            |
-| Animaciones | CSS + Intersection Observer      | Sin dependencias, bundle ligero                             |
-| i18n        | Ficheros de contenido (ES/EN/DE) | Sin librería extra, fácil de mantener                       |
+```
+.github/          CI workflows (checks.yml, deploy.yml) and dependabot config
+.githooks/        pre-commit git hook
+openspec/         spec-driven changes and archived change history
+public/           static assets served at the site root; gallery originals
+scripts/          build tooling: gallery optimizer, post-build, audit, validator
+src/components/   Astro sections and React islands (gallery, contact form)
+src/content/      per-locale site copy and blog markdown collections
+src/i18n/         locale registry and blog helpers
+src/layouts/      BaseLayout with SEO meta, canonical URL, dark theme
+src/pages/        static routes and the dormant /api/contact endpoint
+src/styles/       global design tokens and gallery styles
+src/templates/    HomePage, BlogIndexPage, BlogPostPage, SeoLandingPage
+docs/             agent profiles and research notes (partly historical)
+```
+
+`dist/`, `.astro/`, and `node_modules/` are generated and gitignored. `public/gallery/optimized/` and `src/data/gallery-manifest.ts` are generated by `optimize:gallery`; never edit them by hand.
+
+## Scripts
+
+| Command | Description |
+| --- | --- |
+| `npm run dev` | start the Astro dev server on port 4321 |
+| `npm run build` | build to `dist/`, then copy sitemap-index.xml to sitemap.xml |
+| `npm run preview` | serve the built site locally |
+| `npm run lint` | run ESLint with zero warnings allowed |
+| `npm run typecheck:react` | type-check the React islands with tsconfig.react.json |
+| `npm run optimize:gallery` | regenerate gallery variants and `gallery-manifest.ts` |
+| `npx astro check` | type-check the whole Astro project |
+| `bash scripts/validate.sh` | full gate: astro check, build, SEO audit, anti-secret grep |
+| `bash scripts/validate.sh --fast` | fast gate: astro check and anti-secret grep only |
+
+## Important notes
+
+- `.env` and `src/data/gallery-manifest.ts` are gitignored or generated by design; do not commit them. Copy `.env.example` to `.env` for the Web3Forms key.
+- `public/gallery/*.jpg` are the full-resolution originals. Never edit them; run `npm run optimize:gallery` after any change.
+- A deployment from `main` runs only the preview, build, and SEO-audit steps on GitHub Pages. Local content fixes that live only in `dist/` do not propagate to production until you push to `main`.
+- The release flow is: push to `main`, `.github/workflows/deploy.yml` builds and deploys to GitHub Pages, and `public/CNAME` keeps `www.brisadeconil.com`. See deploy.yml for the full gate.
+- Blog translations must stay reciprocal: each post lists its `translations` map, and the SEO audit fails a build when a sibling slug does not exist or does not point back.
+
+## License
+
+Proprietary — Daniel Gonzalez. Do not distribute.
