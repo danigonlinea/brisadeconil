@@ -38,8 +38,12 @@ interface ContactText {
   successHeadline: string;
   successButton: string;
   successMessage: string;
+  /** Fallback line shown under the success message (email link is rendered separately). */
+  successFallback: string;
   errorMessage: string;
   privacy: string;
+  /** Business inbox, rendered as a visible mailto fallback (never hardcoded). */
+  email: string;
   errors: {
     nameRequired: string;
     emailRequired: string;
@@ -88,6 +92,19 @@ function addDaysToDate(value: string, days: number) {
   const nextMonth = String(date.getMonth() + 1).padStart(2, "0");
   const nextDay = String(date.getDate()).padStart(2, "0");
   return `${nextYear}-${nextMonth}-${nextDay}`;
+}
+
+/**
+ * Strip line breaks and control characters from the visitor's name before
+ * interpolating it into the email subject, so a crafted name can never
+ * inject extra headers. Result is capped at 80 characters.
+ */
+function sanitizeSubjectName(value: string): string {
+  return value
+    .replace(/[^\x20-\x7E\xA0-\uFFFF]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, 80);
 }
 
 interface ContactFormProps {
@@ -188,10 +205,11 @@ export default function ContactForm({ contact }: ContactFormProps) {
         },
         body: JSON.stringify({
           access_key: publicKey,
-          subject: `Nueva consulta de ${form.name} — Brisa de Conil`,
+          subject: `Nueva consulta de ${sanitizeSubjectName(form.name)} — Brisa de Conil`,
           from_name: "Brisa de Conil Web",
           name: form.name,
           email: form.email,
+          replyto: form.email,
           "Fecha de entrada": form.checkin || "No indicada",
           "Fecha de salida": form.checkout || "No indicada",
           message: form.message || "(sin mensaje adicional)",
@@ -239,6 +257,10 @@ export default function ContactForm({ contact }: ContactFormProps) {
         </div>
         <h3 className="contact-success-headline">{contact.successHeadline}</h3>
         <p className="contact-success-message">{contact.successMessage}</p>
+        <p className="contact-success-fallback">
+          {contact.successFallback}{" "}
+          <a href={`mailto:${contact.email}`}>{contact.email}</a>
+        </p>
         <button
           className="btn btn--outline"
           onClick={() => {
@@ -468,7 +490,13 @@ export default function ContactForm({ contact }: ContactFormProps) {
             <line x1="12" y1="8" x2="12" y2="12" />
             <line x1="12" y1="16" x2="12.01" y2="16" />
           </svg>
-          {contact.errorMessage}
+          {contact.errorMessage}{" "}
+          <a
+            className="contact-error-link"
+            href={`mailto:${contact.email}`}
+          >
+            {contact.email}
+          </a>
         </div>
       )}
 
