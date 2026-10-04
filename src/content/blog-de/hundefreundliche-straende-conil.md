@@ -3,6 +3,9 @@ title: "Hundefreundliche Strände in Conil: Komplette Guide 2026"
 description: "Kann ich meinen Hund mit an den Strand in Conil nehmen? Hier die echten Regeln, welche Strände Hunde erlauben und wie du deinen Urlaub mit Haustier genießt."
 pubDate: "2026-09-03"
 tags: ["hunde", "strände", "haustiere", "guide"]
+translations:
+  es: "perros-playas-conil"
+  en: "dog-friendly-beaches-conil"
 ---
 
 Eine der Fragen, die mir Gäste am häufigsten stellen bevor sie buchen: *"und Hunde? Können wir mit ihnen an den Strand?"*.

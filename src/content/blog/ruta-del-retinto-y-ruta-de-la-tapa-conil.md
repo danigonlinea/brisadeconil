@@ -3,6 +3,9 @@ title: "Ruta del Retinto y Ruta de la Tapa en Conil: el otoño gastronómico que
 description: "Octubre es el mes de la gastronomía en Conil: la Ruta del Retinto (23 oct – 2 nov) y la Ruta de la Tapa convierten el pueblo en un destino culinario. Te cuento qué son, cómo participar y qué esperar de cada una."
 pubDate: "2026-10-01"
 tags: ["gastronomía", "eventos", "rutas", "otoño"]
+translations:
+  en: "retinto-route-tapa-route-conil"
+  de: "retinto-route-tapasse-route-conil"
 ---
 
 Si por algo se conoce a Conil en el mundo gastronómico, es por sus rutas. No me refiero a las de senderismo — que también, y te recomiendo mi [guía de los acantilados de Roche](/blog/senderismo-acantilados-de-roche/) si te gusta caminar junto al mar —, sino a esas citas en las que el pueblo entero se convierte en un tapeo gigante. Y octubre es el mes estrella: la **Ruta del Retinto** y la **Ruta de la Tapa** se reparten el protagonismo del otoño conileño.

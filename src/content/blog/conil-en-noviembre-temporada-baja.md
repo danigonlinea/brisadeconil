@@ -3,6 +3,9 @@ title: "Conil en noviembre: por qué es mi mes favorito del año"
 description: "Conil en noviembre: precios reales, qué abre y qué cierra, tiempo que harás y por qué la temporada baja es la mejor época para conocer el pueblo."
 pubDate: "2026-07-09"
 tags: ["temporada-baja", "slow-living", "consejos"]
+translations:
+  en: "conil-in-november"
+  de: "conil-im-november"
 ---
 
 Te voy a decir algo que suena raro viniendo de alguien que alquila un apartamento en la playa: **mi mes favorito en Conil es noviembre**.

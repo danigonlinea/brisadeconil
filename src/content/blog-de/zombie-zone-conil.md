@@ -3,6 +3,9 @@ title: "Zombie Zone in Conil: Das Ende der Welt erreicht unsere Straßen am 3. O
 description: "Zombie Zone verwandelt Conil am Samstag, den 3. Oktober 2026, in ein Horrorfilm-Set: vier Stunden Live-Action-Spiel mit Schauspielern, Missionen und Zombies. Was es ist, wie man sich anmeldet und Tipps zum Überleben."
 pubDate: "2026-09-20"
 tags: ["events", "freizeit", "familien", "tipps"]
+translations:
+  es: "zombie-zone-conil"
+  en: "zombie-zone-conil"
 ---
 
 Wenn ihr mich schon länger lest, wisst ihr, dass ich normalerweise zwei Dinge ankündige: das gute Wetter und die Thunfisonfangsaison. Diesmal ist es etwas ganz anderes, und es ist eine Initiative, die ich großartig finde: **der Stadtrat von Conil hat eine Zombie Zone organisiert**. Am Samstag, den 3. Oktober 2026, werden mehrere Straßen des Ortes für vier Stunden zum Schauplatz eines Live-Action-Horrorspiels.

@@ -3,6 +3,9 @@ title: "Conil en 3 días sin coche: mi ruta a pie desde el casco histórico"
 description: "Itinerario de 3 días por Conil de la Frontera todo a pie: mercado, casco, playas, calas y atardeceres. Sin parking, sin prisa y con plan B si llueve."
 pubDate: "2026-08-27"
 tags: ["itinerarios", "consejos"]
+translations:
+  en: "conil-3-days-no-car"
+  de: "conil-3-tage-ohne-auto"
 ---
 
 Me lo dicen casi todos los huéspedes al llegar, con la llave aún caliente en la mano: *«¿y qué hago yo aquí tres días?»*.
