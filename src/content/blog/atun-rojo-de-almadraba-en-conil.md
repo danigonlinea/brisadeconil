@@ -3,6 +3,9 @@ title: "Atún rojo de almadraba en Conil: temporada, dónde probarlo y cómo lo 
 description: "La almadraba tiene 3.000 años y sigue viva en Conil. Cuándo es la temporada, qué pedir en cada plato y los sitios donde lo como yo, por tu anfitrión."
 pubDate: "2026-07-16"
 tags: ["gastronomia", "atun", "consejos"]
+translations:
+  en: "bluefin-tuna-almadraba-conil"
+  de: "thunfisch-almadraba-conil"
 ---
 
 Si hay una palabra que resume Conil para quien viene a comer —y hay mucha gente que viene solo a comer— esa palabra es **almadraba**.

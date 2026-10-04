@@ -197,6 +197,7 @@
 
   --accent: var(--color-teal-400);
   --accent-hover: var(--color-teal-300);
+  --accent-strong: var(--color-teal-400);
   --accent-text: var(--color-navy-950);
 
   --header-bg-solid: rgba(7, 19, 28, 0.96);

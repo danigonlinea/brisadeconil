@@ -3,6 +3,9 @@ title: "Dog-Friendly Beaches in Conil: Complete Guide 2026"
 description: "Can you bring your dog to the beach in Conil? Here's the real regulations, which beaches allow dogs, and how to enjoy your trip with your pet."
 pubDate: "2026-09-03"
 tags: ["dogs", "beaches", "pets", "guide"]
+translations:
+  es: "perros-playas-conil"
+  de: "hundefreundliche-straende-conil"
 ---
 
 One of the questions guests ask me most before booking is: *"and dogs? Can we go to the beach with them?"*.

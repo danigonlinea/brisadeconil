@@ -3,6 +3,9 @@ title: "Senderismo por los acantilados de Roche: ruta, mirador y mejor hora"
 description: "La ruta costera por los acantilados de Roche desde Conil: el mirador con las mejores vistas, qué verás, cuánto se tarda y la mejor hora del día."
 pubDate: "2026-08-06"
 tags: ["senderismo", "naturaleza", "consejos", "mirador"]
+translations:
+  en: "hiking-roche-cliffs"
+  de: "wanderung-klippen-roche"
 ---
 
 Si solo vas a hacer una caminata en tu semana en Conil, que sea esta: **el acantilado de Roche**. Y después de la caminada, nada mejor que un baño en [las calas que descubrirás desde arriba](/blog/guia-playas-de-conil-por-perfil/).

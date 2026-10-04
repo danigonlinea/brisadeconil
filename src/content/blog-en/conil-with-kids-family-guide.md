@@ -5,7 +5,7 @@ pubDate: "2026-07-30"
 tags: ["families", "beaches", "tips"]
 translations:
   es: "conil-con-ninos-guia-familiar"
-  de: "conil-with-kids-family-guide"
+  de: "conil-mit-kindern-familien-guide"
 ---
 
 Traveling to the beach with kids isn't the same as traveling to the beach. I know because I see families arrive every summer with the car turned into storage and the same question on their faces: *"now what?"*

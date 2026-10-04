@@ -300,6 +300,10 @@ export const footer = {
   legalLabel: 'Legal notice',
   privacyLabel: 'Privacy policy',
   cookiesLabel: 'Cookies policy',
+  navTitle: 'Sections',
+  contactTitle: 'Contact',
+  backToStartAria: 'Brisa de Conil — back to start',
+  footerNavAria: 'Footer navigation',
   links: [
     { label: 'The apartment', href: '#apartamento' },
     { label: 'Gallery',       href: '#galeria' },

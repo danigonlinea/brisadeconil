@@ -3,6 +3,9 @@ title: "Zombie Zone in Conil: the end of the world comes to our streets on 3 Oct
 description: "Zombie Zone turns Conil into a horror film set on Saturday 3 October 2026: four hours of live-action gameplay with actors, missions and zombies. What it is, how to sign up and tips to survive."
 pubDate: "2026-09-20"
 tags: ["events", "leisure", "families", "tips"]
+translations:
+  es: "zombie-zone-conil"
+  de: "zombie-zone-conil"
 ---
 
 If you've been reading me for a while, you'll know I usually announce two things: the arrival of good weather and the bluefin tuna season. This time it's something very different, and it's an initiative I think is brilliant: **Conil Town Council has organised a Zombie Zone**. On Saturday 3 October 2026, several streets in town will become the setting for a live-action horror game lasting four hours.

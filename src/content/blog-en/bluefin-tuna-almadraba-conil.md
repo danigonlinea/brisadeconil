@@ -5,7 +5,7 @@ pubDate: "2026-07-16"
 tags: ["gastronomy", "tuna", "tips"]
 translations:
   es: "atun-rojo-de-almadraba-en-conil"
-  de: "bluefin-tuna-almadraba-conil"
+  de: "thunfisch-almadraba-conil"
 ---
 
 If there's one word that sums up Conil for those who come to eat — and there are plenty who come just to eat — that word is **almadraba**.

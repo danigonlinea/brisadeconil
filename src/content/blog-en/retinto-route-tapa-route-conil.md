@@ -3,6 +3,9 @@ title: "Retinto Route and Tapa Route in Conil: the autumn food season you can't 
 description: "October is foodie month in Conil: the Retinto Route (23 Oct – 2 Nov) and the Tapa Route turn the village into a culinary destination. Here's what they are, how to join, and what to expect."
 pubDate: "2026-10-01"
 tags: ["gastronomy", "events", "routes", "autumn"]
+translations:
+  es: "ruta-del-retinto-y-ruta-de-la-tapa-conil"
+  de: "retinto-route-tapasse-route-conil"
 ---
 
 If Conil is known for one thing in the food world, it's its routes. I'm not talking about hiking trails — though those are great too, and I recommend my [Roche cliffs hiking guide](/en/blog/hiking-roche-cliffs/) if you like walking by the sea — but those events where the whole village becomes one giant tapa crawl. And October is the star month: the **Retinto Route** and the **Tapa Route** share the spotlight of Conil's autumn food scene.

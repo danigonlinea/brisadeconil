@@ -3,6 +3,9 @@ title: "Retinto-Route und Tapas-Route in Conil: die gastronomische Herbstsaison,
 description: "Oktober ist Monat der Gastronomie in Conil: die Retinto-Route (23. Okt. – 2. Nov.) und die Tapas-Route machen das Dorf zum kulinarischen Ziel. Hier erfahren Sie, was sie sind, wie Sie teilnehmen können und was Sie erwartet."
 pubDate: "2026-10-01"
 tags: ["gastronomie", "events", "routen", "herbst"]
+translations:
+  es: "ruta-del-retinto-y-ruta-de-la-tapa-conil"
+  en: "retinto-route-tapa-route-conil"
 ---
 
 Wenn Conil in der Gastronomiewelt für etwas bekannt ist, dann für seine Routen. Ich meine nicht die Wanderwege — die sind auch toll, und ich empfehle meine [Wanderungsführung zu den Roche-Klippen](/de/blog/wanderung-klippen-roche/), wenn Sie gerne am Meer wandern —, sondern jene Veranstaltungen, bei denen das ganze Dorf zu einem riesigen Tapas-Crawl wird. Und der Oktober ist der Sternmonat: die **Retinto-Route** und die **Tapas-Route** teilen sich die Herbstsaison in Conil.
