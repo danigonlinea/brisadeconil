@@ -44,4 +44,4 @@ Our apartment is designed for small families (up to 3 people): bedroom with doub
 
 If your question is about dates, [check availability](/#contacto).
 
-And if you're still choosing a beach for the first day, [I have the guide by profile](/blog/guia-playas-de-conil-por-perfil/) — family, surf, hidden cove or dog included.
+And if you're still choosing a beach for the first day, [I have the guide by profile](/en/blog/conil-beaches-guide/) — family, surf, hidden cove or dog included.

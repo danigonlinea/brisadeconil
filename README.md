@@ -24,8 +24,8 @@ npx astro check      # type-check del proyecto
 ```
 src/
 ├── components/          # Componentes Astro (secciones) + islas React
-│   ├── *.astro          # Header, Hero, GallerySection, ApartmentSection, ...
-│   └── *.tsx            # GalleryIsland, ContactForm, FAQAccordion, LanguageSwitcher
+│   ├── *.astro          # Header, Hero, GallerySection, ApartmentSection, ... (FAQSection usa details/summary, sin isla React)
+│   └── *.tsx            # GalleryIsland, ContactForm (únicas islas React)
 ├── content/
 │   ├── es.ts / en.ts / de.ts   # copy del sitio por locale (ES es la referencia tipada)
 │   ├── index.ts         # registro CONTENT: Record<Locale, SiteContent>
@@ -62,6 +62,8 @@ src/
     └── gallery.css       # estilos de PhotoSwipe
 scripts/
 ├── optimize-gallery.mjs  # genera variantes AVIF/WebP/JPEG + manifest (sharp)
+├── post-build.mjs        # copia sitemap-index.xml → sitemap.xml (lo ejecuta `npm run build`)
+├── audit-build-seo.py    # audita el build (h1, canonical, JSON-LD, enlaces, hreflang, translations); lo ejecuta CI
 └── validate.sh           # validación local (type-check, build, anti-secretos)
 public/
 ├── gallery/*.jpg         # originales a resolución completa (no editar a mano)

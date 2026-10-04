@@ -13,7 +13,7 @@
  * slice), so each pre-rendered route shows its own language with no
  * runtime swapping.
  */
-import { useState, useId } from "react";
+import { useEffect, useState, useId } from "react";
 import type { SiteContent } from "../content/index";
 import { trackEvent } from "../lib/analytics";
 
@@ -107,6 +107,20 @@ export default function ContactForm({ contact }: ContactFormProps) {
   });
   const [errors, setErrors] = useState<FieldError>({});
   const [state, setState] = useState<FormState>("idle");
+  /**
+   * Earliest selectable date (YYYY-MM-DD in the visitor's LOCAL timezone).
+   * Empty until hydration: the prerendered HTML carries no `min` so the
+   * build date never leaks into the markup or mismatches hydration.
+   */
+  const [todayMin, setTodayMin] = useState("");
+
+  useEffect(() => {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const day = String(now.getDate()).padStart(2, "0");
+    setTodayMin(`${year}-${month}-${day}`);
+  }, []);
 
   function handleChange(
     e: React.ChangeEvent<
@@ -367,7 +381,7 @@ export default function ContactForm({ contact }: ContactFormProps) {
             name="checkin"
             value={form.checkin}
             onChange={handleChange}
-            min={new Date().toISOString().split("T")[0]}
+            min={todayMin || undefined}
           />
         </div>
 
@@ -383,7 +397,7 @@ export default function ContactForm({ contact }: ContactFormProps) {
             name="checkout"
             value={form.checkout}
             onChange={handleChange}
-            min={form.checkin || new Date().toISOString().split("T")[0]}
+            min={form.checkin || todayMin || undefined}
             aria-invalid={!!errors.checkout}
             aria-describedby={
               errors.checkout ? `${id}-checkout-error` : undefined

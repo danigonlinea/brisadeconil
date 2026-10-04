@@ -1,0 +1,74 @@
+---
+/**
+ * 404 — Spanish-only orphan page (outside the locale routing).
+ *
+ * Astro emits this as dist/404.html, which is what GitHub Pages serves for
+ * unknown paths. Single Spanish page with links to all three homepages plus
+ * the (Spanish) blog index; copy stays inline because this page belongs to
+ * no locale and needs no hreflang alternates.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  locale="es"
+  title="Página no encontrada — Brisa de Conil"
+  description="La página que buscas no existe. Vuelve al inicio de Brisa de Conil o visita el blog."
+  canonicalUrl="https://www.brisadeconil.com/"
+  noindex
+>
+  <main id="main-content" tabindex="-1">
+    <section class="not-found">
+      <div class="container not-found-inner">
+        <p class="section-label">Error 404</p>
+        <h1>Página no encontrada</h1>
+        <p class="not-found-lead">
+          La página que buscas no existe o se ha movido. Vuelve al inicio o
+          sigue explorando el blog.
+        </p>
+        <nav class="not-found-links" aria-label="Páginas principales">
+          <ul role="list">
+            <li><a href="/" class="btn btn--primary">Inicio</a></li>
+            <li><a href="/en/" class="btn btn--outline">Home (English)</a></li>
+            <li><a href="/de/" class="btn btn--outline">Startseite (Deutsch)</a></li>
+            <li><a href="/blog/" class="btn btn--outline">Blog</a></li>
+          </ul>
+        </nav>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .not-found {
+    padding-block: var(--sp-16) var(--sp-20);
+  }
+
+  .not-found-inner {
+    max-width: 40rem;
+    margin-inline: auto;
+    text-align: center;
+    display: grid;
+    gap: var(--sp-5);
+    justify-items: center;
+  }
+
+  .not-found-inner h1 {
+    margin: 0;
+  }
+
+  .not-found-lead {
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  .not-found-links ul {
+    list-style: none;
+    margin: var(--sp-3) 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-3);
+    justify-content: center;
+  }
+</style>

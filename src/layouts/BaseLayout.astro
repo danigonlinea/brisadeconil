@@ -41,6 +41,11 @@ interface Props {
     modifiedTime?: Date;
     tags?: string[];
   };
+  /**
+   * Emit `<meta name="robots" content="noindex">` (error pages such as the
+   * 404, which must never be indexed).
+   */
+  noindex?: boolean;
 }
 
 const {
@@ -53,6 +58,7 @@ const {
   alternates = false,
   hreflangs,
   article,
+  noindex = false,
 } = Astro.props;
 
 const siteUrl = import.meta.env.SITE ?? 'https://www.brisadeconil.com';
@@ -176,6 +182,7 @@ const cspPolicy = [
     <!-- Primary meta -->
     <title>{title}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonical} />
 
     {alternates && alternateHrefs.map((alt) => (
@@ -411,6 +418,11 @@ const cspPolicy = [
             if (decided) return;
             decided = true;
             writeConsent(value);
+            // Tell same-page listeners (e.g. the click-to-load map) about
+            // the decision. Same key, no second consent system.
+            try {
+              window.dispatchEvent(new CustomEvent('brisa-consent', { detail: value }));
+            } catch { /* noop: CustomEvent no disponible */ }
             if (value === 'accepted') {
               loadGtag();
               try {

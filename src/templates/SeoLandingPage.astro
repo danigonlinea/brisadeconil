@@ -9,6 +9,7 @@
  * around it.
  */
 import type { Locale } from '../i18n/locales';
+import { singleLocaleSwitchTargets } from '../i18n/locales';
 import { CONTENT } from '../content/index';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
@@ -53,7 +54,9 @@ const webPageSchema = {
 ---
 
 <BaseLayout locale={locale} title={copy.metaTitle} description={copy.metaDescription} canonicalUrl={canonical}>
-  <Header nav={content.nav} locale={locale} />
+  {/* ES-only landing: no translated siblings exist, so the switcher keeps
+      this page in the current locale and links to the other locales' homes. */}
+  <Header nav={content.nav} locale={locale} switchTargets={singleLocaleSwitchTargets(locale, `/${copy.slug}/`)} />
 
   <main id="main-content" tabindex="-1">
     <!-- SEO hero -->

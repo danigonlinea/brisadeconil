@@ -21,19 +21,23 @@ const loc = Astro.props.location;
     </header>
 
     <div class="location-grid">
-      <!-- Map -->
-      <div class="location-map reveal">
-        <iframe
-          src={loc.mapEmbedUrl}
-          width="100%"
-          height="100%"
-          style="border:0;"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title={loc.mapTitle}
-          aria-label={`${loc.mapTitle}: ${loc.address}`}
-        ></iframe>
+      <!-- Map — click-to-load: no iframe (and no Google cookies) until the
+           visitor asks for the map or has already accepted cookies. The
+           iframe is built from these data attributes on demand, so no
+           maps markup exists in the initial HTML. -->
+      <div
+        class="location-map reveal"
+        data-map-root
+        data-map-src={loc.mapEmbedUrl}
+        data-map-title={loc.mapTitle}
+        data-map-label={`${loc.mapTitle}: ${loc.address}`}
+      >
+        <div class="map-consent" data-map-placeholder>
+          <p class="map-consent-note">{loc.mapConsentNote}</p>
+          <button type="button" class="btn btn--primary" data-map-load>
+            {loc.loadMap}
+          </button>
+        </div>
       </div>
 
       <div class="location-info">
@@ -74,6 +78,63 @@ const loc = Astro.props.location;
     </div>
   </div>
 </section>
+
+<script>
+  const CONSENT_KEY = 'brisa-consent';
+
+  function readConsent(): string | null {
+    try {
+      return localStorage.getItem(CONSENT_KEY);
+    } catch {
+      return null;
+    }
+  }
+
+  function loadMap(root: Element) {
+    if (root.getAttribute('data-map-loaded') === 'true') return;
+    const src = root.getAttribute('data-map-src');
+    // Fail fast: without an embed URL there is nothing to load.
+    if (!src) return;
+    root.setAttribute('data-map-loaded', 'true');
+    const iframe = document.createElement('iframe');
+    iframe.src = src;
+    iframe.width = '100%';
+    iframe.height = '100%';
+    iframe.style.border = '0';
+    iframe.allowFullscreen = true;
+    iframe.loading = 'lazy';
+    iframe.referrerPolicy = 'no-referrer-when-downgrade';
+    iframe.title = root.getAttribute('data-map-title') ?? '';
+    iframe.setAttribute('aria-label', root.getAttribute('data-map-label') ?? '');
+    root.querySelector('[data-map-placeholder]')?.remove();
+    root.appendChild(iframe);
+  }
+
+  function loadAllMaps() {
+    document.querySelectorAll('[data-map-root]').forEach(loadMap);
+  }
+
+  // Prior consent (previous visit): load immediately, no click needed.
+  if (readConsent() === 'accepted') {
+    loadAllMaps();
+  }
+
+  // Explicit click always loads, consent or not.
+  document.querySelectorAll('[data-map-load]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const root = button.closest('[data-map-root]');
+      if (root) loadMap(root);
+    });
+  });
+
+  // Fresh consent via the cookie banner (same key, `brisa-consent` event
+  // dispatched by BaseLayout): load without requiring a second click.
+  window.addEventListener('brisa-consent', (event) => {
+    if ((event as CustomEvent<string>).detail === 'accepted') {
+      loadAllMaps();
+    }
+  });
+</script>
 
 <style>
   .section-label {
@@ -118,6 +179,28 @@ const loc = Astro.props.location;
     width: 100%;
     height: 100%;
     display: block;
+  }
+
+  /* ── Click-to-load placeholder ─────────────────────────────────────────── */
+  .map-consent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--sp-4);
+    height: 100%;
+    min-height: 240px;
+    padding: var(--sp-6);
+    text-align: center;
+    background-color: var(--bg-surface-alt);
+  }
+
+  .map-consent-note {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    max-width: 34ch;
+    margin: 0;
   }
 
   /* ── Address ─────────────────────────────────────────────────────────────── */
