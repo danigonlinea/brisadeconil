@@ -53,8 +53,8 @@ npm run optimize:gallery         # regenerar imágenes optimizadas + manifest (v
 ```
 src/
 ├── components/          # Componentes Astro (secciones) + islas React
-│   ├── *.astro          # Header, Hero, GallerySection, ApartmentSection, ...
-│   └── *.tsx            # GalleryIsland, ContactForm, FAQAccordion, LanguageSwitcher
+│   ├── *.astro          # Header, Hero, GallerySection, ApartmentSection, ... (FAQSection usa details/summary, sin isla React; LanguageSwitcher es .astro, no .tsx)
+│   └── *.tsx            # GalleryIsland, ContactForm (únicas islas React)
 ├── content/
 │   ├── es.ts / en.ts / de.ts   # copy del sitio por locale (ES es la referencia tipada)
 │   ├── index.ts         # registro CONTENT: Record<Locale, SiteContent>
@@ -73,6 +73,7 @@ src/
 │   └── BaseLayout.astro # meta/SEO, schema.org, dark theme, estilos globales
 ├── pages/
 │   ├── index.astro              # home ES (/)
+│   ├── 404.astro                # página 404 huérfana (ES, con noindex, fuera del sitemap) → dist/404.html
 │   ├── [lang]/                  # home + blog para EN/DE (/en/, /de/)
 │   ├── blog/                    # índice + [slug] del blog ES
 │   ├── alojamiento-cerca-playa-conil/   # landing SEO
@@ -91,6 +92,8 @@ src/
     └── gallery.css       # estilos de PhotoSwipe
 scripts/
 ├── optimize-gallery.mjs  # genera variantes AVIF/WebP/JPEG + manifest (sharp)
+├── post-build.mjs        # copia sitemap-index.xml → sitemap.xml (lo ejecuta `npm run build`; Google Search Console espera sitemap.xml)
+├── audit-build-seo.py    # barre dist/ tras el build: un <h1> por página, canonical, JSON-LD válido, enlaces internos e hreflang que resuelven, y reciprocidad de `translations` entre posts (lo ejecuta el job build de deploy.yml)
 └── validate.sh           # validación local (type-check, build, anti-secretos)
 public/
 ├── gallery/*.jpg         # originales a resolución completa (no editar a mano)
@@ -110,6 +113,7 @@ Estas reglas son **obligatorias**; romperlas rompe el build o el flujo de conten
 
 ### Contenido vs. layout
 - **Todo el copy visible vive en `src/content/{locale}.ts`.** Los componentes `.astro`/`.tsx` deben estar **libres de contenido**: consumen el objeto de contenido vía props desde las plantillas de `src/templates/`, no incrustan texto a mano.
+- **Excepción (landings SEO):** el copy de las landings vive en sus wrappers `src/pages/apartamento-vacacional-conil/index.astro` y `src/pages/alojamiento-cerca-playa-conil/index.astro` (objeto `copy` autocontenido que se pasa a `SeoLandingPage.astro`), no en `src/content/`.
 - Para cambiar textos, fotos, amenities, FAQ, etc.: edita `src/content/es.ts` (o el locale que corresponda) — **cambia valores, nunca las claves** (la forma de `es.ts` es el tipo `SiteContent` que tipa todos los locales).
 - Para añadir un idioma: duplica `es.ts`, traduce valores, regístralo en `src/content/index.ts` y en `src/i18n/locales.ts`.
 
