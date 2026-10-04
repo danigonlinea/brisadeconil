@@ -27,6 +27,13 @@ export const nav = {
   cta: "Reservar fechas",
   toggleDark: "Activar modo oscuro",
   toggleLight: "Activar modo claro",
+  homeAria: "Ir al inicio",
+  mainNavAria: "Navegación principal",
+  languageAria: "Idioma: cambiar idioma",
+  languageListAria: "Seleccionar idioma",
+  openMenuAria: "Abrir menú",
+  mobileMenuAria: "Menú de navegación",
+  mobileNavAria: "Navegación móvil",
 };
 
 export const hero = {
@@ -38,11 +45,13 @@ export const hero = {
   cta: "Consulta disponibilidad",
   ctaHref: "#contacto",
   scrollLabel: "Descubre más",
+  imageAria: "Brisa de Conil — vista del paseo y la playa de Conil de la Frontera",
 };
 
 export const gallery = {
   label: "Galería de fotos",
   lead: "Un vistazo a cada rincón con luz natural y el ambiente auténtico del apartamento.",
+  gridAria: "Galería de fotos del apartamento",
 };
 
 export const apartment = {
@@ -141,6 +150,9 @@ export const location = {
   lead: "Calle Rosa de los Vientos, frente al Mercado de Abastos. Todo a pie.",
   address: "C/ Rosa de los Vientos, Conil de la Frontera (Cádiz)",
   mapTitle: "Mapa de Google con la ubicación del apartamento",
+  loadMap: "Cargar mapa",
+  mapConsentNote:
+    "Al cargar el mapa, Google puede instalar cookies.",
   mapEmbedUrl:
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3196.0!2d-6.0897!3d36.2778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd0c4e0b0b0b0b0b%3A0x0!2sMercado+de+Abastos+Conil!5e0!3m2!1ses!2ses!4v1690000000000",
   parking: {
@@ -423,6 +435,7 @@ export const cookies = {
 export const testimonials = {
   sectionLabel: "Opiniones",
   headline: "Lo que dicen nuestros huéspedes",
+  starsAria: "{n} de 5 estrellas",
   placeholder: true,
   items: [
     {
@@ -481,6 +494,8 @@ export const footer = {
   contactTitle: "Contacto",
   backToStartAria: "Brisa de Conil — volver al inicio",
   footerNavAria: "Navegación pie de página",
+  instagramAria: "Instagram de Brisa de Conil",
+  facebookAria: "Facebook de Brisa de Conil",
   links: [
     { label: "El apartamento", href: "#apartamento" },
     { label: "Galería", href: "#galeria" },

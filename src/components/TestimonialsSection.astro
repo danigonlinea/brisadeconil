@@ -31,7 +31,7 @@ const { testimonials } = Astro.props;
       {testimonials.items.map((t, i) => (
         <li class:list={['testimonial-card', 'reveal', `reveal-delay-${i + 1}`]}>
           <!-- Stars -->
-          <div class="testimonial-stars" aria-label={`${t.rating} de 5 estrellas`}>
+          <div class="testimonial-stars" aria-label={testimonials.starsAria.replace('{n}', String(t.rating))}>
             {Array.from({ length: 5 }).map((_, si) => (
               <svg
                 width="16" height="16"

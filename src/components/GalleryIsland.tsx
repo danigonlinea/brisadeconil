@@ -14,6 +14,7 @@
  */
 import { useCallback, useEffect, useRef, useState } from "react";
 import { DEFAULT_LOCALE, type Locale } from "../i18n/locales";
+import { CONTENT } from "../content/index";
 import galleryManifest from "../data/gallery-manifest";
 import { trackEvent } from "../lib/analytics";
 
@@ -449,7 +450,7 @@ export default function GalleryIsland({ locale }: GalleryIslandProps) {
     <div
       className="gallery-grid"
       role="list"
-      aria-label="Galería de fotos del apartamento"
+      aria-label={CONTENT[locale].gallery.gridAria}
     >
       {GALLERY_ITEMS.map((item, index) => (
         <div

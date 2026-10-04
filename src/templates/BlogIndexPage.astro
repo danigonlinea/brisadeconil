@@ -9,9 +9,11 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Footer from '../components/Footer.astro';
+import LanguageSwitcher from '../components/LanguageSwitcher.astro';
 import { CONTENT } from '../content/index';
 import { DEFAULT_LOCALE, homePath, routePrefix, SUPPORTED_LOCALES, type Locale } from '../i18n/locales';
 import { blogCollectionFor, blogLocaleTag } from '../i18n/blog';
+import { blogIndexPath, samePathSwitchTargets } from '../i18n/locales';
 
 interface Props {
   locale?: Locale;
@@ -74,7 +76,10 @@ const breadcrumbSchema = {
   <header class="blog-topbar">
     <div class="container blog-topbar-inner">
       <a href={rootHref} class="blog-brand">{brand}</a>
-      <a href={rootHref} class="blog-backlink">← {blog.backToHome}</a>
+      <div class="blog-topbar-actions">
+        <LanguageSwitcher locale={locale} targets={samePathSwitchTargets(blogIndexPath)} triggerAria={CONTENT[locale].nav.languageAria} listAria={CONTENT[locale].nav.languageListAria} />
+        <a href={rootHref} class="blog-backlink">← {blog.backToHome}</a>
+      </div>
     </div>
   </header>
 
@@ -202,6 +207,12 @@ const breadcrumbSchema = {
     justify-content: space-between;
     gap: var(--sp-4);
     height: 64px;
+  }
+
+  .blog-topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-4);
   }
 
   .blog-brand {

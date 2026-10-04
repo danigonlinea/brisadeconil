@@ -27,6 +27,13 @@ export const nav = {
   cta: 'Book your dates',
   toggleDark:  'Enable dark mode',
   toggleLight: 'Enable light mode',
+  homeAria: 'Go to the homepage',
+  mainNavAria: 'Main navigation',
+  languageAria: 'Language: change language',
+  languageListAria: 'Select language',
+  openMenuAria: 'Open menu',
+  mobileMenuAria: 'Navigation menu',
+  mobileNavAria: 'Mobile navigation',
 };
 
 export const hero = {
@@ -36,11 +43,13 @@ export const hero = {
   cta: 'Check availability',
   ctaHref: '#contacto',
   scrollLabel: 'Discover more',
+  imageAria: 'Brisa de Conil — view of the promenade and the beach of Conil de la Frontera',
 };
 
 export const gallery = {
   label: "Photo gallery",
   lead: "A glimpse of every corner, with natural light and the apartment's authentic feel.",
+  gridAria: "Photo gallery of the apartment",
 };
 
 export const apartment = {
@@ -103,6 +112,9 @@ export const location = {
   lead: 'Calle Rosa de los Vientos, opposite the Market Hall. Everything within walking distance.',
   address: 'C/ Rosa de los Vientos, Conil de la Frontera (Cádiz)',
   mapTitle: "Google Maps showing the apartment's location",
+  loadMap: 'Load map',
+  mapConsentNote:
+    'Loading the map may allow Google to set cookies.',
   mapEmbedUrl:
     'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3196.0!2d-6.0897!3d36.2778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd0c4e0b0b0b0b0b%3A0x0!2sMercado+de+Abastos+Conil!5e0!3m2!1sen!2ses!4v1690000000000',
   parking: {
@@ -261,6 +273,7 @@ export const cookies = {
 export const testimonials = {
   sectionLabel: 'Reviews',
   headline: 'What our guests say',
+  starsAria: '{n} out of 5 stars',
   placeholder: true,
   items: [
     { name: 'María G.', origin: 'Madrid',  rating: 5, text: '[PLACEHOLDER — real review pending]' },
@@ -304,6 +317,8 @@ export const footer = {
   contactTitle: 'Contact',
   backToStartAria: 'Brisa de Conil — back to start',
   footerNavAria: 'Footer navigation',
+  instagramAria: 'Brisa de Conil on Instagram',
+  facebookAria: 'Brisa de Conil on Facebook',
   links: [
     { label: 'The apartment', href: '#apartamento' },
     { label: 'Gallery',       href: '#galeria' },
