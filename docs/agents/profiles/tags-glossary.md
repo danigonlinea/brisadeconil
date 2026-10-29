@@ -12,13 +12,18 @@ Tags normalizados para los tres idiomas. Cada post debe usar la traducción exac
 | Mercado | mercado | market | markt |
 | Atún | atun | tuna | thunfisch |
 | Senderismo | senderismo | hiking | wandern |
-| Naturaleza | naturaleza | nature | naturaleza |
+| Naturaleza | naturaleza | nature | natur |
 | Aparcamiento | aparcamiento | parking | parken |
 | Itinerarios | itinerarios | itineraries | routen |
 | Temporada baja | temporada-baja | low-season | nebensaison |
 | Slow living | slow-living | slow-living | slow-living |
 | Verano | verano | summer | sommer |
 | Surf | surf | surf | surf |
+| Eventos | eventos | events | events |
+| Ocio | ocio | leisure | freizeit |
+| Puente | puente | long-weekend | brueckenwochenende |
+| Otoño | otoño | autumn | herbst |
+| Invierno | invierno | winter | winter |
 
 ---
 
