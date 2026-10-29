@@ -148,11 +148,14 @@ const breadcrumbSchema = {
             <Content />
           </div>
 
-          <!-- End-of-post booking CTA -->
-          <aside class="blog-cta">
+          <!-- End-of-post booking CTA. A <div>, not an <aside>: an <aside>
+               inside <article> is not a top-level complementary landmark, so
+               screen-reader landmark navigation skipped it (axe: landmark-
+               complementary-is-top-level). -->
+          <div class="blog-cta">
             <p>{blog.ctaLine}</p>
             <a href={contactHref} class="btn btn--primary btn--lg" data-blog-cta>{blog.ctaButton}</a>
-          </aside>
+          </div>
         </div>
       </div>
 
