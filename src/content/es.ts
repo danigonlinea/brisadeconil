@@ -312,11 +312,6 @@ export const faq = {
       pending: false,
     },
     {
-      q: "¿Se puede fumar en el apartamento?",
-      a: "No se permite fumar en el apartamento.",
-      pending: false,
-    },
-    {
       q: "¿Cuál es la política de cancelación?",
       a: "Puedes cancelar sin coste hasta 7 días antes de la fecha de llegada. A partir de entonces, el importe no es reembolsable.",
       pending: false,
@@ -324,6 +319,11 @@ export const faq = {
     {
       q: "¿Qué pasa si llego más tarde de lo previsto?",
       a: "Si llegas más tarde, intentaremos coordinarnos para vernos y darte las llaves, así puedes entrar sin líos.",
+      pending: false,
+    },
+    {
+      q: "¿Cuántas personas pueden alojarse?",
+      a: "El apartamento es para 3 personas: 2 en la cama doble y 1 en el sofá cama chaiselongue del salón.",
       pending: false,
     },
     {
@@ -435,33 +435,6 @@ export const cookies = {
   policy: "Más información",
   reject: "Solo lo esencial",
   accept: "Aceptar",
-};
-
-export const testimonials = {
-  sectionLabel: "Opiniones",
-  headline: "Lo que dicen nuestros huéspedes",
-  starsAria: "{n} de 5 estrellas",
-  placeholder: true,
-  items: [
-    {
-      name: "María G.",
-      origin: "Madrid",
-      rating: 5,
-      text: "[PLACEHOLDER — testimonio real pendiente de añadir]",
-    },
-    {
-      name: "Thomas K.",
-      origin: "Alemania",
-      rating: 5,
-      text: "[PLACEHOLDER — testimonio real pendiente de añadir]",
-    },
-    {
-      name: "Sophie L.",
-      origin: "Francia",
-      rating: 5,
-      text: "[PLACEHOLDER — testimonio real pendiente de añadir]",
-    },
-  ],
 };
 
 export const blog = {
