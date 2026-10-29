@@ -22,8 +22,10 @@ const { welcome } = Astro.props;
         <hr class="divider welcome-divider" aria-hidden="true" />
         <p class="section-label welcome-label">{welcome.sectionLabel}</p>
         <h2 class="section-title welcome-headline" id="welcome-title">
-          {welcome.headline.split('\n').map((line) => (
-            <span class="welcome-headline-line">{line}</span>
+          {/* The trailing space keeps the heading readable when the lines are
+              flattened into plain text (search snippets, screen readers). */}
+          {welcome.headline.split('\n').map((line, i, lines) => (
+            <span class="welcome-headline-line">{line}{i < lines.length - 1 ? ' ' : ''}</span>
           ))}
         </h2>
       </div>

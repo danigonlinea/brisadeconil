@@ -408,6 +408,11 @@ export const faq = {
       pending: false,
     },
     {
+      q: "Gibt es Parkplätze am Mercado de Abastos?",
+      a: "Ja. Die Markthalle hat direkt gegenüber der Wohnung einen kommunalen Parkplatz. Es gibt auch private Parkplätze in der Umgebung und in der Hochsaison das Recinto Ferial (kostenlos und geräumig).",
+      pending: false,
+    },
+    {
       q: "Wie kommt man zum Strand von Roche?",
       a: "Zu Fuß vom Apartment aus, nordwärts entlang der Strandpromenade, dauert es etwa 20 Minuten. Du kannst auch mit dem Auto fahren (5 Minuten) und in der Roche-Gegegend parken.",
       pending: false,
@@ -421,33 +426,6 @@ export const cookies = {
   policy: "Mehr erfahren",
   reject: "Nur das Nötigste",
   accept: "Akzeptieren",
-};
-
-export const testimonials = {
-  sectionLabel: "Bewertungen",
-  headline: "Was unsere Gäste sagen",
-  starsAria: "{n} von 5 Sternen",
-  placeholder: true,
-  items: [
-    {
-      name: "María G.",
-      origin: "Madrid",
-      rating: 5,
-      text: "[PLATZHALTER — echte Bewertung ausstehend]",
-    },
-    {
-      name: "Thomas K.",
-      origin: "Deutschland",
-      rating: 5,
-      text: "[PLATZHALTER — echte Bewertung ausstehend]",
-    },
-    {
-      name: "Sophie L.",
-      origin: "Frankreich",
-      rating: 5,
-      text: "[PLATZHALTER — echte Bewertung ausstehend]",
-    },
-  ],
 };
 
 export const blog = {

@@ -16,7 +16,9 @@ export default defineConfig({
     react(),
     // Sitemap options: freshness + priority signals for crawlers and answer engines.
     sitemap({
-      lastmod: new Date(),
+      // No lastmod: a build-time timestamp marks every URL as "modified now" on
+      // each deploy, which teaches crawlers to ignore the field. Add per-page
+      // dates only when they come from the content itself.
       changefreq: "monthly",
       priority: 0.7,
       // The 404 page must never be indexed: keep it out of the sitemap.

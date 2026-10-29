@@ -249,6 +249,22 @@ const cspPolicy = [
         document.documentElement.setAttribute('data-theme', theme);
       })();
     </script>
+
+    <!-- Without JS the IntersectionObserver that adds .visible never runs, and
+         .reveal starts at opacity:0 — the page would render almost empty. -->
+    <noscript>
+      <style>
+        .reveal,
+        .reveal-delay-1,
+        .reveal-delay-2,
+        .reveal-delay-3,
+        .reveal-delay-4,
+        .reveal-delay-5 {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      </style>
+    </noscript>
   </head>
   <body>
     <!-- Skip navigation for keyboard users -->
@@ -333,7 +349,9 @@ const cspPolicy = [
       }
       .cookie-banner-btn--primary {
         background-color: var(--accent-strong, #0d9488);
-        color: #ffffff;
+        /* --accent-text is white on light and navy-950 on dark: hardcoding
+           #ffffff left 2.3:1 white-on-teal in the dark theme. */
+        color: var(--accent-text, #ffffff);
       }
       @media (max-width: 480px) {
         .cookie-banner { width: calc(100vw - var(--sp-3, 0.75rem) * 2); }

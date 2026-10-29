@@ -84,7 +84,7 @@ If you want to make the most of Conil's autumn food season, here's my advice:
 
 - **Early October**: Tapa Route (if the autumn 2026 edition is confirmed, probably around the 12 October bank holiday).
 - **Late October**: Retinto Route (23 Oct – 2 Nov), with the big weekend on 24-25.
-- **Accommodation**: prices in October are much lower than in August and the village is peaceful. If you're looking for a base, [check availability](/#contact) at the apartment.
+- **Accommodation**: prices in October are much lower than in August and the village is peaceful. If you're looking for a base, [check availability](/#contacto) at the apartment.
 - **Book ahead**: participating restaurants fill up, especially at weekends.
 - **Download the Turismo Conil app**: that's where you'll find the updated maps of participating establishments and their offerings.
 

@@ -15,7 +15,7 @@ Astro v7.2.9 (SSG) - React v19.2.8 islands - PhotoSwipe v5.4.4 - sharp v0.35.5 -
 ## Getting started
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 

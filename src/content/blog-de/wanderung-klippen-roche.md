@@ -14,9 +14,9 @@ Es ist das Gesicht des Dorfes, das fast niemand fotografiert. Alle kommen wegen 
 
 ## Der Aussichtspunkt: beste Aussicht auf die Küste von Roche
 
-Das hohe Stück der Klippe ist ein **natürlicher Aussichtspunkt** der sich über Kilometer erstreckt. Von oben siehst du die Buchten eine nach der anderen hinabfallen — Roqueo, Camarón, Puntalejos, Cala Lee — und in der Ferne an klaren Tagen das **Kap Trafalgar** mit seinem Leuchtturm.
+Das hohe Stück der Klippe ist ein **natürlicher Aussichtspunkt**, der sich über Kilometer erstreckt. Von oben siehst du die Buchten eine nach der anderen hinabfallen — Roqueo, Camarón, Puntalejos, Cala Lee — und in der Ferne an klaren Tagen das **Kap Trafalgar** mit seinem Leuchtturm.
 
-Der fotogenste Punkt ist eine halbe Stunde von der Altstadt entfernt: eine Kurve auf dem Pfad wo die Klippe senkrecht ins Meer fällt. Dort setze ich mich zum Frühstück mit Kaffee aus der Thermoskanne wenn jemand zu uns kommt. Das ist der Plan.
+Der fotogenste Punkt ist eine halbe Stunde von der Altstadt entfernt: eine Kurve auf dem Pfad, wo die Klippe senkrecht ins Meer fällt. Dort setze ich mich zum Frühstück mit Kaffee aus der Thermoskanne hin, wenn jemand zu uns kommt. Das ist der Plan.
 
 ## Die Route, kurzversion
 
