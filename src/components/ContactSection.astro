@@ -24,7 +24,10 @@ const { contact } = Astro.props;
         <h2 class="section-title contact-headline" id="contact-title">{contact.headline}</h2>
         <p class="section-lead">{contact.lead}</p>
 
-        <div class="contact-reassurances" role="region" aria-label={contact.headline}>
+        <!-- Plain container: these are supporting lines under the heading, not
+             a landmark of their own (a second region named after the same
+             heading tripped axe's landmark-unique rule). -->
+        <div class="contact-reassurances">
           {contact.reassurances.map((text, i) => (
             <div class="contact-reassurance">
               {i === 0 && (
@@ -237,6 +240,14 @@ const { contact } = Astro.props;
     font-size: var(--text-sm);
     color: var(--text-secondary);
     text-align: center;
+  }
+
+  /* Accent-strong instead of the global --accent: #136b63 reaches 6.3:1 on the
+     light surface (the global teal-500 sat at 3.0:1, below WCAG AA for body
+     text). In the dark theme --accent-strong resolves to teal-400, which is
+     7.4:1 on the dark surface, so one token covers both themes. */
+  .contact-direct a {
+    color: var(--accent-strong);
   }
 
   .contact-noscript {

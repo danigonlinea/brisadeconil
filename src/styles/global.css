@@ -639,6 +639,26 @@ video {
   transition-delay: 400ms;
 }
 
+/* Motion preferences: users who ask for reduced motion get the final state
+   immediately. Without this the reveal transitions still animate, and the
+   scroll-driven sections keep moving. */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-delay-1,
+  .reveal-delay-2,
+  .reveal-delay-3,
+  .reveal-delay-4,
+  .reveal-delay-5 {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    transition-delay: 0s;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 /* ─── Focus ──────────────────────────────────────────────────────────────────── */
 :focus-visible {
   outline: 3px solid var(--accent);
