@@ -84,7 +84,7 @@ Wenn Sie die Herbstsaison in Conil optimal nutzen möchten, hier mein Rat:
 
 - **Anfang Oktober**: Tapas-Route (falls die Herbst-2026-Ausgabe bestätigt wird, wahrscheinlich rund um den 12. Oktober-Feiertag).
 - **Ende Oktober**: Retinto-Route (23. Okt. – 2. Nov.), mit dem großen Wochenende am 24.-25.
-- **Unterkunft**: Die Preise im Oktober sind viel niedriger als im August und das Dorf ist ruhig. Wenn Sie eine Basis suchen, [prüfen Sie die Verfügbarkeit](/#contact) in der Wohnung.
+- **Unterkunft**: Die Preise im Oktober sind viel niedriger als im August und das Dorf ist ruhig. Wenn Sie eine Basis suchen, [prüfen Sie die Verfügbarkeit](/#contacto) in der Wohnung.
 - **Vorab buchen**: Die teilnehmenden Restaurants sind voll, besonders am Wochenende.
 - **Laden Sie die Turismo-Conil-App herunter**: Dort finden Sie die aktuellen Karten der teilnehmenden Betriebe und ihre Angebote.
 

@@ -84,7 +84,7 @@ Si quieres aprovechar al máximo el otoño gastronómico de Conil, aquí va mi c
 
 - **Principios de octubre**: Ruta de la Tapa (si se confirma la edición de otoño 2026, probablemente en torno al puente del 12).
 - **Finales de octubre**: Ruta del Retinto (23 oct – 2 nov), con el fin de semana grande del 24-25.
-- **Alojamiento**: en octubre los precios son mucho más bajos que en agosto y el pueblo está tranquilo. Si buscas base, [consulta disponibilidad](/#contact) en el apartamento.
+- **Alojamiento**: en octubre los precios son mucho más bajos que en agosto y el pueblo está tranquilo. Si buscas base, [consulta disponibilidad](/#contacto) en el apartamento.
 - **Reserva con antelación**: los restaurantes participantes se llenan, sobre todo los fines de semana.
 - **Descarga la app Turismo Conil**: ahí están los mapas actualizados de participantes y sus propuestas.
 
