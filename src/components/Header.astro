@@ -17,9 +17,15 @@ interface Props {
    * that locale's homepage). Missing entries fall back to each locale's home.
    */
   switchTargets?: Partial<Record<Locale, string>>;
+  /**
+   * Force the solid (scrolled) header from the first paint. Pages whose hero
+   * is light — the SEO landing pages — cannot use the default white-on-dark
+   * nav, which would be invisible until the user scrolls.
+   */
+  solid?: boolean;
 }
 
-const { nav, locale, switchTargets } = Astro.props;
+const { nav, locale, switchTargets, solid = false } = Astro.props;
 
 const targets: Record<Locale, string> = {
   es: switchTargets?.es ?? homePath('es'),
@@ -39,7 +45,7 @@ function withBase(href: string): string {
 }
 ---
 
-<header class="site-header" id="site-header" role="banner">
+<header class:list={['site-header', solid && 'scrolled']} id="site-header" role="banner" data-solid={solid ? 'true' : undefined}>
   <div class="header-inner container">
     <!-- Brand icon only -->
     <a href="#" class="header-brand" aria-label={nav.homeAria}>
@@ -240,7 +246,8 @@ function withBase(href: string): string {
   const mobileMenu = document.getElementById('mobile-menu')!;
 
   function updateHeaderScroll() {
-    header.classList.toggle('scrolled', window.scrollY > 40);
+    // data-solid pins the solid state on pages without a dark hero.
+    header.classList.toggle('scrolled', header.dataset.solid === 'true' || window.scrollY > 40);
   }
   window.addEventListener('scroll', updateHeaderScroll, { passive: true });
   updateHeaderScroll();

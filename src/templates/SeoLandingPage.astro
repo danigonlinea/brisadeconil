@@ -55,8 +55,10 @@ const webPageSchema = {
 
 <BaseLayout locale={locale} title={copy.metaTitle} description={copy.metaDescription} canonicalUrl={canonical}>
   {/* ES-only landing: no translated siblings exist, so the switcher keeps
-      this page in the current locale and links to the other locales' homes. */}
-  <Header nav={content.nav} locale={locale} switchTargets={singleLocaleSwitchTargets(locale, `/${copy.slug}/`)} />
+      this page in the current locale and links to the other locales' homes.
+      solid: the landing hero is light, so the transparent-header variant would
+      render white nav links on a pale background. */}
+  <Header nav={content.nav} locale={locale} switchTargets={singleLocaleSwitchTargets(locale, `/${copy.slug}/`)} solid />
 
   <main id="main-content" tabindex="-1">
     <!-- SEO hero -->
@@ -107,7 +109,9 @@ const webPageSchema = {
 
 <style>
   .landing-hero {
-    padding-block: var(--sp-12) var(--sp-10);
+    /* Clears the fixed header (65px) now that this page forces the solid
+       header variant; the extra 2rem keeps the eyebrow line visible. */
+    padding-block: calc(var(--sp-12) + 2rem) var(--sp-10);
     background-color: var(--bg-surface-alt);
   }
 
@@ -162,6 +166,9 @@ const webPageSchema = {
   .landing-blog-note p {
     margin: 0;
     text-align: center;
+    /* The band is dark, but the global paragraph colour would win over the
+       inherited one and paint navy-on-navy. */
+    color: var(--text-on-dark-muted);
   }
 
   .landing-blog-note a {
