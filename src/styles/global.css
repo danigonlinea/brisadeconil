@@ -587,6 +587,33 @@ video {
   margin-block: var(--sp-8);
 }
 
+/* Tables (the December calendar and future posts): the markdown pipeline emits
+   a bare <table>, which browsers render with no borders and cramped cells. */
+.prose table {
+  width: 100%;
+  margin-block: var(--sp-6);
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+  text-align: left;
+}
+
+.prose thead th {
+  background-color: var(--bg-surface-alt);
+  color: var(--text-base);
+  font-weight: var(--fw-semibold);
+}
+
+.prose th,
+.prose td {
+  padding: var(--sp-3) var(--sp-4);
+  border-bottom: 1px solid var(--border-subtle);
+  vertical-align: top;
+}
+
+.prose tbody tr:last-child td {
+  border-bottom: none;
+}
+
 /* ─── Blog tags — shared by the listing cards and the post header ───────────── */
 .tag-list {
   list-style: none;
