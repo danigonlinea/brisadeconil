@@ -36,6 +36,7 @@
     "react-dom": "^19.2.8"
   },
   "overrides": {
-    "fast-uri": ">=4.0.0"
+    "fast-uri": ">=4.0.0",
+    "minimatch": "^11.0.3"
   }
 }
