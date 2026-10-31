@@ -66,7 +66,9 @@ fi
 
 # 3) Anti-secretos: buscar WEB3FORMS_ACCESS_KEY en código cliente
 # Legítimo excluir:
-#   - src/pages/api/        → server-only
+#   - src/pages/api/        → server-only (se descarta tras el grep: `grep
+#                             --exclude-dir` solo compara nombres de directorio,
+#                             no rutas, así que la exclusión va en el pipe)
 #   - .github/              → CI config
 #   - scripts/              → tooling
 #   - node_modules/.git/dist → artefactos
@@ -82,7 +84,6 @@ MATCHES=$(grep -r \
   --exclude-dir=dist \
   --exclude-dir=.github \
   --exclude-dir=scripts \
-  --exclude-dir=src/pages/api \
   --exclude=".env.example" \
   --exclude="*.md" \
   -n "WEB3FORMS_ACCESS_KEY" \
@@ -90,6 +91,7 @@ MATCHES=$(grep -r \
   *.mjs *.js *.ts *.tsx *.astro \
   2>/dev/null \
   | grep -vE ':[0-9]+:[[:space:]]*(//|/\*|\*|<!--|#)' \
+  | grep -v '^src/pages/api/' \
   || true)
 
 if [[ -n "$MATCHES" ]]; then
