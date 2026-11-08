@@ -45,15 +45,17 @@ const canonical = `${siteUrl}/${copy.slug}/`;
 
 // Structured data — WebPage pointing at the LodgingBusiness as about item.
 const webPageSchema = {
-  '@context': 'https://schema.org',
   '@type': 'WebPage',
   name: copy.metaTitle,
   description: copy.metaDescription,
   url: canonical,
+  inLanguage: locale,
+  isPartOf: { '@id': `${siteUrl}/#website` },
+  about: { '@id': `${siteUrl}/#lodging` },
 };
 ---
 
-<BaseLayout locale={locale} title={copy.metaTitle} description={copy.metaDescription} canonicalUrl={canonical}>
+<BaseLayout locale={locale} title={copy.metaTitle} description={copy.metaDescription} canonicalUrl={canonical} schema={webPageSchema}>
   {/* ES-only landing: no translated siblings exist, so the switcher keeps
       this page in the current locale and links to the other locales' homes.
       solid: the landing hero is light, so the transparent-header variant would
@@ -103,8 +105,8 @@ const webPageSchema = {
 
   <Footer footer={content.footer} cta={content.nav.cta} blogLabel={content.blog.navLabel} locale={locale} />
 
-  {/* Schema.org — WebPage */}
-  <script is:inline type="application/ld+json" set:html={JSON.stringify(webPageSchema)} />
+  {/* Schema.org — WebPage is passed to BaseLayout and emitted inside the
+      page @graph, next to the LodgingBusiness it describes. */}
 </BaseLayout>
 
 <style>

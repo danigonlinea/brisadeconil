@@ -50,24 +50,25 @@ const hreflangs = blogPostHreflangs(locale, post.id, post.data.translations, sit
 // frontmatter declares one, otherwise the target locale's homepage.
 const switchTargets = blogPostSwitchTargets(locale, post.id, post.data.translations);
 
-// Structured data — BlogPosting, following the set:html JSON-LD pattern used
-// by BaseLayout (LodgingBusiness) and FAQSection (FAQPage).
+// Structured data — BlogPosting. Emitted inside BaseLayout's @graph so the
+// `publisher` reference resolves against the LodgingBusiness node.
 const blogPostingSchema = {
-  '@context': 'https://schema.org',
   '@type': 'BlogPosting',
   headline: post.data.title,
   description: post.data.description,
   datePublished: post.data.pubDate.toISOString(),
   dateModified: (post.data.updatedDate ?? post.data.pubDate).toISOString(),
-  author: { '@type': 'Organization', name: brand },
+  inLanguage: locale,
+  // Google requires `image` on Article/BlogPosting: fall back to the site
+  // sharing image, since most posts do not ship their own.
+  image: new URL(post.data.image ?? CONTENT[locale].meta.ogImage, siteUrl).toString(),
+  author: { '@type': 'Organization', '@id': `${siteUrl}/#lodging` },
+  publisher: { '@type': 'Organization', '@id': `${siteUrl}/#lodging` },
   mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
-  // Only shipped when declared; the schema guarantees imageAlt exists alongside.
-  ...(post.data.image ? { image: new URL(post.data.image, siteUrl).toString() } : {}),
 };
 
 // Structured data — BreadcrumbList (Home → Blog → Post).
 const breadcrumbSchema = {
-  '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
     {
@@ -102,6 +103,7 @@ const breadcrumbSchema = {
     modifiedTime: post.data.updatedDate,
     tags: post.data.tags,
   }}
+  schema={[blogPostingSchema, breadcrumbSchema]}
 >
   <header class="blog-topbar">
     <div class="container blog-topbar-inner">
@@ -158,11 +160,6 @@ const breadcrumbSchema = {
           </div>
         </div>
       </div>
-
-      {/* Schema.org — BlogPosting */}
-      <script is:inline type="application/ld+json" set:html={JSON.stringify(blogPostingSchema)} />
-      {/* Schema.org — BreadcrumbList */}
-      <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
     </article>
   </main>
 

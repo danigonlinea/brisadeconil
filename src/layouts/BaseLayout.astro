@@ -19,8 +19,13 @@ interface Props {
   description?: string;
   ogImage?: string;
   canonicalUrl?: string;
-  /** Inject the LodgingBusiness structured data (home only). */
-  lodgingSchema?: boolean;
+  /**
+   * Page-level nodes appended to the sitewide JSON-LD @graph (BlogPosting,
+   * BreadcrumbList, WebPage…). They are emitted inside the same graph as the
+   * WebSite/LodgingBusiness entity nodes so `{ "@id": "#lodging" }` references
+   * resolve without relying on cross-script-block merging.
+   */
+  schema?: Record<string, unknown> | Record<string, unknown>[];
   /**
    * Emit the hreflang alternates trio + og:locale:alternate set.
    * Only meaningful on pages that exist in every locale (homepage routes).
@@ -54,7 +59,7 @@ const {
   description = CONTENT[locale].meta.description,
   ogImage = CONTENT[locale].meta.ogImage,
   canonicalUrl,
-  lodgingSchema = false,
+  schema,
   alternates = false,
   hreflangs,
   article,
@@ -68,6 +73,16 @@ const _absCanonical = _rawCanonical.startsWith('http')
   ? _rawCanonical
   : `${siteUrl}${_rawCanonical.startsWith('/') ? _rawCanonical : `/${_rawCanonical}`}`;
 const canonical = _absCanonical.endsWith('/') ? _absCanonical : `${_absCanonical}/`;
+// Entity URLs must be locale-independent: the same LodgingBusiness is
+// described on every page, so its `url` always points at the homepage.
+const siteHomeUrl = `${siteUrl}${homePath(locale)}`;
+const ENTITY_ID = `${siteUrl}/#lodging`;
+const WEBSITE_ID = `${siteUrl}/#website`;
+// Profiles that also identify the business (mirrored by rel="me" in the footer).
+const SOCIAL_PROFILES = [
+  'https://www.instagram.com/brisadeconil/',
+  'https://www.facebook.com/profile.php?id=61592924126300',
+];
 const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
 const cookiesPage = `${base.replace(/\/$/, '')}/politica-cookies/`;
 
@@ -101,13 +116,15 @@ const amenityFeatures = CONTENT[locale].amenities.items.map((item) => ({
 const lodgingSchemaData = {
   '@context': 'https://schema.org',
   '@type': 'LodgingBusiness',
+  '@id': ENTITY_ID,
   name: 'Brisa de Conil',
   description,
-  url: canonical,
+  url: siteHomeUrl,
   image: galleryPhotos,
   photo: galleryPhotos,
   email: 'brisadeconil@gmail.com',
   priceRange: '€€',
+  sameAs: SOCIAL_PROFILES,
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'Calle Rosa de los Vientos',
@@ -131,6 +148,29 @@ const lodgingSchemaData = {
   amenityFeature: amenityFeatures,
   // Omit rather than ship an empty policy if the FAQ lookup ever fails.
   ...(cancellationPolicy ? { cancellationPolicy } : {}),
+};
+
+// WebSite entity: declares the site itself and points its publisher at the
+// LodgingBusiness node, so crawlers resolve one entity per real thing and the
+// social profiles in `sameAs` attach to it.
+const websiteSchemaData = {
+  '@type': 'WebSite',
+  '@id': WEBSITE_ID,
+  url: `${siteUrl}/`,
+  name: 'Brisa de Conil',
+  inLanguage: locale,
+  publisher: { '@id': ENTITY_ID },
+};
+
+// One @graph per page: the sitewide entity nodes plus whatever page-level
+// nodes the template passes in (BlogPosting, BreadcrumbList, WebPage…).
+// Nested nodes must not carry their own @context.
+const { '@context': _lodgingContext, ...lodgingNode } = lodgingSchemaData;
+void _lodgingContext;
+const pageNodes = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [websiteSchemaData, lodgingNode, ...pageNodes],
 };
 
 // Content-Security-Policy — ships as <meta http-equiv> because GitHub Pages
@@ -223,10 +263,10 @@ const cspPolicy = [
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image"       content={ogImageUrl} />
 
-    {/* Schema.org — LodgingBusiness (home only). Enriched for answer engines. */}
-    {lodgingSchema && (
-      <script is:inline type="application/ld+json" set:html={JSON.stringify(lodgingSchemaData)} />
-    )}
+    {/* Schema.org — single @graph: WebSite + LodgingBusiness entity nodes,
+        plus the page-level nodes supplied by the template. Enriched for
+        answer engines and entity reconciliation (`sameAs`). */}
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
