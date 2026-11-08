@@ -31,7 +31,7 @@ const { locale } = Astro.props;
 const content = CONTENT[locale];
 ---
 
-<BaseLayout locale={locale} lodgingSchema alternates>
+<BaseLayout locale={locale} alternates>
   <Header nav={content.nav} locale={locale} switchTargets={{ es: homePath('es'), en: homePath('en'), de: homePath('de') }} />
 
   <main id="main-content" tabindex="-1">

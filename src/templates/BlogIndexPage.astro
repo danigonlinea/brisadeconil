@@ -52,7 +52,6 @@ const dateFormatter = new Intl.DateTimeFormat(blogLocaleTag(locale), {
 // Structured data — BreadcrumbList (Home → Blog). The last crumb is the
 // page itself, so it omits "item" per schema.org guidance.
 const breadcrumbSchema = {
-  '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
     {
@@ -70,9 +69,7 @@ const breadcrumbSchema = {
 };
 ---
 
-<BaseLayout locale={locale} title={blog.metaTitle} description={blog.description} canonicalUrl={canonical} hreflangs={hreflangs}>
-  {/* Schema.org — BreadcrumbList */}
-  <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+<BaseLayout locale={locale} title={blog.metaTitle} description={blog.description} canonicalUrl={canonical} hreflangs={hreflangs} schema={breadcrumbSchema}>
   <header class="blog-topbar">
     <div class="container blog-topbar-inner">
       <a href={rootHref} class="blog-brand">{brand}</a>
