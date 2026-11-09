@@ -98,6 +98,17 @@ const ogLocaleAlternates = SUPPORTED_LOCALES
   .filter((l) => l !== locale)
   .map((l) => CONTENT[l].meta.locale);
 
+// Product terms agents use to search the brand together with what we rent.
+// Shared by the meta keywords tag and the JSON-LD (knowsAbout/keywords): the
+// brand-discoverability check reads the first qualifying phrase it finds, so
+// one list keeps the visible promise and the structured answer identical.
+const PRODUCT_TERMS = [
+  'apartamento en Conil de la Frontera',
+  'apartamento vacacional en Conil de la Frontera',
+  'alquiler de apartamento en Conil de la Frontera',
+  'vivienda con fines turísticos Conil',
+];
+
 // Structured data — LodgingBusiness (home only). Enriched for answer engines.
 const galleryPhotos = Object.keys(galleryManifest).map(
   (id) => `${siteUrl}${base}gallery/optimized/${id}-1600.jpg`,
@@ -139,11 +150,8 @@ const lodgingSchemaData = {
   sameAs: SOCIAL_PROFILES,
   parentOrganization: { '@id': ORGANIZATION_ID },
   // Product terms agents use to search the brand together with what we rent.
-  keywords: [
-    'apartamento vacacional en Conil de la Frontera',
-    'alquiler de apartamento en Conil de la Frontera',
-    'vivienda con fines turísticos Conil',
-  ],
+  keywords: PRODUCT_TERMS,
+  serviceType: 'Apartamento vacacional en Conil de la Frontera',
   address: postalAddress,
   geo: {
     '@type': 'GeoCoordinates',
@@ -188,6 +196,7 @@ const organizationSchemaData = {
   email: 'brisadeconil@gmail.com',
   address: postalAddress,
   sameAs: SOCIAL_PROFILES,
+  knowsAbout: PRODUCT_TERMS,
   contactPoint: [
     {
       '@type': 'ContactPoint',
@@ -259,6 +268,7 @@ const cspPolicy = [
     <!-- Primary meta -->
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="keywords" content={PRODUCT_TERMS.join(', ')} />
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonical} />
 
