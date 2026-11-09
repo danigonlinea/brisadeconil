@@ -1,0 +1,158 @@
+---
+/**
+ * /contact/ — trust anchor page: every way to reach Brisa de Conil and what
+ * happens after writing. Copy stays inline (single-locale site-level page).
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { CONTENT } from '../content/index';
+import { singleLocaleSwitchTargets } from '../i18n/locales';
+
+const content = CONTENT.es;
+const canonicalUrl = 'https://www.brisadeconil.com/contact/';
+const title = 'Contacto — Brisa de Conil, apartamento en Conil de la Frontera';
+const description =
+  'Cómo contactar con Brisa de Conil: formulario, correo electrónico y redes sociales. Consulta de disponibilidad y precio, tiempos de respuesta y datos del alojamiento.';
+---
+
+<BaseLayout
+  locale="es"
+  title={title}
+  description={description}
+  canonicalUrl={canonicalUrl}
+>
+  <Header nav={content.nav} locale="es" switchTargets={singleLocaleSwitchTargets('es', '/contact/')} solid />
+
+  <main id="main-content" tabindex="-1">
+    <section class="legal-page container">
+      <header class="legal-header">
+        <p class="section-label">CONTACTO</p>
+        <h1>Hablamos directamente contigo</h1>
+        <p class="contact-lead">
+          Brisa de Conil no tiene centralita ni agencia: las consultas las responden los
+          propietarios del apartamento, en español, inglés o alemán.
+        </p>
+      </header>
+
+      <article class="legal-content">
+        <h2>Formas de contacto</h2>
+        <ul>
+          <li>
+            <strong>Formulario de la web:</strong>
+            <a href="/#contacto">brisadeconil.com/#contacto</a>. Es la vía más rápida para
+            consultar disponibilidad: indica fechas de llegada y salida y número de personas.
+          </li>
+          <li>
+            <strong>Correo electrónico:</strong>
+            <a href="mailto:brisadeconil@gmail.com">brisadeconil@gmail.com</a>. Sirve tanto para
+            consultas como para gestionar una reserva ya confirmada.
+          </li>
+          <li>
+            <strong>Redes sociales:</strong> mensaje directo en
+            <a href="https://www.instagram.com/brisadeconil/" rel="noopener noreferrer">Instagram (@brisadeconil)</a>
+            o en
+            <a href="https://www.facebook.com/profile.php?id=61592924126300" rel="noopener noreferrer">Facebook</a>.
+          </li>
+        </ul>
+        <p>
+          No publicamos un teléfono de reservas: preferimos dejar la conversación por escrito,
+          con las fechas y el importe acordados en el mismo hilo.
+        </p>
+
+        <h2>Qué respondemos y cuándo</h2>
+        <p>
+          Contestamos normalmente el mismo día. En temporada alta (julio y agosto) puede tardar
+          algo más, pero siempre recibirás respuesta. En la primera contestación incluimos:
+        </p>
+        <ul>
+          <li>Si las fechas que pides están libres.</li>
+          <li>El precio por noche para esa temporada y el importe total de la estancia.</li>
+          <li>Las condiciones de fianza (150 €, devuelta entre 24 y 48 horas tras la salida) y de cancelación (gratuita hasta 7 días antes de la llegada).</li>
+          <li>Cómo llegar y dónde aparcar cerca del apartamento.</li>
+        </ul>
+
+        <h2>Datos del alojamiento</h2>
+        <p>
+          Brisa de Conil es un apartamento de uso turístico de un dormitorio para un máximo de
+          3 personas, en la Calle Rosa de los Vientos, 11140 Conil de la Frontera, Cádiz
+          (España), frente al Mercado de Abastos. Entrada a partir de las 16:00 y salida entre
+          las 11:30 y las 12:00. No se admiten mascotas y no se permite fumar.
+        </p>
+        <p>
+          Si quieres conocer antes el espacio, mira la <a href="/#galeria">galería de fotos</a>,
+          el <a href="/#equipamiento">equipamiento</a> o la <a href="/#faq">preguntas
+          frecuentes</a>. Para saber quién está detrás del alojamiento, visita la página
+          <a href="/about/">sobre Brisa de Conil</a>; y para el tratamiento de tus datos, la
+          <a href="/privacy/">política de privacidad</a>.
+        </p>
+      </article>
+    </section>
+  </main>
+
+  <Footer footer={content.footer} cta={content.nav.cta} blogLabel={content.blog.navLabel} locale="es" />
+</BaseLayout>
+
+<style>
+  .legal-page {
+    padding-block: var(--sp-14);
+  }
+
+  .legal-header {
+    margin-bottom: var(--sp-10);
+  }
+
+  .legal-header .section-label {
+    margin-bottom: var(--sp-4);
+    color: var(--accent-strong);
+  }
+
+  .legal-header h1 {
+    font-size: var(--text-4xl);
+    line-height: 1.1;
+    margin: 0 0 var(--sp-5);
+  }
+
+  .contact-lead {
+    color: var(--text-secondary);
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    max-width: 60ch;
+    margin: 0;
+  }
+
+  .legal-content a {
+    color: var(--accent-strong);
+  }
+
+  .legal-content {
+    display: grid;
+    gap: var(--sp-8);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    max-width: 72ch;
+  }
+
+  .legal-content h2 {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--sp-4);
+    color: var(--text-base);
+  }
+
+  .legal-content p,
+  .legal-content li {
+    font-size: var(--text-base);
+  }
+
+  .legal-content ul {
+    list-style: disc;
+    margin: 0;
+    padding-left: 1.5rem;
+    display: grid;
+    gap: var(--sp-3);
+  }
+
+  .legal-content strong {
+    color: var(--text-base);
+  }
+</style>

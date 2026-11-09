@@ -1,0 +1,164 @@
+---
+/**
+ * /privacy/ — trust anchor page with the plain-language summary of how Brisa
+ * de Conil treats personal data. The binding full text lives at
+ * /politica-privacidad/, which this page links to first thing.
+ * Copy stays inline (single-locale site-level page).
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { CONTENT } from '../content/index';
+import { singleLocaleSwitchTargets } from '../i18n/locales';
+
+const content = CONTENT.es;
+const canonicalUrl = 'https://www.brisadeconil.com/privacy/';
+const title = 'Privacidad — Brisa de Conil';
+const description =
+  'Resumen de privacidad de Brisa de Conil: qué datos personales tratamos, con qué finalidad, cuánto tiempo, con quién se comparten y cómo ejercer tus derechos.';
+---
+
+<BaseLayout
+  locale="es"
+  title={title}
+  description={description}
+  canonicalUrl={canonicalUrl}
+>
+  <Header nav={content.nav} locale="es" switchTargets={singleLocaleSwitchTargets('es', '/privacy/')} solid />
+
+  <main id="main-content" tabindex="-1">
+    <section class="legal-page container">
+      <header class="legal-header">
+        <p class="section-label">PRIVACIDAD</p>
+        <h1>Privacidad, en corto</h1>
+        <p class="contact-lead">
+          Esta página resume cómo tratamos tus datos. El texto completo y vinculante está en la
+          <a href="/politica-privacidad/">política de privacidad</a>.
+        </p>
+      </header>
+
+      <article class="legal-content">
+        <h2>Quién trata tus datos</h2>
+        <p>
+          Brisa de Conil, alojamiento de uso turístico situado en la Calle Rosa de los Vientos,
+          11140 Conil de la Frontera, Cádiz (España). Correo de contacto y de protección de
+          datos: <a href="mailto:brisadeconil@gmail.com">brisadeconil@gmail.com</a>. Los datos
+          fiscales completos del titular están a disposición de los interesados y de las
+          autoridades que los soliciten.
+        </p>
+
+        <h2>Qué datos tratamos</h2>
+        <ul>
+          <li><strong>Consulta:</strong> nombre, correo electrónico y el contenido del mensaje (fechas, número de personas, preferencias).</li>
+          <li><strong>Estancia:</strong> los datos necesarios para formalizar la reserva y cumplir la obligación legal de registro de viajeros.</li>
+          <li><strong>Pago y fianza:</strong> los datos de cobro gestionados a través de la entidad bancaria o del medio de pago empleado.</li>
+          <li><strong>Navegación:</strong> solo si aceptas las cookies analíticas; mientras no aceptes, no se carga ninguna herramienta de medición.</li>
+        </ul>
+
+        <h2>Para qué y cuánto tiempo</h2>
+        <p>
+          Usamos los datos para responder a tu consulta, gestionar la reserva y la estancia, y
+          cumplir las obligaciones legales y fiscales. Los mensajes de consulta se conservan
+          mientras dure la conversación y, si no hay reserva, se eliminan en un plazo máximo de
+          un año. Los datos de reserva se conservan durante los plazos legales de conservación
+          contable y fiscal.
+        </p>
+
+        <h2>Con quién se comparten</h2>
+        <p>
+          No vendemos ni cedemos tus datos con fines comerciales. Solo se comunican a los
+          proveedores necesarios para prestar el servicio (alojamiento web, correo electrónico,
+          gestoría y, cuando la ley lo exige, autoridades) y a la entidad bancaria para el cobro.
+        </p>
+
+        <h2>Tus derechos</h2>
+        <p>
+          Puedes solicitar acceso, rectificación, supresión, limitación, portabilidad y
+          oposición al tratamiento escribiendo a
+          <a href="mailto:brisadeconil@gmail.com">brisadeconil@gmail.com</a>. Responderemos en el
+          plazo máximo de un mes. Si no quedas satisfecho, puedes reclamar ante la Agencia
+          Española de Protección de Datos (aepd.es).
+        </p>
+
+        <h2>Cookies y medición</h2>
+        <p>
+          El sitio solo carga Google Analytics después de que aceptes el aviso de cookies, y
+          siempre con la IP anonimizada. Puedes rechazarlas y seguir navegando con normalidad. El
+          detalle está en la <a href="/politica-cookies/">política de cookies</a>.
+        </p>
+        <p>
+          Más información sobre el alojamiento en <a href="/about/">sobre Brisa de Conil</a> y en
+          la página de <a href="/contact/">contacto</a>. Aviso legal completo en
+          <a href="/aviso-legal/">/aviso-legal/</a>.
+        </p>
+      </article>
+    </section>
+  </main>
+
+  <Footer footer={content.footer} cta={content.nav.cta} blogLabel={content.blog.navLabel} locale="es" />
+</BaseLayout>
+
+<style>
+  .legal-page {
+    padding-block: var(--sp-14);
+  }
+
+  .legal-header {
+    margin-bottom: var(--sp-10);
+  }
+
+  .legal-header .section-label {
+    margin-bottom: var(--sp-4);
+    color: var(--accent-strong);
+  }
+
+  .legal-header h1 {
+    font-size: var(--text-4xl);
+    line-height: 1.1;
+    margin: 0 0 var(--sp-5);
+  }
+
+  .contact-lead {
+    color: var(--text-secondary);
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    max-width: 60ch;
+    margin: 0;
+  }
+
+  .contact-lead a,
+  .legal-content a {
+    color: var(--accent-strong);
+  }
+
+  .legal-content {
+    display: grid;
+    gap: var(--sp-8);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    max-width: 72ch;
+  }
+
+  .legal-content h2 {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--sp-4);
+    color: var(--text-base);
+  }
+
+  .legal-content p,
+  .legal-content li {
+    font-size: var(--text-base);
+  }
+
+  .legal-content ul {
+    list-style: disc;
+    margin: 0;
+    padding-left: 1.5rem;
+    display: grid;
+    gap: var(--sp-3);
+  }
+
+  .legal-content strong {
+    color: var(--text-base);
+  }
+</style>

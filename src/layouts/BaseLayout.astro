@@ -77,6 +77,7 @@ const canonical = _absCanonical.endsWith('/') ? _absCanonical : `${_absCanonical
 // described on every page, so its `url` always points at the homepage.
 const siteHomeUrl = `${siteUrl}${homePath(locale)}`;
 const ENTITY_ID = `${siteUrl}/#lodging`;
+const ORGANIZATION_ID = `${siteUrl}/#organization`;
 const WEBSITE_ID = `${siteUrl}/#website`;
 // Profiles that also identify the business (mirrored by rel="me" in the footer).
 const SOCIAL_PROFILES = [
@@ -113,6 +114,17 @@ const amenityFeatures = CONTENT[locale].amenities.items.map((item) => ({
   value: true,
 }));
 
+// Shared PostalAddress: the Organization and the LodgingBusiness are the same
+// physical place, so both nodes resolve to one address object.
+const postalAddress = {
+  '@type': 'PostalAddress',
+  streetAddress: 'Calle Rosa de los Vientos',
+  addressLocality: 'Conil de la Frontera',
+  addressRegion: 'Cádiz',
+  postalCode: '11140',
+  addressCountry: 'ES',
+};
+
 const lodgingSchemaData = {
   '@context': 'https://schema.org',
   '@type': 'LodgingBusiness',
@@ -125,14 +137,14 @@ const lodgingSchemaData = {
   email: 'brisadeconil@gmail.com',
   priceRange: '€€',
   sameAs: SOCIAL_PROFILES,
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: 'Calle Rosa de los Vientos',
-    addressLocality: 'Conil de la Frontera',
-    addressRegion: 'Cádiz',
-    postalCode: '11140',
-    addressCountry: 'ES',
-  },
+  parentOrganization: { '@id': ORGANIZATION_ID },
+  // Product terms agents use to search the brand together with what we rent.
+  keywords: [
+    'apartamento vacacional en Conil de la Frontera',
+    'alquiler de apartamento en Conil de la Frontera',
+    'vivienda con fines turísticos Conil',
+  ],
+  address: postalAddress,
   geo: {
     '@type': 'GeoCoordinates',
     // Approximate — Mercado de Abastos (frente al apartamento).
@@ -162,6 +174,31 @@ const websiteSchemaData = {
   publisher: { '@id': ENTITY_ID },
 };
 
+// Organization entity — the generic identity node agents look for when a
+// LodgingBusiness subtype is not recognised. It owns the contact information
+// (contactPoint + address) and the brand profiles; the lodging is its child.
+const organizationSchemaData = {
+  '@type': 'Organization',
+  '@id': ORGANIZATION_ID,
+  name: 'Brisa de Conil',
+  url: `${siteUrl}/`,
+  logo: `${siteUrl}/apple-touch-icon.png`,
+  image: ogImageUrl,
+  description: CONTENT[locale].meta.description,
+  email: 'brisadeconil@gmail.com',
+  address: postalAddress,
+  sameAs: SOCIAL_PROFILES,
+  contactPoint: [
+    {
+      '@type': 'ContactPoint',
+      contactType: 'reservations',
+      email: 'brisadeconil@gmail.com',
+      availableLanguage: [...SUPPORTED_LOCALES],
+      areaServed: 'ES',
+    },
+  ],
+};
+
 // One @graph per page: the sitewide entity nodes plus whatever page-level
 // nodes the template passes in (BlogPosting, BreadcrumbList, WebPage…).
 // Nested nodes must not carry their own @context.
@@ -170,7 +207,7 @@ void _lodgingContext;
 const pageNodes = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
 const structuredData = {
   '@context': 'https://schema.org',
-  '@graph': [websiteSchemaData, lodgingNode, ...pageNodes],
+  '@graph': [organizationSchemaData, websiteSchemaData, lodgingNode, ...pageNodes],
 };
 
 // Content-Security-Policy — ships as <meta http-equiv> because GitHub Pages
