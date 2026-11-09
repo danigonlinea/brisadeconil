@@ -1,0 +1,167 @@
+---
+/**
+ * /about/ — trust anchor page written for both humans and AI agents: who runs
+ * Brisa de Conil, what the apartment is, what is included and how booking
+ * direct works. Copy stays inline (like the legal pages) because this page is
+ * a single-locale, site-level page with no translated siblings.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { CONTENT } from '../content/index';
+import { singleLocaleSwitchTargets } from '../i18n/locales';
+
+const content = CONTENT.es;
+const canonicalUrl = 'https://www.brisadeconil.com/about/';
+const title = 'Sobre Brisa de Conil — quién está detrás del apartamento';
+const description =
+  'Quién gestiona Brisa de Conil, qué es el apartamento de Conil de la Frontera, qué incluye la estancia y cómo funciona la reserva directa.';
+---
+
+<BaseLayout
+  locale="es"
+  title={title}
+  description={description}
+  canonicalUrl={canonicalUrl}
+>
+  <Header nav={content.nav} locale="es" switchTargets={singleLocaleSwitchTargets('es', '/about/')} solid />
+
+  <main id="main-content" tabindex="-1">
+    <section class="legal-page container">
+      <header class="legal-header">
+        <p class="section-label">SOBRE NOSOTROS</p>
+        <h1>Brisa de Conil</h1>
+        <p class="about-lead">
+          Brisa de Conil es un único apartamento de uso turístico en el centro de Conil de la
+          Frontera (Cádiz, Andalucía), en la Calle Rosa de los Vientos, frente al Mercado de
+          Abastos. Lo gestionamos directamente sus propietarios: no hay intermediarios, ni
+          agencia, ni plataforma en medio.
+        </p>
+      </header>
+
+      <article class="legal-content">
+        <h2>Qué es el apartamento</h2>
+        <p>
+          Un piso de un dormitorio en primera planta, con salón-cocina integrado y un baño con
+          placa de ducha. Duerme hasta tres personas: dos en la cama de matrimonio de 135 cm y
+          una tercera en el sofá cama chaise-longue del salón. El edificio tiene azotea
+          comunitaria, útil para estar al fresco o tender la ropa. El acceso es por escalera y
+          no hay ascensor.
+        </p>
+        <p>
+          Está pensado para parejas y viajeros que quieran hacerlo todo a pie: playa, mercado,
+          casco antiguo, bares y restaurantes quedan a minutos andando, y no hace falta coche
+          para la estancia. En el
+          <a href="/#apartamento">apartamento</a> y en la
+          <a href="/#equipamiento">lista de equipamiento</a> está el detalle completo, y en la
+          <a href="/#galeria">galería</a> puedes ver cada habitación con luz natural.
+        </p>
+
+        <h2>Quién está detrás</h2>
+        <p>
+          Gestionamos el alojamiento desde Conil de la Frontera, con atención directa por correo
+          electrónico y mensaje en redes sociales. La dirección postal del alojamiento es Calle
+          Rosa de los Vientos, 11140 Conil de la Frontera, Cádiz (España), y el correo de contacto
+          es <a href="mailto:brisadeconil@gmail.com">brisadeconil@gmail.com</a>. Respondemos
+          normalmente el mismo día, en español, inglés o alemán.
+        </p>
+        <p>
+          Los datos identificativos completos del titular (nombre, NIF y domicilio fiscal) están
+          disponibles para huéspedes y autoridades que los soliciten, y se detallan en el
+          <a href="/aviso-legal/">aviso legal</a>. El tratamiento de datos personales se explica
+          en la <a href="/privacy/">política de privacidad</a>.
+        </p>
+
+        <h2>Cómo funciona la reserva directa</h2>
+        <p>
+          No hay tarifa fija publicada: el precio por noche depende de la temporada, así que
+          pedimos fechas y número de personas y respondemos con la disponibilidad y el importe
+          exacto. La reserva se confirma sin comisiones de plataforma y con estas condiciones:
+        </p>
+        <ul>
+          <li>Entrada (check-in) a partir de las 16:00; salida (check-out) entre las 11:30 y las 12:00.</li>
+          <li>Fianza de 150 € (Bizum o efectivo), devuelta entre 24 y 48 horas después de la salida.</li>
+          <li>Cancelación gratuita hasta 7 días antes de la llegada; después, el importe no es reembolsable.</li>
+          <li>No se admiten mascotas y no se permite fumar dentro del alojamiento.</li>
+          <li>Sábanas, toallas, aire acondicionado, fibra óptica y cocina completa incluidos.</li>
+        </ul>
+
+        <h2>Cómo contactar</h2>
+        <p>
+          Escríbenos por el <a href="/#contacto">formulario de contacto</a>, por correo a
+          <a href="mailto:brisadeconil@gmail.com">brisadeconil@gmail.com</a> o por mensaje directo
+          en <a href="https://www.instagram.com/brisadeconil/" rel="noopener noreferrer">Instagram</a>
+          y <a href="https://www.facebook.com/profile.php?id=61592924126300" rel="noopener noreferrer">Facebook</a>.
+          Si prefieres ver primero dónde está y qué hay cerca, echa un vistazo a la
+          <a href="/#ubicacion">ubicación</a> y al <a href="/blog/">blog de Conil</a>, donde
+          publicamos guías de playas, aparcamiento y planes por temporada.
+        </p>
+        <p>
+          Página de contacto directo: <a href="/contact/">/contact/</a>.
+        </p>
+      </article>
+    </section>
+  </main>
+
+  <Footer footer={content.footer} cta={content.nav.cta} blogLabel={content.blog.navLabel} locale="es" />
+</BaseLayout>
+
+<style>
+  .legal-page {
+    padding-block: var(--sp-14);
+  }
+
+  .legal-header {
+    margin-bottom: var(--sp-10);
+  }
+
+  .legal-header .section-label {
+    margin-bottom: var(--sp-4);
+    color: var(--accent-strong);
+  }
+
+  .legal-header h1 {
+    font-size: var(--text-4xl);
+    line-height: 1.1;
+    margin: 0 0 var(--sp-5);
+  }
+
+  .about-lead {
+    color: var(--text-secondary);
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    max-width: 60ch;
+    margin: 0;
+  }
+
+  .legal-content a {
+    color: var(--accent-strong);
+  }
+
+  .legal-content {
+    display: grid;
+    gap: var(--sp-8);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    max-width: 72ch;
+  }
+
+  .legal-content h2 {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--sp-4);
+    color: var(--text-base);
+  }
+
+  .legal-content p,
+  .legal-content li {
+    font-size: var(--text-base);
+  }
+
+  .legal-content ul {
+    list-style: disc;
+    margin: 0;
+    padding-left: 1.5rem;
+    display: grid;
+    gap: var(--sp-3);
+  }
+</style>
