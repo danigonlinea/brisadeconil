@@ -47,7 +47,7 @@ Do not add a `test` script to package.json.
    greps for `WEB3FORMS_ACCESS_KEY` in client code and blocks the commit.
 7. The server endpoint `src/pages/api/contact.ts` is dormant. GitHub Pages
    ignores it; do not route the contact form through it.
-8. Use `node` 24.18.1 (`.nvmrc`). System node fails `astro check`; run
+8. Use `node` 26.13.1 (`.nvmrc`). System node fails `astro check`; run
    `source ~/.nvm/nvm.sh && nvm use` first.
 9. Treat `openspec/` as the authority for user-visible decisions. Ignore
    `docs/analisis-repositorio-y-siguientes-pasos.md` for greps — it is stale.
