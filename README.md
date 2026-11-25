@@ -8,7 +8,7 @@ Astro v7.2.9 (SSG) - React v19.2.8 islands - PhotoSwipe v5.4.4 - sharp v0.35.5 -
 
 ## Requirements
 
-- node 24.18.1 (see `.nvmrc`; engines require >=22.12.0)
+- node 26.13.1 (see `.nvmrc`; engines require >=26.13.1)
 - npm (package-lock.json is tracked)
 - No test framework. No other SDK needed.
 
